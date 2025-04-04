@@ -7,16 +7,26 @@ public class ZombieBehaviour : MonoBehaviour
     [SerializeField][Tooltip("Vida del zombie")]private int _life;
     private void Awake()
     {
-        _life = 50;
+        _life = 100;
         _agent = GetComponent<NavMeshAgent>();
         _anims = GetComponent<ZombieAnimations>();
     }
     void Update()
     {
         ZombieStates();
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            _life = 0;
+        }
     }
     private void ZombieStates()
     {
+        if(_life <= 0)
+        {
+            _anims.ChangeState(STATE.Death);
+            _agent.isStopped = true;
+            return;
+        }
         if (Vector3.Distance(this.transform.position, GameManager.instance.player.transform.position) > 50)
         {
             _anims.ChangeState(STATE.Idle);
