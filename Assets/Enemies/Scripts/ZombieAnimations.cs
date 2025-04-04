@@ -20,16 +20,13 @@ public class ZombieAnimations : MonoBehaviour
         HangleStates();
     }
     /// <summary>
-    /// Cambia los estados del Zombie
+    /// Cambia los estados y animaciones del Zombie
     /// </summary>
     public void ChangeState(STATE newState)
     {
         if (_currentState == newState) return;
         _currentState = newState;
     }
-    /// <summary>
-    /// Determina que sucede en cada estado del zombie.
-    /// </summary>
     private void HangleStates()
     {
         if (_currentState == STATE.Death)
