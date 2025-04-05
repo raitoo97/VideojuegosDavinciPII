@@ -5787,6 +5787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c4172ccdd8c4434296fa9eddbb633ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Zombies: []
 --- !u!4 &1091235420
 Transform:
   m_ObjectHideFlags: 0
