@@ -13,7 +13,7 @@ public class ZombieBehaviour : MonoBehaviour
     }
     void Update()
     {
-        ZombieStates();
+       // ZombieStates();
         if (Input.GetKeyDown(KeyCode.R))
         {
             _life = 0;
