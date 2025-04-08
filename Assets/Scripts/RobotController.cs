@@ -22,14 +22,13 @@ public class NewBehaviourScript : MonoBehaviour
 
     void Update()
     {
-
-        Vector3 direction = new Vector3(input.move.x * speed * Time.deltaTime,0, input.move.y * speed * Time.deltaTime);
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        Vector3 direction = new Vector3(input.move.x, 0, input.move.y) * speed * Time.deltaTime;
         if (input.move != Vector2.zero)
         {
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, speed * Time.deltaTime);
         }
-        animator.SetFloat("speed", input.move.magnitude);
+        animator.SetFloat("speed", input.move.magnitude); // input.move.magnitude vector normalizado por sistema
         rb.MovePosition(rb.position + direction);
     }
 }
