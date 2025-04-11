@@ -13,7 +13,7 @@ public class ZombieAnimations : MonoBehaviour
     private void Awake()
     {
         _currentState = STATE.Idle;
-        _animator = GetComponent<Animator>();
+        _animator = GetComponentInChildren<Animator>();
     }
     void Update()
     {
