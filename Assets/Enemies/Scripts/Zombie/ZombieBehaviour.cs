@@ -4,10 +4,10 @@ public class ZombieBehaviour : MonoBehaviour
 {
     [SerializeField]private NavMeshAgent _agent;
     [SerializeField]private ZombieAnimations _anims;
-    [SerializeField][Tooltip("Vida del zombie")]private int _life;
+    [SerializeField][Tooltip("Vida del zombie")]public int life;
     private void Awake()
     {
-        _life = 100;
+        life = 100;
         _agent = GetComponent<NavMeshAgent>();
         _anims = GetComponent<ZombieAnimations>();
     }
@@ -16,15 +16,16 @@ public class ZombieBehaviour : MonoBehaviour
        ZombieStates();
         if (Input.GetKeyDown(KeyCode.R))
         {
-            _life = 0;
+            life = 0;
         }
     }
     private void ZombieStates()
     {
-        if(_life <= 0)
+        if(life <= 0)
         {
             _anims.ChangeState(STATE.Death);
             _agent.isStopped = true;
+            Invoke("Desactivate", 1f);
             return;
         }
         if (Vector3.Distance(this.transform.position, GameManager.instance.player.transform.position) > 50)
@@ -39,11 +40,15 @@ public class ZombieBehaviour : MonoBehaviour
             _agent.isStopped = false;
             _agent.SetDestination(GameManager.instance.player.transform.position);
         }
-        else if(Vector3.Distance(this.transform.position, GameManager.instance.player.transform.position) < 2)
+        else if(Vector3.Distance(this.transform.position, GameManager.instance.player.transform.position) < 3)
         {
             _anims.ChangeState(STATE.Atack);
             _agent.isStopped = true;
             _agent.SetDestination(_agent.transform.position);
         }
+    }
+    private void Desactivate()
+    {
+        this.gameObject.SetActive(false);
     }
 }
