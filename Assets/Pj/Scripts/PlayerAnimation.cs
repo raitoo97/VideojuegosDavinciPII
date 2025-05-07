@@ -7,14 +7,27 @@ public class PlayerAnimation
 {
     Animator _animator;
 
+    
     //Constructor
     public PlayerAnimation(Animator a)
     {
         _animator = a;
     }
-
-    public void SetAnimation(string action, float value) 
+    public void SetTransforming(string action, bool value) 
     {
-        _animator.SetFloat("speed", value);
+        _animator.SetBool("transforming", value);
     }
+
+    public void SetWalk(string action, float value) 
+    {
+        _animator.SetFloat("walk", value);
+    }
+
+
+    public void SetDodge(string action, float value)
+    {
+        _animator.SetFloat("dodging", value);
+    }
+
+   
 }
