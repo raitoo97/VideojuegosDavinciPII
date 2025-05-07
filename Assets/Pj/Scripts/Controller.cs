@@ -4,6 +4,8 @@ public class Controller
     Movement _movement;
     PlayerAnimation _animation;
 
+    bool _wasHoldingShift = false;
+
     public Controller(Movement m, PlayerAnimation a)
     {
         _movement = m;
@@ -19,29 +21,29 @@ public class Controller
         bool isMoving = speed > 0.01f;
         bool isHoldingShift = Input.GetKey(KeyCode.LeftShift);
 
-        // Detectar si se activa o desactiva la transformación
-        if (isHoldingShift)
+        
+        if (isHoldingShift && !_wasHoldingShift)
         {
             _animation.SetTransforming("transforming", true);
-
-            //Se mueve transformado o no
-            if (isMoving)
-            {
-                _animation.SetDodge("dodging", 1f);
-            }
-            else
-            {
-                _animation.SetDodge("dodging", 0f);
-            }
         }
 
-        else
+        if (!isHoldingShift && _wasHoldingShift)
         {
             _animation.SetTransforming("transforming", false);
-            _animation.SetDodge("dodging", 0f);
-            _animation.SetWalk("walking", speed);
         }
 
+        if (isHoldingShift)
+        {
+            _animation.SetDodge("dodging", isMoving ? 1f : 0f);
+        }
+        else
+        {
+            _animation.SetDodge("dodging", 0f);
+            _animation.SetWalk("walk", speed);
+        }
+
+        //Al salir del if guarda el ultimo estado de isHoldingShift para el proximo frame
+        _wasHoldingShift = isHoldingShift;
 
     }
 }
