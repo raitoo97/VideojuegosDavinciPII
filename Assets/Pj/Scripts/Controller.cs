@@ -5,7 +5,7 @@ public class Controller
     PlayerAnimation _animation;
 
     bool _wasHoldingShift = false;
-
+    
     public Controller(Movement m, PlayerAnimation a)
     {
         _movement = m;
@@ -32,9 +32,15 @@ public class Controller
             _animation.SetTransforming("transforming", false);
         }
 
-        if (isHoldingShift)
+        if (isHoldingShift && isMoving)
         {
-            _animation.SetDodge("dodging", isMoving ? 1f : 0f);
+            _animation.SetDodge("dodging", 1f);
+            _animation.SetIdle("idle", false);
+        }
+        else if (isHoldingShift && !isMoving)
+        {
+            _animation.SetDodge("dodging", 0f);
+            _animation.SetIdle("idle", true);
         }
         else
         {
@@ -42,9 +48,9 @@ public class Controller
             _animation.SetWalk("walk", speed);
         }
 
-        //Al salir del if guarda el ultimo estado de isHoldingShift para el proximo frame
+        //Al salir del if guarda el ultimo estado para el proximo frame
         _wasHoldingShift = isHoldingShift;
-
+        
     }
 }
 

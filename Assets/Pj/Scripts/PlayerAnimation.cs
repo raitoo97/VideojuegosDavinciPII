@@ -29,5 +29,8 @@ public class PlayerAnimation
         _animator.SetFloat("dodging", value);
     }
 
-   
+   public void SetIdle (string action, bool value) 
+    {
+        _animator.SetBool("idle", value);
+    }
 }
