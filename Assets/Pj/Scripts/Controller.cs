@@ -73,12 +73,12 @@ public class Controller
         }
 
         // ======== DODGE Y TRANSFORMING ========
-        if (isDodgeMode && !_wasHoldingShift && isGrounded)
+        if (isDodgeMode && !_wasHoldingShift)
         {
             _animation.SetTransforming("transforming", true); // Empezó a transformar
         }
 
-        if (!isDodgeMode && _wasHoldingShift && isGrounded)
+        if (!isDodgeMode && _wasHoldingShift)
         {
             _animation.SetTransforming("transforming", false); // Volvió al modo trípode
         }
