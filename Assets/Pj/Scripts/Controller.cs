@@ -4,7 +4,9 @@ public class Controller
     Movement _movement;
     PlayerAnimation _animation;
     bool _wasHoldingShift = false;
-    
+    bool _wasInGround;
+
+
     public Controller(Movement m, PlayerAnimation a)
     {
         _movement = m;
@@ -15,8 +17,8 @@ public class Controller
         //Input
         var horizontal = Input.GetAxis("Horizontal");
         var vertical = Input.GetAxis("Vertical");
-        float rawSpeed = new Vector2(horizontal, vertical).magnitude;
-        float speed = rawSpeed < 0.05f ? 0f : rawSpeed; // Elimina ruido
+        float speed = new Vector2(horizontal, vertical).magnitude;
+        
 
 
         bool isMoving = speed > 0f;
@@ -26,32 +28,48 @@ public class Controller
 
         float dodgeSpeedMultiplier = 1f;
 
-        // ANIMACIONES DE MOVIMIENTO 
-        if (!isGrounded)
+        // -------ANIMACIONES DE MOVIMIENTO------
+
+        // Ground state
+        _animation.SetGround("ground", isGrounded);
+
+        // Cae (solo cuando estaba en el suelo y ahora no lo está)
+        if (!isGrounded && _wasInGround)
         {
             _animation.SetJump("jump", true);
             _animation.SetIdle("idle", false);
             _animation.SetWalk("walk", 0f);
         }
-        else if (isMoving)
-        {
-            _animation.SetJump("jump", false);
+        // Está en el aire (sigue saltando) Se mantiene la animación de salto
+        else if (!isGrounded)
+        {           
+            _animation.SetJump("jump", true);
             _animation.SetIdle("idle", false);
-            _animation.SetWalk("walk", speed);
+            _animation.SetWalk("walk", 0f);
         }
-        else // Quieto y en el piso
+        // Está en el suelo
+        else
         {
             _animation.SetJump("jump", false);
-            _animation.SetWalk("walk", 0f);
-            _animation.SetIdle("idle", true);
+
+            if (isMoving)
+            {
+                _animation.SetWalk("walk", speed);
+                _animation.SetIdle("idle", false);
+            }
+            else
+            {
+                _animation.SetWalk("walk", 0f);
+                _animation.SetIdle("idle", true);
+            }
         }
 
         // ======== JUMP ========
         if (isJumping && isGrounded && !isDodgeMode)
         {
             float jumpForce = isMoving ? 1.3f : 1.2f;
-            _movement.Jump(jumpForce);
             _animation.SetJump("jump", true);
+            _movement.Jump(jumpForce);
         }
 
         // ======== DODGE Y TRANSFORMING ========
@@ -67,6 +85,7 @@ public class Controller
 
         if (isDodgeMode && isMoving && isGrounded)
         {
+            _animation.SetTransforming("transforming", true);
             _animation.SetDodge("dodging", 1f);
             _animation.SetIdle("idle", false);
             dodgeSpeedMultiplier = 2f;
@@ -84,7 +103,7 @@ public class Controller
 
         // ======== MOVIMIENTO FÍSICO Y ESTADO ========
         _wasHoldingShift = isDodgeMode;
-
+        _wasInGround = isGrounded;
         _movement.Move(horizontal, vertical, dodgeSpeedMultiplier);
         _movement.UpdateGroundCheck();
     }

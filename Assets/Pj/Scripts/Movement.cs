@@ -4,7 +4,7 @@ using UnityEngine.Windows;
 
 public class Movement
 {
-    private float _speed;
+    private float _speed = 2f;
     Transform _transform;
     bool _isGrounded;
     LayerMask _groundLayer;
@@ -20,7 +20,7 @@ public class Movement
         _rb = transform.GetComponent<Rigidbody>();
     }
 
-    public void Move(float horizontal, float vertical, float speedMultiplier = 1f) 
+    public void Move(float horizontal, float vertical, float speedMultiplier) 
     {
         var dir = _transform.forward * vertical + _transform.right * horizontal;
 
@@ -53,6 +53,7 @@ public class Movement
     {
         if (_rb != null)
         {
+
             _rb.AddForce(Vector3.up * impulse, ForceMode.Impulse);
         }
 

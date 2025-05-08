@@ -39,5 +39,9 @@ public class PlayerAnimation
         _animator.SetBool("jump", value);
     }
 
+    public void SetGround (string action, bool value)
+    {
+        _animator.SetBool("ground", value);
+    }
     
 }
