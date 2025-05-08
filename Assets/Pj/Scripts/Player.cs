@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    Movement _movement;
-    Controller _controller;
-    Animator _animator;
-    PlayerAnimation _playerAnimation;
+    [SerializeField]Movement _movement;
+    [SerializeField]ControlPlayer _controller;
+    [SerializeField]Animator _animator;
+    [SerializeField] PlayerAnimation _playerAnimation;
 
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] float speed = 5f;
@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _movement = new Movement(transform, speed, groundLayer);
         _playerAnimation = new PlayerAnimation(_animator);
-        _controller = new Controller(_movement, _playerAnimation);
+        _controller = new ControlPlayer(_movement, _playerAnimation);
         
     }
 

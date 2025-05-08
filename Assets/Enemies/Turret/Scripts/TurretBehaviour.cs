@@ -12,7 +12,7 @@ public class TurretBehaviour : MonoBehaviour
     void Update()
     {
         var x = this.transform.GetChild(0);
-        print(x.name);
+        //print(x.name);
         if (GameManager.instance.player == null) return;
         x.transform.rotation = GameManager.instance.player.transform.rotation;
     }
