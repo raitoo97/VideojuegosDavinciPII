@@ -18,3 +18,4 @@ public static class ExtendedClassManager
         return (_sqrDistanceTranforms < _threshold);
     }
 }
+//
