@@ -5,9 +5,15 @@ public class ZombieBehaviour : MonoBehaviour
     [SerializeField]private NavMeshAgent _agent;
     [SerializeField]private ZombieAnimations _anims;
     [SerializeField][Tooltip("Vida del zombie")]public int life;
+    private float _idleDistance;
+    private float _runDistance;
+    private float _atackDistance;
     private void Awake()
     {
         life = 100;
+        _idleDistance = 50f;
+        _runDistance = 4;
+        _atackDistance = 3;
         _agent = GetComponent<NavMeshAgent>();
         _anims = GetComponent<ZombieAnimations>();
     }
@@ -21,26 +27,26 @@ public class ZombieBehaviour : MonoBehaviour
     }
     private void ZombieStates()
     {
-        if(life <= 0)
+        if (life <= 0)
         {
             _anims.ChangeState(STATE.Death);
             _agent.isStopped = true;
             Invoke("Desactivate", 1f);
             return;
         }
-        if (Vector3.Distance(this.transform.position, GameManager.instance.player.transform.position) > 50)
+        if (!this.transform.IsWithinDistanceOf(GameManager.instance.player.transform, _idleDistance))
         {
             _anims.ChangeState(STATE.Idle);
             _agent.isStopped = true;
             _agent.SetDestination(_agent.transform.position);
         }
-        else if(Vector3.Distance(this.transform.position, GameManager.instance.player.transform.position) > 2)
+        else if (!this.transform.IsWithinDistanceOf(GameManager.instance.player.transform, _runDistance))
         {
             _anims.ChangeState(STATE.Run);
             _agent.isStopped = false;
             _agent.SetDestination(GameManager.instance.player.transform.position);
         }
-        else if(Vector3.Distance(this.transform.position, GameManager.instance.player.transform.position) < 3)
+        else if (this.transform.IsWithinDistanceOf(GameManager.instance.player.transform, _atackDistance))
         {
             _anims.ChangeState(STATE.Atack);
             _agent.isStopped = true;
