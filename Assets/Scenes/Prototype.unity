@@ -6084,27 +6084,6 @@ LightingSettings:
   m_PVRTiledBaking: 0
   m_NumRaysToShootPerTexel: -1
   m_RespectSceneVisibilityWhenBakingGI: 0
---- !u!1 &1553562492 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4469785779143389137, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
-  m_PrefabInstance: {fileID: 4278241031554836943}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1553562498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1553562492}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d62b4e87d0a029e4abbb23d2fe3f8380, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1
-  speed: 5
 --- !u!1001 &1617881222
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6397,15 +6376,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8845614960691900477, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2196239810436866042, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
     - {fileID: 898363626740897230, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4469785779143389137, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1553562498}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
 --- !u!1001 &5460652028074689565
 PrefabInstance:
