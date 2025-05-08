@@ -29,7 +29,7 @@ AnimatorStateMachine:
     m_Position: {x: 660, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1977094811589777932}
-    m_Position: {x: 1230, y: 310, z: 0}
+    m_Position: {x: 1090, y: -50, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -429,9 +429,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.1
+  m_TransitionDuration: 0
   m_TransitionOffset: 0
-  m_ExitTime: 0.1
+  m_ExitTime: 0.09999999
   m_HasExitTime: 0
   m_HasFixedDuration: 0
   m_InterruptionSource: 0
@@ -519,7 +519,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Jump
-  m_Speed: 1
+  m_Speed: 4
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 5781831584821603495}
@@ -527,12 +527,12 @@ AnimatorState:
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
-  m_Mirror: 1
+  m_Mirror: 0
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 608765c938f259e41921b181af1bc911, type: 2}
+  m_Motion: {fileID: 7400000, guid: 145f55c92d4afee46b6bb88be5d3c850, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -567,6 +567,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 3
     m_ConditionEvent: walk
     m_EventTreshold: 0.01
+  - m_ConditionMode: 2
+    m_ConditionEvent: jump
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7341694739168457262}
   m_Solo: 0
@@ -629,9 +632,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.1
+  m_TransitionDuration: 0.72
   m_TransitionOffset: 0
-  m_ExitTime: 0.625
+  m_ExitTime: 0.02660191
   m_HasExitTime: 0
   m_HasFixedDuration: 0
   m_InterruptionSource: 0
@@ -651,6 +654,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 4
     m_ConditionEvent: walk
     m_EventTreshold: 0.01
+  - m_ConditionMode: 2
+    m_ConditionEvent: jump
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8020131713498680334}
   m_Solo: 0

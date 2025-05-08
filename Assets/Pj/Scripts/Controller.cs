@@ -21,34 +21,37 @@ public class Controller
         //Dodge
         bool isMoving = speed > 0.01f;
         bool isDodgeMode = Input.GetKey(KeyCode.LeftShift);
-        float dodgeSpeedMultiplier = isDodgeMode ? 2f : 1f;
+        float dodgeSpeedMultiplier = 1f;
         
         bool isJumping = Input.GetKey(KeyCode.Space);
 
-        _movement.Move(horizontal, vertical, dodgeSpeedMultiplier);
-        _movement.UpdateGroundCheck();
 
         #region Walk/Dodge
 
-        if (isDodgeMode && !_wasHoldingShift && !isJumping)
+        if (isDodgeMode && !_wasHoldingShift && _movement.IsGrounded)
         {
             _animation.SetTransforming("transforming", true);
+            dodgeSpeedMultiplier = 2f;
         }
 
-        if (!isDodgeMode && _wasHoldingShift && !isJumping)
+        if (!isDodgeMode && _wasHoldingShift && _movement.IsGrounded)
         {
             _animation.SetTransforming("transforming", false);
+            dodgeSpeedMultiplier= 1f;
         }
 
-        if (isDodgeMode && isMoving && !isJumping)
+        if (isDodgeMode && isMoving && _movement.IsGrounded)
         {
+            _animation.SetTransforming("transforming", true);
             _animation.SetDodge("dodging", 1f);
             _animation.SetIdle("idle", false);
+            dodgeSpeedMultiplier = 2f;
         }
-        else if (isDodgeMode && !isMoving && !isJumping)
+        else if (isDodgeMode && !isMoving && _movement.IsGrounded)
         {
             _animation.SetDodge("dodging", 0f);
             _animation.SetIdle("idle", true);
+            dodgeSpeedMultiplier = 1f;
         }
         else
         {
@@ -69,11 +72,13 @@ public class Controller
         else
         {
             _animation.SetJump("jump", false);
-            _animation.SetWalk("walk", speed);
+            //_animation.SetWalk("walk", speed);
         }
         #endregion
         //Al salir del if guarda el ultimo estado para el proximo frame
         _wasHoldingShift = isDodgeMode;
+        _movement.Move(horizontal, vertical, dodgeSpeedMultiplier);
+        _movement.UpdateGroundCheck();
         
     }
 }
