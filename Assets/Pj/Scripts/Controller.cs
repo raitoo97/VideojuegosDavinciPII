@@ -23,27 +23,29 @@ public class Controller
         bool isDodgeMode = Input.GetKey(KeyCode.LeftShift);
         float dodgeSpeedMultiplier = isDodgeMode ? 2f : 1f;
         
+        bool isJumping = Input.GetKey(KeyCode.Space);
+
         _movement.Move(horizontal, vertical, dodgeSpeedMultiplier);
         _movement.UpdateGroundCheck();
 
         #region Walk/Dodge
 
-        if (isDodgeMode && !_wasHoldingShift)
+        if (isDodgeMode && !_wasHoldingShift && !isJumping)
         {
             _animation.SetTransforming("transforming", true);
         }
 
-        if (!isDodgeMode && _wasHoldingShift)
+        if (!isDodgeMode && _wasHoldingShift && !isJumping)
         {
             _animation.SetTransforming("transforming", false);
         }
 
-        if (isDodgeMode && isMoving)
+        if (isDodgeMode && isMoving && !isJumping)
         {
             _animation.SetDodge("dodging", 1f);
             _animation.SetIdle("idle", false);
         }
-        else if (isDodgeMode && !isMoving)
+        else if (isDodgeMode && !isMoving && !isJumping)
         {
             _animation.SetDodge("dodging", 0f);
             _animation.SetIdle("idle", true);
@@ -57,20 +59,17 @@ public class Controller
 
         #region Jump
 
-        bool isJumping = Input.GetKey(KeyCode.Space);
-        if (isJumping) 
-        { 
-            _animation.SetJump("jump", true);
         
+        if (isJumping && _movement.IsGrounded && !isDodgeMode) 
+        {
+            _animation.SetJump("jump", true);
+            _movement.Jump(1.5f);
+            _animation.SetIdle("idle", true);
         }
         else
         {
             _animation.SetJump("jump", false);
-        }
-        
-        if (isJumping && _movement.IsGrounded && !isDodgeMode) 
-        {
-            _movement.Jump(2.5f);
+            _animation.SetWalk("walk", speed);
         }
         #endregion
         //Al salir del if guarda el ultimo estado para el proximo frame
