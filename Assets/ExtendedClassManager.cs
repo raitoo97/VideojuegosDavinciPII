@@ -13,8 +13,8 @@ public static class ExtendedClassManager
     /// <returns>Devuelve <c>true</c> si la distancia entre ambos objetos es menor que <paramref name="c"/>; de lo contrario, <c>false</c>.</returns>
     public static bool IsWithinDistanceOf(this Transform a, Transform b, float c)
     {
-        var _distanciaAlCuadrado = (a.position - b.position).sqrMagnitude;
-        var _chequeDistancia = c * c;
-        return (_distanciaAlCuadrado < _chequeDistancia);
+        var _sqrDistanceTranforms = (a.position - b.position).sqrMagnitude;
+        var _threshold = c * c;
+        return (_sqrDistanceTranforms < _threshold);
     }
 }
