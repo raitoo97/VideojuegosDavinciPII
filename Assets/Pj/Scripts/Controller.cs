@@ -25,6 +25,14 @@ public class Controller
         
         bool isJumping = Input.GetKey(KeyCode.Space);
 
+        if (isMoving)
+        {
+            _animation.SetIdle("idle", false);
+        }
+        else
+        {
+            _animation.SetIdle("idle", true);
+        }
 
         #region Walk/Dodge
 
@@ -63,16 +71,21 @@ public class Controller
         #region Jump
 
         
-        if (isJumping && _movement.IsGrounded && !isDodgeMode) 
+        if (isJumping && _movement.IsGrounded && !isDodgeMode && !isMoving) 
         {
             _animation.SetJump("jump", true);
-            _movement.Jump(1.5f);
             _animation.SetIdle("idle", true);
+            _movement.Jump(1.2f);
+        }
+        else if (isJumping && _movement.IsGrounded && !isDodgeMode && isMoving)
+        {
+            _animation.SetJump("jump", true);
+            _animation.SetIdle("idle", false);
+            _movement.Jump(1.3f);
         }
         else
         {
             _animation.SetJump("jump", false);
-            //_animation.SetWalk("walk", speed);
         }
         #endregion
         //Al salir del if guarda el ultimo estado para el proximo frame

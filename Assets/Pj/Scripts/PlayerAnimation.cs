@@ -38,4 +38,6 @@ public class PlayerAnimation
     {
         _animator.SetBool("jump", value);
     }
+
+    
 }
