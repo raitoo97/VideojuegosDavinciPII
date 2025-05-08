@@ -22,12 +22,18 @@ public class Movement
 
     public void Move(float horizontal, float vertical, float speedMultiplier = 1f) 
     {
-        var dir = _transform.forward * vertical;
-        dir += _transform.right * horizontal;
+        var dir = _transform.forward * vertical + _transform.right * horizontal;
 
-        _transform.position += dir * _speed * speedMultiplier * Time.deltaTime;
+        if (dir.magnitude >1f)
+        {
+            dir = dir.normalized;
+        }
 
+        _transform.position +=  dir * _speed * speedMultiplier * Time.deltaTime;
         
+
+
+
         if (dir.magnitude != 0)
         {
             Quaternion targetRotation = Quaternion.LookRotation(dir);
