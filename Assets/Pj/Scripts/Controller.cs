@@ -26,7 +26,7 @@ public class Controller
         _movement.Move(horizontal, vertical, dodgeSpeedMultiplier);
         _movement.UpdateGroundCheck();
 
-        #region Animation
+        #region Walk/Dodge
 
         if (isDodgeMode && !_wasHoldingShift)
         {
@@ -55,12 +55,24 @@ public class Controller
         }
         #endregion
 
+        #region Jump
+
         bool isJumping = Input.GetKey(KeyCode.Space);
+        if (isJumping) 
+        { 
+            _animation.SetJump("jump", true);
+        
+        }
+        else
+        {
+            _animation.SetJump("jump", false);
+        }
         
         if (isJumping && _movement.IsGrounded && !isDodgeMode) 
         {
             _movement.Jump(2.5f);
         }
+        #endregion
         //Al salir del if guarda el ultimo estado para el proximo frame
         _wasHoldingShift = isDodgeMode;
         

@@ -33,4 +33,9 @@ public class PlayerAnimation
     {
         _animator.SetBool("idle", value);
     }
+
+    public void SetJump (string action, bool value)
+    {
+        _animator.SetBool(action, value);
+    }
 }
