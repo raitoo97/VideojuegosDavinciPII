@@ -13,31 +13,37 @@ public class Controller
     }
     public void OnUpdate()
     {
+        //Moving
         var horizontal = Input.GetAxis("Horizontal");
         var vertical = Input.GetAxis("Vertical");
         float speed = new Vector2(horizontal, vertical).magnitude;
-        _movement.Move(horizontal, vertical);
 
+        //Dodge
         bool isMoving = speed > 0.01f;
-        bool isHoldingShift = Input.GetKey(KeyCode.LeftShift);
-
+        bool isDodgeMode = Input.GetKey(KeyCode.LeftShift);
+        float dodgeSpeedMultiplier = isDodgeMode ? 2f : 1f;
         
-        if (isHoldingShift && !_wasHoldingShift)
+        _movement.Move(horizontal, vertical, dodgeSpeedMultiplier);
+        _movement.UpdateGroundCheck();
+
+        #region Animation
+
+        if (isDodgeMode && !_wasHoldingShift)
         {
             _animation.SetTransforming("transforming", true);
         }
 
-        if (!isHoldingShift && _wasHoldingShift)
+        if (!isDodgeMode && _wasHoldingShift)
         {
             _animation.SetTransforming("transforming", false);
         }
 
-        if (isHoldingShift && isMoving)
+        if (isDodgeMode && isMoving)
         {
             _animation.SetDodge("dodging", 1f);
             _animation.SetIdle("idle", false);
         }
-        else if (isHoldingShift && !isMoving)
+        else if (isDodgeMode && !isMoving)
         {
             _animation.SetDodge("dodging", 0f);
             _animation.SetIdle("idle", true);
@@ -47,9 +53,16 @@ public class Controller
             _animation.SetDodge("dodging", 0f);
             _animation.SetWalk("walk", speed);
         }
+        #endregion
 
+        bool isJumping = Input.GetKey(KeyCode.Space);
+        
+        if (isJumping && _movement.IsGrounded && !isDodgeMode) 
+        {
+            _movement.Jump(2.5f);
+        }
         //Al salir del if guarda el ultimo estado para el proximo frame
-        _wasHoldingShift = isHoldingShift;
+        _wasHoldingShift = isDodgeMode;
         
     }
 }

@@ -9,12 +9,13 @@ public class Player : MonoBehaviour
     Animator _animator;
     PlayerAnimation _playerAnimation;
 
+    [SerializeField] private LayerMask groundLayer;
     [SerializeField] float speed = 5f;
 
     private void Start()
     {
         _animator = GetComponentInChildren<Animator>();
-        _movement = new Movement(transform, speed);
+        _movement = new Movement(transform, speed, groundLayer);
         _playerAnimation = new PlayerAnimation(_animator);
         _controller = new Controller(_movement, _playerAnimation);
         
