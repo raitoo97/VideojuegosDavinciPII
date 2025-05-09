@@ -31,7 +31,7 @@ public class Movement
         var dirVertical = _transform.forward * vertical;
         var dirHorizontal= _transform.right * horizontal;
 
-        float currentYRotation = _transform.eulerAngles.y;
+        
 
         if (dirVertical.magnitude >1f)
         {

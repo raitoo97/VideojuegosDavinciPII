@@ -23,6 +23,11 @@ public class PlayerAnimation
         _animator.SetFloat("walk", value);
     }
 
+    public void SetReverse(string action, float value)
+    {
+        _animator.SetFloat("reverse", value);
+    }
+
 
     public void SetDodge(string action, float value)
     {
