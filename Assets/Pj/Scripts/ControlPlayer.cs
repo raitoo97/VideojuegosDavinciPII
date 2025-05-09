@@ -7,7 +7,7 @@ public class ControlPlayer
     bool _wasHoldingShift = false;
     bool _wasInGround;
 
-    //
+    
     public ControlPlayer(Movement m, PlayerAnimation a)
     {
         _movement = m;
