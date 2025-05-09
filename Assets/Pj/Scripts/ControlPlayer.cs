@@ -69,8 +69,8 @@ public class ControlPlayer
             }
             else
             {
-                //_animation.SetWalk("walk", 0f);
-                //_animation.SetReverse("reverse", 0f);
+                _animation.SetWalk("walk", 0f);
+                _animation.SetReverse("reverse", 0f);
                 _animation.SetIdle("idle", true);
             }
         }
