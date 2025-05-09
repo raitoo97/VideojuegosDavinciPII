@@ -76,27 +76,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.15147
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.15147
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.15147
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.296858
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.01
+      value: 10.947
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.7194
+      value: 44.6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
       propertyPath: m_LocalRotation.w
@@ -104,15 +104,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -125,6 +125,10 @@ PrefabInstance:
     - target: {fileID: 400000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
       propertyPath: m_LocalPosition.x
@@ -171,6 +175,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2031544161809925758}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2250555821728588983}
+    - targetCorrespondingSourceObject: {fileID: 100000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8314028137898241730}
   m_SourcePrefab: {fileID: 100100000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
 --- !u!4 &8274814663918682383 stripped
 Transform:
@@ -204,3 +214,40 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 8
+--- !u!65 &2250555821728588983
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8274814663919050029}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 35.9, y: 29.4, z: 36.7}
+  m_Center: {x: 0, y: 0.2, z: 0}
+--- !u!114 &8314028137898241730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8274814663919050029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e95dc5ff2b64380880dd7ac5922847, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Size: {x: 28.36, y: 58.5, z: 42.14}
+  m_Center: {x: 0, y: -3.8, z: 0}
+  m_Area: 1
+  m_AffectedAgents: ffffffff
