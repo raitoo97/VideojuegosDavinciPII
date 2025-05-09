@@ -1,3 +1,4 @@
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 public class ControlPlayer
 {
@@ -17,11 +18,12 @@ public class ControlPlayer
         //Input
         var horizontal = Input.GetAxis("Horizontal");
         var vertical = Input.GetAxis("Vertical");
-        float speed = new Vector2(horizontal, vertical).magnitude;
+        float speed = _movement.CurrentSpeed;
+        float normalizedSpeed = Mathf.Clamp(speed / 1f, 0f, 1f);
         
 
 
-        bool isMoving = speed > 0f;
+        bool isMoving = speed > 0.1f;
         bool isDodgeMode = Input.GetKey(KeyCode.LeftShift);
         bool isJumping = Input.GetKey(KeyCode.Space);
         bool isGrounded = _movement.IsGrounded;
@@ -29,8 +31,7 @@ public class ControlPlayer
         float dodgeSpeedMultiplier = 1f;
 
         // -------ANIMACIONES DE MOVIMIENTO------
-
-        
+   
         _animation.SetGround("ground", isGrounded);
 
         // Cae (solo cuando estaba en el suelo y ahora no lo está)
@@ -54,15 +55,17 @@ public class ControlPlayer
 
             if (isMoving)
             {
-                _animation.SetWalk("walk", speed);
+                _animation.SetWalk("walk", normalizedSpeed);
                 _animation.SetIdle("idle", false);
             }
             else
             {
-                _animation.SetWalk("walk", 0f);
+                _animation.SetWalk("walk", normalizedSpeed);
                 _animation.SetIdle("idle", true);
             }
         }
+
+        
 
         //          ======== JUMP ========
         if (isJumping && isGrounded && !isDodgeMode)
