@@ -18,7 +18,6 @@ public class Bullet : MonoBehaviour
     {
         if(other.transform.gameObject.TryGetComponent<Player>(out var player))
         {
-            print(player.name);
             if (!_isDesactivate)
             {
                 DeactivateBullet();

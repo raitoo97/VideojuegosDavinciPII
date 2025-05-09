@@ -50,7 +50,6 @@ public class TurretBehaviour : MonoBehaviour
             var bullet = PoolBullet.instance.GetBullet();
             if (bullet == null) break;
             var _randomGunSight = _gunSight[Random.Range(0, _gunSight.Count)];
-            print(_randomGunSight.name);
             bullet.transform.position = _randomGunSight.position;
             bullet.transform.rotation = _randomGunSight.rotation;
             yield return new WaitForSeconds(1);
