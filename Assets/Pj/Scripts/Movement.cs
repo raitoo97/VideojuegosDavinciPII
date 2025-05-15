@@ -56,24 +56,7 @@ public class Movement
         CurrentSpeed = Vector3.Distance(_transform.position, _lastPosition) / Time.deltaTime; //Calcula la distancia recorrida
         _lastPosition = _transform.position;
 
-        /*
-        if (dirVertical.magnitude >1f)
-        {
-            dirVertical = dirVertical.normalized;
-        }
-
-        if (dirHorizontal.magnitude > 1f)
-        {
-            dirHorizontal = dirHorizontal.normalized;
-        }
-
-        if (dirHorizontal.magnitude != 0)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(dirHorizontal);
-            _transform.rotation = Quaternion.Slerp(_transform.rotation, targetRotation, _speed * Time.deltaTime);
-            
-        }
-        */ //Antiguo
+        
     }
 
     public void UpdateGroundCheck() 
