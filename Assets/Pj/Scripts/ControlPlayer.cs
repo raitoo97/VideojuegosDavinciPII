@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 public class ControlPlayer
@@ -7,7 +9,7 @@ public class ControlPlayer
     bool _wasHoldingShift = false;
     bool _wasInGround;
 
-    
+
     public ControlPlayer(Movement m, PlayerAnimation a)
     {
         _movement = m;
@@ -18,15 +20,10 @@ public class ControlPlayer
         //Input
         var horizontal = Input.GetAxis("Horizontal");
         var vertical = Input.GetAxis("Vertical");
-        var foward = Mathf.Clamp(vertical, 0f, 1f);
-        var reverse = Mathf.Clamp(vertical, -1f, 0f);
-        //float speed = _movement.CurrentSpeed;
-        //float normalizedSpeed = Mathf.Clamp(speed, 0f, 1f);
-
-        float absoluteReverse = -reverse;
-
-        bool isFoward = foward > 0.1f;
-        bool isReverse = reverse < 0f;
+        var foward = MathF.Abs(horizontal) + MathF.Abs(vertical);
+        foward = Math.Clamp(foward,0f,1f);
+        bool isFoward = foward != 0;
+        
         bool isDodgeMode = Input.GetKey(KeyCode.LeftShift);
         bool isJumping = Input.GetKey(KeyCode.Space);
         bool isGrounded = _movement.IsGrounded;
@@ -55,22 +52,14 @@ public class ControlPlayer
         else
         {
             _animation.SetJump("jump", false);
-            if ( isReverse )
+            if (isFoward)
             {
                 _animation.SetIdle("idle", false);
-                _animation.SetReverse("reverse", absoluteReverse);
-                _animation.SetWalk("walk", 0f);
-            }
-            else if (isFoward)
-            {
                 _animation.SetWalk("walk", foward);
-                _animation.SetReverse("reverse", 0f);
-                _animation.SetIdle("idle", false);
             }
             else
             {
                 _animation.SetWalk("walk", 0f);
-                _animation.SetReverse("reverse", 0f);
                 _animation.SetIdle("idle", true);
             }
         }
@@ -99,7 +88,7 @@ public class ControlPlayer
         if (isDodgeMode && isFoward && isGrounded)
         {
             _animation.SetTransforming("transforming", true);
-            _animation.SetDodge("dodging", 1f);
+            _animation.SetDodge("dodging", foward);
             _animation.SetIdle("idle", false);
             dodgeSpeedMultiplier = 2f;
         }
