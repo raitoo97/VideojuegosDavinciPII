@@ -9,7 +9,7 @@ public class ControlPlayer
     bool _wasHoldingShift = false;
     bool _wasInGround;
 
-    
+
     public ControlPlayer(Movement m, PlayerAnimation a)
     {
         _movement = m;
@@ -20,8 +20,8 @@ public class ControlPlayer
         //Input
         var horizontal = Input.GetAxis("Horizontal");
         var vertical = Input.GetAxis("Vertical");
-        var foward = horizontal + vertical;
-        foward = MathF.Abs(foward);
+        var foward = MathF.Abs(horizontal) + MathF.Abs(vertical);
+        foward = Math.Clamp(foward,0f,1f);
         bool isFoward = foward != 0;
         
         bool isDodgeMode = Input.GetKey(KeyCode.LeftShift);
@@ -88,7 +88,7 @@ public class ControlPlayer
         if (isDodgeMode && isFoward && isGrounded)
         {
             _animation.SetTransforming("transforming", true);
-            _animation.SetDodge("dodging", 1f);
+            _animation.SetDodge("dodging", foward);
             _animation.SetIdle("idle", false);
             dodgeSpeedMultiplier = 2f;
         }
