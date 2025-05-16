@@ -12,6 +12,8 @@ public class MenuManager : MonoBehaviour
     public GameObject panelMain;
     public GameObject panelTutorial;
     public GameObject panelCredits;
+
+    [SerializeField] private AudioClip startSound;
     void Start()
     {
         startGameButon.onClick.AddListener(StartGame);
@@ -23,7 +25,9 @@ public class MenuManager : MonoBehaviour
     }
     private void StartGame()
     {
+        AudioManager.Instance.PlaySound(startSound);
         SceneManager.LoadScene(1);
+        
     }
     private void TutorialButon()
     {

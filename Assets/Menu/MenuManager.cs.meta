@@ -3,7 +3,17 @@ guid: 2b63ee46e52f4db4abc9670b069bfa41
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - startGameButon: {instanceID: 0}
+  - returnMenuButon: {instanceID: 0}
+  - returnMenuButon2: {instanceID: 0}
+  - tutorialButon: {instanceID: 0}
+  - creditsButon: {instanceID: 0}
+  - ExitButton: {instanceID: 0}
+  - panelMain: {instanceID: 0}
+  - panelTutorial: {instanceID: 0}
+  - panelCredits: {instanceID: 0}
+  - startSound: {fileID: 8300000, guid: db88c01aaefd2b34fbade2af91f45468, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
