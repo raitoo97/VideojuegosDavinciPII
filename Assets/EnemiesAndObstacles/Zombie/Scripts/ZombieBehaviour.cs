@@ -20,10 +20,6 @@ public class ZombieBehaviour : MonoBehaviour
     void Update()
     {
        ZombieStates();
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            life = 0;
-        }
     }
     private void ZombieStates()
     {

@@ -47,11 +47,12 @@ public class TurretBehaviour : MonoBehaviour
         _isShooting = true;
         while (_rayTurret.IsEnabled)
         {
-            var bullet = PoolBullet.instance.GetBullet();
+            var bullet = PoolBullet.instance.GetBullet(ShooterType.Enemy);
             if (bullet == null) break;
             var _randomGunSight = _gunSight[Random.Range(0, _gunSight.Count)];
             bullet.transform.position = _randomGunSight.position;
             bullet.transform.rotation = _randomGunSight.rotation;
+            bullet.gameObject.GetComponent<Bullet>().shooterType = ShooterType.Enemy;
             yield return new WaitForSeconds(1);
         }
         _isShooting = false;

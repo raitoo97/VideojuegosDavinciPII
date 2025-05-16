@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5055437127717125662}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GunSight2
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6426094102557068684}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GunSight
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -73,6 +73,22 @@ PrefabInstance:
     - target: {fileID: 100000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
       propertyPath: m_Name
       value: Turret
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f16e897509d6fa64bb33fa7e0e5bff68, type: 3}
       propertyPath: m_LocalScale.x
