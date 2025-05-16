@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 public class Player : MonoBehaviour
 {
     [SerializeField] Transform camera;
@@ -9,7 +6,6 @@ public class Player : MonoBehaviour
     [SerializeField]ControlPlayer _controller;
     [SerializeField]Animator _animator;
     [SerializeField] PlayerAnimation _playerAnimation;
-
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] float speed = 5f;
 
@@ -20,7 +16,6 @@ public class Player : MonoBehaviour
         _movement = new Movement(transform, speed, groundLayer, camera);
         _playerAnimation = new PlayerAnimation(_animator);
         _controller = new ControlPlayer(_movement, _playerAnimation);
-        
     }
 
     private void Update()

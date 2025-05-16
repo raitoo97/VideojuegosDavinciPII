@@ -78,13 +78,21 @@ public class ControlPlayer
         if (isDodgeMode && !_wasHoldingShift)
         {
             _animation.SetTransforming("transforming", true); // Modo Bola
+            var turretPj = GameObject.FindAnyObjectByType<TurretPj>();
+            if (turretPj != null)
+            {
+                turretPj.DesactivateSelf();
+            }
         }
-
         if (!isDodgeMode && _wasHoldingShift)
         {
             _animation.SetTransforming("transforming", false); // Volvió al modo trípode
+            var turretPj = GameObject.FindAnyObjectByType<TurretPj>();
+            if (turretPj != null)
+            {
+                turretPj.ActivateSelf();
+            }
         }
-
         if (isDodgeMode && isFoward && isGrounded)
         {
             _animation.SetTransforming("transforming", true);

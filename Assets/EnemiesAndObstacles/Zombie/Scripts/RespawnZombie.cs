@@ -23,10 +23,6 @@ public class RespawnZombie : MonoBehaviour
                 Enemy.transform.position = this.transform.position;
                 Enemy.transform.rotation = this.transform.rotation;
             }
-            else
-            {
-                print("No Respawn");
-            }
             yield return new WaitForSeconds(3f);
         }
     }

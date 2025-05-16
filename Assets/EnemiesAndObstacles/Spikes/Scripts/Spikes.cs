@@ -30,7 +30,6 @@ public class Spikes : MonoBehaviour
     {
         while (_isOnPlataform)
         {
-            print("Dano al Pj");
             yield return new WaitForSeconds(3);
         }
     }
