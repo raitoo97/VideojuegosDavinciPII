@@ -2214,6 +2214,7 @@ MonoBehaviour:
   RotVector: {x: 0, y: 0, z: 0}
   TurretChild: {fileID: 8659921118018354106}
   _gunSight: {fileID: 2926521865988257790}
+  Turret: {fileID: 362479615592141109}
 --- !u!1 &4513359586492197299
 GameObject:
   m_ObjectHideFlags: 0
@@ -4371,6 +4372,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93d20ce2e2ea54a4883fdac17eb959f2, type: 3}
+--- !u!1 &362479615592141109 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8532600537611962430, guid: 93d20ce2e2ea54a4883fdac17eb959f2, type: 3}
+  m_PrefabInstance: {fileID: 8317633601061230859}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2926521865988257790 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6625696173493530357, guid: 93d20ce2e2ea54a4883fdac17eb959f2, type: 3}
