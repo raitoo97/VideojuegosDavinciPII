@@ -4,8 +4,8 @@ public class FallingPlatform : MonoBehaviour
     public float delayBeforeDissapear = 3f;
     public float delayBeforeReset = 1f;
     private bool hasTriggered = false;
-    private Material material;
-    private Color originalColor;
+    [SerializeField]private Material material;
+    [SerializeField]private Color originalColor;
     private void Start()
     {
         Renderer rend = GetComponent<Renderer>();
