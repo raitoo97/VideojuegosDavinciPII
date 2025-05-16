@@ -1,9 +1,15 @@
 using System.Collections;
 using UnityEngine;
+public enum ShooterType
+{
+    Player,
+    Enemy
+}
 public class Bullet : MonoBehaviour
 {
     private float _speed;
     private bool _isDesactivate;
+    public ShooterType shooterType;// Quién disparó la bala
     private void OnEnable()
     {
         StartCoroutine(DesactivateBullet());
@@ -16,12 +22,16 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.gameObject.TryGetComponent<Player>(out var player))
+        if (_isDesactivate) return;
+        if (shooterType == ShooterType.Enemy && other.TryGetComponent<Player>(out var player))
         {
-            if (!_isDesactivate)
-            {
-                DeactivateBullet();
-            }
+            DeactivateBullet();
+        }
+        if (shooterType == ShooterType.Player && other.TryGetComponent<ZombieBehaviour>(out var enemy))
+        {
+            print("Trigereo con el zombie");
+            enemy.life = 0;
+            DeactivateBullet();
         }
     }
     private void DeactivateBullet()
