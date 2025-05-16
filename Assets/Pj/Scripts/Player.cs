@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]Movement _movement;
+    [SerializeField] Transform camera;
+    [SerializeField] Movement _movement;
     [SerializeField]ControlPlayer _controller;
     [SerializeField]Animator _animator;
     [SerializeField] PlayerAnimation _playerAnimation;
@@ -15,7 +16,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _animator = GetComponentInChildren<Animator>();
-        _movement = new Movement(transform, speed, groundLayer);
+        camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        _movement = new Movement(transform, speed, groundLayer, camera);
         _playerAnimation = new PlayerAnimation(_animator);
         _controller = new ControlPlayer(_movement, _playerAnimation);
         
@@ -24,5 +26,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         _controller.OnUpdate();
+        
     }
 }
