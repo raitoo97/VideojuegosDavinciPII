@@ -9,6 +9,7 @@ public class TurretPj : MonoBehaviour
     public Vector3 RotVector;
     public Transform TurretChild;
     public Transform _gunSight;
+    public GameObject Turret;
     private bool _detectedTarget;
     private Coroutine _shootRoutine;
     private void Start()
@@ -94,10 +95,21 @@ public class TurretPj : MonoBehaviour
     }
     public void DesactivateSelf()
     {
-        this.gameObject.SetActive(false);
+        if (Turret == null) return;
+        Turret.gameObject.SetActive(false);
+        if (_shootRoutine != null)
+        {
+            StopCoroutine(_shootRoutine);
+            _shootRoutine = null;
+        }
     }
     public void ActivateSelf()
     {
-        this.gameObject.SetActive(true);
+        if (Turret == null) return;
+        Turret.gameObject.SetActive(true);
+        if (_shootRoutine == null)
+        {
+            _shootRoutine = StartCoroutine(Shoot());
+        }
     }
 }

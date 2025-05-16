@@ -10,7 +10,6 @@ public class ManagerSkills : MonoBehaviour
     public List<ActiveSkill> skillEntries = new List<ActiveSkill>();
     private Dictionary<SkillCategory, ActiveSkill> _skills = new Dictionary<SkillCategory, ActiveSkill>();
     public static ManagerSkills instance;
-    public float[] floats;
     private void Awake()
     {
         if(instance == null)
@@ -26,7 +25,7 @@ public class ManagerSkills : MonoBehaviour
     {
         foreach(var entry in skillEntries)
         {
-            _skills[entry.category] = new ActiveSkill(entry.category, entry.level, entry.data); 
+            _skills[entry.category] = new ActiveSkill(entry.category, entry.level, entry.dataStrcut); 
         }
     }
     public void UpgradeSkill(SkillCategory category)
@@ -34,7 +33,7 @@ public class ManagerSkills : MonoBehaviour
         if(!_skills.ContainsKey(category)) return;
         ActiveSkill skill = _skills[category]; 
         int MaxLevel = 0;
-        foreach(var entry in skill.data.dataScripteable)
+        foreach(var entry in skill.dataStrcut.dataScripteable)
         {
             MaxLevel = Math.Max(entry.GetMaxLevel(), MaxLevel);
         }
@@ -49,7 +48,7 @@ public class ManagerSkills : MonoBehaviour
         if (!_skills.ContainsKey(category)) return 0;
         ActiveSkill skill = _skills[category];
         int level = skill.level;
-        foreach(var entry in skill.data.dataScripteable)
+        foreach(var entry in skill.dataStrcut.dataScripteable)
         {
             if(entry.skillType == specificType)
             {
@@ -64,13 +63,13 @@ public struct ActiveSkill
 {
     public SkillCategory category;
     public int level;
-    public SkillCategoryData data;
+    public SkillCategoryData dataStrcut;
 
-    public ActiveSkill(SkillCategory category, int level, SkillCategoryData data)
+    public ActiveSkill(SkillCategory category, int level, SkillCategoryData dataStrcut)
     {
         this.category = category;
         this.level = level;
-        this.data = data;
+        this.dataStrcut = dataStrcut;
     }
 }
 

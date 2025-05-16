@@ -6075,11 +6075,7 @@ MonoBehaviour:
   skillEntries:
   - category: 0
     level: 0
-    data: {fileID: 11400000, guid: 8b6c52e2654fcda40af5187c37dd2620, type: 2}
-  floats:
-  - 55
-  - 60
-  - 80
+    dataStrcut: {fileID: 11400000, guid: 8b6c52e2654fcda40af5187c37dd2620, type: 2}
 --- !u!1001 &942273931
 PrefabInstance:
   m_ObjectHideFlags: 0
