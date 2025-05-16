@@ -25,7 +25,6 @@ public class MenuManager : MonoBehaviour
     }
     private void StartGame()
     {
-        AudioManager.Instance.PlaySound(startSound);
         SceneManager.LoadScene(1);
         
     }

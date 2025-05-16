@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+
     [SerializeField] private AudioSource sfxAudioSource, musicAudioSource;
 
     private bool isMusicPlaying;
@@ -22,16 +23,28 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+   // MUTEA EL SONIDO
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.M)) ToggleMusic();
     }
 
 
-    public void PlaySound(AudioClip clip)
+    public void PlaySfx(AudioClip clip)
     {
-        sfxAudioSource.clip = clip;
-    }    
+        if (clip != null)
+        {
+             sfxAudioSource.PlayOneShot(clip); 
+        }
+    }
+
+    public void PlayMusic(AudioClip clip)
+    {
+        if (clip != null)
+        {
+            sfxAudioSource.PlayOneShot(clip);
+        }
+    }
 
     public bool GetIsMusicPlaying() {  return isMusicPlaying; }
 
