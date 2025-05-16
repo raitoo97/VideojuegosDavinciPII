@@ -11,6 +11,7 @@ public class ManagerSkills : MonoBehaviour
     public List<ActiveSkill> skillEntries = new List<ActiveSkill>();
     private Dictionary<SkillCategory, ActiveSkill> _skills = new Dictionary<SkillCategory, ActiveSkill>();
     public static ManagerSkills instance;
+    public float[] floats;
     private void Awake()
     {
         if(instance == null)

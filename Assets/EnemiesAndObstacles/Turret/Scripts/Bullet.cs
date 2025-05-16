@@ -29,7 +29,6 @@ public class Bullet : MonoBehaviour
         }
         if (shooterType == ShooterType.Player && other.TryGetComponent<ZombieBehaviour>(out var enemy))
         {
-            print("Trigereo con el zombie");
             enemy.life = 0;
             DeactivateBullet();
         }

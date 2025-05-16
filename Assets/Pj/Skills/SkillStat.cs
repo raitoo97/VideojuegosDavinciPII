@@ -2,7 +2,8 @@ using System;
 public enum SkillStatType
 {
     turretVisionRange,
-    turretShotSpeed
+    turretShotSpeed,
+    turreRotationSpeed
 }
 [Serializable]
 public class SkillStat

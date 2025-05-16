@@ -17,6 +17,7 @@ public class TurretPj : MonoBehaviour
     {
         TurretChild.localRotation = Quaternion.identity;
         _shootRoutine = StartCoroutine(Shoot());
+        ActivateSelf();
     }
     void Update()
     {
@@ -66,7 +67,7 @@ public class TurretPj : MonoBehaviour
         if (direction != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            TurretChild.rotation = Quaternion.Lerp(TurretChild.rotation, targetRotation, Time.deltaTime * 5f);
+            TurretChild.rotation = Quaternion.Lerp(TurretChild.rotation, targetRotation, Time.deltaTime * ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turreRotationSpeed));
         }
     }
     private void OnDrawGizmos()
@@ -89,9 +90,16 @@ public class TurretPj : MonoBehaviour
                 bullet.transform.position = _randomGunSight.position;
                 bullet.transform.rotation = _randomGunSight.rotation;
                 bullet.gameObject.GetComponent<Bullet>().shooterType = ShooterType.Player;
-                print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
             }
             yield return new WaitForSeconds(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
         }
+    }
+    public void DesactivateSelf()
+    {
+        this.gameObject.SetActive(false);
+    }
+    public void ActivateSelf()
+    {
+        this.gameObject.SetActive(true);
     }
 }
