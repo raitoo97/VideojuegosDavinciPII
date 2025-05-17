@@ -25,6 +25,10 @@ public class TurretPj : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed);
             if (_shootRoutine != null)
             {
                 StopCoroutine(_shootRoutine);
