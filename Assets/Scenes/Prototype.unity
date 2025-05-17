@@ -6226,13 +6226,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillEntries:
   - category: 0
-    progressPerStat:
-    - type: 0
-      level: 0
-    - type: 1
-      level: 0
-    - type: 2
-      level: 0
     dataStrcut: {fileID: 11400000, guid: 8b6c52e2654fcda40af5187c37dd2620, type: 2}
 --- !u!1001 &942273931
 PrefabInstance:

@@ -49,16 +49,10 @@ public class ManagerSkills : MonoBehaviour
                 int maxLevel = targetStat.GetMaxLevel();
                 if (currentLevel < maxLevel)
                 {
-                    currentLevel++;
-                    StatProgress updatedStat = skill.progressPerStat[i];
-                    updatedStat.level = currentLevel;
-                    skill.progressPerStat[i] = updatedStat;
-                    _skills[category] = skill;
+                    skill.progressPerStat[i].level++;
                 }
                 break;
-
             }
-
         }
     }
     public float GetValueSkill(SkillCategory category, SkillStatType specificType)
@@ -82,14 +76,18 @@ public class ManagerSkills : MonoBehaviour
             return 0f;
     }
 }
-[Serializable]
-public struct StatProgress
+public class StatProgress
 {
     public SkillStatType type;
     public int level;
+    public StatProgress(SkillStatType type, int level)
+    {
+        this.type = type;
+        this.level = level; 
+    }
 }
 [Serializable]
-public struct ActiveSkill
+public class ActiveSkill
 {
     public SkillCategory category;
     public List<StatProgress> progressPerStat;
@@ -99,9 +97,9 @@ public struct ActiveSkill
         this.category = category;
         this.progressPerStat = new List<StatProgress>();
         this.dataStrcut = dataStrcut;
-        foreach (var stat in dataStrcut.dataScripteable)
+        foreach (var data in dataStrcut.dataScripteable)
         {
-            progressPerStat.Add(new StatProgress { type = stat.skillType, level = 0 });
+            progressPerStat.Add(new StatProgress (data.skillType,0));
         }
     }
 }

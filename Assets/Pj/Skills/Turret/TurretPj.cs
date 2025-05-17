@@ -32,7 +32,6 @@ public class TurretPj : MonoBehaviour
             _shootRoutine = StartCoroutine(Shoot());
         }
         print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange));
-        print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turreRotationSpeed));
         print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
     }
     private Vector3 GetZombie()
@@ -69,17 +68,17 @@ public class TurretPj : MonoBehaviour
         if (direction != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            TurretChild.rotation = Quaternion.Lerp(TurretChild.rotation, targetRotation, Time.deltaTime * ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turreRotationSpeed));
+            TurretChild.rotation = Quaternion.Lerp(TurretChild.rotation, targetRotation, Time.deltaTime * 30f);
         }
     }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, 5f);
-        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, 10f);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 13f);
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, 15f);
+        Gizmos.DrawWireSphere(transform.position, 16f);
     }
     IEnumerator Shoot()
     {
