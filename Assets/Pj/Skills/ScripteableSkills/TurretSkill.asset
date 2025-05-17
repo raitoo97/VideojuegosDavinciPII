@@ -15,16 +15,11 @@ MonoBehaviour:
   dataScripteable:
   - skillType: 0
     valuesByLevel:
-    - 5
     - 10
-    - 15
+    - 13
+    - 16
   - skillType: 1
     valuesByLevel:
     - 3
-    - 2
-    - 0.3
-  - skillType: 2
-    valuesByLevel:
     - 1
-    - 5
-    - 20
+    - 0.5

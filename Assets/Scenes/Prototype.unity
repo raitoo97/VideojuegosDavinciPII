@@ -5775,7 +5775,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &566839662
@@ -6226,7 +6226,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillEntries:
   - category: 0
-    level: 0
     dataStrcut: {fileID: 11400000, guid: 8b6c52e2654fcda40af5187c37dd2620, type: 2}
 --- !u!1001 &942273931
 PrefabInstance:
