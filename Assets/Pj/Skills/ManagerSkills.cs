@@ -25,51 +25,84 @@ public class ManagerSkills : MonoBehaviour
     {
         foreach(var entry in skillEntries)
         {
-            _skills[entry.category] = new ActiveSkill(entry.category, entry.level, entry.dataStrcut); 
+            _skills[entry.category] = new ActiveSkill(entry.category,entry.dataStrcut);
         }
     }
-    public void UpgradeSkill(SkillCategory category)
+    public void UpgradeSkill(SkillCategory category, SkillStatType specificType)
     {
         if(!_skills.ContainsKey(category)) return;
-        ActiveSkill skill = _skills[category]; 
-        int MaxLevel = 0;
-        foreach(var entry in skill.dataStrcut.dataScripteable)
+        ActiveSkill skill = _skills[category];
+        SkillStat targetStat = null;
+        foreach (SkillStat entry in skill.dataStrcut.dataScripteable)
         {
-            MaxLevel = Math.Max(entry.GetMaxLevel(), MaxLevel);
+            if(entry.skillType == specificType)
+            {
+                targetStat = entry;
+                break;
+            }
         }
-        if(skill.level < MaxLevel)
+        for(int i  = 0; i < skill.progressPerStat.Count; i++)
         {
-            skill.level++;
-            _skills[category] = skill;
+            if(skill.progressPerStat[i].type == specificType)
+            {
+                int currentLevel = skill.progressPerStat[i].level;
+                int maxLevel = targetStat.GetMaxLevel();
+                if (currentLevel < maxLevel)
+                {
+                    currentLevel++;
+                    StatProgress updatedStat = skill.progressPerStat[i];
+                    updatedStat.level = currentLevel;
+                    skill.progressPerStat[i] = updatedStat;
+                    _skills[category] = skill;
+                }
+                break;
+
+            }
+
         }
     }
     public float GetValueSkill(SkillCategory category, SkillStatType specificType)
     {
         if (!_skills.ContainsKey(category)) return 0;
         ActiveSkill skill = _skills[category];
-        int level = skill.level;
-        foreach(var entry in skill.dataStrcut.dataScripteable)
+        for (int i = 0; i < skill.progressPerStat.Count; i++)
         {
-            if(entry.skillType == specificType)
+            if (skill.progressPerStat[i].type == specificType)
             {
-                return entry.GetValue(level);
+                int currentLevel = skill.progressPerStat[i].level;
+                foreach(var entry in skill.dataStrcut.dataScripteable)
+                {
+                    if(entry.skillType == specificType)
+                    {
+                        return entry.GetValue(currentLevel);
+                    }
+                }
             }
         }
-        return 0f;
+            return 0f;
     }
+}
+[Serializable]
+public struct StatProgress
+{
+    public SkillStatType type;
+    public int level;
 }
 [Serializable]
 public struct ActiveSkill
 {
     public SkillCategory category;
-    public int level;
+    public List<StatProgress> progressPerStat;
     public SkillCategoryData dataStrcut;
-
-    public ActiveSkill(SkillCategory category, int level, SkillCategoryData dataStrcut)
+    public ActiveSkill(SkillCategory category,SkillCategoryData dataStrcut)
     {
         this.category = category;
-        this.level = level;
+        this.progressPerStat = new List<StatProgress>();
         this.dataStrcut = dataStrcut;
+        foreach (var stat in dataStrcut.dataScripteable)
+        {
+            progressPerStat.Add(new StatProgress { type = stat.skillType, level = 0 });
+        }
     }
 }
 

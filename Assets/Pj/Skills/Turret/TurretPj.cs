@@ -24,13 +24,16 @@ public class TurretPj : MonoBehaviour
         RotateTorrete(RotVector);
         if (Input.GetKeyDown(KeyCode.P))
         {
-            ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory);
+            ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
             if (_shootRoutine != null)
             {
                 StopCoroutine(_shootRoutine);
             }
             _shootRoutine = StartCoroutine(Shoot());
         }
+        print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange));
+        print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turreRotationSpeed));
+        print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
     }
     private Vector3 GetZombie()
     {
