@@ -72,7 +72,7 @@ public class TurretPj : MonoBehaviour
         if (direction != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            TurretChild.rotation = Quaternion.Lerp(TurretChild.rotation, targetRotation, Time.deltaTime * 30f);
+            TurretChild.rotation = Quaternion.Lerp(TurretChild.rotation, targetRotation, Time.deltaTime * 50f);
         }
     }
     private void OnDrawGizmos()
