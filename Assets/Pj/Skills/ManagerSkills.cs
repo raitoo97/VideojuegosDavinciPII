@@ -63,9 +63,11 @@ public class ManagerSkills : MonoBehaviour
             {
                 int currentLevel = skill.progressPerStat[i].level;
                 int maxLevel = targetStat.GetMaxLevel();
+                print($"El Nivel de la habilidad: {skill.progressPerStat[i].type} es: {skill.progressPerStat[i].level} ");
                 if (currentLevel < maxLevel)
                 {
                     skill.progressPerStat[i].level++;
+                    print($"El nuevo Nivel de la habilidad: {skill.progressPerStat[i].type} es: {skill.progressPerStat[i].level} ");
                 }
                 break;
             }
