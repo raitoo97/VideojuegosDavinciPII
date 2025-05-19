@@ -27,6 +27,22 @@ public class ManagerSkills : MonoBehaviour
         {
             _skills[entry.category] = new ActiveSkill(entry.category,entry.dataStrcut);
         }
+        foreach(var entry in _skills)
+        {
+            print($"{entry.Key},{entry.Value.dataStrcut},{entry.Value.category}");
+            foreach(var entry2 in entry.Value.dataStrcut.dataScripteable)
+            {
+                print($"{entry2.skillType}");
+                for (int i = 0; i < entry2.valuesByLevel.Length; i++)
+                {
+                    print(entry2.valuesByLevel[i]);
+                }
+            }
+            foreach (var entry3 in entry.Value.progressPerStat)
+            {
+                print($"{entry3.type},{entry3.level}");
+            }
+        }
     }
     public void UpgradeSkill(SkillCategory category, SkillStatType specificType)
     {
@@ -47,9 +63,11 @@ public class ManagerSkills : MonoBehaviour
             {
                 int currentLevel = skill.progressPerStat[i].level;
                 int maxLevel = targetStat.GetMaxLevel();
+                print($"El Nivel de la habilidad: {skill.progressPerStat[i].type} es: {skill.progressPerStat[i].level} ");
                 if (currentLevel < maxLevel)
                 {
                     skill.progressPerStat[i].level++;
+                    print($"El nuevo Nivel de la habilidad: {skill.progressPerStat[i].type} es: {skill.progressPerStat[i].level} ");
                 }
                 break;
             }

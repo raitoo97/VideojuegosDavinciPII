@@ -25,6 +25,10 @@ public class TurretPj : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed);
             if (_shootRoutine != null)
             {
                 StopCoroutine(_shootRoutine);
@@ -68,7 +72,7 @@ public class TurretPj : MonoBehaviour
         if (direction != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            TurretChild.rotation = Quaternion.Lerp(TurretChild.rotation, targetRotation, Time.deltaTime * 30f);
+            TurretChild.rotation = Quaternion.Lerp(TurretChild.rotation, targetRotation, Time.deltaTime * 50f);
         }
     }
     private void OnDrawGizmos()

@@ -6177,6 +6177,7 @@ GameObject:
   - component: {fileID: 833461914}
   - component: {fileID: 833461915}
   - component: {fileID: 833461916}
+  - component: {fileID: 833461917}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -6227,6 +6228,19 @@ MonoBehaviour:
   skillEntries:
   - category: 0
     dataStrcut: {fileID: 11400000, guid: 8b6c52e2654fcda40af5187c37dd2620, type: 2}
+--- !u!114 &833461917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833461912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03dde4d24806bdf4f8bcabcdb35b929a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttons: []
 --- !u!1001 &942273931
 PrefabInstance:
   m_ObjectHideFlags: 0
