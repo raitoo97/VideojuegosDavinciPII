@@ -33,14 +33,14 @@ public class Movement
 
     public void Move(float inputHorizontal, float inputVertical, float speedMultiplier) 
     {
-        //Vectores camera
+        //Vectores _camera
         Vector3 cameraFoward = _camera.transform.forward;
         Vector3 cameraRight = _camera.transform.right;
         cameraFoward.y = 0;
         cameraRight.y = 0;
         cameraFoward = cameraFoward.normalized;
         cameraRight = cameraRight.normalized;
-        //Vectores inputs relativos a camera
+        //Vectores inputs relativos a _camera
         Vector3 dirVertical = cameraFoward * inputVertical;
         Vector3 dirHorizontal= cameraRight * inputHorizontal;
         
