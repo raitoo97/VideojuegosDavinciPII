@@ -94,7 +94,6 @@ public class TurretPj : MonoBehaviour
                 var _randomGunSight = _gunSight;
                 bullet.transform.position = _randomGunSight.position;
                 bullet.transform.rotation = _randomGunSight.rotation;
-                bullet.gameObject.GetComponent<Bullet>().shooterType = ShooterType.Player;
             }
             yield return new WaitForSeconds(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
         }

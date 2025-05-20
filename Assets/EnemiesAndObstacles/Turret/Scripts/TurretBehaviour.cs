@@ -52,7 +52,6 @@ public class TurretBehaviour : MonoBehaviour
             var _randomGunSight = _gunSight[Random.Range(0, _gunSight.Count)];
             bullet.transform.position = _randomGunSight.position;
             bullet.transform.rotation = _randomGunSight.rotation;
-            bullet.gameObject.GetComponent<Bullet>().shooterType = ShooterType.Enemy;
             yield return new WaitForSeconds(1);
         }
         _isShooting = false;
