@@ -52,6 +52,11 @@ public class PoolBullet : MonoBehaviour
     private void SetupBullet(GameObject bullet, ShooterType shooter)
     {
         var renderer = bullet.GetComponent<Renderer>();
+        var _shooterType = bullet.GetComponent<Bullet>();
+        if (_shooterType != null)
+        {
+            _shooterType.shooterType = shooter;
+        }
         if (renderer != null)
         {
             if (shooter == ShooterType.Player)
