@@ -6,15 +6,13 @@ using UnityEngine.UI;
 public class ManagerUI : MonoBehaviour
 {
     public List<Button> buttons;
-
+    public Image lifeBar;
     void Start()
     {
-        
+        buttons[0].onClick.AddListener(UpdateTurretVision);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void UpdateTurretVision()
     {
-        
+        ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
     }
 }

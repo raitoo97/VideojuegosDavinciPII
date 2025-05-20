@@ -1,7 +1,7 @@
 using UnityEngine;
 public class Player : MonoBehaviour
 {
-    [SerializeField] Transform camera;
+    [SerializeField] Transform _camera;
     [SerializeField] Movement _movement;
     [SerializeField]ControlPlayer _controller;
     [SerializeField]Animator _animator;
@@ -12,8 +12,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _animator = GetComponentInChildren<Animator>();
-        camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
-        _movement = new Movement(transform, speed, groundLayer, camera);
+        _camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        _movement = new Movement(transform, speed, groundLayer, _camera);
         _playerAnimation = new PlayerAnimation(_animator);
         _controller = new ControlPlayer(_movement, _playerAnimation);
     }
