@@ -8,8 +8,8 @@ public enum STATE
 }
 public class ZombieAnimations : MonoBehaviour
 {
-    [SerializeField]private STATE _currentState;
-    [SerializeField]private Animator _animator;
+    [SerializeField] private STATE _currentState;
+    [SerializeField] private Animator _animator;
     private void Awake()
     {
         _currentState = STATE.Idle;
@@ -34,11 +34,11 @@ public class ZombieAnimations : MonoBehaviour
             _animator.SetBool("IsRun", false);
             _animator.SetBool("IsAtack", false);
             _animator.SetBool("IsDeath", true);
-        }else if(_currentState == STATE.Run)
+        } else if (_currentState == STATE.Run)
         {
             _animator.SetBool("IsRun", true);
             _animator.SetBool("IsAtack", false);
-        }else if(_currentState == STATE.Atack)
+        } else if (_currentState == STATE.Atack)
         {
             _animator.SetBool("IsRun", false);
             _animator.SetBool("IsAtack", true);
@@ -49,4 +49,5 @@ public class ZombieAnimations : MonoBehaviour
             _animator.SetBool("IsAtack", false);
         }
     }
+    public STATE getStateZombie { get => _currentState; }
 }

@@ -17,5 +17,9 @@ public static class ExtendedClassManager
         var _threshold = c * c;
         return (_sqrDistanceTranforms < _threshold);
     }
+    public static float IsMostNearDistance(this Transform a, Transform b)
+    {
+        var _sqrDistanceTranforms = (a.position - b.position).sqrMagnitude;
+        return _sqrDistanceTranforms;
+    }
 }
-//

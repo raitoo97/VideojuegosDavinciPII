@@ -2187,7 +2187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d62b4e87d0a029e4abbb23d2fe3f8380, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
+  _camera: {fileID: 0}
   _animator: {fileID: 0}
   groundLayer:
     serializedVersion: 2
@@ -2211,10 +2211,10 @@ MonoBehaviour:
     m_Bits: 64
   nearZombie: 0
   zombie: {fileID: 0}
-  RotVector: {x: 0, y: 0, z: 0}
-  TurretChild: {fileID: 8659921118018354106}
-  _gunSight: {fileID: 2926521865988257790}
-  Turret: {fileID: 362479615592141109}
+  rotVector: {x: 0, y: 0, z: 0}
+  turretChild: {fileID: 8659921118018354106}
+  gunSight: {fileID: 2926521865988257790}
+  turret: {fileID: 362479615592141109}
 --- !u!1 &4513359586492197299
 GameObject:
   m_ObjectHideFlags: 0

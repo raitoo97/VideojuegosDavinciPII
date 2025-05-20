@@ -4,24 +4,25 @@ public class TurretPj : MonoBehaviour
 {
     [SerializeField] Collider[] colliders;
     public LayerMask mask;
-    public float nearZombie;
-    public GameObject zombie;
-    public Vector3 RotVector;
-    public Transform TurretChild;
-    public Transform _gunSight;
-    public GameObject Turret;
+    public float nearEnemy;
+    public GameObject enemy;
+    public Vector3 rotVector;
+    public Transform turretChild;
+    public Transform gunSight;
+    public GameObject turret;
     private bool _detectedTarget;
     private Coroutine _shootRoutine;
+    private bool _enemyWasDestroyed;
     private void Start()
     {
-        TurretChild.localRotation = Quaternion.identity;
+        turretChild.localRotation = Quaternion.identity;
         _shootRoutine = StartCoroutine(Shoot());
         ActivateSelf();
     }
     void Update()
     {
         GetZombie();
-        RotateTorrete(RotVector);
+        RotateTorrete(rotVector);
         if (Input.GetKeyDown(KeyCode.P))
         {
             ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
@@ -42,37 +43,44 @@ public class TurretPj : MonoBehaviour
     {
         float visionRange = ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
         colliders = Physics.OverlapSphere(this.transform.position, visionRange, mask);
-        nearZombie = Mathf.Infinity;
+        nearEnemy = Mathf.Infinity;
         GameObject closestZombie = null;
-        Vector3 closestPosition = RotVector;
+        Vector3 closestPosition = rotVector;
         foreach (Collider collider in colliders)
         {
-            float dist = Vector3.Distance(this.transform.position, collider.transform.position);
-            if (dist < nearZombie)
+            float dist = this.transform.IsMostNearDistance(collider.transform);
+            if (dist < nearEnemy)
             {
-                nearZombie = dist;
+                nearEnemy = dist;
                 closestZombie = collider.gameObject;
                 closestPosition = closestZombie.transform.position;
             }
         }
-        zombie = closestZombie;
-        _detectedTarget = (closestZombie != null);
+        enemy = closestZombie;
+        _detectedTarget = closestZombie != null;
+        if(enemy != null)
+        {
+            if (enemy.TryGetComponent<ZombieAnimations>(out var animZombieRef))
+            {
+                _enemyWasDestroyed = animZombieRef.getStateZombie == STATE.Death;
+            }
+        }
         if (closestZombie != null)
         {
-            RotVector = closestPosition;
+            rotVector = closestPosition;
         }
-        return RotVector;
+        return rotVector;
     }
     private void RotateTorrete(Vector3 rotVector)
     {
-        if (zombie == null) return;
+        if (enemy == null) return;
 
-        Vector3 direction = rotVector - TurretChild.position;
+        Vector3 direction = rotVector - turretChild.position;
 
         if (direction != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            TurretChild.rotation = Quaternion.Lerp(TurretChild.rotation, targetRotation, Time.deltaTime * 50f);
+            turretChild.rotation = Quaternion.Lerp(turretChild.rotation, targetRotation, Time.deltaTime * 50f);
         }
     }
     private void OnDrawGizmos()
@@ -88,10 +96,10 @@ public class TurretPj : MonoBehaviour
     {
         while (true)
         {
-            if (_detectedTarget)
+            if (_detectedTarget && !_enemyWasDestroyed)
             {
                 var bullet = PoolBullet.instance.GetBullet(ShooterType.Player);
-                var _randomGunSight = _gunSight;
+                var _randomGunSight = gunSight;
                 bullet.transform.position = _randomGunSight.position;
                 bullet.transform.rotation = _randomGunSight.rotation;
             }
@@ -100,8 +108,8 @@ public class TurretPj : MonoBehaviour
     }
     public void DesactivateSelf()
     {
-        if (Turret == null) return;
-        Turret.gameObject.SetActive(false);
+        if (turret == null) return;
+        turret.gameObject.SetActive(false);
         if (_shootRoutine != null)
         {
             StopCoroutine(_shootRoutine);
@@ -110,8 +118,8 @@ public class TurretPj : MonoBehaviour
     }
     public void ActivateSelf()
     {
-        if (Turret == null) return;
-        Turret.gameObject.SetActive(true);
+        if (turret == null) return;
+        turret.gameObject.SetActive(true);
         if (_shootRoutine == null)
         {
             _shootRoutine = StartCoroutine(Shoot());
