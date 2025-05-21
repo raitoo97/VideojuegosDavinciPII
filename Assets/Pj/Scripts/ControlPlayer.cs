@@ -25,7 +25,7 @@ public class ControlPlayer
         bool isFoward = foward != 0;
         
         bool isDodgeMode = Input.GetKey(KeyCode.LeftShift);
-        bool isJumping = Input.GetKey(KeyCode.Space);
+        bool isJumping = Input.GetKeyDown(KeyCode.Space);
         bool isGrounded = _movement.IsGrounded;
 
         float dodgeSpeedMultiplier = 1f;
@@ -69,7 +69,7 @@ public class ControlPlayer
         //          ======== JUMP ========
         if (isJumping && isGrounded && !isDodgeMode)
         {
-            float jumpForce = isFoward ? 1.3f : 1.2f;
+            float jumpForce =  2.5f;
             _animation.SetJump("jump", true);
             _movement.Jump(jumpForce);
         }
