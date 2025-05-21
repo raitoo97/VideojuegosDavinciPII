@@ -8,6 +8,7 @@ public class ControlPlayer
     PlayerAnimation _animation;
     bool _wasHoldingShift = false;
     bool _wasInGround;
+    
 
 
     public ControlPlayer(Movement m, PlayerAnimation a)
@@ -25,8 +26,8 @@ public class ControlPlayer
         bool isFoward = foward != 0;
         
         bool isDodgeMode = Input.GetKey(KeyCode.LeftShift);
-        bool isJumping = Input.GetKeyDown(KeyCode.Space);
         bool isGrounded = _movement.IsGrounded;
+        bool isJumping = Input.GetKeyDown(KeyCode.Space);
 
         float dodgeSpeedMultiplier = 1f;
 
@@ -67,12 +68,15 @@ public class ControlPlayer
         
 
         //          ======== JUMP ========
-        if (isJumping && isGrounded && !isDodgeMode)
+        if ( isJumping && isGrounded && !isDodgeMode)
         {
-            float jumpForce =  2.5f;
+            float jumpForce =  4f;
             _animation.SetJump("jump", true);
             _movement.Jump(jumpForce);
+            
         }
+       
+       
 
         //          ======== DODGE Y TRANSFORMING ========
         if (isDodgeMode && !_wasHoldingShift)
@@ -114,6 +118,7 @@ public class ControlPlayer
         //      ======== MOVIMIENTO FÍSICO Y ESTADO ========
         _wasHoldingShift = isDodgeMode;
         _wasInGround = isGrounded;
+    
         _movement.Move(horizontal, vertical, dodgeSpeedMultiplier);
         _movement.UpdateGroundCheck();
     }

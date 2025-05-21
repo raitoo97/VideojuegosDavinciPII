@@ -706,13 +706,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268144054855475662}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.6981738, y: -0.11204145, z: 0.28871813, w: 0.645478}
+  m_LocalPosition: {x: 0.322, y: 0.793, z: -0.165}
+  m_LocalScale: {x: 1.0412284, y: 1.0412284, z: 0.7592013}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2320557008977381265}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -56.784, y: -90, z: 104.982}
 --- !u!137 &7481072979272380484
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -1382,6 +1382,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6260724097496896414}
+  - component: {fileID: 3044534102418595306}
+  - component: {fileID: 5125556100805122487}
   m_Layer: 6
   m_Name: Base HumanLArmPalm
   m_TagString: Untagged
@@ -1409,6 +1411,39 @@ Transform:
   - {fileID: 7210327996081772225}
   m_Father: {fileID: 8532999828092444350}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3044534102418595306
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3102285197248193913}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Size: {x: 0.5431776, y: 0.15040499, z: 0.19184731}
+  m_Center: {x: 0.037834544, y: -0.024491126, z: -0.017696453}
+--- !u!114 &5125556100805122487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3102285197248193913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b541cba99fe4674f80c8cd038e31ad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3197303922709835850
 GameObject:
   m_ObjectHideFlags: 0
@@ -2771,6 +2806,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6555721872949717189}
+  - component: {fileID: 8943306060888595352}
+  - component: {fileID: 1754519895402387193}
   m_Layer: 6
   m_Name: Base HumanRArmPalm
   m_TagString: Untagged
@@ -2798,6 +2835,39 @@ Transform:
   - {fileID: 7872162936258962723}
   m_Father: {fileID: 8953963660575649984}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8943306060888595352
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8179223946466116619}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5491072, y: 0.11454091, z: 0.15921447}
+  m_Center: {x: 0.035182968, y: -0.06117063, z: -0.011294153}
+--- !u!114 &1754519895402387193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8179223946466116619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b541cba99fe4674f80c8cd038e31ad7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8333085473561429682
 GameObject:
   m_ObjectHideFlags: 0
@@ -3008,13 +3078,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8509141669880111545}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.7046385, y: 0.059030347, z: -0.31364527, w: 0.6337403}
+  m_LocalPosition: {x: -0.44705, y: 0.88492, z: -0.30953}
+  m_LocalScale: {x: 1.3276584, y: 0.7659395, z: 0.68261564}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2320557008977381265}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -58.88, y: 90, z: -111.543}
 --- !u!137 &4232003144985069795
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
