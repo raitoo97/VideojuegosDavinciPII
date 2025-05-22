@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 public enum SkillStatType
 {
     turretVisionRange,
@@ -11,7 +12,7 @@ public class SkillStat
     public float[] valuesByLevel;
     public float GetValue(int level)
     {
-        return valuesByLevel[Math.Clamp(level, 0, valuesByLevel.Length - 1)];
+        return valuesByLevel[Mathf.Clamp(level, 0, valuesByLevel.Length - 1)];
     }
     public int GetMaxLevel()
     {

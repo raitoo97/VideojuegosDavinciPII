@@ -16,6 +16,6 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindObjectOfType<Player>().gameObject;
     }
 }
