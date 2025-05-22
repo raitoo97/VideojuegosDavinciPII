@@ -92,17 +92,18 @@ public class TurretPj : MonoBehaviour
     }
     IEnumerator Shoot()
     {
-        while (true)
-        {
-            if (_detectedTarget && !_enemyWasDestroyed)
-            {
-                var bullet = PoolBullet.instance.GetBullet(ShooterType.Player);
-                var _randomGunSight = gunSight;
-                bullet.transform.position = _randomGunSight.position;
-                bullet.transform.rotation = _randomGunSight.rotation;
-            }
-            yield return new WaitForSeconds(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
-        }
+        //while (true)
+        //{
+        //    if (_detectedTarget && !_enemyWasDestroyed)
+        //    {
+        //        var bullet = PoolBullet.instance.GetBullet(ShooterType.Player);
+        //        var _randomGunSight = gunSight;
+        //        bullet.transform.position = _randomGunSight.position;
+        //        bullet.transform.rotation = _randomGunSight.rotation;
+        //    }
+        //    yield return new WaitForSeconds(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
+        //}
+        yield return null;
     }
     public void DesactivateSelf()
     {
