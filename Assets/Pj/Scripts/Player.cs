@@ -3,15 +3,14 @@ public class Player : MonoBehaviour
 {
     [SerializeField] Transform _camera;
     [SerializeField] Movement _movement;
-    [SerializeField]ControlPlayer _controller;
-    [SerializeField]Animator _animator;
+    [SerializeField] ControlPlayer _controller;
+    [SerializeField] Animator _animator;
     [SerializeField] PlayerAnimation _playerAnimation;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] float speed = 5f;
-
-    //Life
-    int _maxLife = 100;
-    int _currentLife; 
+    [Header("Life")]
+    [SerializeField] private float _maxLife = 100f;
+    [SerializeField] private float _currentLife; 
     private void Start()
     {
         _animator = GetComponentInChildren<Animator>();
@@ -21,26 +20,30 @@ public class Player : MonoBehaviour
         _controller = new ControlPlayer(_movement, _playerAnimation);
         _currentLife = _maxLife;
     }
-
     private void Update()
     {
         _controller.OnUpdate();
-        
-        bool dmgPlayer = Input.GetKeyDown(KeyCode.K);
-        if (dmgPlayer)
+        if (Input.GetKeyDown(KeyCode.F))
         {
-            DamagePlayer(20);
-            Debug.Log($"Damage!! X 20, CURRENTLIFE: {_currentLife} ");
+            DamagePlayer(10);
+        }
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            HealthPlayer(10);
         }
     }
-
-    public void DamagePlayer(int damage)
+    public void DamagePlayer(float damage)
     {
         _currentLife -= damage;
-        Debug.Log($"Damage!! X 20, CURRENTLIFE: {_currentLife} ");
-        if (_currentLife <= 0)
+        if (_currentLife <= 0f)
         {
-           gameObject.SetActive(false);
+            ManagerUI.instance.getLifeBar.CheckLife();
+            gameObject.SetActive(false);
         }
     }
+    public void HealthPlayer(float healt)
+    {
+        _currentLife = Mathf.Clamp(_currentLife += healt, 0, _maxLife); 
+    }
+    public float GetLife { get => Mathf.Clamp(_currentLife, 0, _maxLife); }
 }
