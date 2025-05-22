@@ -5303,7 +5303,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6289355510330080373, guid: 05ca60d2170117e478bb97c95ea34a23, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.122159
+      value: 7.49
       objectReference: {fileID: 0}
     - target: {fileID: 6289355510330080373, guid: 05ca60d2170117e478bb97c95ea34a23, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6465,7 +6465,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03dde4d24806bdf4f8bcabcdb35b929a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeBar: {fileID: 215307379}
+  imagesList:
+  - {fileID: 215307379}
   _statusPjImageEntries:
   - lifeStatusType: 0
     statusImage: {fileID: 830161670}

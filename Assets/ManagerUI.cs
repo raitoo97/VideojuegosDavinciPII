@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 public class ManagerUI : MonoBehaviour
@@ -15,6 +16,7 @@ public class ManagerUI : MonoBehaviour
     }
     void Start()
     {
+        imagesList = imagesList.OrderBy(x => x.name).ToList();
         _player = GameManager.instance.player.GetComponent<Player>();
         PjLifeStates = new PjStatesLifeBar(_player,imagesList.Find(x => x.gameObject.name == "LifeBar"), _statusPjImageEntries);
         PjLifeStates.OnStart();
