@@ -11,14 +11,14 @@ public enum LifeStatus
 }
 public class PjStatesLifeBar
 {
-    private Image lifeBar;
-    public List<LifeController> _statusPjImageEntries = new List<LifeController>();
+    private Image image;
+    private List<LifeController> _statusPjImageEntries = new List<LifeController>();
     private Player _player;
     private Dictionary<LifeStatus, LifeController> _dictionaryLife = new Dictionary<LifeStatus, LifeController>();
-    public PjStatesLifeBar(Player _player, Image lifeBar, List<LifeController> _statusPjImageEntries)
+    public PjStatesLifeBar(Player _player, Image image, List<LifeController> _statusPjImageEntries)
     {
         this._player = _player;
-        this.lifeBar = lifeBar;
+        this.image = image;
         this._statusPjImageEntries = _statusPjImageEntries;
     }
     public void OnStart()
@@ -48,17 +48,17 @@ public class PjStatesLifeBar
         UpdateLifeBar();
         UpdateStatusImage(currentStatus);
     }
-    public void UpdateLifeBar()
+    private void UpdateLifeBar()
     {
         float lifeToAmount = (_player.GetLife) / 100f;
-        lifeBar.fillAmount = Mathf.Clamp(lifeToAmount, 0f, 1f);
+        image.fillAmount = Mathf.Clamp(lifeToAmount, 0f, 1f);
     }
     private void UpdateStatusImage(LifeStatus status)
     {
         if (!_dictionaryLife.ContainsKey(status)) return;
         foreach (var entry in _dictionaryLife)
         {
-            entry.Value.statusImage.gameObject.SetActive(entry.Key == status);
+            entry.Value.statusImage.gameObject.SetActive(entry.Value.lifeStatusType == status);
         }
     }
 }

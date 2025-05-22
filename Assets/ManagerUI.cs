@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ManagerUI : MonoBehaviour
 {
-    public Image lifeBar;
+    public List<Image> imagesList = new List<Image>();
     public List<LifeController> _statusPjImageEntries = new List<LifeController>();
     public static ManagerUI instance;
     [SerializeField]private Player _player;
@@ -16,7 +16,7 @@ public class ManagerUI : MonoBehaviour
     void Start()
     {
         _player = GameManager.instance.player.GetComponent<Player>();
-        PjLifeStates = new PjStatesLifeBar(_player, lifeBar, _statusPjImageEntries);
+        PjLifeStates = new PjStatesLifeBar(_player,imagesList.Find(x => x.gameObject.name == "LifeBar"), _statusPjImageEntries);
         PjLifeStates.OnStart();
     }
     private void Update()
