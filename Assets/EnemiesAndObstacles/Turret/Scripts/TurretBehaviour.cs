@@ -47,7 +47,7 @@ public class TurretBehaviour : MonoBehaviour
         _isShooting = true;
         while (_rayTurret.IsEnabled)
         {
-            var bullet = PoolBullet.instance.GetBullet(ShooterType.Enemy);
+            var bullet = PoolBullet.instance.bulletConfigs.Find(x => x.type == ShooterType.Enemy).GetBullet();
             if (bullet == null) break;
             var _randomGunSight = _gunSight[Random.Range(0, _gunSight.Count)];
             bullet.transform.position = _randomGunSight.position;

@@ -11,7 +11,7 @@ public class ZombieAttack : MonoBehaviour
             Player player = c.gameObject.GetComponent<Player>();
             if (player != null)
             {
-                player.DamagePlayer(1);
+                player.DamagePlayer(1f);
             }
         }
     }

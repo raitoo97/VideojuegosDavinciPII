@@ -19,7 +19,7 @@ public class RespawnZombie : MonoBehaviour
             int num = Random.Range(0, 100);
             if (num > 50)
             {
-                GameObject Enemy = PoolZombies.instance.GetZombie();
+                GameObject Enemy = PoolEnemy.instance._zombies.Find(x => x.type == EnemyType.Zombie).GetZombie();
                 Enemy.transform.position = this.transform.position;
                 Enemy.transform.rotation = this.transform.rotation;
             }

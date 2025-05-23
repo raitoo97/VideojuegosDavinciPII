@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 public class ZombieBehaviour : MonoBehaviour
@@ -15,10 +14,9 @@ public class ZombieBehaviour : MonoBehaviour
         life = 100;
         _idleDistance = 50f;
         _runDistance = 4;
-        _atackDistance = 1.9f;
+        _atackDistance = 1.3f;
         _agent = GetComponent<NavMeshAgent>();
         _anims = GetComponent<ZombieAnimations>();
-
         _attackColliders = GetComponentsInChildren<BoxCollider>(true);
     }
     void Update()
@@ -54,7 +52,6 @@ public class ZombieBehaviour : MonoBehaviour
             _anims.ChangeState(STATE.Atack);
             _agent.isStopped = true;
             _agent.SetDestination(_agent.transform.position);
-
             //Danio al Player
             foreach (var col in _attackColliders)
             {
@@ -68,12 +65,9 @@ public class ZombieBehaviour : MonoBehaviour
                 col.enabled = false;
             }
         }
-
     }
     private void Desactivate()
     {
         this.gameObject.SetActive(false);
-    }
-
-   
+    }  
 }
