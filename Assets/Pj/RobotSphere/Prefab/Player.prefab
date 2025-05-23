@@ -2210,7 +2210,7 @@ MonoBehaviour:
   colliders: []
   mask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 768
   nearEnemy: 0
   enemy: {fileID: 0}
   rotVector: {x: 0, y: 0, z: 0}
