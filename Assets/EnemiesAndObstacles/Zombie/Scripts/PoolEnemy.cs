@@ -8,7 +8,7 @@ public enum EnemyType
 public class PoolEnemy : MonoBehaviour
 {
     public static PoolEnemy instance;
-    public List<PoolEnemyStruct> _zombies = new List<PoolEnemyStruct>();
+    public List<PoolEnemyStruct> EnemiesTypesList = new List<PoolEnemyStruct>();
     private void Awake()
     {
         if (instance == null)
@@ -22,7 +22,7 @@ public class PoolEnemy : MonoBehaviour
     }
     void Start()
     {
-        foreach (var enemy in _zombies)
+        foreach (var enemy in EnemiesTypesList)
         {
             enemy.CompleteList(enemy.initList);
         }
@@ -31,42 +31,48 @@ public class PoolEnemy : MonoBehaviour
 [Serializable]
 public class PoolEnemyStruct
 {
-    [SerializeField] private List<GameObject> _zombiesListPool = new List<GameObject>();
+    public EnemyType type;
+    [SerializeField] private List<GameObject> _enemyPool = new List<GameObject>();
     public GameObject prefab;
     public int initList;
     public Transform parent;
-    public EnemyType type;
     public void CompleteList(int init)
     {
         for (int i = 0; i < init; i++)
         {
-            var _cloneZombie = GameObject.Instantiate(prefab);
-            _cloneZombie.SetActive(false);
-            _zombiesListPool.Add(_cloneZombie);
-            _cloneZombie.transform.parent = parent;
+            var _cloneEnemy = GameObject.Instantiate(prefab);
+            _cloneEnemy.SetActive(false);
+            _enemyPool.Add(_cloneEnemy);
+            _cloneEnemy.transform.parent = parent;
         }
     }
-    public GameObject GetZombie()
+    public GameObject GetEnemy()
     {
-        for (int i = 0; i < _zombiesListPool.Count; i++)
+        for (int i = 0; i < _enemyPool.Count; i++)
         {
-            if (!_zombiesListPool[i].activeSelf)
+            if (!_enemyPool[i].activeSelf)
             {
-                if (_zombiesListPool[i].TryGetComponent<ZombieBehaviour>(out var zombieBehaviour))
+                if(type == EnemyType.Zombie)
                 {
-                    zombieBehaviour.life = 100;
+                    if (_enemyPool[i].TryGetComponent<ZombieBehaviour>(out var zombieBehaviour))
+                    {
+                        zombieBehaviour.life = 100;
+                    }
                 }
-                _zombiesListPool[i].SetActive(true);
-                return _zombiesListPool[i];
+                _enemyPool[i].SetActive(true);
+                return _enemyPool[i];
             }
         }
         CompleteList(1);
-        GameObject _auxZombie = _zombiesListPool[_zombiesListPool.Count - 1];
-        if (_auxZombie.TryGetComponent<ZombieBehaviour>(out var zombieBehaviourAux))
+        GameObject _auxEnemy = _enemyPool[_enemyPool.Count - 1];
+        if (type == EnemyType.Zombie)
         {
-            zombieBehaviourAux.life = 100;
+            if (_auxEnemy.TryGetComponent<ZombieBehaviour>(out var zombieBehaviour))
+            {
+                zombieBehaviour.life = 100;
+            }
         }
-        _auxZombie.SetActive(true);
-        return _auxZombie;
+        _auxEnemy.SetActive(true);
+        return _auxEnemy;
     }
 }

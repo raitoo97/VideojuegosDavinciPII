@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 public class TurretPj : MonoBehaviour
 {
-    [SerializeField] Collider[] colliders;
+    private Collider[] _colliders;
     public LayerMask mask;
     public float nearEnemy;
     public GameObject enemy;
@@ -43,11 +43,11 @@ public class TurretPj : MonoBehaviour
     private Vector3 GetZombie()
     {
         float visionRange = ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
-        colliders = Physics.OverlapSphere(this.transform.position, visionRange, mask);
+        _colliders = Physics.OverlapSphere(this.transform.position, visionRange, mask);
         nearEnemy = Mathf.Infinity;
         GameObject closestZombie = null;
         Vector3 closestPosition = rotVector;
-        foreach (Collider collider in colliders)
+        foreach (Collider collider in _colliders)
         {
             float dist = this.transform.IsMostNearDistance(collider.transform);
             if (dist < nearEnemy)
