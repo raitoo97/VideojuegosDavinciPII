@@ -6658,8 +6658,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 991080704}
-  - component: {fileID: 991080705}
   - component: {fileID: 991080706}
+  - component: {fileID: 991080707}
   m_Layer: 0
   m_Name: Pools
   m_TagString: Untagged
@@ -6682,20 +6682,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &991080705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 991080701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c4172ccdd8c4434296fa9eddbb633ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _zombies: []
-  prefab: {fileID: 3197303922709835850, guid: 6b89fdb848eeb6148be15f378ae5087a, type: 3}
 --- !u!114 &991080706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6708,10 +6694,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1f1c8e5076beb84e8769923209fce1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bullet: []
-  prefab: {fileID: 6554155068203961422, guid: 607f4da4f30cd5241a5ac79a8704232a, type: 3}
-  playerMaterial: {fileID: 2100000, guid: 4a4dcad548da1914eb3fb556c918fdcd, type: 2}
-  enemyMaterial: {fileID: 2100000, guid: a20ee89ee906cec4da1a454972859ba1, type: 2}
+  bulletConfigs:
+  - type: 0
+    prefab: {fileID: 138656344254556827, guid: b871cd1e7ee799f4180d4201074fc5d8, type: 3}
+    initialSize: 50
+    _parent: {fileID: 991080704}
+  - type: 1
+    prefab: {fileID: 6554155068203961422, guid: 607f4da4f30cd5241a5ac79a8704232a, type: 3}
+    initialSize: 50
+    _parent: {fileID: 991080704}
+--- !u!114 &991080707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 991080701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4172ccdd8c4434296fa9eddbb633ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zombies:
+  - _zombiesListPool: []
+    prefab: {fileID: 3197303922709835850, guid: 6b89fdb848eeb6148be15f378ae5087a, type: 3}
+    initList: 50
+    parent: {fileID: 991080704}
+    type: 0
 --- !u!1 &1020878666
 GameObject:
   m_ObjectHideFlags: 0
@@ -7996,10 +8005,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3985280852374286689, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 4469785779143389137, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
       propertyPath: m_Name
       value: Player

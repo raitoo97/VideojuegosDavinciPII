@@ -1,15 +1,10 @@
 using System.Collections;
 using UnityEngine;
-public enum ShooterType
-{
-    Player,
-    Enemy
-}
 public class Bullet : MonoBehaviour
 {
     private float _speed;
     private bool _isDesactivate;
-    public ShooterType shooterType;// Quién disparó la bala
+    public ShooterType shooterType;
     private void OnEnable()
     {
         StartCoroutine(DesactivateBullet());

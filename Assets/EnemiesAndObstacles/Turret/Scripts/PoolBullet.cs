@@ -1,11 +1,14 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+public enum ShooterType
+{
+    Player,
+    Enemy
+}
 public class PoolBullet : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _bullet = new List<GameObject>();
-    public GameObject prefab;
-    [SerializeField] private Material playerMaterial;
-    [SerializeField] private Material enemyMaterial;
+    [SerializeField] public List<BulletPoolConfig> bulletConfigs;
     public static PoolBullet instance;
     private void Awake()
     {
@@ -20,49 +23,43 @@ public class PoolBullet : MonoBehaviour
     }
     void Start()
     {
-        CompleteList(50);
-    }
-    private void CompleteList(int init)
-    {
-        for (int i = 0; i < init; i++)
+        foreach (BulletPoolConfig config in bulletConfigs)
         {
-            var _cloneBullet = Instantiate(prefab);
-            _cloneBullet.SetActive(false);
-            _bullet.Add(_cloneBullet);
-            _cloneBullet.transform.parent = this.transform;
+            config.CompleteList(config.initialSize);
         }
     }
-    public GameObject GetBullet(ShooterType shooter)
+}
+[Serializable]
+public class BulletPoolConfig
+{
+    public ShooterType type;
+    public GameObject prefab;
+    public int initialSize;
+    public Transform _parent;
+    private List<GameObject> _bullets = new();
+    public void CompleteList(int number)
     {
-        for (int i = 0; i < _bullet.Count; i++)
+        for (int i = 0; i < number; i++)
         {
-            if (!_bullet[i].activeSelf)
+            var _cloneBullet = GameObject.Instantiate(prefab);
+            _cloneBullet.SetActive(false);
+            _bullets.Add(_cloneBullet);
+            _cloneBullet.transform.parent = _parent;
+        }
+    }
+    public GameObject GetBullet()
+    {
+        for (int i = 0; i < _bullets.Count; i++)
+        {
+            if (!_bullets[i].activeSelf)
             {
-                _bullet[i].SetActive(true);
-                SetupBullet(_bullet[i], shooter);
-                return _bullet[i];
+                _bullets[i].SetActive(true);
+                return _bullets[i];
             }
         }
         CompleteList(1);
-        GameObject _auxBullet = _bullet[_bullet.Count - 1];
+        GameObject _auxBullet = _bullets[_bullets.Count - 1];
         _auxBullet.SetActive(true);
-        SetupBullet(_auxBullet, shooter);
         return _auxBullet;
-    }
-    private void SetupBullet(GameObject bullet, ShooterType shooter)
-    {
-        var renderer = bullet.GetComponent<Renderer>();
-        var _shooterType = bullet.GetComponent<Bullet>();
-        if (_shooterType != null)
-        {
-            _shooterType.shooterType = shooter;
-        }
-        if (renderer != null)
-        {
-            if (shooter == ShooterType.Player)
-                renderer.material = playerMaterial;
-            else if (shooter == ShooterType.Enemy)
-                renderer.material = enemyMaterial;
-        }
     }
 }

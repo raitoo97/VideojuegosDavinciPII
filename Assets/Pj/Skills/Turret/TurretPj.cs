@@ -23,6 +23,7 @@ public class TurretPj : MonoBehaviour
     {
         GetZombie();
         RotateTorrete(rotVector);
+        RotateArroundDetail();
         if (Input.GetKeyDown(KeyCode.P))
         {
             ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
@@ -78,7 +79,7 @@ public class TurretPj : MonoBehaviour
         if (direction != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            turretChild.rotation = Quaternion.Lerp(turretChild.rotation, targetRotation, Time.deltaTime * 50f);
+            turretChild.rotation = Quaternion.Lerp(turretChild.rotation, targetRotation, Time.deltaTime * 25f);
         }
     }
     private void OnDrawGizmos()
@@ -96,13 +97,18 @@ public class TurretPj : MonoBehaviour
         {
             if (_detectedTarget && !_enemyWasDestroyed)
             {
-                var bullet = PoolBullet.instance.GetBullet(ShooterType.Player);
-                var _randomGunSight = gunSight;
-                bullet.transform.position = _randomGunSight.position;
-                bullet.transform.rotation = _randomGunSight.rotation;
+                var bullet = PoolBullet.instance.bulletConfigs.Find(x => x.type == ShooterType.Player).GetBullet();
+                if (bullet == null) break;
+                var _gunSight = gunSight;
+                bullet.transform.position = _gunSight.position;
+                bullet.transform.rotation = _gunSight.rotation;
             }
             yield return new WaitForSeconds(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
         }
+    }
+    public void RotateArroundDetail()
+    {
+        turret.transform.RotateAround(this.transform.position, Vector3.up, 50 * Time.deltaTime);
     }
     public void DesactivateSelf()
     {
