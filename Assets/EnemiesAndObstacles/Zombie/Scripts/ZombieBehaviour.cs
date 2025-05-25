@@ -14,7 +14,7 @@ public class ZombieBehaviour : MonoBehaviour
         life = 100;
         _idleDistance = 50f;
         _runDistance = 4;
-        _atackDistance = 1.5f;
+        _atackDistance = 1.3f;
         _agent = GetComponent<NavMeshAgent>();
         _anims = GetComponent<ZombieAnimations>();
         _attackColliders = GetComponentsInChildren<BoxCollider>(true);
