@@ -13,7 +13,7 @@ public class Bullet : MonoBehaviour
     }
     private void Update()
     {
-        this.transform.position += this.transform.forward * _speed * Time.deltaTime;
+        this.transform.localPosition += this.transform.forward * _speed * Time.deltaTime;
     }
     private void OnTriggerEnter(Collider other)
     {
