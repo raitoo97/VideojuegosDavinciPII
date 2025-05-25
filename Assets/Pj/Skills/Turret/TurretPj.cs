@@ -12,7 +12,6 @@ public class TurretPj : MonoBehaviour
     public GameObject turret;
     private bool _detectedTarget;
     private Coroutine _shootRoutine;
-    private bool _enemyWasDestroyed;
     private void Start()
     {
         turretChild.localRotation = Quaternion.identity;
@@ -59,13 +58,6 @@ public class TurretPj : MonoBehaviour
         }
         enemy = closestZombie;
         _detectedTarget = closestZombie != null;
-        if(enemy != null)
-        {
-            if (enemy.TryGetComponent<ZombieAnimations>(out var animZombieRef))
-            {
-                _enemyWasDestroyed = animZombieRef.getStateZombie == STATE.Death;
-            }
-        }
         if (closestZombie != null)
         {
             rotVector = closestPosition;
@@ -97,20 +89,37 @@ public class TurretPj : MonoBehaviour
     {
         while (true)
         {
-            if (_detectedTarget && !_enemyWasDestroyed)
+            if (_detectedTarget && enemy != null)
             {
-                var bullet = PoolBullet.instance.bulletConfigs.Find(x => x.type == ShooterType.Player).GetBullet();
-                if (bullet == null) break;
-                var _gunSight = gunSight;
-                bullet.transform.position = _gunSight.position;
-                bullet.transform.rotation = _gunSight.rotation;
+                var animZombieRef = enemy.GetComponentInParent<ZombieAnimations>();
+                if (animZombieRef != null)
+                {
+                    if (animZombieRef.getStateZombie != STATE.Death)
+                    {
+                        var bullet = PoolBullet.instance.bulletConfigs.Find(x => x.type == ShooterType.Player).GetBullet();
+                        if (bullet != null)
+                        {
+                            bullet.transform.position = gunSight.position;
+                            bullet.transform.rotation = gunSight.rotation;
+                        }
+                    }
+                }
+                if (enemy.GetComponent<TurretBehaviour>())
+                {
+                    var bullet = PoolBullet.instance.bulletConfigs.Find(x => x.type == ShooterType.Player).GetBullet();
+                    if (bullet != null)
+                    {
+                        bullet.transform.position = gunSight.position;
+                        bullet.transform.rotation = gunSight.rotation;
+                    }
+                }
             }
             yield return new WaitForSeconds(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
         }
     }
     public void RotateArroundDetail()
     {
-        turret.transform.RotateAround(this.transform.position, Vector3.up, 50 * Time.deltaTime);
+        turret.transform.RotateAround(this.transform.position, Vector3.up * -1, 50 * Time.deltaTime);
     }
     public void DesactivateSelf()
     {
