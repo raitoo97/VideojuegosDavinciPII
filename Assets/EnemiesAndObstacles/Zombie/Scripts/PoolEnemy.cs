@@ -24,7 +24,7 @@ public class PoolEnemy : MonoBehaviour
     {
         foreach (var enemy in EnemiesTypesList)
         {
-            enemy.CompleteList(enemy.initList);
+            enemy.OnStart();
         }
     }
 }
@@ -36,6 +36,10 @@ public class PoolEnemyStruct
     public GameObject prefab;
     public int initList;
     public Transform parent;
+    public void OnStart()
+    {
+        CompleteList(initList);
+    }
     public void CompleteList(int init)
     {
         for (int i = 0; i < init; i++)
