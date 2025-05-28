@@ -7,6 +7,13 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] private AudioSource sfxAudioSource, musicAudioSource;
 
+    //Zombie Audio
+    [SerializeField] public AudioClip[] zombieAttackSfx;
+    [SerializeField] public AudioClip[] missileImpactSfx;
+    [SerializeField] public AudioClip[] playerDamageSfx;
+
+
+
     private bool isMusicPlaying;
     public static AudioManager Instance { get; private set; }
 
@@ -19,7 +26,7 @@ public class AudioManager : MonoBehaviour
         else 
         {
             Instance = this;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(Instance);
         }
     }
 
@@ -35,6 +42,15 @@ public class AudioManager : MonoBehaviour
         if (clip != null)
         {
              sfxAudioSource.PlayOneShot(clip); 
+        }
+    }
+
+    public void PlaySfxRandomPitch(AudioClip clip) 
+    {
+        sfxAudioSource.pitch = Random.Range(1f, 1.2f);
+        if (clip != null)
+        {
+            sfxAudioSource.PlayOneShot(clip);
         }
     }
 

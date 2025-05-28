@@ -12,6 +12,11 @@ public class TurretPj : MonoBehaviour
     public GameObject turret;
     private bool _detectedTarget;
     private Coroutine _shootRoutine;
+
+    
+    AudioManager audioManager => AudioManager.Instance;
+    [SerializeField] private AudioClip shotSfx;
+
     private void Start()
     {
         turretChild.localRotation = Quaternion.identity;
@@ -101,6 +106,8 @@ public class TurretPj : MonoBehaviour
                         {
                             bullet.transform.position = gunSight.position;
                             bullet.transform.rotation = gunSight.rotation;
+                            
+                            audioManager.PlaySfxRandomPitch(shotSfx);
                         }
                     }
                 }
@@ -111,6 +118,8 @@ public class TurretPj : MonoBehaviour
                     {
                         bullet.transform.position = gunSight.position;
                         bullet.transform.rotation = gunSight.rotation;
+                        audioManager.PlaySfxRandomPitch(shotSfx);
+
                     }
                 }
             }

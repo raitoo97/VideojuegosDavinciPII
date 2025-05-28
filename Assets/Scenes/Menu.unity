@@ -1355,6 +1355,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxAudioSource: {fileID: 1569678446}
   musicAudioSource: {fileID: 551338491}
+  zombieAttackSfx:
+  - {fileID: 8300000, guid: 1a3606d1c4d626d4fba48d18bd004da3, type: 3}
+  - {fileID: 8300000, guid: 57bbf0b3ae9cf684584724c6b2555fde, type: 3}
+  - {fileID: 8300000, guid: fcfbac4d33d434c4d9a3e187119aa819, type: 3}
+  - {fileID: 8300000, guid: 8de8c02b4efa32e45b0b627937d0aeb5, type: 3}
+  missileImpactSfx:
+  - {fileID: 8300000, guid: 95a59a1b5e704bd4986fd93b4fc5b499, type: 3}
+  - {fileID: 8300000, guid: d22412fc3b7763d4d89f0adb3b4dd5bd, type: 3}
+  playerDamageSfx:
+  - {fileID: 8300000, guid: 4b458cdff3ae749439a533f989283429, type: 3}
+  - {fileID: 8300000, guid: 8d8796f8970f2824e97281f1fb3c9772, type: 3}
+  - {fileID: 8300000, guid: 154ee9351c3e4fb4784790aae87ebeb4, type: 3}
 --- !u!4 &1154481389
 Transform:
   m_ObjectHideFlags: 0
