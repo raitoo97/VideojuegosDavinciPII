@@ -5794,10 +5794,50 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1754519895402387193, guid: 6b89fdb848eeb6148be15f378ae5087a, type: 3}
+      propertyPath: clip.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1754519895402387193, guid: 6b89fdb848eeb6148be15f378ae5087a, type: 3}
+      propertyPath: clip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1a3606d1c4d626d4fba48d18bd004da3, type: 3}
+    - target: {fileID: 1754519895402387193, guid: 6b89fdb848eeb6148be15f378ae5087a, type: 3}
+      propertyPath: clip.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 57bbf0b3ae9cf684584724c6b2555fde, type: 3}
+    - target: {fileID: 1754519895402387193, guid: 6b89fdb848eeb6148be15f378ae5087a, type: 3}
+      propertyPath: clip.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: fcfbac4d33d434c4d9a3e187119aa819, type: 3}
+    - target: {fileID: 1754519895402387193, guid: 6b89fdb848eeb6148be15f378ae5087a, type: 3}
+      propertyPath: clip.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8de8c02b4efa32e45b0b627937d0aeb5, type: 3}
     - target: {fileID: 3197303922709835850, guid: 6b89fdb848eeb6148be15f378ae5087a, type: 3}
       propertyPath: m_Name
       value: Zombie
       objectReference: {fileID: 0}
+    - target: {fileID: 5125556100805122487, guid: 6b89fdb848eeb6148be15f378ae5087a, type: 3}
+      propertyPath: clip.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5125556100805122487, guid: 6b89fdb848eeb6148be15f378ae5087a, type: 3}
+      propertyPath: clip.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1a3606d1c4d626d4fba48d18bd004da3, type: 3}
+    - target: {fileID: 5125556100805122487, guid: 6b89fdb848eeb6148be15f378ae5087a, type: 3}
+      propertyPath: clip.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 57bbf0b3ae9cf684584724c6b2555fde, type: 3}
+    - target: {fileID: 5125556100805122487, guid: 6b89fdb848eeb6148be15f378ae5087a, type: 3}
+      propertyPath: clip.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: fcfbac4d33d434c4d9a3e187119aa819, type: 3}
+    - target: {fileID: 5125556100805122487, guid: 6b89fdb848eeb6148be15f378ae5087a, type: 3}
+      propertyPath: clip.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 8de8c02b4efa32e45b0b627937d0aeb5, type: 3}
     - target: {fileID: 7323156460996087571, guid: 6b89fdb848eeb6148be15f378ae5087a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.966462
@@ -8058,6 +8098,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3522650585358744689, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
+      propertyPath: shotSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 3d344d4848508c842bfeef3eb83e2ae1, type: 3}
     - target: {fileID: 4469785779143389137, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
       propertyPath: m_Name
       value: Player

@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     [Header("Life")]
     [SerializeField] private float _maxLife = 100f;
     [SerializeField] private float _currentLife; 
+
+    //Sound
+    AudioManager audioManager => AudioManager.Instance;
     private void Start()
     {
         _animator = GetComponentInChildren<Animator>();
@@ -35,6 +38,8 @@ public class Player : MonoBehaviour
     public void DamagePlayer(float damage)
     {
         _currentLife -= damage;
+        int randomIndex = UnityEngine.Random.Range(0, audioManager.playerDamageSfx.Length);
+        audioManager.PlaySfxRandomPitch(audioManager.playerDamageSfx[randomIndex]); //sound effect
         if (_currentLife <= 0f)
         {
             ManagerUI.instance.getLifeBar.CheckLife();

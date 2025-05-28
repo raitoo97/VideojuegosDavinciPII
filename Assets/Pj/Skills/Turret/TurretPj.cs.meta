@@ -3,7 +3,12 @@ guid: a574e1cc1cdf8fa478b61f5b4e8b672b
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - enemy: {instanceID: 0}
+  - turretChild: {instanceID: 0}
+  - gunSight: {instanceID: 0}
+  - turret: {instanceID: 0}
+  - shotSfx: {fileID: 8300000, guid: 3d344d4848508c842bfeef3eb83e2ae1, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
