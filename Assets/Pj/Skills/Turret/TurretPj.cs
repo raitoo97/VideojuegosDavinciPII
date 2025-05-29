@@ -158,9 +158,9 @@ public class TurretPj : MonoBehaviour
     {
         Vector3 _originalPos = turretChild.transform.localPosition;
         Vector3 recoilDir = turretChild.transform.parent.InverseTransformDirection(-recoilPoint.forward).normalized;
-        Vector3 _recoilPos = _originalPos + recoilDir * 1f;
+        Vector3 _recoilPos = _originalPos + recoilDir * 3f;
         float time = 0f;
-        float recoilTime = 0.05f;
+        float recoilTime = 0.09f;
         float returnTime = 0.1f;
         while (time <= recoilTime)
         {
