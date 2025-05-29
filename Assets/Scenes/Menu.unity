@@ -492,7 +492,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f3e75867c155f65499807bb6a87ae583, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.302
+  m_Volume: 0.061
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1367,6 +1367,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4b458cdff3ae749439a533f989283429, type: 3}
   - {fileID: 8300000, guid: 8d8796f8970f2824e97281f1fb3c9772, type: 3}
   - {fileID: 8300000, guid: 154ee9351c3e4fb4784790aae87ebeb4, type: 3}
+  turretPlayerImpactSfx:
+  - {fileID: 8300000, guid: 95a59a1b5e704bd4986fd93b4fc5b499, type: 3}
+  - {fileID: 8300000, guid: d22412fc3b7763d4d89f0adb3b4dd5bd, type: 3}
 --- !u!4 &1154481389
 Transform:
   m_ObjectHideFlags: 0
