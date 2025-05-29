@@ -2216,6 +2216,7 @@ MonoBehaviour:
   turretChild: {fileID: 4127248945300740953}
   gunSight: {fileID: 163412669659982240}
   turret: {fileID: 1748506982923293569}
+  shotSfx: {fileID: 8300000, guid: 3d344d4848508c842bfeef3eb83e2ae1, type: 3}
 --- !u!1 &4513359586492197299
 GameObject:
   m_ObjectHideFlags: 0
@@ -4324,15 +4325,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6469413858101552536, guid: 28c3627aff1225249a42b934e1645a1e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6469413858101552536, guid: 28c3627aff1225249a42b934e1645a1e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6469413858101552536, guid: 28c3627aff1225249a42b934e1645a1e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6469413858101552536, guid: 28c3627aff1225249a42b934e1645a1e, type: 3}
       propertyPath: m_LocalPosition.x

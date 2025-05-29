@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 public class TurretPj : MonoBehaviour
 {
+
     private Collider[] _colliders;
     public LayerMask mask;
     public float nearEnemy;
@@ -12,11 +13,8 @@ public class TurretPj : MonoBehaviour
     public GameObject turret;
     private bool _detectedTarget;
     private Coroutine _shootRoutine;
-
-    
-    AudioManager audioManager => AudioManager.Instance;
+    [Header("Audio")]
     [SerializeField] private AudioClip shotSfx;
-
     private void Start()
     {
         turretChild.localRotation = Quaternion.identity;
@@ -44,6 +42,7 @@ public class TurretPj : MonoBehaviour
         print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange));
         print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
     }
+    #region
     private Vector3 GetZombie()
     {
         float visionRange = ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
@@ -81,6 +80,7 @@ public class TurretPj : MonoBehaviour
             turretChild.rotation = Quaternion.Lerp(turretChild.rotation, targetRotation, Time.deltaTime * 25f);
         }
     }
+    #endregion
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
@@ -106,8 +106,7 @@ public class TurretPj : MonoBehaviour
                         {
                             bullet.transform.position = gunSight.position;
                             bullet.transform.rotation = gunSight.rotation;
-                            
-                            audioManager.PlaySfxRandomPitch(shotSfx);
+                            AudioManager.instance.PlaySfxRandomPitch(shotSfx);
                         }
                     }
                 }
@@ -118,8 +117,7 @@ public class TurretPj : MonoBehaviour
                     {
                         bullet.transform.position = gunSight.position;
                         bullet.transform.rotation = gunSight.rotation;
-                        audioManager.PlaySfxRandomPitch(shotSfx);
-
+                        AudioManager.instance.PlaySfxRandomPitch(shotSfx);
                     }
                 }
             }
