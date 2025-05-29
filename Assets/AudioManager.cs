@@ -11,6 +11,8 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AudioClip[] zombieAttackSfx;
     [SerializeField] public AudioClip[] missileImpactSfx;
     [SerializeField] public AudioClip[] playerDamageSfx;
+    [SerializeField] public AudioClip[] turretPlayerImpactSfx;
+
 
 
 

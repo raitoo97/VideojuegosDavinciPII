@@ -5,6 +5,10 @@ public class Bullet : MonoBehaviour
     private float _speed;
     private bool _isDesactivate;
     public ShooterType shooterType;
+
+    //Sound 
+    AudioManager audioManager => AudioManager.Instance;
+
     private void OnEnable()
     {
         StartCoroutine(DesactivateBullet());
@@ -24,6 +28,9 @@ public class Bullet : MonoBehaviour
         }
         if (shooterType == ShooterType.Player && other.TryGetComponent<ZombieBehaviour>(out var enemy))
         {
+            int randomIndex = Random.Range(0, audioManager.turretPlayerImpactSfx.Length);
+            audioManager.PlaySfxRandomPitch(audioManager.turretPlayerImpactSfx[randomIndex]); //sound effect
+
             enemy.life = 0;
             DeactivateBullet();
         }
