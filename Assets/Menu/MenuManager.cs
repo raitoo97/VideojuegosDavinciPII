@@ -12,10 +12,10 @@ public class MenuManager : MonoBehaviour
     public GameObject panelMain;
     public GameObject panelTutorial;
     public GameObject panelCredits;
-
     [SerializeField] private AudioClip startSound;
     void Start()
     {
+        AudioManager.instance.PlayMusic(startSound);
         startGameButon.onClick.AddListener(StartGame);
         returnMenuButon.onClick.AddListener(ReturnButon);
         returnMenuButon2.onClick.AddListener(ReturnButon);
@@ -26,7 +26,6 @@ public class MenuManager : MonoBehaviour
     private void StartGame()
     {
         SceneManager.LoadScene(1);
-        
     }
     private void TutorialButon()
     {

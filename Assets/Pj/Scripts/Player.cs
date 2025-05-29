@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _currentLife; 
 
     //Sound
-    AudioManager audioManager => AudioManager.Instance;
+    AudioManager audioManager => AudioManager.instance;
     private void Start()
     {
         _animator = GetComponentInChildren<Animator>();

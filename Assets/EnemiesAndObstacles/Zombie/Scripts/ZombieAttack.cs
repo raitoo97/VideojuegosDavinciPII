@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 public class ZombieAttack : MonoBehaviour
 {
-    AudioManager audioManager => AudioManager.Instance;
-    
-
+    AudioManager audioManager => AudioManager.instance;
     void OnTriggerEnter(Collider c)
     {
         if (c.gameObject.tag == "Player")
@@ -15,7 +10,7 @@ public class ZombieAttack : MonoBehaviour
             if (player != null)
             {
                 // Play attack sound effect
-                int randomIndex = UnityEngine.Random.Range(0, audioManager.zombieAttackSfx.Length);
+                int randomIndex = Random.Range(0, audioManager.zombieAttackSfx.Length);
                 audioManager.PlaySfxRandomPitch(audioManager.zombieAttackSfx[randomIndex]);
 
                 player.DamagePlayer(1f);

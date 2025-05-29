@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     public ShooterType shooterType;
 
     //Sound 
-    AudioManager audioManager => AudioManager.Instance;
+    AudioManager audioManager => AudioManager.instance;
 
     private void OnEnable()
     {

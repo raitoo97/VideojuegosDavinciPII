@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &611931451236675708
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3468659595279760401}
+  - component: {fileID: 3649460599691885602}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3468659595279760401
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611931451236675708}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.1997128, y: 15.711617, z: 5.680688}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3649460599691885602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611931451236675708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a21cbb805c1eca04d9866ccb7e587592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zombieAttackSfx:
+  - {fileID: 8300000, guid: 1a3606d1c4d626d4fba48d18bd004da3, type: 3}
+  - {fileID: 8300000, guid: 57bbf0b3ae9cf684584724c6b2555fde, type: 3}
+  - {fileID: 8300000, guid: fcfbac4d33d434c4d9a3e187119aa819, type: 3}
+  - {fileID: 8300000, guid: 8de8c02b4efa32e45b0b627937d0aeb5, type: 3}
+  missileImpactSfx:
+  - {fileID: 8300000, guid: 95a59a1b5e704bd4986fd93b4fc5b499, type: 3}
+  - {fileID: 8300000, guid: d22412fc3b7763d4d89f0adb3b4dd5bd, type: 3}
+  playerDamageSfx:
+  - {fileID: 8300000, guid: 4b458cdff3ae749439a533f989283429, type: 3}
+  - {fileID: 8300000, guid: 8d8796f8970f2824e97281f1fb3c9772, type: 3}
+  - {fileID: 8300000, guid: 154ee9351c3e4fb4784790aae87ebeb4, type: 3}
+  turretPlayerImpactSfx:
+  - {fileID: 8300000, guid: 95a59a1b5e704bd4986fd93b4fc5b499, type: 3}
+  - {fileID: 8300000, guid: d22412fc3b7763d4d89f0adb3b4dd5bd, type: 3}
+  audioSources: []
