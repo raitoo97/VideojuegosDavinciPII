@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 public class TurretPj : MonoBehaviour
 {
@@ -13,8 +14,10 @@ public class TurretPj : MonoBehaviour
     public GameObject turret;
     private bool _detectedTarget;
     private Coroutine _shootRoutine;
-    [Header("Audio")]
+    [Header("Audio/effects")]
     [SerializeField] private AudioClip shotSfx;
+    private Coroutine _recoilCorutine;
+    public Transform recoilPoint; 
     private void Start()
     {
         turretChild.localRotation = Quaternion.identity;
@@ -80,7 +83,6 @@ public class TurretPj : MonoBehaviour
             turretChild.rotation = Quaternion.Lerp(turretChild.rotation, targetRotation, Time.deltaTime * 25f);
         }
     }
-    #endregion
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
@@ -90,6 +92,7 @@ public class TurretPj : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, 16f);
     }
+    #endregion
     IEnumerator Shoot()
     {
         while (true)
@@ -107,6 +110,8 @@ public class TurretPj : MonoBehaviour
                             bullet.transform.position = gunSight.position;
                             bullet.transform.rotation = gunSight.rotation;
                             AudioManager.instance.PlaySfxRandomPitch(shotSfx);
+                            if (_recoilCorutine == null)
+                                _recoilCorutine = StartCoroutine(RecoilTorret());
                         }
                     }
                 }
@@ -118,6 +123,8 @@ public class TurretPj : MonoBehaviour
                         bullet.transform.position = gunSight.position;
                         bullet.transform.rotation = gunSight.rotation;
                         AudioManager.instance.PlaySfxRandomPitch(shotSfx);
+                        if (_recoilCorutine == null)
+                            _recoilCorutine = StartCoroutine(RecoilTorret());
                     }
                 }
             }
@@ -146,5 +153,29 @@ public class TurretPj : MonoBehaviour
         {
             _shootRoutine = StartCoroutine(Shoot());
         }
+    }
+    IEnumerator RecoilTorret()
+    {
+        Vector3 _originalPos = turretChild.transform.localPosition;
+        Vector3 recoilDir = turretChild.transform.parent.InverseTransformDirection(-recoilPoint.forward).normalized;
+        Vector3 _recoilPos = _originalPos + recoilDir * 1f;
+        float time = 0f;
+        float recoilTime = 0.05f;
+        float returnTime = 0.1f;
+        while (time <= recoilTime)
+        {
+            time += Time.deltaTime;
+            turretChild.transform.localPosition = Vector3.Lerp(_originalPos, _recoilPos, time / recoilTime);
+            yield return null;
+        }
+        time = 0f;
+        while (time <= returnTime)
+        {
+            time += Time.deltaTime;
+            turretChild.transform.localPosition = Vector3.Lerp(_recoilPos, _originalPos, time / returnTime);
+            yield return null;
+        }
+        turretChild.transform.localPosition = _originalPos;
+        _recoilCorutine = null;
     }
 }
