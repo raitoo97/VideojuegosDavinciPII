@@ -5,13 +5,11 @@ public class Bullet : MonoBehaviour
     private float _speed;
     private bool _isDesactivate;
     public ShooterType shooterType;
-
     //Sound 
     AudioManager audioManager => AudioManager.instance;
-
     private void OnEnable()
     {
-        StartCoroutine(DesactivateBullet());
+        StartCoroutine(DesactivateBulletCourutine());
         _speed = 60;
         _isDesactivate = false;
     }
@@ -24,28 +22,28 @@ public class Bullet : MonoBehaviour
         if (_isDesactivate) return;
         if (shooterType == ShooterType.Enemy && other.TryGetComponent<Player>(out var player))
         {
-            DeactivateBullet();
+            DesactivateBullet();
         }
         if (shooterType == ShooterType.Player && other.TryGetComponent<ZombieBehaviour>(out var enemy))
         {
             int randomIndex = Random.Range(0, audioManager.turretPlayerImpactSfx.Length);
             audioManager.PlaySfxRandomPitch(audioManager.turretPlayerImpactSfx[randomIndex]); //sound effect
-
+            ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
             enemy.life = 0;
-            DeactivateBullet();
+            DesactivateBullet();
         }
     }
-    private void DeactivateBullet()
+    private void DesactivateBullet()
     {
         _isDesactivate = true;
         this.gameObject.SetActive(false);
     }
-    IEnumerator DesactivateBullet()
+    IEnumerator DesactivateBulletCourutine()
     {
         yield return new WaitForSeconds(5);
         if (!_isDesactivate)
         {
-            DeactivateBullet();
+            DesactivateBullet();
         }
     }
 }

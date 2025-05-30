@@ -13,7 +13,8 @@ public class ZombieAttack : MonoBehaviour
                 int randomIndex = Random.Range(0, audioManager.zombieAttackSfx.Length);
                 audioManager.PlaySfxRandomPitch(audioManager.zombieAttackSfx[randomIndex]);
                 player.DamagePlayer(1f);
-                ParticlesPool.instance.SpamParticle(ParticleType.Sparks, new Vector3(0f, 2f, 0f),new Vector3(-90f,0f,0f));
+                CameraShakeManager.instance.ShakeCamera(Shakes.PlayerUnderAtack);
+                ParticlesPool.instance.SpamParticle(ParticleType.Sparks, new Vector3(0f, 2f, 0f),new Vector3(-90f,0f,0f),GameManager.instance.player.transform);
             }
         }
     }
