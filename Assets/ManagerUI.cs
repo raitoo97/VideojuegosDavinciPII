@@ -7,7 +7,6 @@ public class ManagerUI : MonoBehaviour
     public List<Image> imagesList = new List<Image>();
     public List<LifeController> _statusPjImageEntries = new List<LifeController>();
     public static ManagerUI instance;
-    [SerializeField]private Player _player;
     private PjStatesLifeBar PjLifeStates;
     private void Awake()
     {
@@ -17,8 +16,7 @@ public class ManagerUI : MonoBehaviour
     void Start()
     {
         imagesList = imagesList.OrderBy(x => x.name).ToList();
-        _player = GameManager.instance.player.GetComponent<Player>();
-        PjLifeStates = new PjStatesLifeBar(_player,imagesList.Find(x => x.gameObject.name == "LifeBar"), _statusPjImageEntries);
+        PjLifeStates = new PjStatesLifeBar(GameManager.instance.player.GetComponent<Player>(),imagesList.Find(x => x.gameObject.name == "LifeBar"), _statusPjImageEntries);
         PjLifeStates.OnStart();
     }
     private void Update()

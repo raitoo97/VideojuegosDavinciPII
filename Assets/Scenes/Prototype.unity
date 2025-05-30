@@ -6630,7 +6630,6 @@ MonoBehaviour:
     statusImage: {fileID: 1020878668}
   - lifeStatusType: 4
     statusImage: {fileID: 2063888160}
-  _player: {fileID: 0}
 --- !u!114 &833461918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8458,6 +8457,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4469785779143389137, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7422095408308254594, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}

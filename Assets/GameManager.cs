@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public GameObject player;
@@ -17,5 +18,19 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player = GameObject.FindObjectOfType<Player>().gameObject;
+    }
+    private void Update()
+    {
+        RestarLevel();
+    }
+    private void RestarLevel()
+    {
+        if (player.TryGetComponent<Player>(out var playerlife))
+        {
+            if(playerlife.GetLife <= 0)
+            {
+                SceneManager.LoadScene(1);
+            }
+        }
     }
 }
