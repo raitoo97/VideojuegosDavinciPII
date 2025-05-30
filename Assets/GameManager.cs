@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         {
             if(playerlife.GetLife <= 0)
             {
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(0);
             }
         }
     }
