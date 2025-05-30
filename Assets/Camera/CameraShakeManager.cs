@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 public enum Shakes
 {
     PlayerUnderAtack,
@@ -13,8 +14,13 @@ public class CameraShakeManager : MonoBehaviour
     private CinemachineBasicMultiChannelPerlin noise;
     public List<ShakesClass> tempList = new List<ShakesClass>();
     private Dictionary<Shakes, ShakesClass> DictionaryShake = new Dictionary<Shakes, ShakesClass>();
+    public static CameraShakeManager instance;
     private void Awake()
     {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this.gameObject);
         foreach (var shake in tempList)
         {
             DictionaryShake[shake.type] = shake;

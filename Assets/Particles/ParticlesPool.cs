@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 public enum ParticleType
 {
@@ -79,6 +80,7 @@ public class SpecificParticle
         ParticleObject.transform.rotation = spawnParent.rotation * Quaternion.Euler(offsetRot);
         var ParticleSystem = ParticleObject.GetComponent<ParticleSystem>();
         if (ParticleSystem == null) return;
+        coroutineRunner.StopAllCoroutines();
         coroutineRunner.StartCoroutine(PlayParticleCoroutine(ParticleSystem));
     }
     IEnumerator PlayParticleCoroutine(ParticleSystem particle)

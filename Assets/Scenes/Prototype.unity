@@ -6623,7 +6623,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCam: {fileID: 1629169351}
-  tempList: []
+  tempList:
+  - type: 0
+    setting: {fileID: 11400000, guid: 1bccf194e9f576c4090189a2e55ab1e9, type: 2}
+    intensity: 1
+    frequency: 1
+    duration: 0.2
+    pivotOffset: {x: 0, y: 0, z: 0}
 --- !u!1001 &942273931
 PrefabInstance:
   m_ObjectHideFlags: 0
