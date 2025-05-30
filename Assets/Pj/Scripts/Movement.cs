@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Windows;
+using static UnityEngine.UI.Image;
 
 public class Movement
 {
@@ -9,7 +10,7 @@ public class Movement
     Transform _camera;
     bool _isGrounded;
     LayerMask _groundLayer;
-    float _groundCheckDistance = 0.1f;
+    float _groundCheckDistance = 1f;
     Rigidbody _rb;
     Vector3 _lastPosition;
 
@@ -61,9 +62,24 @@ public class Movement
 
     public void UpdateGroundCheck() 
     {
-        _isGrounded = Physics.Raycast(_transform.position, Vector3.down, _groundCheckDistance, _groundLayer);
+
+        Vector3 origin = _transform.position + Vector3.up * 0.1f; 
+        Vector3 direction = Vector3.down;
+
+        Debug.DrawRay(origin, direction * _groundCheckDistance, Color.red);
+
+        RaycastHit hit;
+        if (Physics.Raycast(origin, direction, out hit, _groundCheckDistance, _groundLayer, QueryTriggerInteraction.Ignore))
+        {
+            _isGrounded = true;
+            Debug.Log("Tocando suelo: " + hit.collider.name);
+        }
+        else
+        {
+            _isGrounded = false;
+        }
     }
-        public bool IsGrounded => _isGrounded;
+    public bool IsGrounded => _isGrounded;
 
     public void Jump(float impulse)
     {
@@ -74,6 +90,7 @@ public class Movement
         }
 
     }
+    
     
     
 }
