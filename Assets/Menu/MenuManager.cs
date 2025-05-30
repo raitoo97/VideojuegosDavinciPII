@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
+    public Button protoypeButton;
     public Button startGameButon;
     public Button returnMenuButon;
     public Button returnMenuButon2;
@@ -16,6 +17,7 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         AudioManager.instance.PlayMusic(startSound);
+        protoypeButton.onClick.AddListener(Protoype);
         startGameButon.onClick.AddListener(StartGame);
         returnMenuButon.onClick.AddListener(ReturnButon);
         returnMenuButon2.onClick.AddListener(ReturnButon);
@@ -24,6 +26,10 @@ public class MenuManager : MonoBehaviour
         ExitButton.onClick.AddListener(QuitGame);
     }
     private void StartGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+    private void Protoype()
     {
         SceneManager.LoadScene(1);
     }
