@@ -1,0 +1,93 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+public enum ParticleType
+{
+    Sparks,
+}
+public class ParticlesPool : MonoBehaviour
+{
+    public static ParticlesPool instance;
+    public List<SpecificParticle> particleConfigs = new List<SpecificParticle>();
+    public Dictionary<ParticleType, SpecificParticle> _particles = new Dictionary<ParticleType, SpecificParticle>();
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this.gameObject);
+        foreach (var particle in particleConfigs)
+        {
+            _particles[particle.type] = particle;
+            particle.Onstart(this);
+        }
+    }
+    public void SpamParticle(ParticleType type , Vector3 offset, Vector3 offsetRot)
+    {
+        if(!_particles.ContainsKey(type)) return;
+        var particle = _particles[type];
+        particle.PlayParticle(offset, offsetRot);
+    }
+}
+[Serializable]
+public class SpecificParticle
+{
+    public ParticleType type;
+    public Transform spawnParent;
+    public Transform poolParent;
+    public int initialPoolSize;
+    public GameObject ParticlePrefab;
+    public List<GameObject> pooledParticles = new List<GameObject>();
+    private MonoBehaviour coroutineRunner;
+    public void Onstart(MonoBehaviour context)
+    {
+        coroutineRunner = context;
+        CompleteList(initialPoolSize);
+    }
+    private void CompleteList(int num)
+    {
+        for(int i = 0; i < num; i++)
+        {
+            var cloneObject = GameObject.Instantiate(ParticlePrefab);
+            cloneObject.transform.parent = poolParent;
+            pooledParticles.Add(cloneObject);
+            cloneObject.SetActive(false);
+        }
+    }
+    private GameObject ReturnParticle()
+    {
+        foreach (var particle in pooledParticles)
+        {
+            if (!particle.activeSelf)
+            {
+                particle.SetActive(true);
+                return particle;
+            }
+        }
+        CompleteList(1);
+        var auxParticle = pooledParticles[pooledParticles.Count - 1];
+        auxParticle.SetActive(true);
+        return auxParticle;
+    }
+    public void PlayParticle(Vector3 offsetPos,Vector3 offsetRot)
+    {
+        if (pooledParticles == null) return;
+        var ParticleObject = ReturnParticle();
+        ParticleObject.transform.SetParent(spawnParent);
+        ParticleObject.transform.localPosition = Vector3.zero + offsetPos;
+        ParticleObject.transform.rotation = spawnParent.rotation * Quaternion.Euler(offsetRot);
+        var ParticleSystem = ParticleObject.GetComponent<ParticleSystem>();
+        if (ParticleSystem == null) return;
+        coroutineRunner.StartCoroutine(PlayParticleCoroutine(ParticleSystem));
+    }
+    IEnumerator PlayParticleCoroutine(ParticleSystem particle)
+    {
+        particle.Clear();
+        particle.Play();
+        yield return new WaitWhile(() => particle.IsAlive(true) && particle.particleCount >= 0);
+        var go = particle.gameObject;
+        go.SetActive(false);
+        go.transform.SetParent(poolParent);
+    }
+}
