@@ -7,6 +7,7 @@ public enum LifeStatus
     NormalStatus,
     Injured,
     MoreInjured,
+    MoreMoreInjured,
     AlmostDead
 }
 public class PjStatesLifeBar
@@ -37,12 +38,14 @@ public class PjStatesLifeBar
 
         if (!_player.gameObject.activeSelf) return;
         LifeStatus currentStatus;
-        if (_player.GetLife > 70)
+        if (_player.GetLife > 90)
             currentStatus = LifeStatus.NormalStatus;
-        else if (_player.GetLife > 40)
+        else if (_player.GetLife > 80)
             currentStatus = LifeStatus.Injured;
-        else if (_player.GetLife > 15)
+        else if (_player.GetLife > 60)
             currentStatus = LifeStatus.MoreInjured;
+        else if (_player.GetLife > 20)
+            currentStatus = LifeStatus.MoreMoreInjured;
         else
             currentStatus = LifeStatus.AlmostDead;
         UpdateLifeBar();
