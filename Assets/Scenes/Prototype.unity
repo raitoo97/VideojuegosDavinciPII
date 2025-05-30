@@ -5911,6 +5911,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &928850366 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4469785779143389137, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
+  m_PrefabInstance: {fileID: 4278241031554836943}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &942273931
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6729,6 +6734,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Managers
       objectReference: {fileID: 0}
+    - target: {fileID: 7097920414468189533, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 928850366}
     - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: imagesList.Array.data[0]
       value: 
