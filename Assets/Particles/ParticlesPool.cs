@@ -23,10 +23,6 @@ public class ParticlesPool : MonoBehaviour
             _particles[particle.type] = particle;
             particle.Onstart(this);
         }
-        foreach (var particle in _particles)
-        {
-            print(particle.Key);
-        }
     }
     public void SpamParticle(ParticleType type , Vector3 offset, Vector3 offsetRot, Transform customSpawnParent)
     {

@@ -26,7 +26,7 @@ public class PjStatesLifeBar
     {
         foreach (var entry in _statusPjImageEntries)
         {
-            _dictionaryLife[entry.lifeStatusType] = new LifeController(entry.lifeStatusType, entry.statusImage);
+            _dictionaryLife[entry.lifeStatusType] = new LifeController(entry.lifeStatusType, entry.statusImage,entry.EdgeStatus);
         }
     }
     public void OnUpdate()
@@ -61,7 +61,8 @@ public class PjStatesLifeBar
         if (!_dictionaryLife.ContainsKey(status)) return;
         foreach (var entry in _dictionaryLife)
         {
-            entry.Value.statusImage.gameObject.SetActive(entry.Value.lifeStatusType == status);
+            entry.Value.statusImage.gameObject.SetActive(entry.Key == status);
+            entry.Value.EdgeStatus.gameObject.SetActive(entry.Key == status);
         }
     }
 }
@@ -70,9 +71,11 @@ public class LifeController
 {
     public LifeStatus lifeStatusType;
     public Image statusImage;
-    public LifeController(LifeStatus lifeStatusType, Image statusImage)
+    public Image EdgeStatus;
+    public LifeController(LifeStatus lifeStatusType, Image statusImage,Image EdgeStatus)
     {
         this.lifeStatusType = lifeStatusType;
         this.statusImage = statusImage;
+        this.EdgeStatus = EdgeStatus;
     }
 }
