@@ -14,7 +14,7 @@ public class ZombieAttack : MonoBehaviour
                 audioManager.PlaySfxRandomPitch(audioManager.zombieAttackSfx[randomIndex]);
                 player.DamagePlayer(1f);
                 CameraShakeManager.instance.ShakeCamera(Shakes.PlayerUnderAtack);
-                ParticlesPool.instance.SpamParticle(ParticleType.Sparks, new Vector3(0f, 2f, 0f),new Vector3(-90f,0f,0f));
+                ParticlesPool.instance.SpamParticle(ParticleType.Sparks, new Vector3(0f, 2f, 0f),new Vector3(-90f,0f,0f),GameManager.instance.player.transform);
             }
         }
     }

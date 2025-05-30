@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 public enum ParticleType
 {
     Sparks,
+    Explosion,
 }
 public class ParticlesPool : MonoBehaviour
 {
@@ -23,19 +23,22 @@ public class ParticlesPool : MonoBehaviour
             _particles[particle.type] = particle;
             particle.Onstart(this);
         }
+        foreach (var particle in _particles)
+        {
+            print(particle.Key);
+        }
     }
-    public void SpamParticle(ParticleType type , Vector3 offset, Vector3 offsetRot)
+    public void SpamParticle(ParticleType type , Vector3 offset, Vector3 offsetRot, Transform customSpawnParent)
     {
         if(!_particles.ContainsKey(type)) return;
         var particle = _particles[type];
-        particle.PlayParticle(offset, offsetRot);
+        particle.PlayParticle(offset, offsetRot, customSpawnParent);
     }
 }
 [Serializable]
 public class SpecificParticle
 {
     public ParticleType type;
-    public Transform spawnParent;
     public Transform poolParent;
     public int initialPoolSize;
     public GameObject ParticlePrefab;
@@ -71,16 +74,15 @@ public class SpecificParticle
         auxParticle.SetActive(true);
         return auxParticle;
     }
-    public void PlayParticle(Vector3 offsetPos,Vector3 offsetRot)
+    public void PlayParticle(Vector3 offsetPos,Vector3 offsetRot, Transform customSpawnParent)
     {
         if (pooledParticles == null) return;
         var ParticleObject = ReturnParticle();
-        ParticleObject.transform.SetParent(spawnParent);
+        ParticleObject.transform.SetParent(customSpawnParent);
         ParticleObject.transform.localPosition = Vector3.zero + offsetPos;
-        ParticleObject.transform.rotation = spawnParent.rotation * Quaternion.Euler(offsetRot);
+        ParticleObject.transform.rotation = customSpawnParent.rotation * Quaternion.Euler(offsetRot);
         var ParticleSystem = ParticleObject.GetComponent<ParticleSystem>();
         if (ParticleSystem == null) return;
-        coroutineRunner.StopAllCoroutines();
         coroutineRunner.StartCoroutine(PlayParticleCoroutine(ParticleSystem));
     }
     IEnumerator PlayParticleCoroutine(ParticleSystem particle)
