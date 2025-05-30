@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
     [SerializeField] ControlPlayer _controller;
     [SerializeField] Animator _animator;
     [SerializeField] PlayerAnimation _playerAnimation;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] public LayerMask groundLayer;
     [SerializeField] float speed = 5f;
     [Header("Life")]
     [SerializeField] private float _maxLife = 100f;
