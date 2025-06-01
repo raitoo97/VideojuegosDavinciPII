@@ -4355,6 +4355,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RcoketLuncherPj
       objectReference: {fileID: 0}
+    - target: {fileID: 4507897027042812086, guid: 28c3627aff1225249a42b934e1645a1e, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 8cabdd6a3da070f478d7cd1eee1bfbb8, type: 2}
     - target: {fileID: 6469413858101552536, guid: 28c3627aff1225249a42b934e1645a1e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
