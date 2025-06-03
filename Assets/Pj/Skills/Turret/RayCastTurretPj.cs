@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 public class RayCastTurretPj
 {
     private LayerMask _mask;
@@ -19,7 +16,8 @@ public class RayCastTurretPj
         Ray _ray = new Ray(_transform.position, _transform.forward);
         if (Physics.Raycast(_ray, out RaycastHit _hit, _distance, _mask))
         {
-            if (_hit.transform.gameObject.TryGetComponent<Player>(out var player))
+            Debug.Log(_hit.collider.gameObject.name);
+            if (_hit.transform.gameObject.TryGetComponent<IEnemies>(out var Enemie))
             {
                 _enabled = true;
             }
@@ -32,7 +30,7 @@ public class RayCastTurretPj
         {
             _enabled = false;
         }
-        Debug.DrawRay(_ray.origin, _ray.direction * _distance, Color.red);
+        Debug.DrawRay(_ray.origin, _ray.direction * _distance, Color.magenta);
     }
     public bool IsEnabled { get => _enabled; }
 }

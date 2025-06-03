@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
-public class ZombieBehaviour : MonoBehaviour
+public class ZombieBehaviour : MonoBehaviour , IEnemies
 {
     [SerializeField]private NavMeshAgent _agent;
     [SerializeField]private ZombieAnimations _anims;

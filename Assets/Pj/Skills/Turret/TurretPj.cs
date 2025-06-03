@@ -15,18 +15,26 @@ public class TurretPj : MonoBehaviour
     [Header("Audio/effects")]
     [SerializeField] private AudioClip shotSfx;
     private Coroutine _recoilCorutine;
-    public Transform recoilPoint; 
-    private void Start()
+    public Transform recoilPoint;
+    [Header("RayCastTurret")]
+    private RayCastTurretPj _turretRayCast;
+    public LayerMask maskTurret;
+    private void Awake()
     {
         turretChild.localRotation = Quaternion.identity;
-        _shootRoutine = StartCoroutine(Shoot());
         ActivateSelf();
+    }
+    private void Start()
+    {
+        _shootRoutine = StartCoroutine(Shoot());
+        _turretRayCast = new RayCastTurretPj(turretChild.transform, maskTurret, 1000f);
     }
     void Update()
     {
         GetZombie();
         RotateTorrete(rotVector);
         RotateArroundDetail();
+        _turretRayCast.OnUpdate();
         if (Input.GetKeyDown(KeyCode.P))
         {
             ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
@@ -95,7 +103,7 @@ public class TurretPj : MonoBehaviour
     {
         while (true)
         {
-            if (_detectedTarget && enemy != null)
+            if (_detectedTarget && enemy != null && _turretRayCast.IsEnabled)
             {
                 var animZombieRef = enemy.GetComponentInParent<ZombieAnimations>();
                 if (animZombieRef != null)

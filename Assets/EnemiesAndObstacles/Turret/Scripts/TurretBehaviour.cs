@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class TurretBehaviour : MonoBehaviour
+public class TurretBehaviour : MonoBehaviour , IEnemies
 {
     [SerializeField]private Vector3 _dirRotVector;
     [SerializeField]private Quaternion _dirRotQuaternion;
