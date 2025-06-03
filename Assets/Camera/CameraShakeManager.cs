@@ -6,6 +6,7 @@ using UnityEngine;
 public enum Shakes
 {
     PlayerUnderAtack,
+    MisilShoot
 }
 public class CameraShakeManager : MonoBehaviour
 {
