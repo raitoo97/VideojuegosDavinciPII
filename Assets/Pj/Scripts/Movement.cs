@@ -1,8 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Windows;
-using static UnityEngine.UI.Image;
-
 public class Movement
 {
     private float _speed = 2f;
@@ -13,12 +9,7 @@ public class Movement
     float _groundCheckDistance = 1f;
     Rigidbody _rb;
     Vector3 _lastPosition;
-
-    
-    
     public float CurrentSpeed { get; private set; }
-   
-
     //Constructor
     public Movement(Transform transform, float speed, LayerMask groundLayer, Transform camera)
     {
@@ -26,12 +17,9 @@ public class Movement
         _transform = transform;
         _groundLayer = groundLayer;
         _rb = transform.GetComponent<Rigidbody>();
-
         //Camera
         _camera = camera;
     }
-
-
     public void Move(float inputHorizontal, float inputVertical, float speedMultiplier) 
     {
         //Vectores _camera
@@ -44,35 +32,25 @@ public class Movement
         //Vectores inputs relativos a _camera
         Vector3 dirVertical = cameraFoward * inputVertical;
         Vector3 dirHorizontal= cameraRight * inputHorizontal;
-        
         Vector3 movementRelativeToCamera = dirHorizontal + dirVertical;
         if (movementRelativeToCamera.magnitude != 0)
         {
             Quaternion targetRotation = Quaternion.LookRotation(movementRelativeToCamera);
             _transform.rotation = Quaternion.Slerp(_transform.rotation, targetRotation, _speed * Time.deltaTime);
-
         }
         _transform.position += movementRelativeToCamera * _speed * speedMultiplier * Time.deltaTime;
-        
         CurrentSpeed = Vector3.Distance(_transform.position, _lastPosition) / Time.deltaTime; //Calcula la distancia recorrida
         _lastPosition = _transform.position;
-
-        
     }
-
     public void UpdateGroundCheck() 
     {
-
         Vector3 origin = _transform.position + Vector3.up * 0.1f; 
         Vector3 direction = Vector3.down;
-
         Debug.DrawRay(origin, direction * _groundCheckDistance, Color.red);
-
         RaycastHit hit;
         if (Physics.Raycast(origin, direction, out hit, _groundCheckDistance, _groundLayer, QueryTriggerInteraction.Ignore))
         {
             _isGrounded = true;
-            Debug.Log("Tocando suelo: " + hit.collider.name);
         }
         else
         {
@@ -80,7 +58,6 @@ public class Movement
         }
     }
     public bool IsGrounded => _isGrounded;
-
     public void Jump(float impulse)
     {
         if (_rb != null)
@@ -88,9 +65,5 @@ public class Movement
 
             _rb.AddForce(Vector3.up * impulse, ForceMode.Impulse);
         }
-
     }
-    
-    
-    
 }

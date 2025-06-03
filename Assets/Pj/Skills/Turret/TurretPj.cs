@@ -1,9 +1,7 @@
 using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 public class TurretPj : MonoBehaviour
 {
-
     private Collider[] _colliders;
     public LayerMask mask;
     public float nearEnemy;
@@ -17,18 +15,26 @@ public class TurretPj : MonoBehaviour
     [Header("Audio/effects")]
     [SerializeField] private AudioClip shotSfx;
     private Coroutine _recoilCorutine;
-    public Transform recoilPoint; 
-    private void Start()
+    public Transform recoilPoint;
+    [Header("RayCastTurret")]
+    private RayCastTurretPj _turretRayCast;
+    public LayerMask maskTurret;
+    private void Awake()
     {
         turretChild.localRotation = Quaternion.identity;
-        _shootRoutine = StartCoroutine(Shoot());
         ActivateSelf();
+    }
+    private void Start()
+    {
+        _shootRoutine = StartCoroutine(Shoot());
+        _turretRayCast = new RayCastTurretPj(turretChild.transform, maskTurret, 1000f);
     }
     void Update()
     {
         GetZombie();
         RotateTorrete(rotVector);
         RotateArroundDetail();
+        _turretRayCast.OnUpdate();
         if (Input.GetKeyDown(KeyCode.P))
         {
             ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
@@ -97,7 +103,7 @@ public class TurretPj : MonoBehaviour
     {
         while (true)
         {
-            if (_detectedTarget && enemy != null)
+            if (_detectedTarget && enemy != null && _turretRayCast.IsEnabled)
             {
                 var animZombieRef = enemy.GetComponentInParent<ZombieAnimations>();
                 if (animZombieRef != null)
@@ -112,6 +118,7 @@ public class TurretPj : MonoBehaviour
                             AudioManager.instance.PlaySfxRandomPitch(shotSfx);
                             if (_recoilCorutine == null)
                                 _recoilCorutine = StartCoroutine(RecoilTorret());
+                            CameraShakeManager.instance.ShakeCamera(Shakes.MisilShoot);
                         }
                     }
                 }
@@ -125,6 +132,7 @@ public class TurretPj : MonoBehaviour
                         AudioManager.instance.PlaySfxRandomPitch(shotSfx);
                         if (_recoilCorutine == null)
                             _recoilCorutine = StartCoroutine(RecoilTorret());
+                        CameraShakeManager.instance.ShakeCamera(Shakes.MisilShoot);
                     }
                 }
             }
@@ -157,15 +165,18 @@ public class TurretPj : MonoBehaviour
     IEnumerator RecoilTorret()
     {
         Vector3 _originalPos = turretChild.transform.localPosition;
-        Vector3 recoilDir = turretChild.transform.parent.InverseTransformDirection(-recoilPoint.forward).normalized;
-        Vector3 _recoilPos = _originalPos + recoilDir * 3f;
+        Quaternion _orginialRot = turretChild.transform.localRotation;
+        Vector3 _recoilDir = turretChild.transform.parent.InverseTransformDirection(-recoilPoint.forward).normalized;
+        Vector3 _recoilPos = _originalPos + _recoilDir * 3f;
+        Quaternion _recoilRot = _orginialRot * Quaternion.Euler(-5, 0, 0);
         float time = 0f;
-        float recoilTime = 0.09f;
-        float returnTime = 0.1f;
+        float recoilTime = 0.04f;
+        float returnTime = 0.12f;
         while (time <= recoilTime)
         {
             time += Time.deltaTime;
             turretChild.transform.localPosition = Vector3.Lerp(_originalPos, _recoilPos, time / recoilTime);
+            turretChild.transform.localRotation = Quaternion.Slerp(_orginialRot, _recoilRot, time / recoilTime);
             yield return null;
         }
         time = 0f;
@@ -173,9 +184,11 @@ public class TurretPj : MonoBehaviour
         {
             time += Time.deltaTime;
             turretChild.transform.localPosition = Vector3.Lerp(_recoilPos, _originalPos, time / returnTime);
+            turretChild.transform.localRotation = Quaternion.Slerp(_recoilRot, _orginialRot, time / returnTime);
             yield return null;
         }
         turretChild.transform.localPosition = _originalPos;
+        turretChild.transform.localRotation = _orginialRot;
         _recoilCorutine = null;
     }
 }
