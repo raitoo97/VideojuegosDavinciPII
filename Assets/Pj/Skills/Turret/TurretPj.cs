@@ -17,8 +17,8 @@ public class TurretPj : MonoBehaviour
     private Coroutine _recoilCorutine;
     public Transform recoilPoint;
     [Header("RayCastTurret")]
-    private RayCastTurretPj _turretRayCast;
     public LayerMask maskTurret;
+    private RayCastTurretPj _turretRayCast;
     [SerializeField]private bool isActivate;
     private void Awake()
     {
