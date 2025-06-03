@@ -19,8 +19,10 @@ public class TurretPj : MonoBehaviour
     [Header("RayCastTurret")]
     private RayCastTurretPj _turretRayCast;
     public LayerMask maskTurret;
+    [SerializeField]private bool isActivate;
     private void Awake()
     {
+        isActivate = true;
         turretChild.localRotation = Quaternion.identity;
         ActivateSelf();
     }
@@ -146,6 +148,7 @@ public class TurretPj : MonoBehaviour
     public void DesactivateSelf()
     {
         if (turret == null) return;
+        isActivate = false;
         turret.gameObject.SetActive(false);
         if (_shootRoutine != null)
         {
@@ -156,6 +159,7 @@ public class TurretPj : MonoBehaviour
     public void ActivateSelf()
     {
         if (turret == null) return;
+        isActivate = true;
         turret.gameObject.SetActive(true);
         if (_shootRoutine == null)
         {
@@ -191,4 +195,5 @@ public class TurretPj : MonoBehaviour
         turretChild.transform.localRotation = _orginialRot;
         _recoilCorutine = null;
     }
+    public bool isActivateGetter { get => isActivate; }
 }

@@ -16,7 +16,7 @@ public class RayCastTurretPj
         Ray _ray = new Ray(_transform.position, _transform.forward);
         if (Physics.Raycast(_ray, out RaycastHit _hit, _distance, _mask))
         {
-            if (_hit.transform.gameObject.TryGetComponent<IEnemies>(out var Enemie))
+            if (_hit.transform.gameObject.TryGetComponent<IEnemies>(out var Enemie) && GameManager.instance.player.GetComponent<TurretPj>().isActivateGetter)
             {
                 _enabled = true;
             }
