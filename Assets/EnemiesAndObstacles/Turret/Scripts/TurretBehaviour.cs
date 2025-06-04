@@ -8,14 +8,14 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     [SerializeField]private Transform _child;
     [SerializeField]private RayCastTurret _rayTurret;
     [SerializeField]private float _distance;
-    [SerializeField]private float _rotationSpeed;
     [SerializeField]private bool _isShooting;
+    private float _speed;
     [SerializeField]private List<Transform> _gunSight = new List<Transform>();
     public Material lineRendererMaterial;
     public LayerMask mask;
     private void Awake()
     {
-        _rotationSpeed = 1.0f;
+        _speed = 100;
         _distance = 50f;
         _child = this.transform.GetChild(0);
         var _tempList = _child.GetComponentsInChildren<Transform>();
@@ -36,7 +36,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
         if (_child == null || GameManager.instance.player == null) return;
         _dirRotVector = GameManager.instance.player.transform.position - this.transform.position;
         _dirRotQuaternion = Quaternion.LookRotation(_dirRotVector);
-        _child.transform.rotation = Quaternion.Slerp(_child.transform.rotation, _dirRotQuaternion, _rotationSpeed * Time.deltaTime);
+        _child.transform.rotation = Quaternion.Slerp(_child.transform.rotation, _dirRotQuaternion, _speed * Time.deltaTime);
         _rayTurret.OnUpdate();
         if(_rayTurret.IsEnabled && !_isShooting)
         {
@@ -53,8 +53,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
             var _randomGunSight = _gunSight[Random.Range(0, _gunSight.Count)];
             bullet.transform.position = _randomGunSight.position;
             bullet.transform.rotation = _randomGunSight.rotation;
-            print(bullet);
-            yield return new WaitForSeconds(0.02f);
+            yield return null;
         }
         _isShooting = false;
     }

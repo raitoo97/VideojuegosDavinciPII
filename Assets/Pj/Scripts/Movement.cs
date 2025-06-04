@@ -9,6 +9,8 @@ public class Movement
     float _groundCheckDistance = 1f;
     Rigidbody _rb;
     Vector3 _lastPosition;
+    private Vector3 _pendingKnockback;
+    private bool _applyKnockback;
     public float CurrentSpeed { get; private set; }
     //Constructor
     public Movement(Transform transform, float speed, LayerMask groundLayer, Transform camera)
@@ -65,5 +67,19 @@ public class Movement
 
             _rb.AddForce(Vector3.up * impulse, ForceMode.Impulse);
         }
+    }
+    public void OnFixedUpdate()
+    {
+        if (_applyKnockback)
+        {
+            _rb.AddForce(_pendingKnockback, ForceMode.Impulse);
+            _applyKnockback = false;
+        }
+    }
+    public void ReceiveKnockback(Vector3 direction, float force)
+    {
+        if (_applyKnockback) return;
+        _pendingKnockback = direction.normalized * force;
+        _applyKnockback = true;
     }
 }

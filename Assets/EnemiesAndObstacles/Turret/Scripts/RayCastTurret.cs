@@ -18,6 +18,7 @@ public class RayCastTurret
         _lineRenderer = _transform.gameObject.AddComponent<LineRenderer>();
         _lineRenderer.material = _linerenderematerial;
         _lineRenderer.positionCount = 2;
+        _lineRenderer.numCapVertices = 20;
         _lineRenderer.startWidth = 0.05f;
         _lineRenderer.endWidth = 0.5f;
         _lineRenderer.startColor = Color.green;

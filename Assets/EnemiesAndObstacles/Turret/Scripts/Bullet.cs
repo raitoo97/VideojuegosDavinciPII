@@ -22,6 +22,10 @@ public class Bullet : MonoBehaviour
         if (_isDesactivate) return;
         if (shooterType == ShooterType.Enemy && other.TryGetComponent<Player>(out var player))
         {
+            Vector3 knockbackDir = (player.transform.position - transform.position) + Vector3.up * 2f;
+            float knockbackForce = 5f;
+            CameraShakeManager.instance.ShakeCamera(Shakes.EnemyMisilShoot);
+            player.GetMovement.ReceiveKnockback(knockbackDir, knockbackForce);
             DesactivateBullet();
         }
         if (shooterType == ShooterType.Player && other.TryGetComponent<ZombieBehaviour>(out var enemy))

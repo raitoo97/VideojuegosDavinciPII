@@ -34,6 +34,10 @@ public class Player : MonoBehaviour
             HealthPlayer(10);
         }
     }
+    private void FixedUpdate()
+    {
+        _movement.OnFixedUpdate();
+    }
     public void DamagePlayer(float damage)
     {
         _currentLife -= damage;
@@ -50,4 +54,5 @@ public class Player : MonoBehaviour
         _currentLife = Mathf.Clamp(_currentLife += healt, 0, _maxLife); 
     }
     public float GetLife { get => Mathf.Clamp(_currentLife, 0, _maxLife); }
+    public Movement GetMovement { get => _movement; }
 }

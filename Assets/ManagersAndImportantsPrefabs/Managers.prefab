@@ -120,6 +120,12 @@ MonoBehaviour:
     frequency: 4
     duration: 0.14
     pivotOffset: {x: 0, y: 0, z: 0}
+  - type: 2
+    setting: {fileID: 11400000, guid: 7693f62e1267cd842b06668fcf69d590, type: 2}
+    intensity: 1.5
+    frequency: 1.2
+    duration: 0.3
+    pivotOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &7340844166045931331
 GameObject:
   m_ObjectHideFlags: 0
