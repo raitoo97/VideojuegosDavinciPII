@@ -24,11 +24,10 @@ public class TurretPj : MonoBehaviour
     {
         isActivate = true;
         turretChild.localRotation = Quaternion.identity;
-        ActivateSelf();
     }
     private void Start()
     {
-        _shootRoutine = StartCoroutine(Shoot());
+        ActivateSelf();
         _turretRayCast = new RayCastTurretPj(turretChild.transform, maskTurret, 1000f);
     }
     void Update()
