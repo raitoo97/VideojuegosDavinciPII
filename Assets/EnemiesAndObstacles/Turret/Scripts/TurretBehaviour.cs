@@ -11,6 +11,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     [SerializeField]private float _rotationSpeed;
     [SerializeField]private bool _isShooting;
     [SerializeField]private List<Transform> _gunSight = new List<Transform>();
+    public Material lineRendererMaterial;
     public LayerMask mask;
     private void Awake()
     {
@@ -28,7 +29,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     }
     void Start()
     {
-        _rayTurret = new RayCastTurret(_child.transform, mask, _distance);
+        _rayTurret = new RayCastTurret(_child.transform, mask, _distance, lineRendererMaterial,this);
     }
     void Update()
     {
@@ -52,7 +53,8 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
             var _randomGunSight = _gunSight[Random.Range(0, _gunSight.Count)];
             bullet.transform.position = _randomGunSight.position;
             bullet.transform.rotation = _randomGunSight.rotation;
-            yield return new WaitForSeconds(1);
+            print(bullet);
+            yield return new WaitForSeconds(0.02f);
         }
         _isShooting = false;
     }

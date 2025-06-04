@@ -227,9 +227,10 @@ MonoBehaviour:
   _rotationSpeed: 0
   _isShooting: 0
   _gunSight: []
+  lineRendererMaterial: {fileID: 2100000, guid: a87b5f5dcbcc8004b8dc6c9087cc9f0f, type: 2}
   mask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 9
 --- !u!65 &2250555821728588983
 BoxCollider:
   m_ObjectHideFlags: 0
