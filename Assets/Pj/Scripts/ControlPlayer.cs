@@ -1,6 +1,4 @@
 using System;
-using Unity.VisualScripting;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 public class ControlPlayer
 {
@@ -8,9 +6,6 @@ public class ControlPlayer
     PlayerAnimation _animation;
     bool _wasHoldingShift = false;
     bool _wasInGround;
-    
-
-
     public ControlPlayer(Movement m, PlayerAnimation a)
     {
         _movement = m;
@@ -24,11 +19,9 @@ public class ControlPlayer
         var foward = MathF.Abs(horizontal) + MathF.Abs(vertical);
         foward = Math.Clamp(foward,0f,1f);
         bool isFoward = foward != 0;
-        
         bool isDodgeMode = Input.GetKey(KeyCode.LeftShift);
         bool isGrounded = _movement.IsGrounded;
         bool isJumping = Input.GetKeyDown(KeyCode.Space);
-
         float dodgeSpeedMultiplier = 1f;
 
         // -------ANIMACIONES DE MOVIMIENTO------
@@ -64,20 +57,13 @@ public class ControlPlayer
                 _animation.SetIdle("idle", true);
             }
         }
-
-        
-
         //          ======== JUMP ========
         if ( isJumping && isGrounded && !isDodgeMode)
         {
             float jumpForce =  4f;
             _animation.SetJump("jump", true);
             _movement.Jump(jumpForce);
-            
         }
-       
-       
-
         //          ======== DODGE Y TRANSFORMING ========
         if (isDodgeMode && !_wasHoldingShift)
         {
@@ -114,11 +100,9 @@ public class ControlPlayer
         {
             _animation.SetDodge("dodging", 0f);
         }
-
         //      ======== MOVIMIENTO FÍSICO Y ESTADO ========
         _wasHoldingShift = isDodgeMode;
         _wasInGround = isGrounded;
-    
         _movement.Move(horizontal, vertical, dodgeSpeedMultiplier);
         _movement.UpdateGroundCheck();
     }
