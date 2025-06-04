@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 public class Bullet : MonoBehaviour
 {
-    private float _speed;
+    [SerializeField]private float _speed;
     private bool _isDesactivate;
     public ShooterType shooterType;
     //Sound 
@@ -10,7 +10,6 @@ public class Bullet : MonoBehaviour
     private void OnEnable()
     {
         StartCoroutine(DesactivateBulletCourutine());
-        _speed = 60;
         _isDesactivate = false;
     }
     private void Update()

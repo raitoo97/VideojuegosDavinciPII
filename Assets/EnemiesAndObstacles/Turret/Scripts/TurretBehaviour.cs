@@ -53,7 +53,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
             var _randomGunSight = _gunSight[Random.Range(0, _gunSight.Count)];
             bullet.transform.position = _randomGunSight.position;
             bullet.transform.rotation = _randomGunSight.rotation;
-            yield return null;
+            yield return new WaitForSeconds(0.5f);
         }
         _isShooting = false;
     }
