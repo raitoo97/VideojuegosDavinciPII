@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 public class Bullet : MonoBehaviour
@@ -5,8 +6,8 @@ public class Bullet : MonoBehaviour
     [SerializeField]private float _speed;
     private bool _isDesactivate;
     public ShooterType shooterType;
-    //Sound 
-    AudioManager audioManager => AudioManager.instance;
+    public static Action<Player,float> onHitPlayerBullet;
+    public static Action<ZombieBehaviour> onHitZombie;
     private void OnEnable()
     {
         StartCoroutine(DesactivateBulletCourutine());
@@ -21,18 +22,12 @@ public class Bullet : MonoBehaviour
         if (_isDesactivate) return;
         if (shooterType == ShooterType.Enemy && other.TryGetComponent<Player>(out var player))
         {
-            Vector3 knockbackDir = (player.transform.position - transform.position) + Vector3.up * 2f;
-            float knockbackForce = 5f;
-            CameraShakeManager.instance.ShakeCamera(Shakes.EnemyMisilShoot);
-            player.GetMovement.ReceiveKnockback(knockbackDir, knockbackForce);
+            onHitPlayerBullet?.Invoke(player,20);
             DesactivateBullet();
         }
         if (shooterType == ShooterType.Player && other.TryGetComponent<ZombieBehaviour>(out var enemy))
         {
-            int randomIndex = Random.Range(0, audioManager.turretPlayerImpactSfx.Length);
-            audioManager.PlaySfxRandomPitch(audioManager.turretPlayerImpactSfx[randomIndex]); //sound effect
-            ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
-            enemy.life = 0;
+            onHitZombie?.Invoke(enemy);
             DesactivateBullet();
         }
     }

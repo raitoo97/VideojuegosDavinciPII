@@ -19,6 +19,10 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
         _anims = GetComponent<ZombieAnimations>();
         _attackColliders = GetComponentsInChildren<BoxCollider>(true);
     }
+    private void OnEnable()
+    {
+        Bullet.onHitZombie += HandleHitZombie;
+    }
     void Update()
     {
        ZombieStates();
@@ -66,8 +70,19 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
             }
         }
     }
+    private void HandleHitZombie(ZombieBehaviour enemy)
+    {
+        int randomIndex = UnityEngine.Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
+        AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndex]); //sound effect
+        ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
+        enemy.life = 0;
+    }
     private void Desactivate()
     {
         this.gameObject.SetActive(false);
-    }  
+    }
+    private void OnDisable()
+    {
+        Bullet.onHitZombie -= HandleHitZombie;
+    }
 }

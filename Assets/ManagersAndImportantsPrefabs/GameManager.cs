@@ -15,13 +15,13 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+    private void OnEnable()
+    {
+        Player.OnPlayerDeath += RestarLevel;
+    }
     void Start()
     {
         player = GameObject.FindObjectOfType<Player>().gameObject;
-    }
-    private void Update()
-    {
-        RestarLevel();
     }
     private void RestarLevel()
     {
@@ -32,5 +32,9 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(0);
             }
         }
+    }
+    private void OnDisable()
+    {
+        Player.OnPlayerDeath -= RestarLevel;
     }
 }

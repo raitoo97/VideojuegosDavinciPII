@@ -23,11 +23,8 @@ public class ControlPlayer
         bool isGrounded = _movement.IsGrounded;
         bool isJumping = Input.GetKeyDown(KeyCode.Space);
         float dodgeSpeedMultiplier = 1f;
-
         // -------ANIMACIONES DE MOVIMIENTO------
-   
         _animation.SetGround("ground", isGrounded);
-
         // Cae (solo cuando estaba en el suelo y ahora no lo está)
         if (!isGrounded && _wasInGround)
         {
@@ -72,6 +69,7 @@ public class ControlPlayer
             if (turretPj != null)
             {
                 turretPj.DesactivateSelf();
+                GameManager.instance.player.GetComponent<Player>().GetMovement.ChangeSpeed(8f);//Acelero la velocidad del player
             }
         }
         if (!isDodgeMode && _wasHoldingShift)
@@ -81,6 +79,7 @@ public class ControlPlayer
             if (turretPj != null)
             {
                 turretPj.ActivateSelf();
+                GameManager.instance.player.GetComponent<Player>().GetMovement.ChangeSpeed(GameManager.instance.player.GetComponent<Player>().GetInitSpeed);//Toma la velocidad normal del player
             }
         }
         if (isDodgeMode && isFoward && isGrounded)
