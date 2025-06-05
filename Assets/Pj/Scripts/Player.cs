@@ -38,7 +38,6 @@ public class Player : MonoBehaviour
         {
             HealthPlayer(10);
         }
-        print(_currentLife);
     }
     private void FixedUpdate()
     {
