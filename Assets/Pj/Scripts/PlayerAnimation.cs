@@ -44,6 +44,11 @@ public class PlayerAnimation
         _animator.SetBool("jump", value);
     }
 
+    /*public void SetDash(string action, bool value) ANIMACION DASH POR SI PONEMOS
+    {
+        _animator.SetBool("dash", value);
+    }
+    */
     public void SetGround (string action, bool value)
     {
         _animator.SetBool("ground", value);

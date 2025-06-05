@@ -33,14 +33,16 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        _controller.OnUpdate();
+        _controller.HandleInput();
         if (Input.GetKeyDown(KeyCode.G))
         {
             HealthPlayer(10);
         }
     }
+
     private void FixedUpdate()
     {
+        _controller.OnFixedUpdate();
         _movement.OnFixedUpdate();
     }
     public void DamagePlayer(float damage)

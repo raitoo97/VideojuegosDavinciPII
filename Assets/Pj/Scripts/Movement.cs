@@ -12,6 +12,8 @@ public class Movement
     private Vector3 _pendingKnockback;
     private bool _applyKnockback;
     public float CurrentSpeed { get; private set; }
+    public Vector3 LastMoveDirection { get; private set; }
+
     //Constructor
     public Movement(Transform transform,Transform _groundCheck, float speed, LayerMask groundLayer, Transform camera)
     {
@@ -36,14 +38,44 @@ public class Movement
         Vector3 dirVertical = cameraFoward * inputVertical;
         Vector3 dirHorizontal= cameraRight * inputHorizontal;
         Vector3 movementRelativeToCamera = dirHorizontal + dirVertical;
+
         if (movementRelativeToCamera.magnitude != 0)
         {
             Quaternion targetRotation = Quaternion.LookRotation(movementRelativeToCamera);
             _transform.rotation = Quaternion.Slerp(_transform.rotation, targetRotation, _speed * Time.deltaTime);
         }
-        _transform.position += movementRelativeToCamera * _speed * speedMultiplier * Time.deltaTime;
+
+        //_transform.position += movementRelativeToCamera * _speed * speedMultiplier * Time.deltaTime;
+        Vector3 targetPosition = _rb.position + movementRelativeToCamera * _speed * speedMultiplier * Time.deltaTime;
+        _rb.MovePosition(targetPosition);
         CurrentSpeed = Vector3.Distance(_transform.position, _lastPosition) / Time.deltaTime; //Calcula la distancia recorrida
         _lastPosition = _transform.position;
+        LastMoveDirection = movementRelativeToCamera;
+    }
+    public void Jump(float impulse)
+    {
+        if (_rb != null)
+        {
+            _rb.AddForce(Vector3.up * impulse, ForceMode.Impulse);
+            Player.TriggerShootInstant?.Invoke();
+        }
+    }
+
+    public void Dash(float impulse)
+    {
+        Vector3 dashDirection = LastMoveDirection;
+        if (dashDirection == Vector3.zero )
+            dashDirection = _transform.forward; // fallback por si no se mueve
+
+        if (_rb.velocity.magnitude != 0)
+        {
+            _rb.AddForce(dashDirection.normalized * impulse, ForceMode.Impulse);
+        }
+    }
+
+    public void StopDash()
+    {
+        _rb.velocity = Vector2.zero;
     }
     public void UpdateGroundCheck() 
     {
@@ -59,22 +91,6 @@ public class Movement
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(origin, radius);
     }
-    public void Jump(float impulse)
-    {
-        if (_rb != null)
-        {
-            _rb.AddForce(Vector3.up * impulse, ForceMode.Impulse);
-            Player.TriggerShootInstant?.Invoke();
-        }
-    }
-    public void OnFixedUpdate()
-    {
-        if (_applyKnockback)
-        {
-            _rb.AddForce(_pendingKnockback, ForceMode.Impulse);
-            _applyKnockback = false;
-        }
-    }
     public void ReceiveKnockback(Vector3 direction, float force)
     {
         if (_applyKnockback) return;
@@ -87,4 +103,12 @@ public class Movement
     }
     public float GetSpeed { get => _speed; }
     public bool IsGrounded => _isGrounded;
+    public void OnFixedUpdate()
+    {
+        if (_applyKnockback)
+        {
+            _rb.AddForce(_pendingKnockback, ForceMode.Impulse);
+            _applyKnockback = false;
+        }
+    }
 }
