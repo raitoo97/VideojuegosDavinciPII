@@ -3,6 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] Transform _camera;
+    [SerializeField] Transform _groundCheck;
     [SerializeField] Movement _movement;
     [SerializeField] ControlPlayer _controller;
     [SerializeField] Animator _animator;
@@ -13,13 +14,14 @@ public class Player : MonoBehaviour
     [SerializeField] private float _maxLife = 100f;
     [SerializeField] private float _currentLife;
     public static Action OnPlayerDeath;
+    public static Action TriggerShootInstant;
     //Sound
     AudioManager audioManager => AudioManager.instance;
     private void Start()
     {
         _animator = GetComponentInChildren<Animator>();
         _camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
-        _movement = new Movement(transform, _initSpeed, groundLayer, _camera);
+        _movement = new Movement(transform, _groundCheck, _initSpeed, groundLayer, _camera);
         _playerAnimation = new PlayerAnimation(_animator);
         _controller = new ControlPlayer(_movement, _playerAnimation);
         _currentLife = _maxLife;
@@ -32,7 +34,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         _controller.OnUpdate();
-        print($"Current Speed :{ _movement.GetSpeed}");
         if (Input.GetKeyDown(KeyCode.G))
         {
             HealthPlayer(10);
@@ -80,6 +81,13 @@ public class Player : MonoBehaviour
     {
         Bullet.onHitPlayerBullet -= HandleHitPlayerBullet;
         ZombieAttack.onHitPlayerZombie -= HandleHitPlayerZombie;
+    }
+    private void OnDrawGizmos()
+    {
+        if(GetMovement != null)
+        {
+            GetMovement.OnDraw();
+        }
     }
     public Movement GetMovement { get => _movement; }
     public float GetInitSpeed { get => _initSpeed; }

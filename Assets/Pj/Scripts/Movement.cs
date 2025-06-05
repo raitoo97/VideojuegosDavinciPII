@@ -1,24 +1,24 @@
-using System;
 using UnityEngine;
 public class Movement
 {
     private float _speed = 2f;
     Transform _transform;
+    Transform _groundCheck;
     Transform _camera;
     bool _isGrounded;
     LayerMask _groundLayer;
-    float _groundCheckDistance = 1f;
     Rigidbody _rb;
     Vector3 _lastPosition;
     private Vector3 _pendingKnockback;
     private bool _applyKnockback;
     public float CurrentSpeed { get; private set; }
     //Constructor
-    public Movement(Transform transform, float speed, LayerMask groundLayer, Transform camera)
+    public Movement(Transform transform,Transform _groundCheck, float speed, LayerMask groundLayer, Transform camera)
     {
         _speed = speed;
         _transform = transform;
         _groundLayer = groundLayer;
+        this._groundCheck = _groundCheck;
         _rb = transform.GetComponent<Rigidbody>();
         //Camera
         _camera = camera;
@@ -47,18 +47,18 @@ public class Movement
     }
     public void UpdateGroundCheck() 
     {
-        Vector3 origin = _transform.position + Vector3.up * 0.1f; 
-        Vector3 direction = Vector3.down;
-        Debug.DrawRay(origin, direction * _groundCheckDistance, Color.red);
-        RaycastHit hit;
-        if (Physics.Raycast(origin, direction, out hit, _groundCheckDistance, _groundLayer, QueryTriggerInteraction.Ignore))
-        {
-            _isGrounded = true;
-        }
-        else
-        {
-            _isGrounded = false;
-        }
+
+        Vector3 origin = _groundCheck.position;
+        float radius = 0.25f;
+        _isGrounded = Physics.CheckSphere(origin, radius, _groundLayer);
+        Debug.Log(_isGrounded);
+    }
+    public void OnDraw()
+    {
+        Vector3 origin = _groundCheck.position;
+        float radius = 0.25f;
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(origin, radius);
     }
     public void Jump(float impulse)
     {
