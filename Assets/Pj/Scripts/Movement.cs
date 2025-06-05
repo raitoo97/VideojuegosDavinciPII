@@ -64,8 +64,8 @@ public class Movement
     {
         if (_rb != null)
         {
-
             _rb.AddForce(Vector3.up * impulse, ForceMode.Impulse);
+            Player.TriggerShootInstant?.Invoke();
         }
     }
     public void OnFixedUpdate()

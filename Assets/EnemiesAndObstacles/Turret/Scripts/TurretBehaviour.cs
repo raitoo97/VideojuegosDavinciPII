@@ -29,6 +29,10 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     {
         _rayTurret = new RayCastTurret(_child.transform, mask, _distance, lineRendererMaterial,this);
     }
+    private void OnEnable()
+    {
+        Player.TriggerShootInstant += ShootInstan;
+    }
     void Update()
     {
         ActionAtack();
@@ -61,5 +65,9 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     private void ShootInstan()
     {
         Shoot();
+    }
+    private void OnDisable()
+    {
+        Player.TriggerShootInstant -= ShootInstan;
     }
 }
