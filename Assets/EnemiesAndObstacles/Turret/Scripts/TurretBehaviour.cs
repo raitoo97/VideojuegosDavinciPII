@@ -64,7 +64,24 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     }
     private void ShootInstan()
     {
-        Shoot();
+        var allTurrets = GameObject.FindObjectsOfType<TurretBehaviour>();
+        Transform playerTransform = GameManager.instance.player.transform;
+        TurretBehaviour closest = null;
+        float minDistance = Mathf.Infinity;
+        foreach (var turret in allTurrets)
+        {
+            float dist = turret.transform.IsMostNearDistance(playerTransform);
+            if (dist < minDistance)
+            {
+                minDistance = dist;
+                closest = turret;
+            }
+        }
+        if (closest == this)
+        {
+            Shoot();
+            print("disparo");
+        }
     }
     private void OnDisable()
     {

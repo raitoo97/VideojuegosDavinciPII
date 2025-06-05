@@ -51,7 +51,6 @@ public class Movement
         Vector3 origin = _groundCheck.position;
         float radius = 0.25f;
         _isGrounded = Physics.CheckSphere(origin, radius, _groundLayer);
-        Debug.Log(_isGrounded);
     }
     public void OnDraw()
     {
