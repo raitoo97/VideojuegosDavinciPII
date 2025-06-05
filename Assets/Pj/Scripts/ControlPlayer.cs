@@ -57,7 +57,7 @@ public class ControlPlayer
         //          ======== JUMP ========
         if ( isJumping && isGrounded && !isDodgeMode)
         {
-            float jumpForce =  4f;
+            float jumpForce = 8f;
             _animation.SetJump("jump", true);
             _movement.Jump(jumpForce);
         }
@@ -98,6 +98,22 @@ public class ControlPlayer
         else
         {
             _animation.SetDodge("dodging", 0f);
+        }
+        if (isGrounded && !isDodgeMode)
+        {
+            var turretPj = GameObject.FindAnyObjectByType<TurretPj>();
+            if (turretPj != null)
+            {
+                turretPj.ActivateSelf();
+            }
+        }
+        else
+        {
+            var turretPj = GameObject.FindAnyObjectByType<TurretPj>();
+            if (turretPj != null)
+            {
+                turretPj.DesactivateSelf();
+            }
         }
         //      ======== MOVIMIENTO FÍSICO Y ESTADO ========
         _wasHoldingShift = isDodgeMode;
