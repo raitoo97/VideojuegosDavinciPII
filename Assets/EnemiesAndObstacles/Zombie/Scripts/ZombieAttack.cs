@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 public class ZombieAttack : MonoBehaviour
 {
-    AudioManager audioManager => AudioManager.instance;
+    public static Action<Player, float> onHitPlayerZombie;
     void OnTriggerEnter(Collider c)
     {
         if (c.gameObject.tag == "Player")
@@ -9,12 +10,7 @@ public class ZombieAttack : MonoBehaviour
             Player player = c.gameObject.GetComponent<Player>();
             if (player != null)
             {
-                // Play attack sound effect
-                int randomIndex = Random.Range(0, audioManager.zombieAttackSfx.Length);
-                audioManager.PlaySfxRandomPitch(audioManager.zombieAttackSfx[randomIndex]);
-                player.DamagePlayer(1f);
-                CameraShakeManager.instance.ShakeCamera(Shakes.PlayerUnderAtack);
-                ParticlesPool.instance.SpamParticle(ParticleType.Sparks, new Vector3(0f, 2f, 0f),new Vector3(-90f,0f,0f),GameManager.instance.player.transform);
+                onHitPlayerZombie?.Invoke(player, 1f);
             }
         }
     }

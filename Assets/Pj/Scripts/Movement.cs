@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 public class Movement
 {
@@ -59,7 +60,6 @@ public class Movement
             _isGrounded = false;
         }
     }
-    public bool IsGrounded => _isGrounded;
     public void Jump(float impulse)
     {
         if (_rb != null)
@@ -82,4 +82,10 @@ public class Movement
         _pendingKnockback = direction.normalized * force;
         _applyKnockback = true;
     }
+    public void ChangeSpeed(float newSpeed)
+    {
+        _speed = newSpeed;
+    }
+    public float GetSpeed { get => _speed; }
+    public bool IsGrounded => _isGrounded;
 }
