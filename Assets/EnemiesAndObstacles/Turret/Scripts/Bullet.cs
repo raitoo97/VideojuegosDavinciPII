@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]private float _speed;
     private bool _isDesactivate;
     public ShooterType shooterType;
-    public static Action<Player,float> onHitPlayerBullet;
+    public static Action<Player,float,Transform> onHitPlayerBullet;
     public static Action<ZombieBehaviour> onHitZombie;
     private void OnEnable()
     {
@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
         if (_isDesactivate) return;
         if (shooterType == ShooterType.Enemy && other.TryGetComponent<Player>(out var player))
         {
-            onHitPlayerBullet?.Invoke(player,20);
+            onHitPlayerBullet?.Invoke(player,10,this.transform);
             DesactivateBullet();
         }
         if (shooterType == ShooterType.Player && other.TryGetComponent<ZombieBehaviour>(out var enemy))

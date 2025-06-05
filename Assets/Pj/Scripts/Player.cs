@@ -59,9 +59,9 @@ public class Player : MonoBehaviour
     {
         _currentLife = Mathf.Clamp(_currentLife += healt, 0, _maxLife); 
     }
-    private void HandleHitPlayerBullet(Player player,float damage)
+    private void HandleHitPlayerBullet(Player player,float damage, Transform bulletPos)
     {
-        Vector3 knockbackDir = (player.transform.position - transform.position) + Vector3.up * 2f;
+        Vector3 knockbackDir = (player.transform.position - bulletPos.position);
         float knockbackForce = 5f;
         ParticlesPool.instance.SpamParticle(ParticleType.Sparks, new Vector3(0f, 2f, 0f), new Vector3(UnityEngine.Random.Range(0f, 180f), 0f, 0f), GameManager.instance.player.transform);
         CameraShakeManager.instance.ShakeCamera(Shakes.EnemyMisilShoot);
