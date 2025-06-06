@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -16,7 +17,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private AudioClip startSound;
     void Start()
     {
-        AudioManager.instance.PlayMusic(startSound);
+        StartCoroutine(StartMusic());
         protoypeButton.onClick.AddListener(Protoype);
         startGameButon.onClick.AddListener(StartGame);
         returnMenuButon.onClick.AddListener(ReturnButon);
@@ -55,5 +56,10 @@ public class MenuManager : MonoBehaviour
     {
         Application.Quit();
         print("No funciona en Editor");
+    }
+    public IEnumerator StartMusic()
+    {
+        yield return new WaitForEndOfFrame();
+        AudioManager.instance.PlayMusic(startSound);
     }
 }
