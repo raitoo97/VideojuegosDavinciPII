@@ -7348,6 +7348,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2003650405095859555, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: skillPlayerDash.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003650405095859555, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: skillPlayerDash.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3ec701048af2b644abbbf8bda5340b91, type: 3}
+    - target: {fileID: 2003650405095859555, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: skillPlayerDash.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4cbb8ca3fd30f7346b72b25bb2e44f40, type: 3}
     - target: {fileID: 3931444751640104713, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: virtualCam
       value: 
@@ -7514,6 +7526,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3522650585358744689, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
+      propertyPath: shotSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 8d872766192051b47a9acd049369b8f7, type: 3}
     - target: {fileID: 4469785779143389137, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
       propertyPath: m_Name
       value: Player
