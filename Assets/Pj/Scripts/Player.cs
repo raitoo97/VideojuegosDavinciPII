@@ -2,19 +2,19 @@ using System;
 using UnityEngine;
 public class Player : MonoBehaviour
 {
-    [SerializeField] Transform _groundCheck;
-    [SerializeField] Movement _movement;
-    [SerializeField] ControlPlayer _controller;
-    [SerializeField] Animator _animator;
-    [SerializeField] PlayerAnimation _playerAnimation;
-    [SerializeField] public LayerMask groundLayer;
-    [SerializeField] float _initSpeed = 12f;
+    [SerializeField]private Transform _groundCheck;
+    [SerializeField]private Movement _movement;
+    [SerializeField]private ControlPlayer _controller;
+    [SerializeField]private Animator _animator;
+    [SerializeField]private PlayerAnimation _playerAnimation;
+    [SerializeField]private float _initSpeed;
+    public LayerMask groundLayer;
+    private Rigidbody _rb;
     [Header("Life")]
-    [SerializeField] private float _maxLife = 100f;
-    [SerializeField] private float _currentLife;
+    [SerializeField]private float _maxLife = 100f;
+    [SerializeField]private float _currentLife;
     public static Action OnPlayerDeath;
     public static Action TriggerShootInstant;
-    public Rigidbody _rb;
     //Sound
     AudioManager audioManager => AudioManager.instance;
     private void Start()
