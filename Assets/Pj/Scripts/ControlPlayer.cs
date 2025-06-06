@@ -8,7 +8,6 @@ public class ControlPlayer
     bool _wasInGround;
     public float horizontal;
     public float vertical;
-
     // Dash
     bool canDash = true;
     float dashCooldown = 1f;
@@ -17,14 +16,12 @@ public class ControlPlayer
     float dashTimer = 0f;
     bool isDashing = false;
     float dashImpulse = 20f;
-
     public ControlPlayer(Movement m, PlayerAnimation a)
     {
         _movement = m;
         _animation = a;
     }
     public void OnUpdate()
-
     {
         //Input
         horizontal = Input.GetAxis("Horizontal");
@@ -36,7 +33,6 @@ public class ControlPlayer
         bool isGrounded = _movement.IsGrounded;
         bool isJumping = Input.GetKeyDown(KeyCode.Space);
         bool isDash = Input.GetKeyDown(KeyCode.Mouse0); // botón de dash
-
         // -------ANIMACIONES DE MOVIMIENTO------
         _animation.SetGround("ground", isGrounded);
         // Cae (solo cuando estaba en el suelo y ahora no lo está)
@@ -83,7 +79,7 @@ public class ControlPlayer
             if (turretPj != null)
             {
                 turretPj.DesactivateSelf();
-                GameManager.instance.player.GetComponent<Player>().GetMovement.ChangeSpeed(20f);//Acelero la velocidad del player
+                GameManager.instance.player.GetComponent<Player>().GetMovement.ChangeSpeed(15f);//Acelero la velocidad del player
             }
         }
         if (!isDodgeMode && _wasHoldingShift)
@@ -127,7 +123,6 @@ public class ControlPlayer
                 turretPj.DesactivateSelf();
             }
         }
-
         // ---------- DASH ----------
         if (isDash && canDash && !isDodgeMode && isGrounded)
         {
@@ -138,7 +133,6 @@ public class ControlPlayer
             canDash = false;
             dashCooldownTimer = dashCooldown;
         }
-
         if (isDashing)
         {
             dashTimer -= Time.deltaTime;
@@ -149,7 +143,6 @@ public class ControlPlayer
                 //_animation.SetDash("dash", false); animacion si quieren poner
             }
         }
-
         if (!canDash)
         {
             dashCooldownTimer -= Time.deltaTime;
