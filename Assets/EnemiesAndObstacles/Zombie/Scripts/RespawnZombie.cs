@@ -5,7 +5,7 @@ public class RespawnZombie : MonoBehaviour
     [Tooltip("Dejan de respawnear los Zombies")]public bool keepSpawning;
     private void Awake()
     {
-        keepSpawning = true; //desactivado 
+        keepSpawning = false; //desactivado 
     }
     void Start()
     {
