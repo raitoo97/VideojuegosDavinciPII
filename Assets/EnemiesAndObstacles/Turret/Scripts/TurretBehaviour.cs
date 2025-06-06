@@ -35,7 +35,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     }
     void Update()
     {
-        //ActionAtack(); DESACTIVADO
+        ActionAtack();
     }
     public void ActionAtack()
     {
@@ -80,7 +80,6 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
         if (closest == this)
         {
             Shoot();
-            print("disparo");
         }
     }
     private void OnDisable()
