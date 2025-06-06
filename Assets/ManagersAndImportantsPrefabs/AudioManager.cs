@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AudioClip[] missileImpactSfx;
     [SerializeField] public AudioClip[] playerDamageSfx;
     [SerializeField] public AudioClip[] turretPlayerImpactSfx;
+    [SerializeField] public AudioClip[] skillPlayerDash;
     public List<AudioSource> audioSources = new List<AudioSource>();
     private bool isMusicPlaying;
     public static AudioManager instance;

@@ -15,7 +15,7 @@ public class ControlPlayer
     private float dashDuration = 0.2f;
     private float dashTimer = 0f;
     private bool isDashing = false;
-    private float dashImpulse = 20f;
+    private float dashImpulse = 40f;
     public ControlPlayer(Movement m, PlayerAnimation a)
     {
         _movement = m;
