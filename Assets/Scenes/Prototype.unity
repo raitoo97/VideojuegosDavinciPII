@@ -5913,11 +5913,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 670007142}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!4 &699455755 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1477309947633531035, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
-  m_PrefabInstance: {fileID: 8709016930750793762}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &705008061 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8714008604688996465, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
@@ -7931,26 +7926,6 @@ PrefabInstance:
     - target: {fileID: 2839453531279406761, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
       propertyPath: m_Name
       value: PoolsManagers
-      objectReference: {fileID: 0}
-    - target: {fileID: 6409479817852363087, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
-      propertyPath: particleConfigs.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6409479817852363087, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
-      propertyPath: particleConfigs.Array.data[2].type
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6409479817852363087, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
-      propertyPath: particleConfigs.Array.data[2].poolParent
-      value: 
-      objectReference: {fileID: 699455755}
-    - target: {fileID: 6409479817852363087, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
-      propertyPath: particleConfigs.Array.data[2].ParticlePrefab
-      value: 
-      objectReference: {fileID: 3070131706269945652, guid: ee408d5915d39604a91742fc0a229673, type: 3}
-    - target: {fileID: 6409479817852363087, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
-      propertyPath: particleConfigs.Array.data[2].initialPoolSize
-      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
