@@ -29,13 +29,20 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     {
         _rayTurret = new RayCastTurret(_child.transform, mask, _distance, lineRendererMaterial,this);
     }
+    private void OnEnable()
+    {
+        Player.TriggerShootInstant += ShootInstan;
+    }
     void Update()
+    {
+        ActionAtack();
+    }
+    public void ActionAtack()
     {
         if (_child == null || GameManager.instance.player == null) return;
         _dirRotVector = GameManager.instance.player.transform.position - this.transform.position;
         _dirRotQuaternion = Quaternion.LookRotation(_dirRotVector);
         float tripodSpeed = GameManager.instance.player.GetComponent<Player>().GetInitSpeed * 2.5f;
-        print($"Current Speed turret :{tripodSpeed}");
         _child.transform.rotation = Quaternion.Slerp(_child.transform.rotation, _dirRotQuaternion, tripodSpeed * Time.deltaTime);
         _rayTurret.OnUpdate();
         _shootCooldown -= Time.deltaTime;
@@ -54,5 +61,29 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
         var _randomGunSight = _gunSight[Random.Range(0, _gunSight.Count)];
         bullet.transform.position = _randomGunSight.position;
         bullet.transform.rotation = _randomGunSight.rotation;
+    }
+    private void ShootInstan()
+    {
+        var allTurrets = GameObject.FindObjectsOfType<TurretBehaviour>();
+        Transform playerTransform = GameManager.instance.player.transform;
+        TurretBehaviour closest = null;
+        float minDistance = Mathf.Infinity;
+        foreach (var turret in allTurrets)
+        {
+            float dist = turret.transform.IsMostNearDistance(playerTransform);
+            if (dist < minDistance)
+            {
+                minDistance = dist;
+                closest = turret;
+            }
+        }
+        if (closest == this)
+        {
+            Shoot();
+        }
+    }
+    private void OnDisable()
+    {
+        Player.TriggerShootInstant -= ShootInstan;
     }
 }

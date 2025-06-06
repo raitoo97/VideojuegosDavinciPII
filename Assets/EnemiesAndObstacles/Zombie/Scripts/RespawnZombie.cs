@@ -2,11 +2,10 @@ using System.Collections;
 using UnityEngine;
 public class RespawnZombie : MonoBehaviour
 {
-
     [Tooltip("Dejan de respawnear los Zombies")]public bool keepSpawning;
     private void Awake()
     {
-        keepSpawning = true; 
+        keepSpawning = true; //desactivado 
     }
     void Start()
     {

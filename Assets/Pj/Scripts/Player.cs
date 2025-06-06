@@ -2,24 +2,26 @@ using System;
 using UnityEngine;
 public class Player : MonoBehaviour
 {
-    [SerializeField] Transform _camera;
-    [SerializeField] Movement _movement;
-    [SerializeField] ControlPlayer _controller;
-    [SerializeField] Animator _animator;
-    [SerializeField] PlayerAnimation _playerAnimation;
-    [SerializeField] public LayerMask groundLayer;
-    [SerializeField] float _initSpeed = 3f;
+    [SerializeField]private Transform _groundCheck;
+    [SerializeField]private Movement _movement;
+    [SerializeField]private ControlPlayer _controller;
+    [SerializeField]private Animator _animator;
+    [SerializeField]private PlayerAnimation _playerAnimation;
+    [SerializeField]private float _initSpeed;
+    public LayerMask groundLayer;
+    private Rigidbody _rb;
     [Header("Life")]
-    [SerializeField] private float _maxLife = 100f;
-    [SerializeField] private float _currentLife;
+    [SerializeField]private float _maxLife = 100f;
+    [SerializeField]private float _currentLife;
     public static Action OnPlayerDeath;
+    public static Action TriggerShootInstant;
     //Sound
     AudioManager audioManager => AudioManager.instance;
     private void Start()
     {
+        _rb = GetComponent<Rigidbody>();
         _animator = GetComponentInChildren<Animator>();
-        _camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
-        _movement = new Movement(transform, _initSpeed, groundLayer, _camera);
+        _movement = new Movement(_rb, _groundCheck, _initSpeed, groundLayer);
         _playerAnimation = new PlayerAnimation(_animator);
         _controller = new ControlPlayer(_movement, _playerAnimation);
         _currentLife = _maxLife;
@@ -32,7 +34,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         _controller.OnUpdate();
-        print($"Current Speed :{ _movement.GetSpeed}");
         if (Input.GetKeyDown(KeyCode.G))
         {
             HealthPlayer(10);
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        _controller.OnfixedUpdate();
         _movement.OnFixedUpdate();
     }
     public void DamagePlayer(float damage)
@@ -58,9 +60,9 @@ public class Player : MonoBehaviour
     {
         _currentLife = Mathf.Clamp(_currentLife += healt, 0, _maxLife); 
     }
-    private void HandleHitPlayerBullet(Player player,float damage)
+    private void HandleHitPlayerBullet(Player player,float damage, Transform bulletPos)
     {
-        Vector3 knockbackDir = (player.transform.position - transform.position) + Vector3.up * 2f;
+        Vector3 knockbackDir = (player.transform.position - bulletPos.position);
         float knockbackForce = 5f;
         ParticlesPool.instance.SpamParticle(ParticleType.Sparks, new Vector3(0f, 2f, 0f), new Vector3(UnityEngine.Random.Range(0f, 180f), 0f, 0f), GameManager.instance.player.transform);
         CameraShakeManager.instance.ShakeCamera(Shakes.EnemyMisilShoot);
@@ -80,6 +82,13 @@ public class Player : MonoBehaviour
     {
         Bullet.onHitPlayerBullet -= HandleHitPlayerBullet;
         ZombieAttack.onHitPlayerZombie -= HandleHitPlayerZombie;
+    }
+    private void OnDrawGizmos()
+    {
+        if(GetMovement != null)
+        {
+            GetMovement.OnDraw();
+        }
     }
     public Movement GetMovement { get => _movement; }
     public float GetInitSpeed { get => _initSpeed; }
