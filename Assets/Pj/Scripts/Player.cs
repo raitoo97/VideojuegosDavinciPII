@@ -2,26 +2,26 @@ using System;
 using UnityEngine;
 public class Player : MonoBehaviour
 {
-    [SerializeField] Transform _camera;
     [SerializeField] Transform _groundCheck;
     [SerializeField] Movement _movement;
     [SerializeField] ControlPlayer _controller;
     [SerializeField] Animator _animator;
     [SerializeField] PlayerAnimation _playerAnimation;
     [SerializeField] public LayerMask groundLayer;
-    [SerializeField] float _initSpeed = 3f;
+    [SerializeField] float _initSpeed = 12f;
     [Header("Life")]
     [SerializeField] private float _maxLife = 100f;
     [SerializeField] private float _currentLife;
     public static Action OnPlayerDeath;
     public static Action TriggerShootInstant;
+    public Rigidbody _rb;
     //Sound
     AudioManager audioManager => AudioManager.instance;
     private void Start()
     {
+        _rb = GetComponent<Rigidbody>();
         _animator = GetComponentInChildren<Animator>();
-        _camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
-        _movement = new Movement(transform, _groundCheck, _initSpeed, groundLayer, _camera);
+        _movement = new Movement(_rb, _groundCheck, _initSpeed, groundLayer);
         _playerAnimation = new PlayerAnimation(_animator);
         _controller = new ControlPlayer(_movement, _playerAnimation);
         _currentLife = _maxLife;
@@ -41,6 +41,7 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        _controller.OnfixedUpdate();
         _movement.OnFixedUpdate();
     }
     public void DamagePlayer(float damage)
