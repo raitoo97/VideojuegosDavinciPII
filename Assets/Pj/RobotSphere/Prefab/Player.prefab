@@ -2282,7 +2282,7 @@ MonoBehaviour:
   turretChild: {fileID: 4127248945300740953}
   gunSight: {fileID: 163412669659982240}
   turret: {fileID: 1748506982923293569}
-  shotSfx: {fileID: 8300000, guid: 3d344d4848508c842bfeef3eb83e2ae1, type: 3}
+  shotSfx: {fileID: 8300000, guid: 8d872766192051b47a9acd049369b8f7, type: 3}
   recoilPoint: {fileID: 8534146939420824425}
   maskTurret:
     serializedVersion: 2
