@@ -8,7 +8,8 @@ MonoImporter:
   - turretChild: {instanceID: 0}
   - gunSight: {instanceID: 0}
   - turret: {instanceID: 0}
-  - shotSfx: {fileID: 8300000, guid: 3d344d4848508c842bfeef3eb83e2ae1, type: 3}
+  - shotSfx: {fileID: 8300000, guid: 8d872766192051b47a9acd049369b8f7, type: 3}
+  - recoilPoint: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
