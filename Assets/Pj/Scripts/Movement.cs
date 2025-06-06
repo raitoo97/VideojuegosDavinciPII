@@ -47,7 +47,7 @@ public class Movement
             _rb.AddForce(dashDirection.normalized * impulse, ForceMode.Impulse);
             int randomIndex = UnityEngine.Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
             AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndex]); //sound effect
-            ParticlesPool.instance.SpamParticle(ParticleType.Dash, new Vector3(0f, 2f, 0f), Vector3.zero, _rb.transform);
+            ParticlesPool.instance.SpamParticle(ParticleType.Dash, new Vector3(0f, 0f, 0f), Vector3.zero, _rb.transform);
         }
     }
     public void StopDash()
