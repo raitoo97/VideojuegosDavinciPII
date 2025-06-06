@@ -2,20 +2,20 @@ using UnityEngine;
 using System;
 public class ControlPlayer
 {
-    Movement _movement;
-    PlayerAnimation _animation;
-    bool _wasHoldingShift = false;
-    bool _wasInGround;
-    public float horizontal;
-    public float vertical;
+    private Movement _movement;
+    private PlayerAnimation _animation;
+    private bool _wasHoldingShift = false;
+    private bool _wasInGround;
+    private float horizontal;
+    private float vertical;
     // Dash
-    bool canDash = true;
-    float dashCooldown = 1f;
-    float dashCooldownTimer = 0f;
-    float dashDuration = 0.2f;
-    float dashTimer = 0f;
-    bool isDashing = false;
-    float dashImpulse = 20f;
+    private bool canDash = true;
+    private float dashCooldown = 1f;
+    private float dashCooldownTimer = 0f;
+    private float dashDuration = 0.2f;
+    private float dashTimer = 0f;
+    private bool isDashing = false;
+    private float dashImpulse = 20f;
     public ControlPlayer(Movement m, PlayerAnimation a)
     {
         _movement = m;

@@ -3,13 +3,12 @@ public class Movement
 {
     public Vector3 LastMoveDirection { get; private set; }
     private float _speed;
-    Transform _groundCheck;
-    bool _isGrounded;
-    LayerMask _groundLayer;
-    Rigidbody _rb;
+    private Transform _groundCheck;
+    private bool _isGrounded;
+    private LayerMask _groundLayer;
+    private Rigidbody _rb;
     private Vector3 _pendingKnockback;
     private bool _applyKnockback;
-    public float CurrentSpeed { get; private set; }
     //Constructor
     public Movement(Rigidbody rb, Transform _groundCheck, float speed, LayerMask groundLayer)
     {
@@ -43,7 +42,6 @@ public class Movement
         Vector3 dashDirection = LastMoveDirection;
         if (dashDirection == Vector3.zero )
             dashDirection = _rb.transform.forward; // fallback por si no se mueve
-
         if (_rb.velocity.magnitude != 0)
         {
             _rb.AddForce(dashDirection.normalized * impulse, ForceMode.Impulse);
@@ -76,8 +74,6 @@ public class Movement
     {
         _speed = newSpeed;
     }
-    public float GetSpeed { get => _speed; }
-    public bool IsGrounded => _isGrounded;
     public void OnFixedUpdate()
     {
         if (_applyKnockback)
@@ -86,4 +82,7 @@ public class Movement
             _applyKnockback = false;
         }
     }
+    public float GetSpeed { get => _speed; }
+    public bool IsGrounded => _isGrounded;
+    public float CurrentSpeed { get; private set; }
 }
