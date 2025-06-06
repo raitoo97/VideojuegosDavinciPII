@@ -35,7 +35,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     }
     void Update()
     {
-        //ActionAtack(); DESACTIVADO
+        ActionAtack();
     }
     public void ActionAtack()
     {
