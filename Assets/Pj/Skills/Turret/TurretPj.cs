@@ -72,9 +72,7 @@ public class TurretPj : MonoBehaviour
     private void RotateTorrete(Vector3 rotVector)
     {
         if (enemy == null) return;
-
         Vector3 direction = rotVector - turretChild.position;
-
         if (direction != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
