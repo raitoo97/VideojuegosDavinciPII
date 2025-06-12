@@ -43,6 +43,8 @@ public class TurretPj : MonoBehaviour
             }
             _shootRoutine = StartCoroutine(Shoot());
         }
+        print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
+        print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange));
     }
     #region
     private Vector3 GetZombie()
@@ -73,9 +75,7 @@ public class TurretPj : MonoBehaviour
     private void RotateTorrete(Vector3 rotVector)
     {
         if (enemy == null) return;
-
         Vector3 direction = rotVector - turretChild.position;
-
         if (direction != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);

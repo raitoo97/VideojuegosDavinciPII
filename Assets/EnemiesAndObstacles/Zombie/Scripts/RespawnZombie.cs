@@ -21,6 +21,7 @@ public class RespawnZombie : MonoBehaviour
                 GameObject Enemy = PoolEnemy.instance.EnemiesTypesList.Find(x => x.type == EnemyType.Zombie).GetEnemy();
                 Enemy.transform.position = this.transform.position;
                 Enemy.transform.rotation = this.transform.rotation;
+                PointManager.instance.GetHandle.EnemySuscribeEvent(Enemy.GetComponent<IEnemies>());
             }
             yield return new WaitForSeconds(3f);
         }
