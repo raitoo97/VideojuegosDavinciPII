@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
             onHitZombie?.Invoke(enemy);
             DesactivateBullet();
         }
-        if(other.gameObject.layer == 13)
+        if(other.gameObject.layer == 13 || other.gameObject.layer == 14)
         {
             DesactivateBullet();
         }

@@ -22,7 +22,7 @@ public class ControlPlayer
     private bool isShielding = false;
     private float shieldCooldown = 1f;
     private float shieldCooldownTimer = 0f;
-    private float shieldDuration = 3f;
+    private float shieldDuration = 5f;
     private float shieldTimer = 0f;
     
     public ControlPlayer(Movement m, PlayerAnimation a)

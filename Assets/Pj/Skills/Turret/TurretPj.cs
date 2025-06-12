@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+    
 public class TurretPj : MonoBehaviour
 {
     private Collider[] _colliders;
@@ -93,7 +94,7 @@ public class TurretPj : MonoBehaviour
     #endregion
    IEnumerator Shoot()
     {
-        while (true)
+        while (true) 
         {
             if (_detectedTarget && enemy != null)
             {
@@ -184,3 +185,4 @@ public class TurretPj : MonoBehaviour
         _recoilCorutine = null;
     }
 }
+    
