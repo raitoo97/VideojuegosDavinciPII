@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 public class Movement
 {
@@ -9,6 +10,8 @@ public class Movement
     private Rigidbody _rb;
     private Vector3 _pendingKnockback;
     private bool _applyKnockback;
+    public GameObject shield = Player.instance.transform.Find("Shield").gameObject;
+
     //Constructor
     public Movement(Rigidbody rb, Transform _groundCheck, float speed, LayerMask groundLayer)
     {
@@ -16,6 +19,7 @@ public class Movement
         _groundLayer = groundLayer;
         this._groundCheck = _groundCheck;
         _rb = rb;
+      
     }
     public void Move(float inputHorizontal, float inputVertical)
     {
@@ -39,20 +43,35 @@ public class Movement
     }
     public void Dash(float impulse)
     {
+        
         Vector3 dashDirection = LastMoveDirection;
         if (dashDirection == Vector3.zero )
             dashDirection = _rb.transform.forward; // fallback por si no se mueve
-        if (_rb.velocity.magnitude != 0)
-        {
+            
+            
+        
             _rb.AddForce(dashDirection.normalized * impulse, ForceMode.Impulse);
+
             int randomIndex = UnityEngine.Random.Range(0, AudioManager.instance.skillPlayerDash.Length);
             AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.skillPlayerDash[randomIndex]); //sound effect
-            ParticlesPool.instance.SpamParticle(ParticleType.Dash, new Vector3(0f, 0f, 1f), Vector3.zero, _rb.transform);
-        }
+            ParticlesPool.instance.SpamParticle(ParticleType.Dash, new Vector3(0f, 0f, 0f), Vector3.zero, _rb.transform);
+        
     }
     public void StopDash()
     {
         _rb.velocity = Vector2.zero;
+    }
+    public void ActivateShield()
+    {
+        
+        shield.SetActive(true);
+        ParticlesPool.instance.SpamParticle(ParticleType.Shield, new Vector3(0f, 0f, 0f), Vector3.zero, _rb.transform);
+
+    }
+    public void DeactivateShield()
+    {
+       
+        shield.SetActive(false);
     }
     public void UpdateGroundCheck() 
     {

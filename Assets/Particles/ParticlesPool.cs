@@ -6,7 +6,8 @@ public enum ParticleType
 {
     Sparks,
     Explosion,
-    Dash
+    Dash,
+    Shield
 }
 public class ParticlesPool : MonoBehaviour
 {
