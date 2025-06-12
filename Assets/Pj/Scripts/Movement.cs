@@ -39,16 +39,19 @@ public class Movement
     }
     public void Dash(float impulse)
     {
+        
         Vector3 dashDirection = LastMoveDirection;
         if (dashDirection == Vector3.zero )
             dashDirection = _rb.transform.forward; // fallback por si no se mueve
-        if (_rb.velocity.magnitude != 0)
-        {
+            
+            
+        
             _rb.AddForce(dashDirection.normalized * impulse, ForceMode.Impulse);
+
             int randomIndex = UnityEngine.Random.Range(0, AudioManager.instance.skillPlayerDash.Length);
             AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.skillPlayerDash[randomIndex]); //sound effect
-            ParticlesPool.instance.SpamParticle(ParticleType.Dash, new Vector3(0f, 0f, 1f), Vector3.zero, _rb.transform);
-        }
+            ParticlesPool.instance.SpamParticle(ParticleType.Dash, new Vector3(0f, 0f, 0f), Vector3.zero, _rb.transform);
+        
     }
     public void StopDash()
     {
