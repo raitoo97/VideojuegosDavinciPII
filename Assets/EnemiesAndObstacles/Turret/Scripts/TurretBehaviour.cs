@@ -12,6 +12,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     public LayerMask mask;
     private float _shootCooldown;
     [SerializeField] private float _fireRate = 0.5f;
+    public event System.Action<IEnemies> OnDeath;
     private void Awake()
     {
         _distance = 50f;
@@ -85,5 +86,9 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     private void OnDisable()
     {
         Player.TriggerShootInstant -= ShootInstan;
+    }
+    public float GetPointValue()
+    {
+        throw new System.NotImplementedException();
     }
 }

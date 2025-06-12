@@ -48,8 +48,7 @@ public class ManagerSkills : MonoBehaviour
                 int currentLevel = skill.progressPerStat[i].level;
                 int maxLevel = targetStat.GetMaxLevel();
                 float costLevel = GetValueSkillCost(category, specificType);
-                print(costLevel);
-                if (currentLevel < maxLevel)
+                if (currentLevel < maxLevel && PointManager.instance.SpendPoints(costLevel))
                 {
                     skill.progressPerStat[i].level++;
                 }
@@ -57,13 +56,7 @@ public class ManagerSkills : MonoBehaviour
             }
         }
     }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            print(GetValueSkillCost(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
-        }
-    }
+    #region//GetValues
     public float GetValueSkill(SkillCategory category, SkillStatType specificType)
     {
         if (!_skills.ContainsKey(category)) return 0;
@@ -104,6 +97,7 @@ public class ManagerSkills : MonoBehaviour
         }
         return 0f;
     }
+    #endregion
 }
 [HideInInspector]
 public class StatProgress

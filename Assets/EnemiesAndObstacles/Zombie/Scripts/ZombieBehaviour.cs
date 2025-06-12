@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 public class ZombieBehaviour : MonoBehaviour , IEnemies
@@ -9,8 +10,11 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
     private float _runDistance;
     private float _atackDistance;
     BoxCollider[] _attackColliders;
+    private float _enemypoints;
+    public event Action<IEnemies> OnDeath;
     private void Awake()
     {
+        _enemypoints = 20;
         life = 100;
         _idleDistance = 50f;
         _runDistance = 4;
@@ -76,13 +80,23 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
         AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndex]); //sound effect
         ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
         enemy.life = 0;
+
     }
     private void Desactivate()
     {
+        OnDeath?.Invoke(this);
         this.gameObject.SetActive(false);
     }
     private void OnDisable()
     {
+        if (PointManager.instance != null)
+        {
+            PointManager.instance.GetHandle.EnemyDesSuscribeEvent(this);
+        }
         Bullet.onHitZombie -= HandleHitZombie;
+    }
+    public float GetPointValue()
+    {
+        return _enemypoints;
     }
 }
