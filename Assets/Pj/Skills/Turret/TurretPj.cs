@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+    
 public class TurretPj : MonoBehaviour
 {
     private Collider[] _colliders;
@@ -22,8 +23,8 @@ public class TurretPj : MonoBehaviour
     }
     private void Start()
     {
-        ActivateSelf();
-    }
+        ActivateSelf(); 
+     }
     void Update()
     {
         GetZombie();
@@ -91,9 +92,9 @@ public class TurretPj : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, 16f);
     }
     #endregion
-    IEnumerator Shoot()
+   IEnumerator Shoot()
     {
-        while (true)
+        while (true) 
         {
             if (_detectedTarget && enemy != null)
             {
@@ -184,3 +185,4 @@ public class TurretPj : MonoBehaviour
         _recoilCorutine = null;
     }
 }
+    
