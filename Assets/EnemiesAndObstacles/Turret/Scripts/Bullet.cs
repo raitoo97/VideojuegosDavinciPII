@@ -25,12 +25,16 @@ public class Bullet : MonoBehaviour
             onHitPlayerBullet?.Invoke(player,10,this.transform);
             DesactivateBullet();
         }
+        if (shooterType == ShooterType.Enemy && other.gameObject.layer == 14)
+        {
+            DesactivateBullet();
+        }
         if (shooterType == ShooterType.Player && other.TryGetComponent<ZombieBehaviour>(out var enemy))
         {
             onHitZombie?.Invoke(enemy);
             DesactivateBullet();
         }
-        if(other.gameObject.layer == 13 || other.gameObject.layer == 14)
+        if (other.gameObject.layer == 13)
         {
             DesactivateBullet();
         }

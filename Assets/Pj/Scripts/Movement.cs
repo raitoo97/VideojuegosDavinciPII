@@ -65,6 +65,8 @@ public class Movement
     {
         
         shield.SetActive(true);
+        ParticlesPool.instance.SpamParticle(ParticleType.Shield, new Vector3(0f, 0f, 0f), Vector3.zero, _rb.transform);
+
     }
     public void DeactivateShield()
     {
