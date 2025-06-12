@@ -41,18 +41,27 @@ public class ManagerSkills : MonoBehaviour
                 break;
             }
         }
-        for(int i  = 0; i < skill.progressPerStat.Count; i++)
+        for(int i = 0; i < skill.progressPerStat.Count; i++)
         {
             if(skill.progressPerStat[i].type == specificType)
             {
                 int currentLevel = skill.progressPerStat[i].level;
                 int maxLevel = targetStat.GetMaxLevel();
+                float costLevel = GetValueSkillCost(category, specificType);
+                print(costLevel);
                 if (currentLevel < maxLevel)
                 {
                     skill.progressPerStat[i].level++;
                 }
                 break;
             }
+        }
+    }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            print(GetValueSkillCost(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
         }
     }
     public float GetValueSkill(SkillCategory category, SkillStatType specificType)
@@ -75,7 +84,28 @@ public class ManagerSkills : MonoBehaviour
         }
             return 0f;
     }
+    private float GetValueSkillCost(SkillCategory category, SkillStatType specificType)
+    {
+        if (!_skills.ContainsKey(category)) return 0f;
+        ActiveSkill skill = _skills[category];
+        for(int i = 0;i < skill.progressPerStat.Count; i++)
+        {
+            if (skill.progressPerStat[i].type == specificType)
+            {
+                int currentlevel = skill.progressPerStat[i].level;
+                foreach(var entry in skill.dataStrcut.dataScripteable)
+                {
+                    if(entry.skillType == specificType)
+                    {
+                        return entry.GetCost(currentlevel + 1);
+                    }
+                }
+            }
+        }
+        return 0f;
+    }
 }
+[HideInInspector]
 public class StatProgress
 {
     public SkillStatType type;
