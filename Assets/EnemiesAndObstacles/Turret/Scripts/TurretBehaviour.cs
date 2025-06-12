@@ -13,6 +13,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     private float _shootCooldown;
     [SerializeField] private float _fireRate = 0.5f;
     public event System.Action<IEnemies> OnDeath;
+    private float _enemypoints;
     private void Awake()
     {
         _distance = 50f;
@@ -89,6 +90,6 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     }
     public float GetPointValue()
     {
-        throw new System.NotImplementedException();
+        return _enemypoints;
     }
 }
