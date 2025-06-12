@@ -22,8 +22,8 @@ public class TurretPj : MonoBehaviour
     }
     private void Start()
     {
-        ActivateSelf();
-    }
+        ActivateSelf(); 
+     }
     void Update()
     {
         GetZombie();
@@ -91,7 +91,7 @@ public class TurretPj : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, 16f);
     }
     #endregion
-    IEnumerator Shoot()
+   IEnumerator Shoot()
     {
         while (true)
         {

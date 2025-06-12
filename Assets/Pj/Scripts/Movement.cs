@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 public class Movement
 {
@@ -9,6 +10,8 @@ public class Movement
     private Rigidbody _rb;
     private Vector3 _pendingKnockback;
     private bool _applyKnockback;
+    public GameObject shield = Player.instance.transform.Find("Shield").gameObject;
+
     //Constructor
     public Movement(Rigidbody rb, Transform _groundCheck, float speed, LayerMask groundLayer)
     {
@@ -16,6 +19,7 @@ public class Movement
         _groundLayer = groundLayer;
         this._groundCheck = _groundCheck;
         _rb = rb;
+      
     }
     public void Move(float inputHorizontal, float inputVertical)
     {
@@ -56,6 +60,16 @@ public class Movement
     public void StopDash()
     {
         _rb.velocity = Vector2.zero;
+    }
+    public void ActivateShield()
+    {
+        
+        shield.SetActive(true);
+    }
+    public void DeactivateShield()
+    {
+       
+        shield.SetActive(false);
     }
     public void UpdateGroundCheck() 
     {
