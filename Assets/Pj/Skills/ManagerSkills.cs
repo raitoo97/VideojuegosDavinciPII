@@ -77,6 +77,20 @@ public class ManagerSkills : MonoBehaviour
         }
             return 0f;
     }
+    public float GetLevel(SkillCategory category, SkillStatType specificType)
+    {
+        if (!_skills.ContainsKey(category)) return 0;
+        ActiveSkill skill = _skills[category];
+        for (int i = 0; i < skill.progressPerStat.Count; i++)
+        {
+            if (skill.progressPerStat[i].type == specificType)
+            {
+                int currentLevel = skill.progressPerStat[i].level;
+                return currentLevel;
+            }
+        }
+        return 0f;
+    }
     private float GetValueSkillCost(SkillCategory category, SkillStatType specificType)
     {
         if (!_skills.ContainsKey(category)) return 0f;
