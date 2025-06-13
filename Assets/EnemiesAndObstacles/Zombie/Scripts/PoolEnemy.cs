@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public enum EnemyType
@@ -22,6 +23,11 @@ public class PoolEnemy : MonoBehaviour
     }
     void Start()
     {
+        StartCoroutine(WaitForCompletePool());
+    }
+    IEnumerator WaitForCompletePool()
+    {
+        yield return new WaitForEndOfFrame();
         foreach (var enemy in EnemiesTypesList)
         {
             enemy.OnStart();

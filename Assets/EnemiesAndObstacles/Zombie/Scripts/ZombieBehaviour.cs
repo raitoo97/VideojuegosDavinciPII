@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 public class ZombieBehaviour : MonoBehaviour , IEnemies
@@ -12,6 +13,8 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
     BoxCollider[] _attackColliders;
     private float _enemypoints;
     public event Action<IEnemies> OnDeath;
+    private bool _canEjecuteCorutine;
+    private Coroutine _coroutine;
     private void Awake()
     {
         _enemypoints = 20;
@@ -26,6 +29,7 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
     private void OnEnable()
     {
         Bullet.onHitZombie += HandleHitZombie;
+        _canEjecuteCorutine = false;
     }
     void Update()
     {
@@ -37,8 +41,12 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
         {
             _anims.ChangeState(STATE.Death);
             _agent.isStopped = true;
-            Invoke("Desactivate", 1f);
-            
+            _canEjecuteCorutine = true;
+            if (_canEjecuteCorutine && _coroutine == null)
+            {
+                _coroutine = StartCoroutine(corrutinaDeath());
+                _canEjecuteCorutine = false;
+            }
             return;
         }
         if (!this.transform.IsWithinDistanceOf(GameManager.instance.player.transform, _idleDistance))
@@ -80,12 +88,6 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
         AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndex]); //sound effect
         ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
         enemy.life = 0;
-
-    }
-    private void Desactivate()
-    {
-        OnDeath?.Invoke(this);
-        this.gameObject.SetActive(false);
     }
     private void OnDisable()
     {
@@ -94,6 +96,14 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
             PointManager.instance.GetHandle.EnemyDesSuscribeEvent(this);
         }
         Bullet.onHitZombie -= HandleHitZombie;
+    }
+    IEnumerator corrutinaDeath()
+    {
+        yield return null;
+        OnDeath?.Invoke(this);
+        yield return new WaitForSeconds(1);
+        this.gameObject.SetActive(false);
+        _coroutine = null;
     }
     public float GetPointValue()
     {

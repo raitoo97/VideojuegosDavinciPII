@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-    
 public class TurretPj : MonoBehaviour
 {
     private Collider[] _colliders;
@@ -30,21 +29,9 @@ public class TurretPj : MonoBehaviour
         GetZombie();
         RotateTorrete(rotVector);
         RotateArroundDetail();
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed);
-            if (_shootRoutine != null)
-            {
-                StopCoroutine(_shootRoutine);
-            }
-            _shootRoutine = StartCoroutine(Shoot());
-        }
         print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
         print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange));
+        print(ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
     }
     #region
     private Vector3 GetZombie()
