@@ -12,6 +12,8 @@ public class Movement
     private bool _applyKnockback;
     public GameObject shield = Player.instance.transform.Find("Shield").gameObject;
 
+    //Jump
+
     //Constructor
     public Movement(Rigidbody rb, Transform _groundCheck, float speed, LayerMask groundLayer)
     {
@@ -108,3 +110,49 @@ public class Movement
     public bool IsGrounded => _isGrounded;
     public float CurrentSpeed { get; private set; }
 }
+
+/*
+[SerializeField]private float radius = 7.0f;             
+[SerializeField]private float power = 800.0f;            
+[SerializeField]private float slowDuration = 1.8f;       
+[SerializeField]private float timeLow = 0.1f;            
+[SerializeField]private float timenormal = 1f;
+[SerializeField] private float originalFixedDeltaTime;
+void Start()
+{
+    originalFixedDeltaTime = Time.fixedDeltaTime;
+}
+private void OnDrawGizmos()
+{
+    Gizmos.color = Color.yellow;
+    Gizmos.DrawWireSphere(transform.position, radius);
+}
+void Update()
+{
+    if (Input.GetKeyDown(KeyCode.U))
+    {
+        StartCoroutine(CorrtuineTime());
+    }
+}
+IEnumerator CorrtuineTime()
+{
+    Vector3 explosionPos = transform.position;
+    Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
+    foreach (Collider hit in colliders)
+    {
+        Rigidbody rb = hit.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.AddExplosionForce(power, explosionPos, radius, 3f,ForceMode.Impulse);
+        }
+    }
+    Time.timeScale = timeLow;
+    float t = 0f;
+    while (t <= slowDuration)
+    {
+        t += Time.unscaledDeltaTime;
+        Time.timeScale = Mathf.Lerp(timeLow, timenormal, t / slowDuration);
+        Time.fixedDeltaTime = originalFixedDeltaTime * Time.timeScale;
+        print(Time.fixedDeltaTime);
+        yield return null;
+    }*/
