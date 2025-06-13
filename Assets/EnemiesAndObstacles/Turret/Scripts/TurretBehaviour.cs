@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class TurretBehaviour : MonoBehaviour , IEnemies
@@ -33,13 +34,13 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     void Start()
     {
         _rayTurret = new RayCastTurret(_child.transform, mask, _distance, lineRendererMaterial,this);
-        //PointManager.instance.GetHandle.EnemySuscribeEvent(this);
     }
     private void OnEnable()
     {
         Player.TriggerShootInstant += ShootInstan;
         Bullet.OnTurretDamaged += TakeDamage;
         OnDeath += Death;
+        StartCoroutine(WaitForSuscription());
     }
     void Update()
     {
@@ -114,5 +115,10 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     public float GetPointValue()
     {
         return _enemypoints;
+    }
+    IEnumerator WaitForSuscription()
+    {
+        yield return new WaitForEndOfFrame();
+        PointManager.instance.GetHandle.EnemySuscribeEvent(this);
     }
 }
