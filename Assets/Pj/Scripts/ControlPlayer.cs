@@ -10,12 +10,21 @@ public class ControlPlayer
     private float vertical;
     // Dash
     private bool canDash = true;
-    private float dashCooldown = 1f;
+    private bool isDashing = false;
+    private float dashCooldown = 0.5f;
     private float dashCooldownTimer = 0f;
     private float dashDuration = 0.2f;
     private float dashTimer = 0f;
-    private bool isDashing = false;
-    private float dashImpulse = 20f;
+    private float dashImpulse = 40f;
+
+    //Shield
+    private bool canShield = true;
+    private bool isShielding = false;
+    private float shieldCooldown = 1f;
+    private float shieldCooldownTimer = 0f;
+    private float shieldDuration = 5f;
+    private float shieldTimer = 0f;
+    
     public ControlPlayer(Movement m, PlayerAnimation a)
     {
         _movement = m;
@@ -32,9 +41,12 @@ public class ControlPlayer
         bool isDodgeMode = Input.GetKey(KeyCode.LeftShift);
         bool isGrounded = _movement.IsGrounded;
         bool isJumping = Input.GetKeyDown(KeyCode.Space);
-        bool isDash = Input.GetKeyDown(KeyCode.Mouse0); // botón de dash
+        bool isDash = Input.GetKeyDown(KeyCode.Mouse0); 
+        bool isShield = Input.GetKeyDown(KeyCode.Mouse1);
+
         // -------ANIMACIONES DE MOVIMIENTO------
         _animation.SetGround("ground", isGrounded);
+
         // Cae (solo cuando estaba en el suelo y ahora no lo está)
         if (!isGrounded && _wasInGround)
         {
@@ -64,6 +76,7 @@ public class ControlPlayer
                 _animation.SetIdle("idle", true);
             }
         }
+
         //          ======== JUMP ========
         if (isJumping && isGrounded && !isDodgeMode)
         {
@@ -71,6 +84,8 @@ public class ControlPlayer
             _animation.SetJump("jump", true);
             _movement.Jump(jumpForce);
         }
+
+
         //          ======== DODGE Y TRANSFORMING ========
         if (isDodgeMode && !_wasHoldingShift)
         {
@@ -123,14 +138,15 @@ public class ControlPlayer
                 turretPj.DesactivateSelf();
             }
         }
+
         // ---------- DASH ----------
-        if (isDash && canDash && !isDodgeMode && isGrounded)
+        if (isDash && canDash && isDodgeMode && isGrounded)
         {
-            //_animation.SetDash("dash", true); Animacion si es que hay
+            //_animation.SetDodge("dodging", foward * 3);
             _movement.Dash(dashImpulse);
             isDashing = true;
-            dashTimer = dashDuration;
             canDash = false;
+            dashTimer = dashDuration;
             dashCooldownTimer = dashCooldown;
         }
         if (isDashing)
@@ -138,9 +154,9 @@ public class ControlPlayer
             dashTimer -= Time.deltaTime;
             if (dashTimer <= 0f)
             {
+                _movement.StopDash();
                 isDashing = false;
-                _movement.StopDash(); // Este mtodo frena el dash
-                //_animation.SetDash("dash", false); animacion si quieren poner
+                //_animation.SetDodge("dodging", foward);
             }
         }
         if (!canDash)
@@ -151,6 +167,35 @@ public class ControlPlayer
                 canDash = true;
             }
         }
+
+        //SHIELD
+        if (isShield && canShield && !isDodgeMode)
+        {
+            _movement.ActivateShield();
+            isShielding = true;
+            canShield = false;
+            shieldTimer = shieldDuration;
+            shieldCooldownTimer = shieldCooldown;
+        }
+        if (isShielding)
+        {
+            shieldTimer -= Time.deltaTime;
+            if (shieldTimer <= 0)
+            {
+                _movement.DeactivateShield();
+                isShielding = false;
+            }
+        }
+        if (!canShield)
+        {
+            shieldCooldownTimer -= Time.deltaTime;
+            if (shieldCooldownTimer <= 0)
+            {
+                canShield = true;
+            }
+        }
+
+
         //      ======== MOVIMIENTO FÍSICO Y ESTADO ========
         _wasHoldingShift = isDodgeMode;
         _wasInGround = isGrounded;

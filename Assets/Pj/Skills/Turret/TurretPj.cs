@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+    
 public class TurretPj : MonoBehaviour
 {
     private Collider[] _colliders;
@@ -16,26 +17,19 @@ public class TurretPj : MonoBehaviour
     [SerializeField] private AudioClip shotSfx;
     private Coroutine _recoilCorutine;
     public Transform recoilPoint;
-    [Header("RayCastTurret")]
-    public LayerMask maskTurret;
-    private RayCastTurretPj _turretRayCast;
-    [SerializeField]private bool isActivate;
     private void Awake()
     {
-        isActivate = true;
         turretChild.localRotation = Quaternion.identity;
     }
     private void Start()
     {
-        ActivateSelf();
-        _turretRayCast = new RayCastTurretPj(turretChild.transform, maskTurret, 1000f);
-    }
+        ActivateSelf(); 
+     }
     void Update()
     {
         GetZombie();
         RotateTorrete(rotVector);
         RotateArroundDetail();
-        _turretRayCast.OnUpdate();
         if (Input.GetKeyDown(KeyCode.P))
         {
             ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
@@ -49,6 +43,8 @@ public class TurretPj : MonoBehaviour
             }
             _shootRoutine = StartCoroutine(Shoot());
         }
+        print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
+        print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange));
     }
     #region
     private Vector3 GetZombie()
@@ -79,9 +75,7 @@ public class TurretPj : MonoBehaviour
     private void RotateTorrete(Vector3 rotVector)
     {
         if (enemy == null) return;
-
         Vector3 direction = rotVector - turretChild.position;
-
         if (direction != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
@@ -98,11 +92,11 @@ public class TurretPj : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, 16f);
     }
     #endregion
-    IEnumerator Shoot()
+   IEnumerator Shoot()
     {
-        while (true)
+        while (true) 
         {
-            if (_detectedTarget && enemy != null && _turretRayCast.IsEnabled)
+            if (_detectedTarget && enemy != null)
             {
                 var animZombieRef = enemy.GetComponentInParent<ZombieAnimations>();
                 if (animZombieRef != null)
@@ -145,7 +139,6 @@ public class TurretPj : MonoBehaviour
     public void DesactivateSelf()
     {
         if (turret == null) return;
-        isActivate = false;
         turret.gameObject.SetActive(false);
         if (_shootRoutine != null)
         {
@@ -156,7 +149,6 @@ public class TurretPj : MonoBehaviour
     public void ActivateSelf()
     {
         if (turret == null) return;
-        isActivate = true;
         turret.gameObject.SetActive(true);
         if (_shootRoutine == null)
         {
@@ -192,5 +184,5 @@ public class TurretPj : MonoBehaviour
         turretChild.transform.localRotation = _orginialRot;
         _recoilCorutine = null;
     }
-    public bool isActivateGetter { get => isActivate; }
 }
+    
