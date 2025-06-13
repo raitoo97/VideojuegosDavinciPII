@@ -15,6 +15,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     public event System.Action<IEnemies> OnDeath;
     private float _enemypoints;
     [SerializeField]private float _life;
+
     private void Awake()
     {
         _life = 100;
@@ -54,6 +55,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
         _child.transform.rotation = Quaternion.Slerp(_child.transform.rotation, _dirRotQuaternion, tripodSpeed * Time.deltaTime);
         _rayTurret.OnUpdate();
         _shootCooldown -= Time.deltaTime;
+        //AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.EnemyTurretScan);
         if (_rayTurret.IsEnabled && _shootCooldown <= 0f)
         {
             Shoot();
@@ -69,6 +71,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
         var _randomGunSight = _gunSight[Random.Range(0, _gunSight.Count)];
         bullet.transform.position = _randomGunSight.position;
         bullet.transform.rotation = _randomGunSight.rotation;
+        //AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.EnemyTurretShot);
     }
     private void ShootInstan()
     {
