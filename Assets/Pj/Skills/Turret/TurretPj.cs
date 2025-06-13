@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-    
 public class TurretPj : MonoBehaviour
 {
     private Collider[] _colliders;

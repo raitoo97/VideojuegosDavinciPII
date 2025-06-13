@@ -8,6 +8,13 @@ public class Bullet : MonoBehaviour
     public ShooterType shooterType;
     public static Action<Player,float,Transform> onHitPlayerBullet;
     public static Action<ZombieBehaviour> onHitZombie;
+    public static event Action<TurretBehaviour, float> OnTurretDamaged;
+    [Header("Player dmg")]
+    [SerializeField]private float _dmgPlayer;
+    private void Start()
+    {
+        _dmgPlayer = 50;
+    }
     private void OnEnable()
     {
         StartCoroutine(DesactivateBulletCourutine());
@@ -36,6 +43,11 @@ public class Bullet : MonoBehaviour
         }
         if (other.gameObject.layer == 13)
         {
+            DesactivateBullet();
+        }
+        if (shooterType == ShooterType.Player && other.TryGetComponent<TurretBehaviour>(out var turret))
+        {
+            OnTurretDamaged?.Invoke(turret, _dmgPlayer);
             DesactivateBullet();
         }
     }

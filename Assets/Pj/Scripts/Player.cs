@@ -15,11 +15,9 @@ public class Player : MonoBehaviour
     [SerializeField]private float _currentLife;
     public static Action OnPlayerDeath;
     public static Action TriggerShootInstant;
-
     public static Player instance;
     //Sound
     AudioManager audioManager => AudioManager.instance;
-
     private void Awake()
     {
         if (instance == null)
@@ -66,7 +64,6 @@ public class Player : MonoBehaviour
             OnPlayerDeath?.Invoke();
         }
     }
-
     //public void DamageShield(float) { }
     public void HealthPlayer(float healt)
     {
@@ -89,9 +86,7 @@ public class Player : MonoBehaviour
         ParticlesPool.instance.SpamParticle(ParticleType.Sparks, new Vector3(0f, 2f, 0f), new Vector3(UnityEngine.Random.Range(0f, 180f), 0f, 0f), GameManager.instance.player.transform);
         player.DamagePlayer(damage);
     }
-
     //private void HandleHitShield(){}
-    
     public float GetLife { get => Mathf.Clamp(_currentLife, 0, _maxLife); }
     private void OnDisable()
     {
