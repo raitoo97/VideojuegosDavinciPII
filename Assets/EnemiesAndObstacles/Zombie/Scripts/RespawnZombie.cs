@@ -9,7 +9,7 @@ public class RespawnZombie : MonoBehaviour
     }
     void Start()
     {
-        StartCoroutine(RespawnEnemy());
+        StartCoroutine(WaitForFrame());
     }
     IEnumerator RespawnEnemy()
     {
@@ -25,5 +25,10 @@ public class RespawnZombie : MonoBehaviour
             }
             yield return new WaitForSeconds(3f);
         }
+    }
+    public IEnumerator WaitForFrame()
+    {
+        yield return new WaitForEndOfFrame();
+        StartCoroutine(RespawnEnemy());
     }
 }
