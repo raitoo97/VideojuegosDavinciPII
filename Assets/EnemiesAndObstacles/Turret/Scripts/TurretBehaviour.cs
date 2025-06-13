@@ -16,8 +16,9 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     [SerializeField] private float _fireRate = 0.5f;
     public event System.Action<IEnemies> OnDeath;
     private float _enemypoints;
+    [SerializeField]private Collider _collider;
     [SerializeField]private float _life;
-
+    [SerializeField]private Animator animator;
     private void Awake()
     {
         _life = 100;
@@ -32,10 +33,14 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
                 _gunSight.Add(x);
             }
         }
+        _collider = this.GetComponent<Collider>();
+        _collider.enabled = true;
     }
     void Start()
     {
         _rayTurret = new RayCastTurret(_rayLaser, mask, _distance, lineRendererMaterial,this);
+        animator = _child.GetComponent<Animator>();
+        animator.enabled = false;
     }
     private void OnEnable()
     {
@@ -103,12 +108,11 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
         if (_life <= 0)
         {
             OnDeath?.Invoke(this);
-            Destroy(gameObject);
         }
     }
     public void Death(IEnemies enemy)
     {
-        print("Moristeeeeeeeeeee");
+        StartCoroutine(DeathCorutine());
     }
     private void OnDisable()
     {
@@ -124,5 +128,13 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     {
         yield return new WaitForEndOfFrame();
         PointManager.instance.GetHandle.EnemySuscribeEvent(this);
+    }
+    IEnumerator DeathCorutine()
+    {
+        animator.enabled = true;
+        animator.SetBool("IsDeath", true);
+        _collider.enabled = false;
+        yield return new WaitForSeconds(2);
+        Destroy(this.gameObject);
     }
 }
