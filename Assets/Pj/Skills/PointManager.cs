@@ -38,6 +38,6 @@
                 return false;
             }
         }
-        public float GetPoints => _currentPoints;
+        public float CurrentPoints => _currentPoints;
         public HandleEnemyPoints GetHandle => HandelEnemy;
     }
