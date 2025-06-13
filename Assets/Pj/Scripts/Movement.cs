@@ -13,8 +13,7 @@ public class Movement
     //public GameObject shield = Player.instance.transform.Find("Shield").gameObject;
 
     
-    
-
+   
     //Constructor
     public Movement(Rigidbody rb, Transform _groundCheck, float speed, LayerMask groundLayer)
     {

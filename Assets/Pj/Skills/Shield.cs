@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-    [SerializeField] private float radius = 7.0f;
-    [SerializeField] private float power = 800.0f;
-    [SerializeField] private float slowDuration = 1f;
-    [SerializeField] private float timeLow = 0.1f;
-    [SerializeField] private float timenormal = 1f;
-    [SerializeField] private float originalFixedDeltaTime;
     [SerializeField] public GameObject shield;
     [SerializeField] private Rigidbody _rb;
+     private float radius = 2.5f;
+     private float power = 2f;
+     private float slowDuration = 1f;
+     private float timeLow = 0.1f;
+     private float timenormal = 1f;
+     private float originalFixedDeltaTime;
     public bool canShield;
     void Start()
     {
@@ -25,7 +26,14 @@ public class Shield : MonoBehaviour
         if (canShield)
         {
             StartCoroutine(CorrtuineTime());
+            
         }
+    }
+
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 
     IEnumerator CorrtuineTime()
@@ -37,7 +45,7 @@ public class Shield : MonoBehaviour
             Rigidbody rb = hit.GetComponent<Rigidbody>();
             if (rb != null && rb != _rb)
             {
-                rb.AddExplosionForce(power, explosionPos, radius, 3f, ForceMode.Impulse);
+                rb.AddExplosionForce(power, explosionPos, radius, 1f, ForceMode.Impulse);
             }
         }
         Time.timeScale = timeLow;
