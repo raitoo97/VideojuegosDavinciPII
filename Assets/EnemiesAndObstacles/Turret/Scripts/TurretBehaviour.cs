@@ -14,8 +14,11 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     [SerializeField] private float _fireRate = 0.5f;
     public event System.Action<IEnemies> OnDeath;
     private float _enemypoints;
+    [SerializeField]private float _life;
     private void Awake()
     {
+        _life = 100;
+        _enemypoints = 60;
         _distance = 50f;
         _child = this.transform.GetChild(0);
         var _tempList = _child.GetComponentsInChildren<Transform>();
@@ -30,10 +33,13 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     void Start()
     {
         _rayTurret = new RayCastTurret(_child.transform, mask, _distance, lineRendererMaterial,this);
+        PointManager.instance.GetHandle.EnemySuscribeEvent(this);
     }
     private void OnEnable()
     {
         Player.TriggerShootInstant += ShootInstan;
+        Bullet.OnTurretDamaged += TakeDamage;
+        OnDeath += Death;
     }
     void Update()
     {
@@ -84,9 +90,26 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
             Shoot();
         }
     }
+    public void TakeDamage(TurretBehaviour turret,float dmg)
+    {
+        if (turret != this) return;
+        print("Entro");
+        _life -= dmg;
+        if (_life <= 0)
+        {
+            OnDeath?.Invoke(this);
+            Destroy(gameObject);
+        }
+    }
+    public void Death(IEnemies enemy)
+    {
+        print("Moristeeeeeeeeeee");
+    }
     private void OnDisable()
     {
         Player.TriggerShootInstant -= ShootInstan;
+        Bullet.OnTurretDamaged -= TakeDamage;
+        PointManager.instance.GetHandle.EnemyDesSuscribeEvent(this);
     }
     public float GetPointValue()
     {
