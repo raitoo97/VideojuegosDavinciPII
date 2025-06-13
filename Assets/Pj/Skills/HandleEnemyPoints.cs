@@ -9,11 +9,13 @@ public class HandleEnemyPoints
     }
     public void EnemySuscribeEvent(IEnemies enemy)
     {
+        if (enemies.Contains(enemy)) return;
         enemies.Add(enemy);
         enemy.OnDeath += HandleEnemyDeath;
     }
     public void EnemyDesSuscribeEvent(IEnemies enemy)
     {
+        if (!enemies.Contains(enemy)) return;
         enemies.Remove(enemy);
         enemy.OnDeath -= HandleEnemyDeath;
     }

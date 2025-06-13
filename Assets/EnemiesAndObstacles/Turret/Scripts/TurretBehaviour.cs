@@ -33,7 +33,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     void Start()
     {
         _rayTurret = new RayCastTurret(_child.transform, mask, _distance, lineRendererMaterial,this);
-        PointManager.instance.GetHandle.EnemySuscribeEvent(this);
+        //PointManager.instance.GetHandle.EnemySuscribeEvent(this);
     }
     private void OnEnable()
     {
