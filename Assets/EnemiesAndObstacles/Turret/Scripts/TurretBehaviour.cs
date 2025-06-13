@@ -6,6 +6,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     [SerializeField]private Vector3 _dirRotVector;
     [SerializeField]private Quaternion _dirRotQuaternion;
     [SerializeField]private Transform _child;
+    [SerializeField]private Transform _rayLaser;
     [SerializeField]private RayCastTurret _rayTurret;
     [SerializeField]private float _distance;
     [SerializeField]private List<Transform> _gunSight = new List<Transform>();
@@ -33,7 +34,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     }
     void Start()
     {
-        _rayTurret = new RayCastTurret(_child.transform, mask, _distance, lineRendererMaterial,this);
+        _rayTurret = new RayCastTurret(_rayLaser, mask, _distance, lineRendererMaterial,this);
     }
     private void OnEnable()
     {
