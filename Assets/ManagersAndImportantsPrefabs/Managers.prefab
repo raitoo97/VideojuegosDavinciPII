@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8304001904796028817}
   - component: {fileID: 7709783099561902853}
   - component: {fileID: 3931444751640104713}
+  - component: {fileID: 9083364042843550237}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -126,6 +127,18 @@ MonoBehaviour:
     frequency: 1.5
     duration: 0.5
     pivotOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &9083364042843550237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5743755235460010870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aca95038c87027642bd28aaf74c11a37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7340844166045931331
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,4 +198,7 @@ MonoBehaviour:
   turretPlayerImpactSfx:
   - {fileID: 8300000, guid: 95a59a1b5e704bd4986fd93b4fc5b499, type: 3}
   - {fileID: 8300000, guid: d22412fc3b7763d4d89f0adb3b4dd5bd, type: 3}
+  skillPlayerDash:
+  - {fileID: 8300000, guid: 3ec701048af2b644abbbf8bda5340b91, type: 3}
+  - {fileID: 8300000, guid: 4cbb8ca3fd30f7346b72b25bb2e44f40, type: 3}
   audioSources: []

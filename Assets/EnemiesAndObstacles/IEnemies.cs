@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+using System;
 public interface IEnemies
 {
-
+    public event Action<IEnemies> OnDeath;
+    public float GetPointValue();
 }
