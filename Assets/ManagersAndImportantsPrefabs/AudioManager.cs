@@ -8,11 +8,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AudioClip[] playerDamageSfx;
     [SerializeField] public AudioClip[] turretPlayerImpactSfx;
     [SerializeField] public AudioClip[] skillPlayerDash;
-    [SerializeField] public AudioClip   EnemyTurretScan;
     [SerializeField] public AudioClip   EnemyTurretShot;
     public List<AudioSource> audioSources = new List<AudioSource>();
     private bool isMusicPlaying;
-
     public static AudioManager instance;
     private void Awake()
     {
@@ -48,6 +46,12 @@ public class AudioManager : MonoBehaviour
     {
         return audioSources.Find(x => x.isPlaying == false);
     }
+    public AudioSource GetSourceSpecific(AudioClip clip)
+    {
+        var au = audioSources.Find(x => x.clip == clip);
+        if (au == null) return null;
+        return au;
+    }
     public void PlaySfxRandomPitch(AudioClip clip) 
     {
         var audioSource = GetSource();
@@ -60,6 +64,12 @@ public class AudioManager : MonoBehaviour
         var audioSource = GetSource();
         if (audioSource == null || clip == null) return;
         audioSource.PlayOneShot(clip);
+    }
+    public void PauseMusicClip(AudioClip clip)
+    {
+        var au = GetSourceSpecific(clip);
+        if (au == null) return;
+        au.Stop();
     }
     private void ToggleMusic()
     {
