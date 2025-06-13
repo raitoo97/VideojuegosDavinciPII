@@ -2257,6 +2257,7 @@ MonoBehaviour:
   _groundCheck: {fileID: 2112523642183775562}
   _animator: {fileID: 0}
   _initSpeed: 3
+  _shield: {fileID: 5702548916812356572}
   groundLayer:
     serializedVersion: 2
     m_Bits: 8192
@@ -2357,6 +2358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6748310837562313690}
+  - component: {fileID: 5702548916812356572}
   - component: {fileID: 2130044411140376439}
   - component: {fileID: 3034976409280849076}
   - component: {fileID: 4506300145495170818}
@@ -2383,6 +2385,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8086958706035148933}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5702548916812356572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469881310358930350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ccb70c156677d94eadb11d25a3f6674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 7
+  power: 800
+  slowDuration: 1.8
+  timeLow: 0.1
+  timenormal: 1
+  originalFixedDeltaTime: 0
+  shield: {fileID: 4469881310358930350}
+  _rb: {fileID: 6444081342482031583}
+  canShield: 0
 --- !u!33 &2130044411140376439
 MeshFilter:
   m_ObjectHideFlags: 0
