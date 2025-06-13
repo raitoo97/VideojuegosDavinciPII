@@ -77,7 +77,6 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
         var _randomGunSight = _gunSight[Random.Range(0, _gunSight.Count)];
         bullet.transform.position = _randomGunSight.position;
         bullet.transform.rotation = _randomGunSight.rotation;
-        print("Disparo");
         AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.EnemyTurretShot);
     }
     private void ShootInstan()
