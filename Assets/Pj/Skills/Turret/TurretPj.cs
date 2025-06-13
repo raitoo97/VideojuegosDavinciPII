@@ -31,7 +31,6 @@ public class TurretPj : MonoBehaviour
         RotateArroundDetail();
         print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
         print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange));
-        print(ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
     }
     #region
     private Vector3 GetZombie()
