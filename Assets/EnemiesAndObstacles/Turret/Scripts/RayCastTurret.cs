@@ -26,6 +26,7 @@ public class RayCastTurret
     }
     public void OnUpdate()
     {
+        if(_transform == null) return;
         Ray _ray = new Ray(_transform.position, _transform.forward);
         if (Physics.Raycast(_ray, out RaycastHit _hit, _distance, _mask))
         {
