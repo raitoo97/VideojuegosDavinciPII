@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca95038c87027642bd28aaf74c11a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentPoints: 0
 --- !u!1 &7340844166045931331
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,4 +202,6 @@ MonoBehaviour:
   skillPlayerDash:
   - {fileID: 8300000, guid: 3ec701048af2b644abbbf8bda5340b91, type: 3}
   - {fileID: 8300000, guid: 4cbb8ca3fd30f7346b72b25bb2e44f40, type: 3}
+  EnemyTurretScan: {fileID: 8300000, guid: 17511c27aeda10243a36967c3976b37a, type: 3}
+  EnemyTurretShot: {fileID: 8300000, guid: 8c71d4eccf5a45e4494692b8a1f9862c, type: 3}
   audioSources: []
