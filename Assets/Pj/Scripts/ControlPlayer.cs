@@ -4,6 +4,7 @@ public class ControlPlayer
 {
     private Movement _movement;
     private PlayerAnimation _animation;
+    private Shield _shield;
     private bool _wasHoldingShift = false;
     private bool _wasInGround;
     private float horizontal;
@@ -25,10 +26,11 @@ public class ControlPlayer
     private float shieldDuration = 5f;
     private float shieldTimer = 0f;
     
-    public ControlPlayer(Movement m, PlayerAnimation a)
+    public ControlPlayer(Movement m, PlayerAnimation a, Shield s)
     {
         _movement = m;
         _animation = a;
+        _shield = s;
     }
     public void OnUpdate()
     {
@@ -171,7 +173,8 @@ public class ControlPlayer
         //SHIELD
         if (isShield && canShield && !isDodgeMode)
         {
-            _movement.ActivateShield();
+            _shield.canShield = true;
+            _shield.ActivateShield();
             isShielding = true;
             canShield = false;
             shieldTimer = shieldDuration;
@@ -182,7 +185,7 @@ public class ControlPlayer
             shieldTimer -= Time.deltaTime;
             if (shieldTimer <= 0)
             {
-                _movement.DeactivateShield();
+                _shield.DeactivateShield();
                 isShielding = false;
             }
         }
@@ -191,10 +194,11 @@ public class ControlPlayer
             shieldCooldownTimer -= Time.deltaTime;
             if (shieldCooldownTimer <= 0)
             {
+                canShield = false;
                 canShield = true;
             }
         }
-
+        
 
         //      ======== MOVIMIENTO FÍSICO Y ESTADO ========
         _wasHoldingShift = isDodgeMode;
