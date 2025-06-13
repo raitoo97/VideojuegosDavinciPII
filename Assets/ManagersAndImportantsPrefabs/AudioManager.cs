@@ -8,8 +8,11 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AudioClip[] playerDamageSfx;
     [SerializeField] public AudioClip[] turretPlayerImpactSfx;
     [SerializeField] public AudioClip[] skillPlayerDash;
+    [SerializeField] public AudioClip   EnemyTurretScan;
+    [SerializeField] public AudioClip   EnemyTurretShot;
     public List<AudioSource> audioSources = new List<AudioSource>();
     private bool isMusicPlaying;
+
     public static AudioManager instance;
     private void Awake()
     {

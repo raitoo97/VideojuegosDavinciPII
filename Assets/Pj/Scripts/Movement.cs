@@ -10,7 +10,7 @@ public class Movement
     private Rigidbody _rb;
     private Vector3 _pendingKnockback;
     private bool _applyKnockback;
-    //public GameObject shield = Player.instance.transform.Find("Shield").gameObject;
+    
 
     
    
@@ -65,20 +65,6 @@ public class Movement
         _rb.velocity = Vector2.zero;
     }
 
-    /*
-    public void ActivateShield()
-    {
-        
-        shield.SetActive(true);
-        ParticlesPool.instance.SpamParticle(ParticleType.Shield, new Vector3(0f, 0f, 0f), Vector3.zero, _rb.transform);
-
-    }
-    public void DeactivateShield()
-    {
-       
-        shield.SetActive(false);
-    }
-    */
     public void UpdateGroundCheck() 
     {
         Vector3 origin = _groundCheck.position;
