@@ -20,12 +20,22 @@ public class TurretPj : MonoBehaviour
     {
         turretChild.localRotation = Quaternion.identity;
     }
-    private void Start()
+    private void OnEnable()
     {
-        ActivateSelf(); 
-     }
+        ActivateSelf();
+    }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.turretCategory);
+        }
+        bool unlocked = ManagerSkills.instance.IsUnlocked(SkillCategory.turretCategory);
+        if (unlocked && (turret != null || !turret.activeSelf))
+            turret.gameObject.SetActive(true);
+        else if (!unlocked && turret != null && turret.activeSelf)
+            turret.gameObject.SetActive(false);
+        if (!unlocked) return;
         GetZombie();
         RotateTorrete(rotVector);
         RotateArroundDetail();
@@ -134,6 +144,12 @@ public class TurretPj : MonoBehaviour
     }
     public void ActivateSelf()
     {
+        bool unlocked = ManagerSkills.instance.IsUnlocked(SkillCategory.turretCategory);
+        if (!unlocked)
+        {
+            DesactivateSelf();
+            return;
+        }
         if (turret == null) return;
         turret.gameObject.SetActive(true);
         if (_shootRoutine == null)
