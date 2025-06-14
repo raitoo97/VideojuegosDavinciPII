@@ -65,7 +65,7 @@ MonoBehaviour:
   skillEntries:
   - category: 0
     dataStrcut: {fileID: 11400000, guid: 8b6c52e2654fcda40af5187c37dd2620, type: 2}
-    isUnlocked: 0
+    isUnlocked: 1
     costToUnlock: 300
     ultimateUnlocked: 0
     costToUnlockUltimate: 500
