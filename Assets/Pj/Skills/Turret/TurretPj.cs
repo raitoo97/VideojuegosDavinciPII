@@ -20,10 +20,6 @@ public class TurretPj : MonoBehaviour
     {
         turretChild.localRotation = Quaternion.identity;
     }
-    private void OnEnable()
-    {
-        ActivateSelf();
-    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.X))
