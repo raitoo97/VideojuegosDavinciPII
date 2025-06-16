@@ -20,18 +20,35 @@ public class TurretPj : MonoBehaviour
     {
         turretChild.localRotation = Quaternion.identity;
     }
-    private void Start()
-    {
-        ActivateSelf(); 
-     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.turretCategory);
+        }
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.turretCategory);
+        }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            ManagerSkills.instance.TryUnlockUltimate(SkillCategory.turretCategory);
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            print(ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory));
+        }
+        bool unlocked = ManagerSkills.instance.IsUnlocked(SkillCategory.turretCategory);
+        if (unlocked && (turret != null || !turret.activeSelf))
+            turret.gameObject.SetActive(true);
+        else if (!unlocked && turret != null && turret.activeSelf)
+            turret.gameObject.SetActive(false);
+        if (!unlocked) return;
         GetZombie();
         RotateTorrete(rotVector);
         RotateArroundDetail();
         print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
         print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange));
-        print(ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
     }
     #region
     private Vector3 GetZombie()
@@ -135,6 +152,12 @@ public class TurretPj : MonoBehaviour
     }
     public void ActivateSelf()
     {
+        bool unlocked = ManagerSkills.instance.IsUnlocked(SkillCategory.turretCategory);
+        if (!unlocked)
+        {
+            DesactivateSelf();
+            return;
+        }
         if (turret == null) return;
         turret.gameObject.SetActive(true);
         if (_shootRoutine == null)

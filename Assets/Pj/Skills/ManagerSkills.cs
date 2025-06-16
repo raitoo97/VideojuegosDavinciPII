@@ -25,13 +25,14 @@ public class ManagerSkills : MonoBehaviour
     {
         foreach(var entry in skillEntries)
         {
-            _skills[entry.category] = new ActiveSkill(entry.category,entry.dataStrcut);
+            _skills[entry.category] = new ActiveSkill(entry.category,entry.dataStrcut,entry.isUnlocked,entry.costToUnlock, entry.costToUnlockUltimate);
         }
     }
     public void UpgradeSkill(SkillCategory category, SkillStatType specificType)
     {
         if(!_skills.ContainsKey(category)) return;
         ActiveSkill skill = _skills[category];
+        if (!skill.isUnlocked) return;
         SkillStat targetStat = null;
         foreach (SkillStat entry in skill.dataStrcut.dataScripteable)
         {
@@ -61,6 +62,7 @@ public class ManagerSkills : MonoBehaviour
     {
         if (!_skills.ContainsKey(category)) return 0;
         ActiveSkill skill = _skills[category];
+        if (!skill.isUnlocked) return 0f;
         for (int i = 0; i < skill.progressPerStat.Count; i++)
         {
             if (skill.progressPerStat[i].type == specificType)
@@ -81,6 +83,7 @@ public class ManagerSkills : MonoBehaviour
     {
         if (!_skills.ContainsKey(category)) return 0;
         ActiveSkill skill = _skills[category];
+        if (!skill.isUnlocked) return 0f;
         for (int i = 0; i < skill.progressPerStat.Count; i++)
         {
             if (skill.progressPerStat[i].type == specificType)
@@ -95,7 +98,8 @@ public class ManagerSkills : MonoBehaviour
     {
         if (!_skills.ContainsKey(category)) return 0f;
         ActiveSkill skill = _skills[category];
-        for(int i = 0;i < skill.progressPerStat.Count; i++)
+        if (!skill.isUnlocked) return 0f;
+        for (int i = 0;i < skill.progressPerStat.Count; i++)
         {
             if (skill.progressPerStat[i].type == specificType)
             {
@@ -111,7 +115,67 @@ public class ManagerSkills : MonoBehaviour
         }
         return 0f;
     }
+    public bool IsUnlocked(SkillCategory category)
+    {
+        if (!_skills.ContainsKey(category)) return false;
+        ActiveSkill skill = _skills[category];
+        return skill.isUnlocked;
+    } 
     #endregion
+    public void CanUnlockSkillCategory(SkillCategory category)
+    {
+        if (!_skills.ContainsKey(category)) return;
+        ActiveSkill skill = _skills[category];
+        if (skill.isUnlocked) return;
+        if (PointManager.instance.SpendPoints(skill.costToUnlock))
+        {
+            skill.isUnlocked = true;
+            var entry = skillEntries.Find(x => x.category == category);
+            if (entry != null) entry.isUnlocked = true;
+        }
+    }
+    public bool AreAllSkillsMaxed(SkillCategory category)
+    {
+        if (!_skills.ContainsKey(category)) return false;
+        ActiveSkill skill = _skills[category];
+        if (!skill.isUnlocked) return false;
+        foreach (var progress in skill.progressPerStat)
+        {
+            SkillStat stat = skill.dataStrcut.dataScripteable.Find(x => x.skillType == progress.type);
+            int maxLevel = stat.GetMaxLevel();
+            if (progress.level < maxLevel)
+            {
+                print("No estan todas al maximo");
+                return false;
+            }
+        }
+        print("SIII estan todas al maximo");
+        return true;
+    }
+    public void TryUnlockUltimate(SkillCategory category)
+    {
+        if (!_skills.ContainsKey(category)) return;
+        ActiveSkill skill = _skills[category];
+        if (!skill.isUnlocked || skill.ultimateUnlocked) return;
+        if (!AreAllSkillsMaxed(category))
+        {
+            Debug.Log("No se puede desbloquear aún, faltan habilidades al máximo.");
+            return;
+        }
+        if (PointManager.instance.SpendPoints(skill.costToUnlockUltimate))
+        {
+            var entry = skillEntries.Find(x => x.category == category);
+            if (entry != null) entry.ultimateUnlocked = true;
+            skill.ultimateUnlocked = true;
+            Debug.Log("¡Mejora definitiva desbloqueada!");
+        }
+    }
+    public bool IsUnlockUltimate(SkillCategory category)
+    {
+        if (!_skills.ContainsKey(category)) return false;
+        ActiveSkill skill = _skills[category];
+        return skill.ultimateUnlocked;
+    }
 }
 [HideInInspector]
 public class StatProgress
@@ -130,11 +194,18 @@ public class ActiveSkill
     public SkillCategory category;
     public List<StatProgress> progressPerStat;
     public SkillCategoryData dataStrcut;
-    public ActiveSkill(SkillCategory category,SkillCategoryData dataStrcut)
+    public bool isUnlocked;
+    public float costToUnlock;
+    public bool ultimateUnlocked = false;
+    public float costToUnlockUltimate = 50f;
+    public ActiveSkill(SkillCategory category,SkillCategoryData dataStrcut,bool isUnlocked,float costToUnlock,float costToUnlockUltimate)
     {
         this.category = category;
         this.progressPerStat = new List<StatProgress>();
         this.dataStrcut = dataStrcut;
+        this.isUnlocked = isUnlocked;
+        this.costToUnlock = costToUnlock;
+        this.costToUnlockUltimate= costToUnlockUltimate;
         foreach (var data in dataStrcut.dataScripteable)
         {
             progressPerStat.Add(new StatProgress (data.skillType,0));
