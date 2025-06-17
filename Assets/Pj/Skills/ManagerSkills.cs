@@ -164,9 +164,9 @@ public class ManagerSkills : MonoBehaviour
         }
         if (PointManager.instance.SpendPoints(skill.costToUnlockUltimate))
         {
+            skill.ultimateUnlocked = true;
             var entry = skillEntries.Find(x => x.category == category);
             if (entry != null) entry.ultimateUnlocked = true;
-            skill.ultimateUnlocked = true;
             Debug.Log("¡Mejora definitiva desbloqueada!");
         }
     }
@@ -197,7 +197,7 @@ public class ActiveSkill
     public bool isUnlocked;
     public float costToUnlock;
     public bool ultimateUnlocked = false;
-    public float costToUnlockUltimate = 50f;
+    public float costToUnlockUltimate;
     public ActiveSkill(SkillCategory category,SkillCategoryData dataStrcut,bool isUnlocked,float costToUnlock,float costToUnlockUltimate)
     {
         this.category = category;
