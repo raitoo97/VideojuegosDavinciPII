@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7709783099561902853}
   - component: {fileID: 3931444751640104713}
   - component: {fileID: 9083364042843550237}
+  - component: {fileID: 8128287774387905897}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -69,6 +70,12 @@ MonoBehaviour:
     costToUnlock: 0
     ultimateUnlocked: 0
     costToUnlockUltimate: 500
+  - category: 1
+    dataStrcut: {fileID: 11400000, guid: 9274209409056a14da20637bf99c7aa2, type: 2}
+    isUnlocked: 0
+    costToUnlock: 700
+    ultimateUnlocked: 0
+    costToUnlockUltimate: 500
 --- !u!114 &7709783099561902853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,6 +89,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imagesList:
+  - {fileID: 0}
+  buttonList:
+  - {fileID: 0}
+  - {fileID: 0}
+  textList:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   _statusPjImageEntries:
   - lifeStatusType: 0
@@ -99,11 +113,6 @@ MonoBehaviour:
   - lifeStatusType: 4
     statusImage: {fileID: 0}
     EdgeStatus: {fileID: 0}
-  points: {fileID: 0}
-  CadenciaText: {fileID: 0}
-  DistanciaText: {fileID: 0}
-  Cadencia: {fileID: 0}
-  Distancia: {fileID: 0}
 --- !u!114 &3931444751640104713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +158,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentPoints: 0
+--- !u!114 &8128287774387905897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5743755235460010870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a76993136da17a0408a6211778cdef88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zombieListRespawn: []
 --- !u!1 &7340844166045931331
 GameObject:
   m_ObjectHideFlags: 0
