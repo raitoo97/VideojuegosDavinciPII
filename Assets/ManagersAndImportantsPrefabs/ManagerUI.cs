@@ -5,14 +5,13 @@ using UnityEngine.UI;
 public class ManagerUI : MonoBehaviour
 {
     public List<Image> imagesList = new List<Image>();
+    public List<Button> buttonList = new List<Button>();
+    public List <Text> textList = new List<Text>();
     public List<LifeController> _statusPjImageEntries = new List<LifeController>();
     public static ManagerUI instance;
     private PjStatesLifeBar PjLifeStates;
-    public Text points;
-    public Text CadenciaText;
-    public Text DistanciaText;
-    public Button Cadencia;
-    public Button Distancia;
+    private PjSkillsUpgradeUI _pjSkillsUpgradeUI;
+    public Button WaveButton;
     private void Awake()
     {
         if (instance == null) { instance = this; }
@@ -21,26 +20,21 @@ public class ManagerUI : MonoBehaviour
     void Start()
     {
         imagesList = imagesList.OrderBy(x => x.name).ToList();
+        _pjSkillsUpgradeUI = new PjSkillsUpgradeUI(textList, buttonList);
         PjLifeStates = new PjStatesLifeBar(GameManager.instance.player.GetComponent<Player>(),imagesList.Find(x => x.gameObject.name == "LifeBar"), _statusPjImageEntries);
         PjLifeStates.OnStart();
-        Cadencia.onClick.AddListener(UpgradeCadencia);
-        Distancia.onClick.AddListener(UpgradeDistancia);
+        _pjSkillsUpgradeUI.OnStart();
+        WaveButton.onClick.AddListener(ActivateWave);
     }
     private void Update()
     {
         PjLifeStates.OnUpdate();
-        points.text = PointManager.instance.CurrentPoints.ToString();
-        CadenciaText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretShotSpeed).ToString();
-        DistanciaText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretVisionRange).ToString();
+        _pjSkillsUpgradeUI.OnUpdate();
     }
-
-    private void UpgradeCadencia()
+    private void ActivateWave()
     {
-        ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed);
-    }
-    private void UpgradeDistancia()
-    {
-        ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
+        WavesManager.instance._currentWave?.Invoke();
+        WavesManager.instance.AdvanceWave();
     }
     public PjStatesLifeBar getLifeBar { get => PjLifeStates; }
 }

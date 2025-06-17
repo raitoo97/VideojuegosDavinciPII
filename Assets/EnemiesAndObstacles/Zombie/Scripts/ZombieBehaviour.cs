@@ -13,6 +13,7 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
     BoxCollider[] _attackColliders;
     private float _enemypoints;
     public event Action<IEnemies> OnDeath;
+    public event Action<IEnemies> _substractEnemyFromWave;
     private bool _canEjecuteCorutine;
     private Coroutine _coroutine;
     private void Awake()
@@ -95,6 +96,10 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
         {
             PointManager.instance.GetHandle.EnemyDesSuscribeEvent(this);
         }
+        if (WavesManager.instance != null)
+        {
+            WavesManager.instance.EnemyDesuscribeEventToWaveSubstract(this);
+        }
         Bullet.onHitZombie -= HandleHitZombie;
         //ACA LOGICA DROP
     }
@@ -102,6 +107,7 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
     {
         yield return null;
         OnDeath?.Invoke(this);
+        _substractEnemyFromWave?.Invoke(this);
         yield return new WaitForSeconds(1);
         this.gameObject.SetActive(false);
         _coroutine = null;
@@ -109,5 +115,9 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
     public float GetPointValue()
     {
         return _enemypoints;
+    }
+    public int SubstractFromWave()
+    {
+        return 1;
     }
 }

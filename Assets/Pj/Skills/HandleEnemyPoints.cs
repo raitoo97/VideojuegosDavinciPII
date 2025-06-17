@@ -23,6 +23,5 @@ public class HandleEnemyPoints
     {
         float points = enemy.GetPointValue();
         PointManager.instance.AddPoints(points);
-        Debug.Log($"Enemigo eliminado. +{points} puntos");
     }
 }

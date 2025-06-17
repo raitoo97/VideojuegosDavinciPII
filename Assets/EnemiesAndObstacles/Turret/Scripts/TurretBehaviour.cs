@@ -15,6 +15,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     private float _shootCooldown;
     [SerializeField] private float _fireRate = 0.5f;
     public event System.Action<IEnemies> OnDeath;
+    public event System.Action<IEnemies> _substractEnemyFromWave;
     private float _enemypoints;
     [SerializeField]private Collider _collider;
     [SerializeField]private float _life;
@@ -41,12 +42,10 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
         _rayTurret = new RayCastTurret(_rayLaser, mask, _distance, lineRendererMaterial,this);
         animator = _child.GetComponent<Animator>();
         animator.enabled = false;
-    }
-    private void OnEnable()
-    {
         Player.TriggerShootInstant += ShootInstan;
         Bullet.OnTurretDamaged += TakeDamage;
         OnDeath += Death;
+        _substractEnemyFromWave += Death;
         StartCoroutine(WaitForSuscription());
     }
     void Update()
@@ -102,22 +101,23 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     public void TakeDamage(TurretBehaviour turret,float dmg)
     {
         if (turret != this) return;
-        print("Entro");
         _life -= dmg;
         if (_life <= 0)
         {
             OnDeath?.Invoke(this);
+            _substractEnemyFromWave?.Invoke(this);
         }
     }
     public void Death(IEnemies enemy)
     {
         StartCoroutine(DeathCorutine());
     }
-    private void OnDisable()
+    private void OnDestroy()
     {
         Player.TriggerShootInstant -= ShootInstan;
         Bullet.OnTurretDamaged -= TakeDamage;
         PointManager.instance.GetHandle.EnemyDesSuscribeEvent(this);
+        WavesManager.instance.EnemyDesuscribeEventToWaveSubstract(this);
     }
     public float GetPointValue()
     {
@@ -127,6 +127,9 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     {
         yield return new WaitForEndOfFrame();
         PointManager.instance.GetHandle.EnemySuscribeEvent(this);
+        WavesManager.instance.EnemySuscribeEventToWaveSubstract(this);
+        yield return new WaitForEndOfFrame();
+        this.gameObject.SetActive(false);
     }
     IEnumerator DeathCorutine()
     {
@@ -135,5 +138,13 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
         _collider.enabled = false;
         yield return new WaitForSeconds(2);
         Destroy(this.gameObject);
+    }
+    public int SubstractFromWave()
+    {
+        return 1;
+    }
+    public int ReturnThisTorret()
+    {
+        return 1;
     }
 }
