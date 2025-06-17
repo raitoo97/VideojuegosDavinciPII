@@ -101,7 +101,6 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     public void TakeDamage(TurretBehaviour turret,float dmg)
     {
         if (turret != this) return;
-        print("Entro");
         _life -= dmg;
         if (_life <= 0)
         {
