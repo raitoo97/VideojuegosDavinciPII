@@ -12,4 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d18f75e9f13b7104cbe84e68462834b9, type: 3}
   m_Name: ShieldSkill
   m_EditorClassIdentifier: 
-  dataScripteable: []
+  dataScripteable:
+  - skillType: 4
+    valuesByLevel:
+    - 3
+    - 5
+    - 8
+    costPerLevel:
+    - 0
+    - 200
+    - 400
+  - skillType: 5
+    valuesByLevel:
+    - 3.5
+    - 5
+    - 7
+    costPerLevel:
+    - 0
+    - 200
+    - 400
+  - skillType: 6
+    valuesByLevel:
+    - 20
+    - 10
+    - 5
+    costPerLevel:
+    - 0
+    - 200
+    - 400

@@ -22,11 +22,16 @@ public class ControlPlayer
     //Shield
     private bool canShield = true;
     private bool isShielding = false;
-    private float shieldCooldown = 1f;
-    private float shieldCooldownTimer = 0f;
-    private float shieldDuration = 5f;
-    private float shieldTimer = 0f;
+    private float radius;
+    private float power;
+    public bool unlockedShield = false;
+    float shieldCooldown;
     
+    private float shieldCooldownTimer = 0f;
+    private float shieldDuration;
+    private float shieldTimer = 0f;
+
+
     public ControlPlayer(Movement m, PlayerAnimation a, Shield s)
     {
         _movement = m;
@@ -46,6 +51,9 @@ public class ControlPlayer
         bool isJumping = Input.GetKeyDown(KeyCode.Space);
         bool isDash = Input.GetKeyDown(KeyCode.Mouse0); 
         bool isShield = Input.GetKeyDown(KeyCode.Mouse1);
+        
+        
+        //DASH UNLOCK & LEVEL UP
         unlockedDash = ManagerSkills.instance.IsUnlocked(SkillCategory.dashCategory);
         dashCooldown = ManagerSkills.instance.GetValueSkill(SkillCategory.dashCategory,SkillStatType.dashCooldown);
 
@@ -60,7 +68,34 @@ public class ControlPlayer
             
         }
 
-       
+        //SHIELD UNLOCK & LEVEL UP
+        unlockedShield = ManagerSkills.instance.IsUnlocked(SkillCategory.shieldCategory);
+        shieldCooldown = ManagerSkills.instance.GetValueSkill(SkillCategory.shieldCategory, SkillStatType.shieldCooldown);
+        radius = ManagerSkills.instance.GetValueSkill(SkillCategory.shieldCategory, SkillStatType.shieldRadius);
+        shieldDuration = ManagerSkills.instance.GetValueSkill(SkillCategory.shieldCategory, SkillStatType.shieldDuration);
+
+        _shield.radius = radius;
+        
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.shieldCategory);
+            Debug.Log("shield unlocked " + unlockedShield);
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+
+            Debug.Log("shield LVL UP");
+            ManagerSkills.instance.UpgradeSkill(SkillCategory.shieldCategory, SkillStatType.shieldDuration);
+            ManagerSkills.instance.UpgradeSkill(SkillCategory.shieldCategory, SkillStatType.shieldRadius);
+            ManagerSkills.instance.UpgradeSkill(SkillCategory.shieldCategory, SkillStatType.shieldCooldown);
+
+            Debug.Log("POWER " + ManagerSkills.instance.GetValueSkill(SkillCategory.shieldCategory, SkillStatType.shieldDuration));
+            Debug.Log("RADIUS " + ManagerSkills.instance.GetValueSkill(SkillCategory.shieldCategory, SkillStatType.shieldRadius));
+            Debug.Log("COOLDOWN " + ManagerSkills.instance.GetValueSkill(SkillCategory.shieldCategory, SkillStatType.shieldCooldown));
+
+        }
+
+
 
         // -------ANIMACIONES DE MOVIMIENTO------
         _animation.SetGround("ground", isGrounded);
@@ -189,7 +224,7 @@ public class ControlPlayer
         }
 
         //SHIELD
-        if (isShield && canShield && !isDodgeMode)
+        if (unlockedShield && isShield && canShield && !isDodgeMode)
         {
             _shield.canShield = true;
             _shield.ActivateShield();

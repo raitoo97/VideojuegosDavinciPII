@@ -7464,11 +7464,15 @@ PrefabInstance:
       objectReference: {fileID: 2063888160}
     - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: skillEntries.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: skillEntries.Array.data[1].category
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: skillEntries.Array.data[2].category
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: skillEntries.Array.data[1].dataStrcut
@@ -7479,11 +7483,27 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: skillEntries.Array.data[2].dataStrcut
+      value: 
+      objectReference: {fileID: 11400000, guid: 89d9bd1f9ef1d184bab913c343934b99, type: 2}
+    - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: skillEntries.Array.data[2].isUnlocked
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: skillEntries.Array.data[1].costToUnlock
       value: 700
       objectReference: {fileID: 0}
     - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: skillEntries.Array.data[2].costToUnlock
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: skillEntries.Array.data[1].costToUnlockUltimate
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: skillEntries.Array.data[2].costToUnlockUltimate
       value: 500
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7556,9 +7576,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 501918068174973500, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4469785779143389137, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4469881310358930350, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8086958706035148933, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
       propertyPath: m_LocalPosition.x
