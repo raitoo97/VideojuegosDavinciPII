@@ -47,8 +47,6 @@ public class TurretPj : MonoBehaviour
         GetZombie();
         RotateTorrete(rotVector);
         RotateArroundDetail();
-        print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
-        print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange));
     }
     #region
     private Vector3 GetZombie()

@@ -7464,7 +7464,7 @@ PrefabInstance:
       objectReference: {fileID: 2063888160}
     - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: skillEntries.Array.data[0].isUnlocked
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

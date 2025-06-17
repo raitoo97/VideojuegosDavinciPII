@@ -164,9 +164,9 @@ public class ManagerSkills : MonoBehaviour
         }
         if (PointManager.instance.SpendPoints(skill.costToUnlockUltimate))
         {
+            skill.ultimateUnlocked = true;
             var entry = skillEntries.Find(x => x.category == category);
             if (entry != null) entry.ultimateUnlocked = true;
-            skill.ultimateUnlocked = true;
             Debug.Log("¡Mejora definitiva desbloqueada!");
         }
     }
