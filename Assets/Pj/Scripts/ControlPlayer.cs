@@ -10,13 +10,14 @@ public class ControlPlayer
     private float horizontal;
     private float vertical;
     // Dash
+    private bool unlockedDash;
     private bool canDash = true;
     private bool isDashing = false;
-    private float dashCooldown = 0.5f;
+    private float dashCooldown;
     private float dashCooldownTimer = 0f;
     private float dashDuration = 0.2f;
     private float dashTimer = 0f;
-    private float dashImpulse = 40f;
+    //private float dashImpulse = 40f;
 
     //Shield
     private bool canShield = true;
@@ -45,6 +46,21 @@ public class ControlPlayer
         bool isJumping = Input.GetKeyDown(KeyCode.Space);
         bool isDash = Input.GetKeyDown(KeyCode.Mouse0); 
         bool isShield = Input.GetKeyDown(KeyCode.Mouse1);
+        unlockedDash = ManagerSkills.instance.IsUnlocked(SkillCategory.dashCategory);
+        dashCooldown = ManagerSkills.instance.GetValueSkill(SkillCategory.dashCategory,SkillStatType.dashCooldown);
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.dashCategory);
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ManagerSkills.instance.UpgradeSkill(SkillCategory.dashCategory, SkillStatType.dashSpeed);
+            ManagerSkills.instance.UpgradeSkill(SkillCategory.dashCategory, SkillStatType.dashCooldown);
+            
+        }
+
+       
 
         // -------ANIMACIONES DE MOVIMIENTO------
         _animation.SetGround("ground", isGrounded);
@@ -142,10 +158,10 @@ public class ControlPlayer
         }
 
         // ---------- DASH ----------
-        if (isDash && canDash && isDodgeMode && isGrounded)
+        if (isDash && unlockedDash && canDash && isDodgeMode && isGrounded)
         {
             //_animation.SetDodge("dodging", foward * 3);
-            _movement.Dash(dashImpulse);
+            _movement.Dash();
             isDashing = true;
             canDash = false;
             dashTimer = dashDuration;
@@ -158,14 +174,16 @@ public class ControlPlayer
             {
                 _movement.StopDash();
                 isDashing = false;
-                //_animation.SetDodge("dodging", foward);
+               
             }
         }
         if (!canDash)
         {
+            
             dashCooldownTimer -= Time.deltaTime;
             if (dashCooldownTimer <= 0f)
             {
+            
                 canDash = true;
             }
         }
