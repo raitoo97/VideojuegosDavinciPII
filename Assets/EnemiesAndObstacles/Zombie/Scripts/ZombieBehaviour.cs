@@ -96,6 +96,7 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
             PointManager.instance.GetHandle.EnemyDesSuscribeEvent(this);
         }
         Bullet.onHitZombie -= HandleHitZombie;
+        //ACA LOGICA DROP
     }
     IEnumerator corrutinaDeath()
     {
