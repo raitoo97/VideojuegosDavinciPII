@@ -5170,13 +5170,17 @@ PrefabInstance:
       propertyPath: keepSpawning
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1596426200669379055, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
+      propertyPath: numberOfRespawn
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4408208145857088383, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
       propertyPath: m_Name
       value: RespawnZombie (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4408208145857088383, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8259254345434229832, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5882,13 +5886,17 @@ PrefabInstance:
       propertyPath: keepSpawning
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1596426200669379055, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
+      propertyPath: numberOfRespawn
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 4408208145857088383, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
       propertyPath: m_Name
       value: RespawnZombie (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4408208145857088383, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8259254345434229832, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6283,7 +6291,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6412416552098100320, guid: 3e9a8d47b75f9514693799a8161174d2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6295,6 +6303,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3380641898037914481, guid: 3e9a8d47b75f9514693799a8161174d2, type: 3}
   m_PrefabInstance: {fileID: 859149278}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &859149283 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9135508439720152489, guid: 3e9a8d47b75f9514693799a8161174d2, type: 3}
+  m_PrefabInstance: {fileID: 859149278}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3001a672189f8b4698c00d1ef10d36c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &928850366 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4469785779143389137, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
@@ -6825,6 +6844,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3380641898037914481, guid: 3e9a8d47b75f9514693799a8161174d2, type: 3}
   m_PrefabInstance: {fileID: 6840961799897324027}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1737094365 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9135508439720152489, guid: 3e9a8d47b75f9514693799a8161174d2, type: 3}
+  m_PrefabInstance: {fileID: 6840961799897324027}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3001a672189f8b4698c00d1ef10d36c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1850529928 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6289355510330080373, guid: 05ca60d2170117e478bb97c95ea34a23, type: 3}
@@ -6905,7 +6935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1596426200669379055, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
       propertyPath: numberOfRespawn
-      value: 50
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4408208145857088383, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
       propertyPath: m_Name
@@ -6913,7 +6943,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4408208145857088383, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8259254345434229832, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7377,15 +7407,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2063888160}
     - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: zombieListRespawn.Array.data[0]
+      propertyPath: turrets.Array.data[0]
+      value: 
+      objectReference: {fileID: 1737094365}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: turrets.Array.data[1]
+      value: 
+      objectReference: {fileID: 859149283}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: zombieListRespawns.Array.data[0]
       value: 
       objectReference: {fileID: 1269282607}
     - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: zombieListRespawn.Array.data[1]
+      propertyPath: zombieListRespawns.Array.data[1]
       value: 
       objectReference: {fileID: 96143627}
     - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: zombieListRespawn.Array.data[2]
+      propertyPath: zombieListRespawns.Array.data[2]
       value: 
       objectReference: {fileID: 686848334}
     m_RemovedComponents: []
@@ -7618,7 +7656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6412416552098100320, guid: 3e9a8d47b75f9514693799a8161174d2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

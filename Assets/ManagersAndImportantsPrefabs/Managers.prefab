@@ -171,8 +171,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76993136da17a0408a6211778cdef88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombieListRespawn:
+  zombieListRespawns:
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turrets:
   - {fileID: 0}
   - {fileID: 0}
 --- !u!1 &7340844166045931331

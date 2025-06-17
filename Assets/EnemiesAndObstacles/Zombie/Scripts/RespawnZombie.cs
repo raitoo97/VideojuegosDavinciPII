@@ -5,9 +5,12 @@ public class RespawnZombie : MonoBehaviour
     public int numberOfRespawn;
     private bool _canRespawn;
     private Coroutine _spawnCoroutine;
-    private void OnEnable()
+    private void Start()
     {
         _canRespawn = true;
+    }
+    public void StartWave()
+    {
         if (_canRespawn)
         {
             for (int i = 0; i < numberOfRespawn; i++)
@@ -16,12 +19,16 @@ public class RespawnZombie : MonoBehaviour
                 Enemy.transform.position = this.transform.position;
                 Enemy.transform.rotation = this.transform.rotation;
                 PointManager.instance.GetHandle.EnemySuscribeEvent(Enemy.GetComponent<IEnemies>());
+                WavesManager.instance.EnemySuscribeEventToWaveSubstract(Enemy.GetComponent<IEnemies>());
             }
         }
         _canRespawn = false;
         if (_spawnCoroutine == null)
             _spawnCoroutine = StartCoroutine(WaitForDestroy());
-
+    }
+    public int returnNumberOfEnemies()
+    {
+        return numberOfRespawn;
     }
     private void OnDisable()
     {

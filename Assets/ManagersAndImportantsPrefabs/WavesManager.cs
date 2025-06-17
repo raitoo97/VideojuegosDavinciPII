@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 public class WavesManager : MonoBehaviour
 {
-    public List<RespawnZombie> zombieListRespawns;  
+    private List<IEnemies> enemies;
+    public List<RespawnZombie> zombieListRespawns;
+    [SerializeField]private List<TurretBehaviour> turrets;
     public static WavesManager instance;
     public Action _currentWave;
     private int index;
-    private int indexWaveRespawn;
+    int currentEnemies = 0;
     private void Awake()
     {
         if (instance == null) { instance = this; }
         else { Destroy(this.gameObject); }
         index = 0;
         SetWave(index);
-        zombieListRespawns = new List<RespawnZombie>();
+        enemies = new List<IEnemies>();
     }
     private void SetWave(int index)
     {
@@ -31,24 +33,54 @@ public class WavesManager : MonoBehaviour
                 break;
         }
     }
-    private void Update()
-    {
-        print(indexWaveRespawn);
-    }
     public void AdvanceWave()
     {
         index++;
         SetWave(index);
     }
+    private void Update()
+    {
+        print(currentEnemies);
+    }
     private void Wave1()
     {
-        for (int indexWaveRespawn = 0; indexWaveRespawn < 2; indexWaveRespawn++)
+        if (zombieListRespawns == null || zombieListRespawns.Count < 0) return;
+        var zombieList = zombieListRespawns.GetRange(0,2);
+        zombieListRespawns.RemoveRange(0,2);
+        if (zombieList == null || zombieList.Count <= 0) return;
+        foreach(var waveZombie in zombieList)
         {
-            print("sdsadsadasdasdasdasdsadasd444444sa");
+            waveZombie.StartWave();
+            currentEnemies += waveZombie.returnNumberOfEnemies();
+        }
+        var turretList = turrets.GetRange(0, 2);
+        turrets.RemoveRange(0, 2);
+        if (turretList == null || turretList.Count <= 0) return;
+        foreach (var waveTurret in turretList)
+        {
+            waveTurret.gameObject.SetActive(true);
+            currentEnemies += waveTurret.ReturnThisTorret();
         }
     }
     private void Wave2()
     {
-        print("sdsadsadasdasdasdasdsadasdsa");
+        print("sdsdsdsdsdsds");
+    }
+    public void EnemySuscribeEventToWaveSubstract(IEnemies enemy)
+    {
+        if (enemies.Contains(enemy)) return;
+        enemies.Add(enemy);
+        enemy._substractEnemyFromWave += HandleEnemyDeathWaves;
+    }
+    public void EnemyDesuscribeEventToWaveSubstract(IEnemies enemy)
+    {
+        if (!enemies.Contains(enemy)) return;
+        enemies.Remove(enemy);
+        enemy._substractEnemyFromWave -= HandleEnemyDeathWaves;
+    }
+    private void HandleEnemyDeathWaves(IEnemies enemy)
+    {
+        int substract = enemy.SubstractFromWave();
+        currentEnemies -= substract;
     }
 }
