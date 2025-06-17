@@ -197,7 +197,7 @@ public class ActiveSkill
     public bool isUnlocked;
     public float costToUnlock;
     public bool ultimateUnlocked = false;
-    public float costToUnlockUltimate = 50f;
+    public float costToUnlockUltimate;
     public ActiveSkill(SkillCategory category,SkillCategoryData dataStrcut,bool isUnlocked,float costToUnlock,float costToUnlockUltimate)
     {
         this.category = category;
