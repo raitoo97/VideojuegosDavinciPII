@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 public class WavesManager : MonoBehaviour
 {
-    public List<RespawnZombie> zombieListRespawn;
-    public Action _currentWave;
+    public List<RespawnZombie> zombieListRespawns;  
     public static WavesManager instance;
-    private int waveIndex = 0;
+    public Action _currentWave;
+    private int index;
+    private int indexWaveRespawn;
     private void Awake()
     {
         if (instance == null) { instance = this; }
         else { Destroy(this.gameObject); }
-    }
-    private void Start()
-    {
-        SetWave(waveIndex);
+        index = 0;
+        SetWave(index);
+        zombieListRespawns = new List<RespawnZombie>();
     }
     private void SetWave(int index)
     {
@@ -31,21 +31,24 @@ public class WavesManager : MonoBehaviour
                 break;
         }
     }
+    private void Update()
+    {
+        print(indexWaveRespawn);
+    }
     public void AdvanceWave()
     {
-        waveIndex++;
-        SetWave(waveIndex);
+        index++;
+        SetWave(index);
     }
     private void Wave1()
     {
-        print("Holaaaaaaa");
+        for (int indexWaveRespawn = 0; indexWaveRespawn < 2; indexWaveRespawn++)
+        {
+            print("sdsadsadasdasdasdasdsadasd444444sa");
+        }
     }
     private void Wave2()
     {
-        print("asdasdasdsadas");
-    }
-    private void Wave3()
-    {
-        print("TU viejaaa");
+        print("sdsadsadasdasdasdasdsadasdsa");
     }
 }
