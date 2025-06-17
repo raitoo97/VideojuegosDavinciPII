@@ -4,6 +4,8 @@ public enum SkillStatType
 {
     turretVisionRange,
     turretShotSpeed,
+    dashSpeed,
+    dashCooldown
 }
 [Serializable]
 public class SkillStat

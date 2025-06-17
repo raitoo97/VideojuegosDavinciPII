@@ -4,6 +4,7 @@ using UnityEngine;
 public enum SkillCategory
 {
     turretCategory,
+    dashCategory
 }
 public class ManagerSkills : MonoBehaviour
 {

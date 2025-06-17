@@ -44,7 +44,7 @@ public class Movement
             Player.TriggerShootInstant?.Invoke();
         }
     }
-    public void Dash(float impulse)
+    public void Dash()
     {
         
         Vector3 dashDirection = LastMoveDirection;
@@ -53,7 +53,7 @@ public class Movement
             
             
         
-            _rb.AddForce(dashDirection.normalized * impulse, ForceMode.Impulse);
+            _rb.AddForce(dashDirection.normalized * ManagerSkills.instance.GetValueSkill(SkillCategory.dashCategory, SkillStatType.dashSpeed), ForceMode.Impulse);
 
             int randomIndex = UnityEngine.Random.Range(0, AudioManager.instance.skillPlayerDash.Length);
             AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.skillPlayerDash[randomIndex]); //sound effect
