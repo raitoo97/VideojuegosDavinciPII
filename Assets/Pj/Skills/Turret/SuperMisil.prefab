@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7761948868876718517}
   - component: {fileID: 3291754062767008243}
   - component: {fileID: 8769229921968186003}
+  - component: {fileID: 1403486395177005156}
   m_Layer: 0
   m_Name: SuperMisil
   m_TagString: Untagged
@@ -105,3 +106,18 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1403486395177005156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2550435405342970570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38d88a206b00e9844938b90c01cda8f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 5
+  shooterType: 0
+  _dmgPlayer: 0

@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     public static Action<ZombieBehaviour> onHitZombie;
     public static event Action<TurretBehaviour, float> OnTurretDamaged;
     [Header("Player dmg")]
-    [SerializeField]private float _dmgPlayer;
+    private float _dmgPlayer;
     private void Start()
     {
         _dmgPlayer = 50;

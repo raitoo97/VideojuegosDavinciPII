@@ -22,7 +22,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     [SerializeField]private Animator animator;
     private void Awake()
     {
-        _life = 100;
+        _life = 200;
         _enemypoints = 60;
         _distance = 50f;
         _child = this.transform.GetChild(0);

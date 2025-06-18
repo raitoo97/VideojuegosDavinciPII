@@ -171,6 +171,10 @@ public class ManagerSkills : MonoBehaviour
             if (entry != null) entry.ultimateUnlocked = true;
             Debug.Log("¡Mejora definitiva desbloqueada!");
         }
+        else
+        {
+            Debug.Log("Tenes las Habilidades al maximo pero te faltan puntos");
+        }
     }
     public bool IsUnlockUltimate(SkillCategory category)
     {

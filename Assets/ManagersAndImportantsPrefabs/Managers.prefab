@@ -145,7 +145,7 @@ MonoBehaviour:
     pivotOffset: {x: 0, y: 0, z: 0}
   - type: 1
     setting: {fileID: 11400000, guid: 1c91590b82d042e4f806db7343863f8c, type: 2}
-    intensity: 5
+    intensity: 3
     frequency: 5
     duration: 0.14
     pivotOffset: {x: 0, y: 0, z: 0}
