@@ -23,12 +23,12 @@ public class ControlPlayer
     private bool canShield = true;
     private bool isShielding = false;
     private float radius;
-    private float power;
+   
     public bool unlockedShield = false;
     float shieldCooldown;
     
-    private float shieldCooldownTimer = 0f;
     private float shieldDuration;
+    private float shieldCooldownTimer = 0f;
     private float shieldTimer = 0f;
 
 
