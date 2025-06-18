@@ -29,6 +29,9 @@ public class WavesManager : MonoBehaviour
             case 1:
                 _currentWave = Wave2;
                 break;
+            case 2:
+                _currentWave = Wave3;
+                break;
             default:
                 _currentWave = null;
                 break;
@@ -46,8 +49,13 @@ public class WavesManager : MonoBehaviour
     }
     private void Wave2()
     {
-        print("Llegaste a la 2 pa");
+        ConfigWave(0, 2, 0, 2);
         numberOfWave = 1;
+    }
+    private void Wave3()
+    {
+        print("Llegaste a la 3 pa");
+        numberOfWave = 2;
     }
     private void ConfigWave(int RangeAZombies,int RangeBZombies, int RangeATurret, int RangeBTurret)
     {
