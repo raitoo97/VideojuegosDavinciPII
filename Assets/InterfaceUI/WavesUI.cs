@@ -6,17 +6,20 @@ public class WavesUI
     public Button _waveButton;
     public Text _waveText;
     public Text _numberOfEnemies;
+    public Text _winningText;
     private enum WaveAtributes
     {
         WavesButton,
         WaveText,
-        NumberOfRemaningEnemies
+        NumberOfRemaningEnemies,
+        WinningText
     }
     public WavesUI(List<Button> button,List<Text>texts)
     {
         _waveButton = button.Find(x => x.name == WaveAtributes.WavesButton.ToString());
         _waveText = texts.Find(x => x.name == WaveAtributes.WaveText.ToString());
         _numberOfEnemies = texts.Find(x => x.name == WaveAtributes.NumberOfRemaningEnemies.ToString());
+        _winningText = texts.Find(x => x.name == WaveAtributes.WinningText.ToString());
     }
     public void OnStart()
     {
@@ -37,17 +40,26 @@ public class WavesUI
     }
     private void SetActivateWaveButton()
     {
-        if (WavesManager.instance.GetNumberWave < 2 && WavesManager.instance.GetCurrentEnemies <= 0)
+        if (WavesManager.instance.GetNumberWave < 3 && WavesManager.instance.GetCurrentEnemies <= 0)
         {
             _waveButton.gameObject.SetActive(true);
             _waveText.gameObject.SetActive(false);
             _numberOfEnemies.gameObject.SetActive(false);
+            _winningText.gameObject.SetActive(false);
         }
         else
         {
             _waveButton.gameObject.SetActive(false);
             _waveText.gameObject.SetActive(true);
             _numberOfEnemies.gameObject.SetActive(true);
+            _winningText.gameObject.SetActive(false);
+        }
+        if(WavesManager.instance.GetNumberWave >= 3)
+        {
+            _waveButton.gameObject.SetActive(false);
+            _waveText.gameObject.SetActive(false);
+            _numberOfEnemies.gameObject.SetActive(false);
+            _winningText.gameObject.SetActive(true);
         }
     }
 }

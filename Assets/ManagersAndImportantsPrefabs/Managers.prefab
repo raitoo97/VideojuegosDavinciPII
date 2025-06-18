@@ -106,6 +106,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   _statusPjImageEntries:
   - lifeStatusType: 0
     statusImage: {fileID: 0}

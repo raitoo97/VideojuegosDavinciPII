@@ -32,6 +32,9 @@ public class WavesManager : MonoBehaviour
             case 2:
                 _currentWave = Wave3;
                 break;
+            case 3:
+                _currentWave = Finish;
+                break;
             default:
                 _currentWave = null;
                 break;
@@ -54,8 +57,13 @@ public class WavesManager : MonoBehaviour
     }
     private void Wave3()
     {
-        print("Llegaste a la 3 pa");
+        ConfigWave(0, 2, 0, 1);
         numberOfWave = 2;
+    }
+    private void Finish()
+    {
+        numberOfWave = 3;
+        Debug.Log("Ganaste");
     }
     private void ConfigWave(int RangeAZombies,int RangeBZombies, int RangeATurret, int RangeBTurret)
     {
