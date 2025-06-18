@@ -45,7 +45,6 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
         Player.TriggerShootInstant += ShootInstan;
         Bullet.OnTurretDamaged += TakeDamage;
         OnDeath += Death;
-        _substractEnemyFromWave += Death;
         StartCoroutine(WaitForSuscription());
     }
     void Update()
