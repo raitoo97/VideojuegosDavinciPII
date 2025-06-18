@@ -61,8 +61,8 @@ public class PjStatesLifeBar
         if (!_dictionaryLife.ContainsKey(status)) return;
         foreach (var entry in _dictionaryLife)
         {
-            entry.Value.statusImage.gameObject.SetActive(entry.Key == status);
-            entry.Value.EdgeStatus.gameObject.SetActive(entry.Key == status);
+            entry.Value.statusImage.gameObject.SetActive(entry.Value.lifeStatusType == status);
+            entry.Value.EdgeStatus.gameObject.SetActive(entry.Value.lifeStatusType == status);
         }
     }
 }
