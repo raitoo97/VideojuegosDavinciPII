@@ -9,7 +9,8 @@ public class WavesManager : MonoBehaviour
     public static WavesManager instance;
     public Action _currentWave;
     private int index;
-    int currentEnemies = 0;
+    private int currentEnemies = 0;
+    private int numberOfWave = 0;
     private void Awake()
     {
         if (instance == null) { instance = this; }
@@ -28,6 +29,12 @@ public class WavesManager : MonoBehaviour
             case 1:
                 _currentWave = Wave2;
                 break;
+            case 2:
+                _currentWave = Wave3;
+                break;
+            case 3:
+                _currentWave = Finish;
+                break;
             default:
                 _currentWave = null;
                 break;
@@ -38,33 +45,45 @@ public class WavesManager : MonoBehaviour
         index++;
         SetWave(index);
     }
-    private void Update()
-    {
-        print(currentEnemies);
-    }
     private void Wave1()
     {
+        ConfigWave(0,2,0,2);
+        numberOfWave = 0;
+    }
+    private void Wave2()
+    {
+        ConfigWave(0, 2, 0, 2);
+        numberOfWave = 1;
+    }
+    private void Wave3()
+    {
+        ConfigWave(0, 2, 0, 1);
+        numberOfWave = 2;
+    }
+    private void Finish()
+    {
+        numberOfWave = 3;
+        Debug.Log("Ganaste");
+    }
+    private void ConfigWave(int RangeAZombies,int RangeBZombies, int RangeATurret, int RangeBTurret)
+    {
         if (zombieListRespawns == null || zombieListRespawns.Count < 0) return;
-        var zombieList = zombieListRespawns.GetRange(0,2);
-        zombieListRespawns.RemoveRange(0,2);
+        var zombieList = zombieListRespawns.GetRange(RangeAZombies, RangeBZombies);
+        zombieListRespawns.RemoveRange(RangeAZombies, RangeBZombies);
         if (zombieList == null || zombieList.Count <= 0) return;
-        foreach(var waveZombie in zombieList)
+        foreach (var waveZombie in zombieList)
         {
             waveZombie.StartWave();
             currentEnemies += waveZombie.returnNumberOfEnemies();
         }
-        var turretList = turrets.GetRange(0, 2);
-        turrets.RemoveRange(0, 2);
+        var turretList = turrets.GetRange(RangeATurret, RangeBTurret);
+        turrets.RemoveRange(RangeATurret, RangeBTurret);
         if (turretList == null || turretList.Count <= 0) return;
         foreach (var waveTurret in turretList)
         {
             waveTurret.gameObject.SetActive(true);
             currentEnemies += waveTurret.ReturnThisTorret();
         }
-    }
-    private void Wave2()
-    {
-        print("sdsdsdsdsdsds");
     }
     public void EnemySuscribeEventToWaveSubstract(IEnemies enemy)
     {
@@ -83,4 +102,6 @@ public class WavesManager : MonoBehaviour
         int substract = enemy.SubstractFromWave();
         currentEnemies -= substract;
     }
+    public int GetCurrentEnemies { get => currentEnemies; }
+    public int GetNumberWave { get => numberOfWave; }
 }

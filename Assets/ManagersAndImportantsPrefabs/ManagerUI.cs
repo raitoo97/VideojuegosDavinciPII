@@ -11,7 +11,7 @@ public class ManagerUI : MonoBehaviour
     public static ManagerUI instance;
     private PjStatesLifeBar PjLifeStates;
     private PjSkillsUpgradeUI _pjSkillsUpgradeUI;
-    public Button WaveButton;
+    private WavesUI _wavesUI;
     private void Awake()
     {
         if (instance == null) { instance = this; }
@@ -22,19 +22,16 @@ public class ManagerUI : MonoBehaviour
         imagesList = imagesList.OrderBy(x => x.name).ToList();
         _pjSkillsUpgradeUI = new PjSkillsUpgradeUI(textList, buttonList);
         PjLifeStates = new PjStatesLifeBar(GameManager.instance.player.GetComponent<Player>(),imagesList.Find(x => x.gameObject.name == "LifeBar"), _statusPjImageEntries);
+        _wavesUI = new WavesUI(buttonList, textList);
         PjLifeStates.OnStart();
         _pjSkillsUpgradeUI.OnStart();
-        WaveButton.onClick.AddListener(ActivateWave);
+        _wavesUI.OnStart();
     }
     private void Update()
     {
         PjLifeStates.OnUpdate();
         _pjSkillsUpgradeUI.OnUpdate();
-    }
-    private void ActivateWave()
-    {
-        WavesManager.instance._currentWave?.Invoke();
-        WavesManager.instance.AdvanceWave();
+        _wavesUI.OnUpdate();
     }
     public PjStatesLifeBar getLifeBar { get => PjLifeStates; }
 }

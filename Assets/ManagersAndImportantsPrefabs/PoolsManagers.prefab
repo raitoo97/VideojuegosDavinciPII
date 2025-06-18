@@ -55,6 +55,10 @@ MonoBehaviour:
     prefab: {fileID: 6554155068203961422, guid: 607f4da4f30cd5241a5ac79a8704232a, type: 3}
     initialSize: 50
     _parent: {fileID: 1477309947633531035}
+  - type: 2
+    prefab: {fileID: 2550435405342970570, guid: 27b3356cd14c1944abed1fc53b6d6d37, type: 3}
+    initialSize: 50
+    _parent: {fileID: 1477309947633531035}
 --- !u!114 &2694690536876157383
 MonoBehaviour:
   m_ObjectHideFlags: 0

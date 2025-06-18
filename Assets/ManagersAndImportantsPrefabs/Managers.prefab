@@ -99,7 +99,11 @@ MonoBehaviour:
   buttonList:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   textList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -119,7 +123,6 @@ MonoBehaviour:
   - lifeStatusType: 4
     statusImage: {fileID: 0}
     EdgeStatus: {fileID: 0}
-  WaveButton: {fileID: 0}
 --- !u!114 &3931444751640104713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,8 +145,8 @@ MonoBehaviour:
     pivotOffset: {x: 0, y: 0, z: 0}
   - type: 1
     setting: {fileID: 11400000, guid: 1c91590b82d042e4f806db7343863f8c, type: 2}
-    intensity: 1.2
-    frequency: 4
+    intensity: 3
+    frequency: 5
     duration: 0.14
     pivotOffset: {x: 0, y: 0, z: 0}
   - type: 2
@@ -181,7 +184,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   turrets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
 --- !u!1 &7340844166045931331
