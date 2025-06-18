@@ -4,7 +4,8 @@ using UnityEngine;
 public enum ShooterType
 {
     Player,
-    Enemy
+    Enemy,
+    SuperPlayer
 }
 public class PoolBullet : MonoBehaviour
 {

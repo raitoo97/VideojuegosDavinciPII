@@ -30,8 +30,7 @@ public class TurretPj : MonoBehaviour
         {
             print(ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory));
         }
-        GetZombie();
-        RotateTorrete(rotVector);
+        RotateTorrete(GetZombie());
         RotateArroundDetail();
     }
     #region
