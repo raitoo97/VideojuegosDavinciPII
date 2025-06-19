@@ -22,14 +22,6 @@ public class TurretPj : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            ManagerSkills.instance.TryUnlockUltimate(SkillCategory.turretCategory);
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            print(ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory));
-        }
         RotateTorrete(GetZombie());
         RotateArroundDetail();
     }

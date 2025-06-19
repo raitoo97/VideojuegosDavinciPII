@@ -54,6 +54,7 @@ public class ManagerSkills : MonoBehaviour
                 if (currentLevel < maxLevel && PointManager.instance.SpendPoints(costLevel))
                 {
                     skill.progressPerStat[i].level++;
+                    print("Subiste nivel: " + specificType + "Nuevo level: " + skill.progressPerStat[i].level);
                 }
                 break;
             }
@@ -131,6 +132,7 @@ public class ManagerSkills : MonoBehaviour
         if (skill.isUnlocked) return;
         if (PointManager.instance.SpendPoints(skill.costToUnlock))
         {
+            print("Se desbloqueo: " + category);
             skill.isUnlocked = true;
             var entry = skillEntries.Find(x => x.category == category);
             if (entry != null) entry.isUnlocked = true;
@@ -147,11 +149,11 @@ public class ManagerSkills : MonoBehaviour
             int maxLevel = stat.GetMaxLevel();
             if (progress.level < maxLevel)
             {
-                print("No estan todas al maximo");
+                print("No estan todas al maximo" + category);
                 return false;
             }
         }
-        print("SIII estan todas al maximo");
+        print("SIII estan todas al maximo" + category);
         return true;
     }
     public void TryUnlockUltimate(SkillCategory category)
@@ -169,7 +171,7 @@ public class ManagerSkills : MonoBehaviour
             skill.ultimateUnlocked = true;
             var entry = skillEntries.Find(x => x.category == category);
             if (entry != null) entry.ultimateUnlocked = true;
-            Debug.Log("¡Mejora definitiva desbloqueada!");
+            Debug.Log("¡Mejora definitiva desbloqueada!" + category);
         }
         else
         {
