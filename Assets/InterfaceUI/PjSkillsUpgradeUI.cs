@@ -35,7 +35,6 @@ public class PjSkillsUpgradeUI
         this.shieldText = textos.Find(x => x.gameObject.name == UIElementName.ShieldNumber.ToString());
         this.dashButton = buttons.Find(x => x.gameObject.name == UIElementName.ButtonDash.ToString());
         this.dashText = textos.Find(x => x.gameObject.name == UIElementName.DashNumber.ToString());
-
     }
     public void OnStart()
     {
@@ -47,8 +46,6 @@ public class PjSkillsUpgradeUI
     }
     public void OnUpdate()
     {
-        
-
         pointsText.text = PointManager.instance.CurrentPoints.ToString();
         rateFireText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretShotSpeed).ToString();
         distanceText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretVisionRange).ToString();
@@ -56,7 +53,6 @@ public class PjSkillsUpgradeUI
         dashText.text = ((ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashCooldown) + 1) + " / 3");
         CanLevelUp();
     }
-
     private void CanLevelUp () 
     {
 
@@ -65,7 +61,6 @@ public class PjSkillsUpgradeUI
             Debug.Print("CanLevelUp error: uno de los objetos es null");
             return;
         }
-
         if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.shieldCategory,SkillStatType.shieldCooldown) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.shieldCategory)) //Solo lo hago con el shield y esa abilidad porque todos comparten mismo valor
         {
             shieldButton.gameObject.SetActive(true); 
@@ -74,7 +69,6 @@ public class PjSkillsUpgradeUI
         {
             shieldButton.gameObject.SetActive(false); ;
         }
-
         if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.dashCategory, SkillStatType.dashCooldown) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory))
         {
             dashButton.gameObject.SetActive(true);
@@ -82,10 +76,8 @@ public class PjSkillsUpgradeUI
         else
         {
             dashButton.gameObject.SetActive(false);
-
         }
     }
-
     private void UpgradeCadencia()
     {
         ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed);
@@ -94,20 +86,16 @@ public class PjSkillsUpgradeUI
     {
         ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
     }
-
     private void UpgradeShield() 
     {
         ManagerSkills.instance.UpgradeSkill(SkillCategory.shieldCategory, SkillStatType.shieldRadius);
         ManagerSkills.instance.UpgradeSkill(SkillCategory.shieldCategory, SkillStatType.shieldCooldown);
         ManagerSkills.instance.UpgradeSkill(SkillCategory.shieldCategory, SkillStatType.shieldDuration);
-        
     }
     private void UpgradeDash() 
     {
         ManagerSkills.instance.UpgradeSkill(SkillCategory.dashCategory, SkillStatType.dashSpeed);
         ManagerSkills.instance.UpgradeSkill(SkillCategory.dashCategory, SkillStatType.dashCooldown);
-        
-
     }
 }
 
