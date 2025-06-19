@@ -23,5 +23,6 @@ public class HandleEnemyPoints
     {
         float points = enemy.GetPointValue();
         PointManager.instance.AddPoints(points);
+        //ACA DEBERIA INSTANCIAR DROP
     }
 }
