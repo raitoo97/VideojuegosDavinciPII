@@ -148,7 +148,6 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     {
         return 1;
     }
-
     public Transform GetTransform()
     {
         return this.transform;
