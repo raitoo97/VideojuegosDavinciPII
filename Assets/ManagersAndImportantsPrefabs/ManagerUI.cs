@@ -12,6 +12,7 @@ public class ManagerUI : MonoBehaviour
     private PjStatesLifeBar PjLifeStates;
     private PjSkillsUpgradeUI _pjSkillsUpgradeUI;
     private WavesUI _wavesUI;
+    public GameObject SkillsPanel;
     private void Awake()
     {
         if (instance == null) { instance = this; }

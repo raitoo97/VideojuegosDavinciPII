@@ -56,6 +56,10 @@ public class ManagerSkills : MonoBehaviour
                     skill.progressPerStat[i].level++;
                     print("Subiste nivel: " + specificType + "Nuevo level: " + skill.progressPerStat[i].level);
                 }
+                else
+                {
+                    print("Ya tenes al nivel maximo o no tenes suficiente puntos para" + specificType);
+                }
                 break;
             }
         }
@@ -163,7 +167,7 @@ public class ManagerSkills : MonoBehaviour
         if (!skill.isUnlocked || skill.ultimateUnlocked) return;
         if (!AreAllSkillsMaxed(category))
         {
-            Debug.Log("No se puede desbloquear aún, faltan habilidades al máximo.");
+            Debug.Log("No se puede desbloquear aún, faltan habilidades al máximo");
             return;
         }
         if (PointManager.instance.SpendPoints(skill.costToUnlockUltimate))
