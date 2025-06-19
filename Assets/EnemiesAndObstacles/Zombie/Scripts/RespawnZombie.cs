@@ -2,33 +2,42 @@ using System.Collections;
 using UnityEngine;
 public class RespawnZombie : MonoBehaviour
 {
-    [Tooltip("Dejan de respawnear los Zombies")]public bool keepSpawning;
-    private void Awake()
+    public int numberOfRespawn;
+    private bool _canRespawn;
+    private Coroutine _spawnCoroutine;
+    private void Start()
     {
-        keepSpawning = true;
+        _canRespawn = true;
     }
-    void Start()
+    public void StartWave()
     {
-        StartCoroutine(WaitForFrame());
-    }
-    IEnumerator RespawnEnemy()
-    {
-        while (keepSpawning)
+        if (_canRespawn)
         {
-            int num = Random.Range(0, 100);
-            if (num > 50)
+            for (int i = 0; i < numberOfRespawn; i++)
             {
                 GameObject Enemy = PoolEnemy.instance.EnemiesTypesList.Find(x => x.type == EnemyType.Zombie).GetEnemy();
                 Enemy.transform.position = this.transform.position;
                 Enemy.transform.rotation = this.transform.rotation;
                 PointManager.instance.GetHandle.EnemySuscribeEvent(Enemy.GetComponent<IEnemies>());
+                WavesManager.instance.EnemySuscribeEventToWaveSubstract(Enemy.GetComponent<IEnemies>());
             }
-            yield return new WaitForSeconds(3f);
         }
+        _canRespawn = false;
+        if (_spawnCoroutine == null)
+            _spawnCoroutine = StartCoroutine(WaitForDestroy());
     }
-    public IEnumerator WaitForFrame()
+    public int returnNumberOfEnemies()
     {
-        yield return new WaitForEndOfFrame();
-        StartCoroutine(RespawnEnemy());
+        return numberOfRespawn;
+    }
+    private void OnDisable()
+    {
+        Destroy(this.gameObject);
+    }
+    private IEnumerator WaitForDestroy()
+    {
+        yield return null;
+        _spawnCoroutine = null;
+        this.gameObject.SetActive(false);
     }
 }

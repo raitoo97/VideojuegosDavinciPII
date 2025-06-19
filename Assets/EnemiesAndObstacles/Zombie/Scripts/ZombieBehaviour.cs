@@ -13,11 +13,12 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
     BoxCollider[] _attackColliders;
     private float _enemypoints;
     public event Action<IEnemies> OnDeath;
+    public event Action<IEnemies> _substractEnemyFromWave;
     private bool _canEjecuteCorutine;
     private Coroutine _coroutine;
     private void Awake()
     {
-        _enemypoints = 20;
+        _enemypoints = 20; //puntos
         life = 100;
         _idleDistance = 50f;
         _runDistance = 4;
@@ -68,7 +69,7 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
             _anims.ChangeState(STATE.Atack);
             _agent.isStopped = true;
             _agent.SetDestination(_agent.transform.position);
-            //Danio al Player
+            
             foreach (var col in _attackColliders)
             {
                 col.enabled = true;
@@ -95,12 +96,18 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
         {
             PointManager.instance.GetHandle.EnemyDesSuscribeEvent(this);
         }
+        if (WavesManager.instance != null)
+        {
+            WavesManager.instance.EnemyDesuscribeEventToWaveSubstract(this);
+        }
         Bullet.onHitZombie -= HandleHitZombie;
+        
     }
     IEnumerator corrutinaDeath()
     {
         yield return null;
         OnDeath?.Invoke(this);
+        _substractEnemyFromWave?.Invoke(this);
         yield return new WaitForSeconds(1);
         this.gameObject.SetActive(false);
         _coroutine = null;
@@ -108,5 +115,13 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
     public float GetPointValue()
     {
         return _enemypoints;
+    }
+    public int SubstractFromWave()
+    {
+        return 1;
+    }
+    public Transform GetTransform()
+    {
+        return this.transform;
     }
 }

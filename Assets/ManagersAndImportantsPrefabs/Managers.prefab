@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7709783099561902853}
   - component: {fileID: 3931444751640104713}
   - component: {fileID: 9083364042843550237}
+  - component: {fileID: 8128287774387905897}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -65,6 +66,22 @@ MonoBehaviour:
   skillEntries:
   - category: 0
     dataStrcut: {fileID: 11400000, guid: 8b6c52e2654fcda40af5187c37dd2620, type: 2}
+    isUnlocked: 1
+    costToUnlock: 0
+    ultimateUnlocked: 0
+    costToUnlockUltimate: 500
+  - category: 1
+    dataStrcut: {fileID: 11400000, guid: 9274209409056a14da20637bf99c7aa2, type: 2}
+    isUnlocked: 1
+    costToUnlock: 700
+    ultimateUnlocked: 0
+    costToUnlockUltimate: 500
+  - category: 2
+    dataStrcut: {fileID: 11400000, guid: 89d9bd1f9ef1d184bab913c343934b99, type: 2}
+    isUnlocked: 1
+    costToUnlock: 700
+    ultimateUnlocked: 0
+    costToUnlockUltimate: 500
 --- !u!114 &7709783099561902853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78,6 +95,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imagesList:
+  - {fileID: 0}
+  buttonList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  textList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   _statusPjImageEntries:
   - lifeStatusType: 0
@@ -117,8 +149,8 @@ MonoBehaviour:
     pivotOffset: {x: 0, y: 0, z: 0}
   - type: 1
     setting: {fileID: 11400000, guid: 1c91590b82d042e4f806db7343863f8c, type: 2}
-    intensity: 1.2
-    frequency: 4
+    intensity: 3
+    frequency: 5
     duration: 0.14
     pivotOffset: {x: 0, y: 0, z: 0}
   - type: 2
@@ -139,6 +171,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aca95038c87027642bd28aaf74c11a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _currentPoints: 0
+--- !u!114 &8128287774387905897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5743755235460010870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a76993136da17a0408a6211778cdef88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zombieListRespawns:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  turrets:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &7340844166045931331
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,4 +259,5 @@ MonoBehaviour:
   skillPlayerDash:
   - {fileID: 8300000, guid: 3ec701048af2b644abbbf8bda5340b91, type: 3}
   - {fileID: 8300000, guid: 4cbb8ca3fd30f7346b72b25bb2e44f40, type: 3}
+  EnemyTurretShot: {fileID: 8300000, guid: 8c71d4eccf5a45e4494692b8a1f9862c, type: 3}
   audioSources: []

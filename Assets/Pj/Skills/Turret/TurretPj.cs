@@ -20,30 +20,18 @@ public class TurretPj : MonoBehaviour
     {
         turretChild.localRotation = Quaternion.identity;
     }
-    private void Start()
-    {
-        ActivateSelf(); 
-     }
     void Update()
     {
-        GetZombie();
-        RotateTorrete(rotVector);
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            ManagerSkills.instance.TryUnlockUltimate(SkillCategory.turretCategory);
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            print(ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory));
+        }
+        RotateTorrete(GetZombie());
         RotateArroundDetail();
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
-        }
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed);
-            if (_shootRoutine != null)
-            {
-                StopCoroutine(_shootRoutine);
-            }
-            _shootRoutine = StartCoroutine(Shoot());
-        }
-        print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
-        print(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange));
     }
     #region
     private Vector3 GetZombie()
@@ -102,7 +90,11 @@ public class TurretPj : MonoBehaviour
                 {
                     if (animZombieRef.getStateZombie != STATE.Death)
                     {
-                        var bullet = PoolBullet.instance.bulletConfigs.Find(x => x.type == ShooterType.Player).GetBullet();
+                        GameObject bullet = null;
+                        if (!ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
+                            bullet = PoolBullet.instance.bulletConfigs.Find(x => x.type == ShooterType.Player).GetBullet();
+                        else
+                            bullet = PoolBullet.instance.bulletConfigs.Find(x => x.type == ShooterType.SuperPlayer).GetBullet();
                         if (bullet != null)
                         {
                             bullet.transform.position = gunSight.position;
@@ -116,7 +108,11 @@ public class TurretPj : MonoBehaviour
                 }
                 if (enemy.GetComponent<TurretBehaviour>())
                 {
-                    var bullet = PoolBullet.instance.bulletConfigs.Find(x => x.type == ShooterType.Player).GetBullet();
+                    GameObject bullet = null;
+                    if (!ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
+                        bullet = PoolBullet.instance.bulletConfigs.Find(x => x.type == ShooterType.Player).GetBullet();
+                    else
+                        bullet = PoolBullet.instance.bulletConfigs.Find(x => x.type == ShooterType.SuperPlayer).GetBullet();
                     if (bullet != null)
                     {
                         bullet.transform.position = gunSight.position;
