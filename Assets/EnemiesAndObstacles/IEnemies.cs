@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-
 public interface IEnemies
 {
     public event Action<IEnemies> OnDeath;

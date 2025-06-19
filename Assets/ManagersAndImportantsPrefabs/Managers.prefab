@@ -72,13 +72,13 @@ MonoBehaviour:
     costToUnlockUltimate: 500
   - category: 1
     dataStrcut: {fileID: 11400000, guid: 9274209409056a14da20637bf99c7aa2, type: 2}
-    isUnlocked: 1
+    isUnlocked: 0
     costToUnlock: 700
     ultimateUnlocked: 0
     costToUnlockUltimate: 500
   - category: 2
     dataStrcut: {fileID: 11400000, guid: 89d9bd1f9ef1d184bab913c343934b99, type: 2}
-    isUnlocked: 1
+    isUnlocked: 0
     costToUnlock: 700
     ultimateUnlocked: 0
     costToUnlockUltimate: 500
@@ -102,7 +102,16 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   textList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

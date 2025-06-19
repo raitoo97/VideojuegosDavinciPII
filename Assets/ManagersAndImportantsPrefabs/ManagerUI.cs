@@ -12,6 +12,7 @@ public class ManagerUI : MonoBehaviour
     private PjStatesLifeBar PjLifeStates;
     private PjSkillsUpgradeUI _pjSkillsUpgradeUI;
     private WavesUI _wavesUI;
+    public GameObject SkillsPanel;
     private void Awake()
     {
         if (instance == null) { instance = this; }
@@ -32,7 +33,6 @@ public class ManagerUI : MonoBehaviour
         PjLifeStates.OnUpdate();
         _pjSkillsUpgradeUI.OnUpdate();
         _wavesUI.OnUpdate();
-        Debug.Log(" SHIELD GETLEVEL " + ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldCooldown));
     }
     public PjStatesLifeBar getLifeBar { get => PjLifeStates; }
 }

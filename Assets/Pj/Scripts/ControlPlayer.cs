@@ -51,54 +51,15 @@ public class ControlPlayer
         bool isJumping = Input.GetKeyDown(KeyCode.Space);
         bool isDash = Input.GetKeyDown(KeyCode.Mouse0); 
         bool isShield = Input.GetKeyDown(KeyCode.Mouse1);
-
-       
-
-       
         // DASH UNLOCK & LEVEL UP
         unlockedDash = ManagerSkills.instance.IsUnlocked(SkillCategory.dashCategory);
         dashCooldown = ManagerSkills.instance.GetValueSkill(SkillCategory.dashCategory,SkillStatType.dashCooldown);
-
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.dashCategory);
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            ManagerSkills.instance.UpgradeSkill(SkillCategory.dashCategory, SkillStatType.dashSpeed);
-            ManagerSkills.instance.UpgradeSkill(SkillCategory.dashCategory, SkillStatType.dashCooldown);
-            
-        }
-
         //SHIELD UNLOCK & LEVEL UP
         unlockedShield = ManagerSkills.instance.IsUnlocked(SkillCategory.shieldCategory);
         shieldCooldown = ManagerSkills.instance.GetValueSkill(SkillCategory.shieldCategory, SkillStatType.shieldCooldown);
         radius = ManagerSkills.instance.GetValueSkill(SkillCategory.shieldCategory, SkillStatType.shieldRadius);
         shieldDuration = ManagerSkills.instance.GetValueSkill(SkillCategory.shieldCategory, SkillStatType.shieldDuration);
-
         _shield.radius = radius;
-        
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.shieldCategory);
-            Debug.Log("shield unlocked " + unlockedShield);
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-
-            Debug.Log("shield LVL UP");
-            ManagerSkills.instance.UpgradeSkill(SkillCategory.shieldCategory, SkillStatType.shieldDuration);
-            ManagerSkills.instance.UpgradeSkill(SkillCategory.shieldCategory, SkillStatType.shieldRadius);
-            ManagerSkills.instance.UpgradeSkill(SkillCategory.shieldCategory, SkillStatType.shieldCooldown);
-
-            Debug.Log("POWER " + ManagerSkills.instance.GetValueSkill(SkillCategory.shieldCategory, SkillStatType.shieldDuration));
-            Debug.Log("RADIUS " + ManagerSkills.instance.GetValueSkill(SkillCategory.shieldCategory, SkillStatType.shieldRadius));
-            Debug.Log("COOLDOWN " + ManagerSkills.instance.GetValueSkill(SkillCategory.shieldCategory, SkillStatType.shieldCooldown));
-
-        }
-
-        
-
         // -------ANIMACIONES DE MOVIMIENTO------
         _animation.SetGround("ground", isGrounded);
 
