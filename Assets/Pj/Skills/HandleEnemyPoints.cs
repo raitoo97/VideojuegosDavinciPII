@@ -21,8 +21,14 @@ public class HandleEnemyPoints
     }
     private void HandleEnemyDeath(IEnemies enemy)
     {
-        float points = enemy.GetPointValue();
-        PointManager.instance.AddPoints(points);
+        //float points = enemy.GetPointValue();
+        //PointManager.instance.AddPoints(points);
         //ACA DEBERIA INSTANCIAR DROP
+
+        if (PoolPickUp.instance.poolPickUpsStructs.Count > 0)
+        {
+            Transform enemyTransform = enemy.GetTransform();
+            PoolPickUp.instance.poolPickUpsStructs[0].Drop(enemyTransform);
+        }
     }
 }
