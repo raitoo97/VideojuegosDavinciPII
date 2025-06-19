@@ -35,10 +35,6 @@ public class Bullet : MonoBehaviour
             onHitPlayerBullet?.Invoke(player,10,this.transform);
             DesactivateBullet();
         }
-        if (shooterType == ShooterType.Enemy && other.gameObject.layer == 14)
-        {
-            DesactivateBullet();
-        }
         if(shooterType == ShooterType.Player && other.TryGetComponent<IEnemies>(out var detectedOneEnemy))
         {
             if(other.TryGetComponent<ZombieBehaviour>(out var Zombie))
@@ -64,6 +60,14 @@ public class Bullet : MonoBehaviour
                     onHitZombie?.Invoke(zombies);
                 }
             }
+            DesactivateBullet();
+        }
+        if (other.gameObject.layer == 13)//Ground
+        {
+            DesactivateBullet();
+        }
+        if (shooterType == ShooterType.Enemy && other.gameObject.layer == 14)//Shield
+        {
             DesactivateBullet();
         }
     }
