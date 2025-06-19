@@ -33,8 +33,8 @@ public class ManagerUI : MonoBehaviour
         _pjSkillsUpgradeUI.OnUpdate();
         _wavesUI.OnUpdate();
 
-        Debug.Log("POINTS SHIELD COOLDOWN " + ManagerSkills.instance.GetValueSkillCost(SkillCategory.shieldCategory, SkillStatType.shieldCooldown));
-        Debug.Log("POINTS CURRENT " + PointManager.instance.CurrentPoints);
+        Debug.Log(" SHIELD GETLEVEL " + ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldCooldown));
+        
     }
     public PjStatesLifeBar getLifeBar { get => PjLifeStates; }
 }

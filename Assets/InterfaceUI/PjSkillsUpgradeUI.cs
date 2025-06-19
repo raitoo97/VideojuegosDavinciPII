@@ -7,6 +7,7 @@ public class PjSkillsUpgradeUI
     private Text rateFireText;
     private Text distanceText;
     private Text shieldText;
+    private Text dashText;
     private Button rateFireButton;
     private Button distanceButton;
     private Button shieldButton;
@@ -20,7 +21,8 @@ public class PjSkillsUpgradeUI
         UpgradeDistance,
         ButtonShield,
         ShieldNumber,
-        ButtonDash
+        ButtonDash,
+        DashNumber
     }
     public PjSkillsUpgradeUI(List<Text> textos,List<Button>buttons)
     {
@@ -32,6 +34,8 @@ public class PjSkillsUpgradeUI
         this.shieldButton = buttons.Find(x => x.gameObject.name == UIElementName.ButtonShield.ToString());
         this.shieldText = textos.Find(x => x.gameObject.name == UIElementName.ShieldNumber.ToString());
         this.dashButton = buttons.Find(x => x.gameObject.name == UIElementName.ButtonDash.ToString());
+        this.dashText = textos.Find(x => x.gameObject.name == UIElementName.DashNumber.ToString());
+
     }
     public void OnStart()
     {
@@ -48,7 +52,8 @@ public class PjSkillsUpgradeUI
         pointsText.text = PointManager.instance.CurrentPoints.ToString();
         rateFireText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretShotSpeed).ToString();
         distanceText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretVisionRange).ToString();
-        shieldText.text = (ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldCooldown).ToString() + " / 3");
+        shieldText.text = ((ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldCooldown) + 1) + " / 3");
+        dashText.text = ((ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashCooldown) + 1) + " / 3");
         CanLevelUp();
     }
 
