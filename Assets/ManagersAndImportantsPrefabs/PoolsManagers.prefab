@@ -56,7 +56,7 @@ MonoBehaviour:
     initialSize: 50
     _parent: {fileID: 1477309947633531035}
   - type: 2
-    prefab: {fileID: 2550435405342970570, guid: 27b3356cd14c1944abed1fc53b6d6d37, type: 3}
+    prefab: {fileID: 2791607998676314047, guid: 83281941d0a13834bb648df67530d132, type: 3}
     initialSize: 50
     _parent: {fileID: 1477309947633531035}
 --- !u!114 &2694690536876157383
@@ -75,7 +75,7 @@ MonoBehaviour:
   - type: 0
     _enemyPool: []
     prefab: {fileID: 3197303922709835850, guid: 6b89fdb848eeb6148be15f378ae5087a, type: 3}
-    initList: 50
+    initList: 1000
     parent: {fileID: 1477309947633531035}
 --- !u!114 &6409479817852363087
 MonoBehaviour:

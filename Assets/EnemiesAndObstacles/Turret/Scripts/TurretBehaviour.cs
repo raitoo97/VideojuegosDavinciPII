@@ -101,6 +101,8 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     {
         if (turret != this) return;
         _life -= dmg;
+        int randomIndex = Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
+        AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndex]); //sound effect
         if (_life <= 0)
         {
             OnDeath?.Invoke(this);
