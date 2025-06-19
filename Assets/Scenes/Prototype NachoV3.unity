@@ -7592,6 +7592,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2839453531279406761, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
   m_PrefabInstance: {fileID: 8709016930750793762}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1874446761 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1477309947633531035, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
+  m_PrefabInstance: {fileID: 8709016930750793762}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1874446762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7605,9 +7610,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolPickUpsStructs:
-  - initList: 20
+  - _prefab: {fileID: 5957392137929368299, guid: d824ae50e13af7c4abc19806616aef64, type: 3}
+    initList: 20
     points: 50
-    _prefab: {fileID: 5957392137929368299, guid: d824ae50e13af7c4abc19806616aef64, type: 3}
     _itemPool: []
 --- !u!1001 &1918025490
 PrefabInstance:
@@ -8973,6 +8978,26 @@ PrefabInstance:
     - target: {fileID: 2839453531279406761, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
       propertyPath: m_Name
       value: PoolsManagers
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409479817852363087, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
+      propertyPath: particleConfigs.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409479817852363087, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
+      propertyPath: particleConfigs.Array.data[3].type
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6409479817852363087, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
+      propertyPath: particleConfigs.Array.data[3].poolParent
+      value: 
+      objectReference: {fileID: 1874446761}
+    - target: {fileID: 6409479817852363087, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
+      propertyPath: particleConfigs.Array.data[3].ParticlePrefab
+      value: 
+      objectReference: {fileID: 6072464643854313593, guid: 46f7e95558976ba4aa3dac5e0eb5b50d, type: 3}
+    - target: {fileID: 6409479817852363087, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
+      propertyPath: particleConfigs.Array.data[3].initialPoolSize
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
