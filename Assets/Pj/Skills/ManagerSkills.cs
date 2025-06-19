@@ -96,7 +96,7 @@ public class ManagerSkills : MonoBehaviour
         }
         return 0f;
     }
-    private float GetValueSkillCost(SkillCategory category, SkillStatType specificType)
+    public float GetValueSkillCost(SkillCategory category, SkillStatType specificType)
     {
         if (!_skills.ContainsKey(category)) return 0f;
         ActiveSkill skill = _skills[category];

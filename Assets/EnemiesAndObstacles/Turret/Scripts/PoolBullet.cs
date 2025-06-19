@@ -38,10 +38,12 @@ public class BulletPoolConfig
     public int initialSize;
     public Transform _parent;
     private List<GameObject> _bullets = new();
+
     public void OnStart()
     {
         CompleteList(initialSize);
     }
+
     public void CompleteList(int number)
     {
         for (int i = 0; i < number; i++)

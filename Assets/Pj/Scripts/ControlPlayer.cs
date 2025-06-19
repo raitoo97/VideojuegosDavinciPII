@@ -23,12 +23,12 @@ public class ControlPlayer
     private bool canShield = true;
     private bool isShielding = false;
     private float radius;
-    private float power;
+   
     public bool unlockedShield = false;
     float shieldCooldown;
     
-    private float shieldCooldownTimer = 0f;
     private float shieldDuration;
+    private float shieldCooldownTimer = 0f;
     private float shieldTimer = 0f;
 
 
@@ -51,9 +51,11 @@ public class ControlPlayer
         bool isJumping = Input.GetKeyDown(KeyCode.Space);
         bool isDash = Input.GetKeyDown(KeyCode.Mouse0); 
         bool isShield = Input.GetKeyDown(KeyCode.Mouse1);
-        
-        
-        //DASH UNLOCK & LEVEL UP
+
+       
+
+       
+        // DASH UNLOCK & LEVEL UP
         unlockedDash = ManagerSkills.instance.IsUnlocked(SkillCategory.dashCategory);
         dashCooldown = ManagerSkills.instance.GetValueSkill(SkillCategory.dashCategory,SkillStatType.dashCooldown);
 
@@ -95,7 +97,7 @@ public class ControlPlayer
 
         }
 
-
+        
 
         // -------ANIMACIONES DE MOVIMIENTO------
         _animation.SetGround("ground", isGrounded);
