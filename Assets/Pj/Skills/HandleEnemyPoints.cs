@@ -21,6 +21,7 @@ public class HandleEnemyPoints
     }
     private void HandleEnemyDeath(IEnemies enemy)
     {
+
         //float points = enemy.GetPointValue();
         //PointManager.instance.AddPoints(points);
         //ACA DEBERIA INSTANCIAR DROP
@@ -32,5 +33,13 @@ public class HandleEnemyPoints
 
         var healPickup = PoolPickUp.instance.poolPickUpsStructs.Find(p => p.type == PickupType.Health);
         healPickup?.Drop(t);
+
+  /*
+        if (PoolPickUp.instance.poolPickUpsStructs.Count > 0)
+        {
+            Transform enemyTransform = enemy.GetTransform();
+            PoolPickUp.instance.poolPickUpsStructs[0].Drop(enemyTransform);
+        }*/
+
     }
 }

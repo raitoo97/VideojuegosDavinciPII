@@ -35,25 +35,18 @@ public class Bullet : MonoBehaviour
             onHitPlayerBullet?.Invoke(player,10,this.transform);
             DesactivateBullet();
         }
-        if (shooterType == ShooterType.Enemy && other.gameObject.layer == 14)
+        if(shooterType == ShooterType.Player && other.TryGetComponent<IEnemies>(out var detectedOneEnemy))
         {
+            if(other.TryGetComponent<ZombieBehaviour>(out var Zombie))
+            {
+                onHitZombie?.Invoke(Zombie);
+            }else if(other.TryGetComponent<TurretBehaviour>(out var turret))
+            {
+                OnTurretDamaged?.Invoke(turret, _dmgPlayer);
+            }
             DesactivateBullet();
         }
-        if (shooterType == ShooterType.Player && other.TryGetComponent<ZombieBehaviour>(out var enemy))
-        {
-            onHitZombie?.Invoke(enemy);
-            DesactivateBullet();
-        }
-        if (other.gameObject.layer == 13)
-        {
-            DesactivateBullet();
-        }
-        if (shooterType == ShooterType.Player && other.TryGetComponent<TurretBehaviour>(out var turret))
-        {
-            OnTurretDamaged?.Invoke(turret, _dmgPlayer);
-            DesactivateBullet();
-        }
-        if (shooterType == ShooterType.SuperPlayer && other.TryGetComponent<IEnemies>(out var detectedEnemy))
+        if (shooterType == ShooterType.SuperPlayer && other.TryGetComponent<IEnemies>(out var detectedEnemies))
         {
             var hits = Physics.OverlapSphere(this.transform.position, _ultimtateRadius, mask);
             foreach (var hit in hits)
@@ -62,11 +55,19 @@ public class Bullet : MonoBehaviour
                 {
                     OnTurretDamaged?.Invoke(turrets, _dmgPlayer);
                 }
-                else if (hit.TryGetComponent<ZombieBehaviour>(out var zombie))
+                else if (hit.TryGetComponent<ZombieBehaviour>(out var zombies))
                 {
-                    onHitZombie?.Invoke(zombie);
+                    onHitZombie?.Invoke(zombies);
                 }
             }
+            DesactivateBullet();
+        }
+        if (other.gameObject.layer == 13)//Ground
+        {
+            DesactivateBullet();
+        }
+        if (shooterType == ShooterType.Enemy && other.gameObject.layer == 14)//Shield
+        {
             DesactivateBullet();
         }
     }
