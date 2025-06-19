@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-/* Enum para mas de un Pickup Item
+
 public enum PickupType
 {
    Xp,
+   Health
 }
-*/ 
+
 
 public class PoolPickUp : MonoBehaviour
 {
@@ -46,10 +47,12 @@ public class PoolPickUp : MonoBehaviour
     public class PoolPickUpsStruct
     {
         [SerializeField] GameObject _prefab;
+        public PickupType type;
         public int initList;
-        public float points = 50f;
-        private float chance = 100f;
+        [SerializeField] public float points;
+        [SerializeField] float chance;
         private bool dropped;
+
         [SerializeField] private List<GameObject> _itemPool = new List<GameObject>();
         
 
@@ -72,7 +75,7 @@ public class PoolPickUp : MonoBehaviour
 
         public void Drop(Transform parent)
         {
-            dropped = (UnityEngine.Random.Range(0, chance)) >= 50;
+            dropped = (UnityEngine.Random.Range(0f, 100f)) <= chance;
 
             if (dropped)
             {

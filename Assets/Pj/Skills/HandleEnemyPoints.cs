@@ -25,10 +25,12 @@ public class HandleEnemyPoints
         //PointManager.instance.AddPoints(points);
         //ACA DEBERIA INSTANCIAR DROP
 
-        if (PoolPickUp.instance.poolPickUpsStructs.Count > 0)
-        {
-            Transform enemyTransform = enemy.GetTransform();
-            PoolPickUp.instance.poolPickUpsStructs[0].Drop(enemyTransform);
-        }
+        Transform t = enemy.GetTransform();
+
+        var xpPickup = PoolPickUp.instance.poolPickUpsStructs.Find(p => p.type == PickupType.Xp);
+        xpPickup?.Drop(t);
+
+        var healPickup = PoolPickUp.instance.poolPickUpsStructs.Find(p => p.type == PickupType.Health);
+        healPickup?.Drop(t);
     }
 }

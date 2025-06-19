@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class itemBehavior : MonoBehaviour
+public class itemHealthBehavior : MonoBehaviour
 {
-    public float points = 50f;
+    public float healingpoints = 50f;
     private void OnTriggerEnter(Collider other)
     {
         if (other != null && other.CompareTag("Player"))
         {
-            float points = PoolPickUp.instance.poolPickUpsStructs[0].points;
-            PointManager.instance.AddPoints(points);
+            
+            Player.instance.HealthPlayer(healingpoints);
             this.gameObject.SetActive(false);
         }
     }
-
-   
 }
