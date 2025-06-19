@@ -34,7 +34,7 @@ public class HandleEnemyPoints
         var healPickup = PoolPickUp.instance.poolPickUpsStructs.Find(p => p.type == PickupType.Health);
         healPickup?.Drop(t);
 
-  /*
+        /*
         if (PoolPickUp.instance.poolPickUpsStructs.Count > 0)
         {
             Transform enemyTransform = enemy.GetTransform();
