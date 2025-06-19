@@ -120,7 +120,6 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
     {
         return 1;
     }
-
     public Transform GetTransform()
     {
         return this.transform;
