@@ -53,7 +53,7 @@ public class Bullet : MonoBehaviour
             OnTurretDamaged?.Invoke(turret, _dmgPlayer);
             DesactivateBullet();
         }
-        if (shooterType == ShooterType.SuperPlayer)
+        if (shooterType == ShooterType.SuperPlayer && other.TryGetComponent<IEnemies>(out var detectedEnemy))
         {
             var hits = Physics.OverlapSphere(this.transform.position, _ultimtateRadius, mask);
             foreach (var hit in hits)
