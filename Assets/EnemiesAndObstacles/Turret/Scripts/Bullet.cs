@@ -11,9 +11,12 @@ public class Bullet : MonoBehaviour
     public static event Action<TurretBehaviour, float> OnTurretDamaged;
     [Header("Player dmg")]
     private float _dmgPlayer;
+    private float _ultimtateRadius;
+    public LayerMask mask;
     private void Start()
     {
         _dmgPlayer = 50;
+        _ultimtateRadius = 3;
     }
     private void OnEnable()
     {
@@ -50,6 +53,33 @@ public class Bullet : MonoBehaviour
             OnTurretDamaged?.Invoke(turret, _dmgPlayer);
             DesactivateBullet();
         }
+        if (shooterType == ShooterType.SuperPlayer && other.TryGetComponent<TurretBehaviour>(out var turrets))
+        {
+            var hits = Physics.OverlapSphere(this.transform.position, _ultimtateRadius, mask);
+            foreach (var hit in hits)
+            {
+                var currenthit = hit.GetComponent<TurretBehaviour>();
+                if (currenthit == null) continue;
+                OnTurretDamaged?.Invoke(currenthit, _dmgPlayer);
+            }
+            DesactivateBullet();
+        }
+        if (shooterType == ShooterType.SuperPlayer && other.TryGetComponent<ZombieBehaviour>(out var enemies))
+        {
+            var hits = Physics.OverlapSphere(this.transform.position, _ultimtateRadius, mask);
+            foreach (var hit in hits)
+            {
+                var currenthit = hit.GetComponent<ZombieBehaviour>();
+                if (currenthit == null) continue;
+                onHitZombie?.Invoke(currenthit);
+            }
+            DesactivateBullet();
+        }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(this.transform.position, _ultimtateRadius);
     }
     private void DesactivateBullet()
     {
