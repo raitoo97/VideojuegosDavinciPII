@@ -1886,6 +1886,26 @@ PrefabInstance:
       propertyPath: particleConfigs.Array.data[3].initialPoolSize
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 6783233624291543087, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
+      propertyPath: poolPickUpsStructs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6783233624291543087, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
+      propertyPath: poolPickUpsStructs.Array.data[1].type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6783233624291543087, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
+      propertyPath: poolPickUpsStructs.Array.data[0]._prefab
+      value: 
+      objectReference: {fileID: 1556657292120010325, guid: 57659153babd040449316b509efcce9e, type: 3}
+    - target: {fileID: 6783233624291543087, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
+      propertyPath: poolPickUpsStructs.Array.data[1]._prefab
+      value: 
+      objectReference: {fileID: 2126536242982309865, guid: 235d79255b24dad46864f72e04f78b3e, type: 3}
+    - target: {fileID: 6783233624291543087, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
+      propertyPath: poolPickUpsStructs.Array.data[1].initList
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
