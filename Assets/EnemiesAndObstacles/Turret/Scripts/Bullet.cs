@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         _dmgPlayer = 50;
-        _ultimtateRadius = 3;
+        _ultimtateRadius = 4;
     }
     private void OnEnable()
     {
@@ -53,25 +53,19 @@ public class Bullet : MonoBehaviour
             OnTurretDamaged?.Invoke(turret, _dmgPlayer);
             DesactivateBullet();
         }
-        if (shooterType == ShooterType.SuperPlayer && other.TryGetComponent<TurretBehaviour>(out var turrets))
+        if (shooterType == ShooterType.SuperPlayer)
         {
             var hits = Physics.OverlapSphere(this.transform.position, _ultimtateRadius, mask);
             foreach (var hit in hits)
             {
-                var currenthit = hit.GetComponent<TurretBehaviour>();
-                if (currenthit == null) continue;
-                OnTurretDamaged?.Invoke(currenthit, _dmgPlayer);
-            }
-            DesactivateBullet();
-        }
-        if (shooterType == ShooterType.SuperPlayer && other.TryGetComponent<ZombieBehaviour>(out var enemies))
-        {
-            var hits = Physics.OverlapSphere(this.transform.position, _ultimtateRadius, mask);
-            foreach (var hit in hits)
-            {
-                var currenthit = hit.GetComponent<ZombieBehaviour>();
-                if (currenthit == null) continue;
-                onHitZombie?.Invoke(currenthit);
+                if (hit.TryGetComponent<TurretBehaviour>(out var turrets))
+                {
+                    OnTurretDamaged?.Invoke(turrets, _dmgPlayer);
+                }
+                else if (hit.TryGetComponent<ZombieBehaviour>(out var zombie))
+                {
+                    onHitZombie?.Invoke(zombie);
+                }
             }
             DesactivateBullet();
         }

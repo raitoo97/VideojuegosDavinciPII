@@ -75,7 +75,7 @@ MonoBehaviour:
   - type: 0
     _enemyPool: []
     prefab: {fileID: 3197303922709835850, guid: 6b89fdb848eeb6148be15f378ae5087a, type: 3}
-    initList: 50
+    initList: 1000
     parent: {fileID: 1477309947633531035}
 --- !u!114 &6409479817852363087
 MonoBehaviour:
