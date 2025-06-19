@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         _controller.OnUpdate();
         if (Input.GetKeyDown(KeyCode.G))
         {
-            HealthPlayer(10);
+            DamagePlayer(10);
         }
     }
     private void FixedUpdate()

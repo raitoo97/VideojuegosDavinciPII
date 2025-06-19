@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 
-/* Enum para mas de un Pickup Item
+
 public enum PickupType
 {
    Xp,
+   Health
 }
-*/ 
+
 
 public class PoolPickUp : MonoBehaviour
 {
@@ -46,10 +48,12 @@ public class PoolPickUp : MonoBehaviour
     public class PoolPickUpsStruct
     {
         [SerializeField] GameObject _prefab;
+        public PickupType type;
         public int initList;
-        public float points = 50f;
-        private float chance = 100f;
+        //[SerializeField] public float points;
+        [SerializeField] float chance;
         private bool dropped;
+
         [SerializeField] private List<GameObject> _itemPool = new List<GameObject>();
         
 
@@ -72,7 +76,7 @@ public class PoolPickUp : MonoBehaviour
 
         public void Drop(Transform parent)
         {
-            dropped = (UnityEngine.Random.Range(0, chance)) >= 50;
+            dropped = (UnityEngine.Random.Range(0f, 100f)) <= chance;
 
             if (dropped)
             {
@@ -86,20 +90,38 @@ public class PoolPickUp : MonoBehaviour
 
         public GameObject GetItem()
         {
-            for (int i = 0; i < _itemPool.Count; i++)
+            foreach (var item in _itemPool)
             {
-                if (!_itemPool[i].activeSelf)
+                if (!item.activeSelf)
                 {
-                    _itemPool[i].SetActive(true); return _itemPool[i];
+                    item.SetActive(true);
+                    //AssignBehaviorValues(item);
+                    return item;
                 }
             }
 
             CompleteList(1);
-            GameObject _auxItem = _itemPool[_itemPool.Count - 1];
-            
-            _auxItem.SetActive(true); return _auxItem;
+            GameObject newItem = _itemPool[_itemPool.Count - 1];
+            newItem.SetActive(true);
+            //AssignBehaviorValues(newItem);
+            return newItem;
         }
 
+        /*
+        private void AssignBehaviorValues(GameObject item)
+        {
+            Debug.Log($"[DEBUG] Asignando puntos: {points} al item {type}");
+
+            if (type == PickupType.Health && item.TryGetComponent<itemHealthBehavior>(out var heal))
+            {
+                heal.SetHealingPoints(points);
+            }
+
+            if (type == PickupType.Xp && item.TryGetComponent<itemXPBehavior> (out var xp))
+            {
+                xp.SetXpPoints(points);
+            }
+        }*/
     
     
     }
