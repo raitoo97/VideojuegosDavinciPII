@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4395487778878431120}
   - component: {fileID: 2694690536876157383}
   - component: {fileID: 6409479817852363087}
+  - component: {fileID: 6783233624291543087}
   m_Layer: 0
   m_Name: PoolsManagers
   m_TagString: Untagged
@@ -105,3 +106,25 @@ MonoBehaviour:
     initialPoolSize: 50
     ParticlePrefab: {fileID: 3070131706269945652, guid: ee408d5915d39604a91742fc0a229673, type: 3}
     pooledParticles: []
+  - type: 3
+    poolParent: {fileID: 1477309947633531035}
+    initialPoolSize: 50
+    ParticlePrefab: {fileID: 6072464643854313593, guid: 46f7e95558976ba4aa3dac5e0eb5b50d, type: 3}
+    pooledParticles: []
+--- !u!114 &6783233624291543087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2839453531279406761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b362d88c963d8114db265e0280e4aeb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolPickUpsStructs:
+  - _prefab: {fileID: 5957392137929368299, guid: d824ae50e13af7c4abc19806616aef64, type: 3}
+    initList: 20
+    points: 50
+    _itemPool: []
