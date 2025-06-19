@@ -66,7 +66,7 @@ public class PjSkillsUpgradeUI
             return;
         }
 
-        if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.shieldCategory,SkillStatType.shieldCooldown) <= PointManager.instance.CurrentPoints ) //Solo lo hago con el shield y esa abilidad porque todos comparten mismo valor
+        if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.shieldCategory,SkillStatType.shieldCooldown) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.shieldCategory)) //Solo lo hago con el shield y esa abilidad porque todos comparten mismo valor
         {
             shieldButton.gameObject.SetActive(true); 
         }
@@ -75,7 +75,7 @@ public class PjSkillsUpgradeUI
             shieldButton.gameObject.SetActive(false); ;
         }
 
-        if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.dashCategory, SkillStatType.dashCooldown) <= PointManager.instance.CurrentPoints)
+        if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.dashCategory, SkillStatType.dashCooldown) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory))
         {
             dashButton.gameObject.SetActive(true);
         }
