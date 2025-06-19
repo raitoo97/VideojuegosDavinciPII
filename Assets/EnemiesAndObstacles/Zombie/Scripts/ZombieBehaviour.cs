@@ -18,7 +18,7 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
     private Coroutine _coroutine;
     private void Awake()
     {
-        _enemypoints = 20;
+        _enemypoints = 20; //puntos
         life = 100;
         _idleDistance = 50f;
         _runDistance = 4;
@@ -69,7 +69,7 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
             _anims.ChangeState(STATE.Atack);
             _agent.isStopped = true;
             _agent.SetDestination(_agent.transform.position);
-            //Danio al Player
+            
             foreach (var col in _attackColliders)
             {
                 col.enabled = true;
@@ -101,7 +101,7 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
             WavesManager.instance.EnemyDesuscribeEventToWaveSubstract(this);
         }
         Bullet.onHitZombie -= HandleHitZombie;
-        //ACA LOGICA DROP
+        
     }
     IEnumerator corrutinaDeath()
     {
@@ -119,5 +119,10 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
     public int SubstractFromWave()
     {
         return 1;
+    }
+
+    public Transform GetTransform()
+    {
+        return this.transform;
     }
 }

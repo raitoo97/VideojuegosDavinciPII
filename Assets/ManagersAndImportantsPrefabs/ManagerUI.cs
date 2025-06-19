@@ -32,6 +32,9 @@ public class ManagerUI : MonoBehaviour
         PjLifeStates.OnUpdate();
         _pjSkillsUpgradeUI.OnUpdate();
         _wavesUI.OnUpdate();
+
+        Debug.Log(" SHIELD GETLEVEL " + ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldCooldown));
+        
     }
     public PjStatesLifeBar getLifeBar { get => PjLifeStates; }
 }
