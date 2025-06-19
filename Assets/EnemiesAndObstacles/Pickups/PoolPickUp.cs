@@ -45,11 +45,11 @@ public class PoolPickUp : MonoBehaviour
     [Serializable]
     public class PoolPickUpsStruct
     {
+        [SerializeField] GameObject _prefab;
         public int initList;
-        public float points = 25f;
+        public float points = 50f;
         private float chance = 100f;
         private bool dropped;
-        [SerializeField] GameObject _prefab;
         [SerializeField] private List<GameObject> _itemPool = new List<GameObject>();
         
 
