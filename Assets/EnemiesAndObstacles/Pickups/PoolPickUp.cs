@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 
 public enum PickupType
@@ -49,7 +50,7 @@ public class PoolPickUp : MonoBehaviour
         [SerializeField] GameObject _prefab;
         public PickupType type;
         public int initList;
-        [SerializeField] public float points;
+        //[SerializeField] public float points;
         [SerializeField] float chance;
         private bool dropped;
 
@@ -89,20 +90,38 @@ public class PoolPickUp : MonoBehaviour
 
         public GameObject GetItem()
         {
-            for (int i = 0; i < _itemPool.Count; i++)
+            foreach (var item in _itemPool)
             {
-                if (!_itemPool[i].activeSelf)
+                if (!item.activeSelf)
                 {
-                    _itemPool[i].SetActive(true); return _itemPool[i];
+                    item.SetActive(true);
+                    //AssignBehaviorValues(item);
+                    return item;
                 }
             }
 
             CompleteList(1);
-            GameObject _auxItem = _itemPool[_itemPool.Count - 1];
-            
-            _auxItem.SetActive(true); return _auxItem;
+            GameObject newItem = _itemPool[_itemPool.Count - 1];
+            newItem.SetActive(true);
+            //AssignBehaviorValues(newItem);
+            return newItem;
         }
 
+        /*
+        private void AssignBehaviorValues(GameObject item)
+        {
+            Debug.Log($"[DEBUG] Asignando puntos: {points} al item {type}");
+
+            if (type == PickupType.Health && item.TryGetComponent<itemHealthBehavior>(out var heal))
+            {
+                heal.SetHealingPoints(points);
+            }
+
+            if (type == PickupType.Xp && item.TryGetComponent<itemXPBehavior> (out var xp))
+            {
+                xp.SetXpPoints(points);
+            }
+        }*/
     
     
     }

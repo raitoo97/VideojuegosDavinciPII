@@ -4,14 +4,22 @@ using UnityEngine;
 
 public class itemHealthBehavior : MonoBehaviour
 {
-    public float healingpoints = 50f;
+    public float healingPoints = 10f;
+
+    /*
+    public void SetHealingPoints(float amount)
+    {
+        _healingPoints = amount;
+    }*/
     private void OnTriggerEnter(Collider other)
     {
         if (other != null && other.CompareTag("Player"))
         {
             
-            Player.instance.HealthPlayer(healingpoints);
+            Player.instance.HealthPlayer(healingPoints);
             this.gameObject.SetActive(false);
+
+            
         }
     }
 }
