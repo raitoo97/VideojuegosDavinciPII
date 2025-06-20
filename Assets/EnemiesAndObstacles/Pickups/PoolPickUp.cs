@@ -1,23 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Progress;
-
-
 public enum PickupType
 {
    Xp,
    Health
 }
-
-
 public class PoolPickUp : MonoBehaviour
 {
     public static PoolPickUp instance;
     public List<PoolPickUpsStruct> poolPickUpsStructs = new List<PoolPickUpsStruct>();
-
     private void Awake()
     {
         if (instance == null)
@@ -29,12 +22,10 @@ public class PoolPickUp : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
     private void Start()
     {
         StartCoroutine(WaitPool());
     }
-
     IEnumerator WaitPool()
     {
         yield return new WaitForEndOfFrame();
@@ -43,7 +34,6 @@ public class PoolPickUp : MonoBehaviour
             item.OnStart();
         }
     }
-
     [Serializable]
     public class PoolPickUpsStruct
     {

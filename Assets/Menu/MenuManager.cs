@@ -32,7 +32,7 @@ public class MenuManager : MonoBehaviour
     }
     private void Protoype()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
     private void TutorialButon()
     {
