@@ -99,7 +99,7 @@ MonoBehaviour:
   - type: 1
     poolParent: {fileID: 1477309947633531035}
     initialPoolSize: 50
-    ParticlePrefab: {fileID: 9186223074542341213, guid: d1d22d969a9aec745bb425976a3b6493, type: 3}
+    ParticlePrefab: {fileID: 4211811163603552197, guid: 4b7768051c4528d45a331fdcb71e424d, type: 3}
     pooledParticles: []
   - type: 2
     poolParent: {fileID: 1477309947633531035}
