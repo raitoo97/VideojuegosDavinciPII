@@ -8202,45 +8202,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114142690195490335, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_Name
-      value: CooldownShieldText
-      objectReference: {fileID: 0}
-    - target: {fileID: 614025092471139136, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_Name
-      value: RatioShieldText
-      objectReference: {fileID: 0}
-    - target: {fileID: 1176363361124611051, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2086581237987240506, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 279676455313902624, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_Type
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 279676455313902624, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1641265047df8854c83ac26408e44b3f, type: 3}
     - target: {fileID: 2572514622511211752, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 3465678232492281384, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 4176442400801388422, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3271cfa7e411e514abed02578a9af8a6, type: 3}
+    - target: {fileID: 4774694106411532146, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2033
       objectReference: {fileID: 0}
-    - target: {fileID: 3497530508808197770, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_Name
-      value: UpgradeShieldColdown
+    - target: {fileID: 4774694106411532146, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2033
       objectReference: {fileID: 0}
-    - target: {fileID: 4396222048216937202, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_Name
-      value: UltimateTurret
-      objectReference: {fileID: 0}
-    - target: {fileID: 4659338316010290429, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_Name
-      value: CooldownDashText
-      objectReference: {fileID: 0}
-    - target: {fileID: 6062474031571023185, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_Name
-      value: UpgradeDashCooldown
+    - target: {fileID: 4774694106411532146, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2033
       objectReference: {fileID: 0}
     - target: {fileID: 6108571042833853355, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
       propertyPath: m_Pivot.x
@@ -8322,28 +8310,43 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6450849307377983796, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_Name
-      value: DurationShieldText
+    - target: {fileID: 7190539644192284005, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7144631131483783527, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_Name
-      value: UpgradeDashSpeed
+    - target: {fileID: 7190539644192284005, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_Color.b
+      value: 0.38461196
       objectReference: {fileID: 0}
-    - target: {fileID: 8194187404958031208, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_Name
-      value: UpgradeShieldDuration
+    - target: {fileID: 7190539644192284005, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_Color.g
+      value: 0.38488773
       objectReference: {fileID: 0}
-    - target: {fileID: 8565574999891277395, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_Name
-      value: SpeedDashText
+    - target: {fileID: 7190539644192284005, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_Color.r
+      value: 0.4056604
       objectReference: {fileID: 0}
-    - target: {fileID: 8751495174983897604, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_Name
-      value: UpgradeShieldRatio
+    - target: {fileID: 8539843296926063478, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8539843296926063478, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 0d722606c12d701428a216f9efb33bb0, type: 3}
+    - target: {fileID: 8589865441352519946, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8589865441352519946, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7eade480a8f42e64fb081b7804616a78, type: 3}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2618903272241547649, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+    - {fileID: 52329929787379265, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+    - {fileID: 3267012374413878800, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
