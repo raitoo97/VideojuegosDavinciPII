@@ -28,11 +28,11 @@ public class MenuManager : MonoBehaviour
     }
     private void StartGame()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
     }
     private void Protoype()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
     private void TutorialButon()
     {
