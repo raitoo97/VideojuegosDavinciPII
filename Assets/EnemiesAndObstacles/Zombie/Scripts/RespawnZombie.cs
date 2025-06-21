@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 public class RespawnZombie : MonoBehaviour
 {
     public int numberOfRespawn;
@@ -16,8 +17,14 @@ public class RespawnZombie : MonoBehaviour
             for (int i = 0; i < numberOfRespawn; i++)
             {
                 GameObject Enemy = PoolEnemy.instance.EnemiesTypesList.Find(x => x.type == EnemyType.Zombie).GetEnemy();
+                NavMeshAgent agent = Enemy.GetComponent<NavMeshAgent>();
+                if (agent != null) agent.enabled = false;
+                Rigidbody rb = Enemy.GetComponent<Rigidbody>();
+                if (rb != null) rb.isKinematic = true;
                 Enemy.transform.position = this.transform.position;
                 Enemy.transform.rotation = this.transform.rotation;
+                if (agent != null) agent.enabled = true;
+                if (rb != null) rb.isKinematic = false;
                 PointManager.instance.GetHandle.EnemySuscribeEvent(Enemy.GetComponent<IEnemies>());
                 WavesManager.instance.EnemySuscribeEventToWaveSubstract(Enemy.GetComponent<IEnemies>());
             }

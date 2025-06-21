@@ -20,7 +20,7 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
     {
         _enemypoints = 20; //puntos
         life = 100;
-        _idleDistance = 50f;
+        _idleDistance = 1000f;
         _runDistance = 4;
         _atackDistance = 1.5f;
         _agent = GetComponent<NavMeshAgent>();
