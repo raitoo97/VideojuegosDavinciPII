@@ -12,6 +12,7 @@ public class Spikes : MonoBehaviour
     {
         if(other.transform.gameObject.TryGetComponent<Player>(out var player))
         {
+            print("sadasdasdsadsa");
             _isOnPlataform = true;
             _corrutine = StartCoroutine(MakeDamage());
         }

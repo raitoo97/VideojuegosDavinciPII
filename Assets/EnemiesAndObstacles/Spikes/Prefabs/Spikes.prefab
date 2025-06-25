@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 690859001635232786}
   - component: {fileID: 7635094123741890017}
   - component: {fileID: 8954229937674679717}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
