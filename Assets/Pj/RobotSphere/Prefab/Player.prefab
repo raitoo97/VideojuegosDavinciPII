@@ -2261,6 +2261,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8192
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 8192
   _maxLife: 100
   _currentLife: 0
 --- !u!114 &3522650585358744689
@@ -2397,15 +2400,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ccb70c156677d94eadb11d25a3f6674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 7
-  power: 800
-  slowDuration: 1.8
-  timeLow: 0.1
-  timenormal: 1
-  originalFixedDeltaTime: 0
   shield: {fileID: 4469881310358930350}
   _rb: {fileID: 6444081342482031583}
   canShield: 0
+  power: 2
+  radius: 1.81
 --- !u!33 &2130044411140376439
 MeshFilter:
   m_ObjectHideFlags: 0

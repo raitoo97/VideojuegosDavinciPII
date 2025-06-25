@@ -18,20 +18,15 @@ public class ControlPlayer
     private float dashDuration = 0.2f;
     private float dashTimer = 0f;
     //private float dashImpulse = 40f;
-
     //Shield
     private bool canShield = true;
     private bool isShielding = false;
     private float radius;
-   
     public bool unlockedShield = false;
     float shieldCooldown;
-    
     private float shieldDuration;
     private float shieldCooldownTimer = 0f;
     private float shieldTimer = 0f;
-
-
     public ControlPlayer(Movement m, PlayerAnimation a, Shield s)
     {
         _movement = m;
@@ -62,7 +57,6 @@ public class ControlPlayer
         _shield.radius = radius;
         // -------ANIMACIONES DE MOVIMIENTO------
         _animation.SetGround("ground", isGrounded);
-
         // Cae (solo cuando estaba en el suelo y ahora no lo está)
         if (!isGrounded && _wasInGround)
         {
@@ -92,7 +86,6 @@ public class ControlPlayer
                 _animation.SetIdle("idle", true);
             }
         }
-
         //          ======== JUMP ========
         if (isJumping && isGrounded && !isDodgeMode)
         {
@@ -100,8 +93,6 @@ public class ControlPlayer
             _animation.SetJump("jump", true);
             _movement.Jump(jumpForce);
         }
-
-
         //          ======== DODGE Y TRANSFORMING ========
         if (isDodgeMode && !_wasHoldingShift)
         {
@@ -154,7 +145,6 @@ public class ControlPlayer
                 turretPj.DesactivateSelf();
             }
         }
-
         // ---------- DASH ----------
         if (isDash && unlockedDash && canDash && isDodgeMode && isGrounded)
         {
@@ -185,7 +175,6 @@ public class ControlPlayer
                 canDash = true;
             }
         }
-
         //SHIELD
         if (unlockedShield && isShield && canShield && !isDodgeMode)
         {
@@ -214,8 +203,6 @@ public class ControlPlayer
                 canShield = true;
             }
         }
-        
-
         //      ======== MOVIMIENTO FÍSICO Y ESTADO ========
         _wasHoldingShift = isDodgeMode;
         _wasInGround = isGrounded;
@@ -223,6 +210,16 @@ public class ControlPlayer
     }
     public void OnfixedUpdate()
     {
-        _movement.Move(horizontal, vertical);
+        Vector3 _dir = new Vector3(horizontal, 0, vertical);
+        bool IsBlocked = _movement.IsBlocked(_dir);
+        Debug.Log(IsBlocked);
+        if (!IsBlocked)
+        {
+            _movement.Move(horizontal, vertical);
+        }
+        else
+        {
+            _movement.RotateOnly(horizontal, vertical);
+        }
     }
 }

@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField]private float _initSpeed;
     [SerializeField] private Shield _shield;
     public LayerMask groundLayer;
+    public LayerMask wallLayer;
     private Rigidbody _rb;
     [Header("Life")]
     [SerializeField]private float _maxLife = 100f;
@@ -17,7 +18,7 @@ public class Player : MonoBehaviour
     public static Action OnPlayerDeath;
     public static Action TriggerShootInstant;
     public static Player instance;
-    AudioManager audioManager => AudioManager.instance;   //Sound
+    AudioManager audioManager => AudioManager.instance;//Sound
     private void Awake()
     {
         if (instance == null)
@@ -29,7 +30,7 @@ public class Player : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponentInChildren<Animator>();
-        _movement = new Movement(_rb, _groundCheck, _initSpeed, groundLayer);
+        _movement = new Movement(_rb, _groundCheck, _initSpeed, groundLayer,this.transform,wallLayer);
         _playerAnimation = new PlayerAnimation(_animator);
         _controller = new ControlPlayer(_movement, _playerAnimation, _shield);
         _currentLife = _maxLife;
