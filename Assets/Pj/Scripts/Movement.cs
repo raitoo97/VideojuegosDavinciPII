@@ -97,9 +97,9 @@ public class Movement
             _applyKnockback = false;
         }
     }
-    public bool IsBlocked(Vector3 dir, float distance = 0.5f)
+    public bool IsBlocked(float radius = 0.5f)
     {
-        return Physics.CheckSphere(_transformPj.position + _transformPj.up + _transformPj.forward, distance, _layerWall);
+        return Physics.CheckSphere(_transformPj.position + _transformPj.up + _transformPj.forward, radius, _layerWall);
     }
     public float GetSpeed { get => _speed; }
     public bool IsGrounded => _isGrounded;

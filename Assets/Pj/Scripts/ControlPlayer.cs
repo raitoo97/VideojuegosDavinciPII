@@ -162,16 +162,13 @@ public class ControlPlayer
             {
                 _movement.StopDash();
                 isDashing = false;
-               
             }
         }
         if (!canDash)
         {
-            
             dashCooldownTimer -= Time.deltaTime;
             if (dashCooldownTimer <= 0f)
             {
-            
                 canDash = true;
             }
         }
@@ -210,8 +207,7 @@ public class ControlPlayer
     }
     public void OnfixedUpdate()
     {
-        Vector3 _dir = new Vector3(horizontal, 0, vertical);
-        bool IsBlocked = _movement.IsBlocked(_dir);
+        bool IsBlocked = _movement.IsBlocked();
         Debug.Log(IsBlocked);
         if (!IsBlocked)
         {
