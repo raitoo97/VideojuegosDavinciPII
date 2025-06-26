@@ -1,11 +1,9 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 public class RespawnZombie : MonoBehaviour
 {
     public int numberOfRespawn;
     private bool _canRespawn;
-    private Coroutine _spawnCoroutine;
     private void Start()
     {
         _canRespawn = true;
@@ -29,22 +27,9 @@ public class RespawnZombie : MonoBehaviour
                 WavesManager.instance.EnemySuscribeEventToWaveSubstract(Enemy.GetComponent<IEnemies>());
             }
         }
-        _canRespawn = false;
-        if (_spawnCoroutine == null)
-            _spawnCoroutine = StartCoroutine(WaitForDestroy());
     }
     public int returnNumberOfEnemies()
     {
         return numberOfRespawn;
-    }
-    private void OnDisable()
-    {
-        Destroy(this.gameObject);
-    }
-    private IEnumerator WaitForDestroy()
-    {
-        yield return null;
-        _spawnCoroutine = null;
-        this.gameObject.SetActive(false);
     }
 }

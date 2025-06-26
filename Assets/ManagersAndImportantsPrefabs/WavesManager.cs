@@ -4,11 +4,14 @@ using UnityEngine;
 public class WavesManager : MonoBehaviour
 {
     private List<IEnemies> enemies;
-    [SerializeField]private List<RespawnZombie> zombieListRespawns;
-    [SerializeField]private List <Obstacles> obstaclesList;
-    [SerializeField]private List<TurretBehaviour> turrets;
+    [SerializeField]private List<RespawnZombie> _zombieListRespawns;
+    [SerializeField]private List<RespawnZombie> _tempZombieListRespawns;
+    [SerializeField]private List <Obstacles> _obstaclesList;
+    [SerializeField]private List<Obstacles> _tempobstaclesList;
+    [SerializeField]private List<TurretBehaviour> _turrets;
     public static WavesManager instance;
     public Action _currentWave;
+    public Action _cleanObstaclesList;
     private int index;
     private int currentEnemies = 0;
     private int numberOfWave = 0;
@@ -19,6 +22,10 @@ public class WavesManager : MonoBehaviour
         index = 0;
         SetWave(index);
         enemies = new List<IEnemies>();
+    }
+    private void OnEnable()
+    {
+        _cleanObstaclesList = CleanListObstacles;
     }
     private void SetWave(int index)
     {
@@ -48,27 +55,27 @@ public class WavesManager : MonoBehaviour
     }
     private void Wave1()
     {
-        ConfigWave(0,2,0,2);
+        ConfigWave(0,2,0,1,0,2);
         numberOfWave = 0;
     }
     private void Wave2()
     {
-        ConfigWave(0, 2, 0, 2);
+        //ConfigWave(0, 2, 0, 2);
         numberOfWave = 1;
     }
     private void Wave3()
     {
-        ConfigWave(0, 2, 0, 1);
+        //ConfigWave(0, 2, 0, 1);
         numberOfWave = 2;
     }
     private void Wave4()
     {
-        ConfigWave(0, 2, 0, 1);
+        //ConfigWave(0, 2, 0, 1);
         numberOfWave = 2;
     }
     private void Wave5()
     {
-        ConfigWave(0, 2, 0, 1);
+        //ConfigWave(0, 2, 0, 1);
         numberOfWave = 2;
     }
     private void Finish()
@@ -76,24 +83,62 @@ public class WavesManager : MonoBehaviour
         numberOfWave = 6;
         Debug.Log("Ganaste");
     }
-    private void ConfigWave(int RangeAZombies,int RangeBZombies, int RangeATurret, int RangeBTurret)
+    private void ConfigWave(int RangeAZombies,int RangeBZombies, int RangeATurret, int RangeBTurret,int RangeAObstacles, int RangeBObstacles )
     {
-        if (zombieListRespawns == null || zombieListRespawns.Count < 0) return;
-        var zombieList = zombieListRespawns.GetRange(RangeAZombies, RangeBZombies);
-        zombieListRespawns.RemoveRange(RangeAZombies, RangeBZombies);
-        if (zombieList == null || zombieList.Count <= 0) return;
-        foreach (var waveZombie in zombieList)
+        if (_zombieListRespawns != null && _zombieListRespawns.Count > 0)
         {
-            waveZombie.StartWave();
-            currentEnemies += waveZombie.returnNumberOfEnemies();
+            _tempZombieListRespawns = _zombieListRespawns.GetRange(RangeAZombies, RangeBZombies);
+            if (_tempZombieListRespawns != null && _tempZombieListRespawns.Count > 0)
+            {
+                foreach (var waveZombie in _tempZombieListRespawns)
+                {
+                    waveZombie.StartWave();
+                    currentEnemies += waveZombie.returnNumberOfEnemies();
+                }
+            }
         }
-        var turretList = turrets.GetRange(RangeATurret, RangeBTurret);
-        turrets.RemoveRange(RangeATurret, RangeBTurret);
-        if (turretList == null || turretList.Count <= 0) return;
-        foreach (var waveTurret in turretList)
+        if(_turrets != null && _turrets.Count > 0)
         {
-            waveTurret.gameObject.SetActive(true);
-            currentEnemies += waveTurret.ReturnThisTorret();
+            var turretList = _turrets.GetRange(RangeATurret, RangeBTurret);
+            _turrets.RemoveRange(RangeATurret, RangeBTurret);
+            if (turretList != null && turretList.Count > 0)
+            {
+                foreach (var waveTurret in turretList)
+                {
+                    waveTurret.gameObject.SetActive(true);
+                    currentEnemies += waveTurret.ReturnThisTorret();
+                }
+            }
+        }
+        if(_obstaclesList != null && _obstaclesList.Count > 0)
+        {
+            _tempobstaclesList = _obstaclesList.GetRange(RangeAObstacles, RangeBObstacles);
+            if(_tempobstaclesList != null && _tempobstaclesList.Count > 0)
+            {
+                foreach (var waveObstacles in _tempobstaclesList)
+                {
+                    waveObstacles.gameObject.SetActive(true);
+                }
+            }
+        }
+    }
+    private void CleanListObstacles()
+    {
+        if (currentEnemies <= 0 && _tempobstaclesList.Count > 0)
+        {
+            foreach (var waveObstacles in _tempobstaclesList)
+            {
+                waveObstacles.gameObject.SetActive(false);
+            }
+            _tempobstaclesList.Clear();
+        }
+        if (currentEnemies <= 0 && _tempZombieListRespawns.Count > 0)
+        {
+            foreach (var waveZombies in _tempZombieListRespawns)
+            {
+                waveZombies.gameObject.SetActive(false);
+            }
+            _tempZombieListRespawns.Clear();
         }
     }
     public void EnemySuscribeEventToWaveSubstract(IEnemies enemy)
