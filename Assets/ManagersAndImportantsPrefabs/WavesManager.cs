@@ -61,9 +61,19 @@ public class WavesManager : MonoBehaviour
         ConfigWave(0, 2, 0, 1);
         numberOfWave = 2;
     }
+    private void Wave4()
+    {
+        ConfigWave(0, 2, 0, 1);
+        numberOfWave = 2;
+    }
+    private void Wave5()
+    {
+        ConfigWave(0, 2, 0, 1);
+        numberOfWave = 2;
+    }
     private void Finish()
     {
-        numberOfWave = 3;
+        numberOfWave = 6;
         Debug.Log("Ganaste");
     }
     private void ConfigWave(int RangeAZombies,int RangeBZombies, int RangeATurret, int RangeBTurret)
