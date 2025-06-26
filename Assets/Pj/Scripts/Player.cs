@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
         {
             DamagePlayer(10);
         }
+        print(_movement.GetSpeed);
     }
     private void FixedUpdate()
     {

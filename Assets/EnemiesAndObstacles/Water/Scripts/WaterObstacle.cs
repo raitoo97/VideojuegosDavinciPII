@@ -13,17 +13,24 @@ public class WaterObstacle : Obstacles
     }
     protected override void ActionOntriggerEnter()
     {
-        print("sdsdsds");
+        _isOnPlataform = true;
+        if (_corrutine == null)
+            _corrutine = StartCoroutine(ActionCoroutine());
     }
-
     protected override void ActionOntriggerExitr()
     {
-        print("sdsdsds");
+        if (_corrutine == null) return;
+        StopCoroutine(_corrutine);
+        _corrutine = null;
+        _isOnPlataform = false;
+        _playerRef.GetMovement.ChangeSpeed(3f);
     }
     protected override IEnumerator ActionCoroutine()
     {
-
-        yield return null;
-        print("sdsdsds");
+        while (_isOnPlataform)
+        {
+            _playerRef.GetMovement.ChangeSpeed(1f);
+            yield return null;
+        }
     }
 }
