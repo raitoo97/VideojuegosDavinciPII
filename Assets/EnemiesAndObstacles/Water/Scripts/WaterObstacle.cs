@@ -1,18 +1,29 @@
+using System.Collections;
 using UnityEngine;
-public class WaterObstacle : MonoBehaviour
+public class WaterObstacle : Obstacles
 {
-    private void OnTriggerEnter(Collider other)
+    private AnimationWater _anim;
+    private void OnEnable()
     {
-        if (other.transform.gameObject.TryGetComponent<Player>(out var player))
-        {
-
-        }
+        _anim = new AnimationWater(this.GetComponent<Renderer>());
     }
-    private void OnTriggerExit(Collider other)
+    private void Update()
     {
-        if (other.transform.gameObject.TryGetComponent<Player>(out var player))
-        {
+        _anim.OnUpdate();
+    }
+    protected override void ActionOntriggerEnter()
+    {
+        print("sdsdsds");
+    }
 
-        }
+    protected override void ActionOntriggerExitr()
+    {
+        print("sdsdsds");
+    }
+    protected override IEnumerator ActionCoroutine()
+    {
+
+        yield return null;
+        print("sdsdsds");
     }
 }

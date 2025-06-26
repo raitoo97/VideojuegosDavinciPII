@@ -21,9 +21,9 @@ public class RespawnZombie : MonoBehaviour
                 if (agent != null) agent.enabled = false;
                 Rigidbody rb = Enemy.GetComponent<Rigidbody>();
                 if (rb != null) rb.isKinematic = true;
-                Enemy.transform.position = this.transform.position;
-                Enemy.transform.rotation = this.transform.rotation;
-                if (agent != null) agent.enabled = true;
+                if (agent == null) return;
+                agent.enabled = true;
+                agent.Warp(this.transform.position);
                 if (rb != null) rb.isKinematic = false;
                 PointManager.instance.GetHandle.EnemySuscribeEvent(Enemy.GetComponent<IEnemies>());
                 WavesManager.instance.EnemySuscribeEventToWaveSubstract(Enemy.GetComponent<IEnemies>());
