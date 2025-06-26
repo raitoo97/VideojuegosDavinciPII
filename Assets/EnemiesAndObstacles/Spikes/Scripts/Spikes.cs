@@ -14,7 +14,7 @@ public class Spikes : Obstacles
     {
         _isOnPlataform = true;
         if (_corrutine == null)
-            _corrutine = StartCoroutine(MakeDamage());
+            _corrutine = StartCoroutine(ActionCoroutine());
     }
 
     protected override void ActionOntriggerExitr()
@@ -24,7 +24,7 @@ public class Spikes : Obstacles
         _corrutine = null;
         _isOnPlataform = false;
     }
-    IEnumerator MakeDamage()
+    protected override IEnumerator ActionCoroutine()
     {
         while (_isOnPlataform)
         {

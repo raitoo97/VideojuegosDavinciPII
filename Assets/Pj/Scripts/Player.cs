@@ -81,6 +81,8 @@ public class Player : MonoBehaviour
     }
     private void HandleHitPlayerSpikes(float damage)
     {
+        int randomIndex = UnityEngine.Random.Range(0, audioManager.zombieAttackSfx.Length);
+        audioManager.PlaySfxRandomPitch(audioManager.zombieAttackSfx[randomIndex]);
         ParticlesPool.instance.SpamParticle(ParticleType.Sparks, new Vector3(0f, 2f, 0f), new Vector3(UnityEngine.Random.Range(0f, 180f), 0f, 0f), GameManager.instance.player.transform);
         CameraShakeManager.instance.ShakeCamera(Shakes.EnemyMisilShoot);
         DamagePlayer(damage);

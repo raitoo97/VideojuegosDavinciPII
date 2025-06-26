@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 public abstract class Obstacles : MonoBehaviour
 {
@@ -32,4 +33,5 @@ public abstract class Obstacles : MonoBehaviour
     }
     protected abstract void ActionOntriggerEnter();
     protected abstract void ActionOntriggerExitr();
+    protected abstract IEnumerator ActionCoroutine();
 }
