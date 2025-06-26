@@ -1,37 +1,37 @@
+using System;
 using System.Collections;
 using UnityEngine;
-public class Spikes : MonoBehaviour
+public class Spikes : Obstacles
 {
-    [SerializeField] private bool _isOnPlataform;
-    private Coroutine _corrutine;
-    private void Awake()
+    public static Action<float> OnTriggerSpikes;
+    private float damage;
+    protected override void Awake()
     {
-        _isOnPlataform = false;
+        base.Awake();
+        damage = 10f;
     }
-    private void OnTriggerEnter(Collider other)
+    protected override void ActionOntriggerEnter()
     {
-        if(other.transform.gameObject.TryGetComponent<Player>(out var player))
-        {
-            print("sadasdasdsadsa");
-            _isOnPlataform = true;
+        _isOnPlataform = true;
+        if (_corrutine == null)
             _corrutine = StartCoroutine(MakeDamage());
-        }
     }
-    private void OnTriggerExit(Collider other)
+
+    protected override void ActionOntriggerExitr()
     {
-        if (other.transform.gameObject.TryGetComponent<Player>(out var player))
-        {
-            if (_corrutine == null) return;
-            StopCoroutine(_corrutine);
-            _corrutine = null;
-            _isOnPlataform = false;
-        }
+        if (_corrutine == null) return;
+        StopCoroutine(_corrutine);
+        _corrutine = null;
+        _isOnPlataform = false;
     }
     IEnumerator MakeDamage()
     {
         while (_isOnPlataform)
         {
-            yield return new WaitForSeconds(3);
+            OnTriggerSpikes?.Invoke(damage);
+            yield return new WaitForSeconds(2);
+            OnTriggerSpikes?.Invoke(damage);
+            yield return new WaitForSeconds(2);
         }
     }
 }
