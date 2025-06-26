@@ -194,24 +194,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76993136da17a0408a6211778cdef88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _zombieListRespawns:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _zombieListRespawns: []
   _tempZombieListRespawns: []
-  _obstaclesList:
-  - {fileID: 0}
-  - {fileID: 0}
+  _obstaclesList: []
   _tempobstaclesList: []
-  _turrets:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _turrets: []
 --- !u!1 &7340844166045931331
 GameObject:
   m_ObjectHideFlags: 0
