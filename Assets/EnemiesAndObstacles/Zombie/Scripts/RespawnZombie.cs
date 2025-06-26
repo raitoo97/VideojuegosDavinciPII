@@ -16,13 +16,13 @@ public class RespawnZombie : MonoBehaviour
             {
                 GameObject Enemy = PoolEnemy.instance.EnemiesTypesList.Find(x => x.type == EnemyType.Zombie).GetEnemy();
                 NavMeshAgent agent = Enemy.GetComponent<NavMeshAgent>();
-                if (agent != null) agent.enabled = false;
-                Rigidbody rb = Enemy.GetComponent<Rigidbody>();
-                if (rb != null) rb.isKinematic = true;
-                if (agent == null) return;
+                if (agent == null)
+                {
+                    Debug.LogWarning("El enemigo no tiene NavMeshAgent asignado");
+                    continue;
+                }
                 agent.enabled = true;
                 agent.Warp(this.transform.position);
-                if (rb != null) rb.isKinematic = false;
                 PointManager.instance.GetHandle.EnemySuscribeEvent(Enemy.GetComponent<IEnemies>());
                 WavesManager.instance.EnemySuscribeEventToWaveSubstract(Enemy.GetComponent<IEnemies>());
             }
