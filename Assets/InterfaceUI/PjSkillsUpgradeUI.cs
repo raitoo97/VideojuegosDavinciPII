@@ -92,10 +92,58 @@ public class PjSkillsUpgradeUI
         rateFireText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretShotSpeed).ToString();
         distanceText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretVisionRange).ToString();
         //shield
+        if (ManagerSkills.instance.IsSkillUnloked(SkillCategory.shieldCategory))
+        {
+            ColorBlock cb = UnlockShield.colors;
+            cb.disabledColor = Color.white;
+            UnlockShield.colors = cb;
+            UnlockShield.interactable = false;
+
+        }
+        else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.shieldCategory) && !ManagerSkills.instance.IsSkillUnloked(SkillCategory.shieldCategory))
+        {
+            UnlockShield.interactable = true;
+            ColorBlock cb = UnlockShield.colors;
+            Color newNormal = cb.normalColor;
+            newNormal.a = 0.2f;
+            cb.normalColor = newNormal;
+            UnlockShield.colors = cb;
+        } else
+        {
+            UnlockShield.interactable = false;
+            ColorBlock cb = UnlockShield.colors;
+            cb.disabledColor = Color.black;
+            UnlockShield.colors = cb;
+        }
+
         RatioShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldRadius).ToString();
         CooldownShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldCooldown).ToString();
         DurationShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldDuration).ToString();
         //Dash
+        if (ManagerSkills.instance.IsSkillUnloked(SkillCategory.dashCategory))
+        {
+            ColorBlock cb = UnlockDash.colors;
+            cb.disabledColor = Color.white;
+            UnlockDash.colors = cb;
+            UnlockDash.interactable = false;
+
+        }
+        else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.dashCategory) && !ManagerSkills.instance.IsSkillUnloked(SkillCategory.dashCategory))
+        {
+            UnlockDash.interactable = true;
+            ColorBlock cb = UnlockDash.colors;
+            Color newNormal = cb.normalColor;
+            newNormal.a = 0.2f;
+            cb.normalColor = newNormal;
+            UnlockDash.colors = cb;
+        }
+        else
+        {
+            UnlockDash.interactable = false;
+            ColorBlock cb = UnlockDash.colors;
+            cb.disabledColor = Color.black;
+            UnlockDash.colors = cb;
+        }
         CooldownDashText.text = ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashCooldown).ToString();
         SpeedDashText.text = ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashSpeed).ToString();
     }
@@ -114,7 +162,7 @@ public class PjSkillsUpgradeUI
     private void UnlockShieldFunction()
     {
         Debug.Log("Desbloquear escudo");
-        ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.shieldCategory);
+        ManagerSkills.instance.UnlockSkillCategory(SkillCategory.shieldCategory);
     }
     private void UpgradeShieldRatio() 
     {
@@ -130,7 +178,7 @@ public class PjSkillsUpgradeUI
     }
     private void UnlockDashFunction()
     {
-        ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.dashCategory);
+        ManagerSkills.instance.UnlockSkillCategory(SkillCategory.dashCategory);
     }
     private void UpgradeDashSpeed() 
     {

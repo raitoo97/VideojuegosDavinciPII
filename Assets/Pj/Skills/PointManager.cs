@@ -38,6 +38,19 @@
                 return false;
             }
         }
-        public float CurrentPoints => _currentPoints;
+
+    public bool HasEnoughPoints(float cost)
+    {
+        if (_currentPoints >= cost)
+        {
+           
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public float CurrentPoints => _currentPoints;
         public HandleEnemyPoints GetHandle => HandelEnemy;
     }
