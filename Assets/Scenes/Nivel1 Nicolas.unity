@@ -1806,6 +1806,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5352651163497342465, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
+      propertyPath: NoiseModule.frequency
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5352651163497342465, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
+      propertyPath: NoiseModule.scrollSpeed.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5352651163497342465, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
+      propertyPath: NoiseModule.strength.minScalar
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8086958706035148933, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -88.5
