@@ -209,7 +209,6 @@ public class ControlPlayer
     public void OnfixedUpdate()
     {
         bool IsBlocked = _movement.IsBlocked();
-        Debug.Log(IsBlocked);
         if (!IsBlocked)
         {
             _movement.Move(horizontal, vertical);

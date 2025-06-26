@@ -5299,6 +5299,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &213686454 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8102330937812533386, guid: 35af3478df6b290428b8009a3d948746, type: 3}
+  m_PrefabInstance: {fileID: 1747609827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b39d8e9dd21992144af59b27dc278f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &215307379 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1410464471899763886, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
@@ -5658,6 +5669,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &615024184 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 690859001635232786, guid: 701e827bc44e0484dbec851b9d89eb99, type: 3}
+  m_PrefabInstance: {fileID: 1551594831}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8828f77e5a29fe4d9964310dfc9058b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &656855379 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8086958706035148933, guid: 698cd8a99ecf8af4c962e6f6ec95967a, type: 3}
@@ -8039,6 +8061,34 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2094955789}
     - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: _turrets.Array.data[0]
+      value: 
+      objectReference: {fileID: 1737094365}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: _turrets.Array.data[1]
+      value: 
+      objectReference: {fileID: 2056736684}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: _turrets.Array.data[2]
+      value: 
+      objectReference: {fileID: 1466108302}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: _turrets.Array.data[3]
+      value: 
+      objectReference: {fileID: 2056736684}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: _turrets.Array.data[4]
+      value: 
+      objectReference: {fileID: 859149283}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: _obstaclesList.Array.data[0]
+      value: 
+      objectReference: {fileID: 213686454}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: _obstaclesList.Array.data[1]
+      value: 
+      objectReference: {fileID: 615024184}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: zombieListRespawns.Array.data[0]
       value: 
       objectReference: {fileID: 1269282607}
@@ -8062,6 +8112,30 @@ PrefabInstance:
       propertyPath: zombieListRespawns.Array.data[5]
       value: 
       objectReference: {fileID: 1637611474}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: _zombieListRespawns.Array.data[0]
+      value: 
+      objectReference: {fileID: 1269282607}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: _zombieListRespawns.Array.data[1]
+      value: 
+      objectReference: {fileID: 96143627}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: _zombieListRespawns.Array.data[2]
+      value: 
+      objectReference: {fileID: 1416483262}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: _zombieListRespawns.Array.data[3]
+      value: 
+      objectReference: {fileID: 2077482043}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: _zombieListRespawns.Array.data[4]
+      value: 
+      objectReference: {fileID: 1637611474}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: _zombieListRespawns.Array.data[5]
+      value: 
+      objectReference: {fileID: 686848334}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

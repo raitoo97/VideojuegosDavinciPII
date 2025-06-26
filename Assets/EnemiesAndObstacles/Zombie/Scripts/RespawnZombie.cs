@@ -1,11 +1,9 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 public class RespawnZombie : MonoBehaviour
 {
     public int numberOfRespawn;
     private bool _canRespawn;
-    private Coroutine _spawnCoroutine;
     private void Start()
     {
         _canRespawn = true;
@@ -18,33 +16,20 @@ public class RespawnZombie : MonoBehaviour
             {
                 GameObject Enemy = PoolEnemy.instance.EnemiesTypesList.Find(x => x.type == EnemyType.Zombie).GetEnemy();
                 NavMeshAgent agent = Enemy.GetComponent<NavMeshAgent>();
-                if (agent != null) agent.enabled = false;
-                Rigidbody rb = Enemy.GetComponent<Rigidbody>();
-                if (rb != null) rb.isKinematic = true;
-                if (agent == null) return;
+                if (agent == null)
+                {
+                    Debug.LogWarning("El enemigo no tiene NavMeshAgent asignado");
+                    continue;
+                }
                 agent.enabled = true;
                 agent.Warp(this.transform.position);
-                if (rb != null) rb.isKinematic = false;
                 PointManager.instance.GetHandle.EnemySuscribeEvent(Enemy.GetComponent<IEnemies>());
                 WavesManager.instance.EnemySuscribeEventToWaveSubstract(Enemy.GetComponent<IEnemies>());
             }
         }
-        _canRespawn = false;
-        if (_spawnCoroutine == null)
-            _spawnCoroutine = StartCoroutine(WaitForDestroy());
     }
     public int returnNumberOfEnemies()
     {
         return numberOfRespawn;
-    }
-    private void OnDisable()
-    {
-        Destroy(this.gameObject);
-    }
-    private IEnumerator WaitForDestroy()
-    {
-        yield return null;
-        _spawnCoroutine = null;
-        this.gameObject.SetActive(false);
     }
 }

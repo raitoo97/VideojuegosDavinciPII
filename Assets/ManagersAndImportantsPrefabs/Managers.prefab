@@ -136,6 +136,7 @@ MonoBehaviour:
   - lifeStatusType: 4
     statusImage: {fileID: 0}
     EdgeStatus: {fileID: 0}
+  SkillsPanel: {fileID: 0}
 --- !u!114 &3931444751640104713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,14 +194,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76993136da17a0408a6211778cdef88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombieListRespawns:
+  _zombieListRespawns:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  turrets:
+  _tempZombieListRespawns: []
+  _obstaclesList:
+  - {fileID: 0}
+  - {fileID: 0}
+  _tempobstaclesList: []
+  _turrets:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

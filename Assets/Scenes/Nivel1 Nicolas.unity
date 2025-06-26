@@ -1669,29 +1669,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 928850366}
     - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: points
-      value: 
-      objectReference: {fileID: 719402727}
-    - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: Cadencia
-      value: 
-      objectReference: {fileID: 999224043}
-    - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: Distancia
-      value: 
-      objectReference: {fileID: 1230729188}
-    - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: SkillsPanel
       value: 
       objectReference: {fileID: 6935544059359077393}
-    - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: CadenciaText
-      value: 
-      objectReference: {fileID: 1188340135}
-    - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: DistanciaText
-      value: 
-      objectReference: {fileID: 754448463}
     - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: textList.Array.data[0]
       value: 
@@ -1825,59 +1805,55 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2063888160}
     - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: turrets.Array.data[0]
+      propertyPath: _turrets.Array.data[0]
       value: 
       objectReference: {fileID: 1221928915}
     - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: turrets.Array.data[1]
-      value: 
-      objectReference: {fileID: 128654877}
-    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: turrets.Array.data[2]
-      value: 
-      objectReference: {fileID: 1488664621}
-    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: turrets.Array.data[3]
-      value: 
-      objectReference: {fileID: 1545619651}
-    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: turrets.Array.data[4]
+      propertyPath: _turrets.Array.data[1]
       value: 
       objectReference: {fileID: 652131785}
     - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: obstaclesList.Array.size
-      value: 2
-      objectReference: {fileID: 0}
+      propertyPath: _turrets.Array.data[2]
+      value: 
+      objectReference: {fileID: 128654877}
     - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: obstaclesList.Array.data[0]
+      propertyPath: _turrets.Array.data[3]
+      value: 
+      objectReference: {fileID: 1488664621}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: _turrets.Array.data[4]
+      value: 
+      objectReference: {fileID: 1545619651}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: _obstaclesList.Array.data[0]
       value: 
       objectReference: {fileID: 126408036}
     - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: obstaclesList.Array.data[1]
+      propertyPath: _obstaclesList.Array.data[1]
       value: 
       objectReference: {fileID: 1105586365}
     - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: zombieListRespawns.Array.data[0]
+      propertyPath: _zombieListRespawns.Array.data[0]
       value: 
       objectReference: {fileID: 247630501}
     - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: zombieListRespawns.Array.data[1]
+      propertyPath: _zombieListRespawns.Array.data[1]
       value: 
       objectReference: {fileID: 395813869}
     - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: zombieListRespawns.Array.data[2]
+      propertyPath: _zombieListRespawns.Array.data[2]
       value: 
       objectReference: {fileID: 1057364383}
     - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: zombieListRespawns.Array.data[3]
-      value: 
-      objectReference: {fileID: 758554446}
-    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: zombieListRespawns.Array.data[4]
+      propertyPath: _zombieListRespawns.Array.data[3]
       value: 
       objectReference: {fileID: 625035666}
     - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: zombieListRespawns.Array.data[5]
+      propertyPath: _zombieListRespawns.Array.data[4]
+      value: 
+      objectReference: {fileID: 758554446}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: _zombieListRespawns.Array.data[5]
       value: 
       objectReference: {fileID: 1637430295}
     m_RemovedComponents: []
@@ -2070,7 +2046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2572514622511211752, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6108571042833853355, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
       propertyPath: m_Pivot.x
