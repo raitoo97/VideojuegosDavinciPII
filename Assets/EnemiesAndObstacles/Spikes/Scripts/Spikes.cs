@@ -16,7 +16,6 @@ public class Spikes : Obstacles
         if (_corrutine == null)
             _corrutine = StartCoroutine(ActionCoroutine());
     }
-
     protected override void ActionOntriggerExitr()
     {
         if (_corrutine == null) return;

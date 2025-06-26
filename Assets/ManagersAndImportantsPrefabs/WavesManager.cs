@@ -4,7 +4,8 @@ using UnityEngine;
 public class WavesManager : MonoBehaviour
 {
     private List<IEnemies> enemies;
-    public List<RespawnZombie> zombieListRespawns;
+    [SerializeField]private List<RespawnZombie> zombieListRespawns;
+    [SerializeField]private List <Obstacles> obstaclesList;
     [SerializeField]private List<TurretBehaviour> turrets;
     public static WavesManager instance;
     public Action _currentWave;

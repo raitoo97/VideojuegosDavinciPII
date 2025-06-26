@@ -24,8 +24,7 @@ public abstract class Obstacles : MonoBehaviour
     {
         if (other.transform.gameObject.TryGetComponent<Player>(out var player))
         {
-            _playerRef = null;
-            if (_playerRef == null)
+            if (_playerRef != null)
             {
                 ActionOntriggerExitr();
             }

@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
         {
             DamagePlayer(10);
         }
+        print(_movement.GetSpeed);
     }
     private void FixedUpdate()
     {
@@ -111,5 +112,6 @@ public class Player : MonoBehaviour
         }
     }
     public Movement GetMovement { get => _movement; }
+    public ControlPlayer GetController {get => _controller;}
     public float GetInitSpeed { get => _initSpeed; }
 }
