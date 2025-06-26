@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 public class WavesManager : MonoBehaviour
 {
@@ -22,10 +23,21 @@ public class WavesManager : MonoBehaviour
         index = 0;
         SetWave(index);
         enemies = new List<IEnemies>();
+        _tempZombieListRespawns = new List<RespawnZombie>();
+        _tempobstaclesList = new List<Obstacles>();
     }
     private void OnEnable()
     {
         _cleanObstaclesList = CleanListObstacles;
+    }
+    private void Start()
+    {
+        _zombieListRespawns = new List<RespawnZombie>(GameObject.FindObjectsOfType<RespawnZombie>());
+        _obstaclesList = new List<Obstacles>(GameObject.FindObjectsOfType<Obstacles>());
+        _turrets = new List<TurretBehaviour>(GameObject.FindObjectsOfType<TurretBehaviour>());
+        _zombieListRespawns = _zombieListRespawns.OrderBy(x => x.name).ToList();
+        _obstaclesList = _obstaclesList.OrderBy(x => x.name).ToList();
+        _turrets = _turrets.OrderBy(x => x.name).ToList();
     }
     private void SetWave(int index)
     {

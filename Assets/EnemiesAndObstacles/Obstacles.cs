@@ -39,7 +39,7 @@ public abstract class Obstacles : MonoBehaviour
     protected abstract IEnumerator ActionCoroutine();
     IEnumerator AddTolist()
     {
-        yield return null;
+        yield return new WaitForEndOfFrame();
         this.gameObject.SetActive(false);
     }
 }
