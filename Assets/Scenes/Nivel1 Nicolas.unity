@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &126408036 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 690859001635232786, guid: 701e827bc44e0484dbec851b9d89eb99, type: 3}
+  m_PrefabInstance: {fileID: 7016841289088855213}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8828f77e5a29fe4d9964310dfc9058b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &128654877 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9135508439720152489, guid: 3e9a8d47b75f9514693799a8161174d2, type: 3}
@@ -1105,6 +1116,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 35af3478df6b290428b8009a3d948746, type: 3}
+--- !u!114 &1105586365 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8102330937812533386, guid: 35af3478df6b290428b8009a3d948746, type: 3}
+  m_PrefabInstance: {fileID: 1078724264}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b39d8e9dd21992144af59b27dc278f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1120234205 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2736931122560885992, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
@@ -1765,6 +1787,18 @@ PrefabInstance:
       propertyPath: turrets.Array.data[4]
       value: 
       objectReference: {fileID: 652131785}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: obstaclesList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: obstaclesList.Array.data[0]
+      value: 
+      objectReference: {fileID: 126408036}
+    - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: obstaclesList.Array.data[1]
+      value: 
+      objectReference: {fileID: 1105586365}
     - target: {fileID: 8128287774387905897, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: zombieListRespawns.Array.data[0]
       value: 

@@ -23,7 +23,10 @@ public class WaterObstacle : Obstacles
         StopCoroutine(_corrutine);
         _corrutine = null;
         _isOnPlataform = false;
-        _playerRef.GetMovement.ChangeSpeed(3f);
+        if(_playerRef.GetController.GetDodgeMode)
+            _playerRef.GetMovement.ChangeSpeed(15f);
+        else
+            _playerRef.GetMovement.ChangeSpeed(3f);
     }
     protected override IEnumerator ActionCoroutine()
     {

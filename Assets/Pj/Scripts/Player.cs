@@ -112,5 +112,6 @@ public class Player : MonoBehaviour
         }
     }
     public Movement GetMovement { get => _movement; }
+    public ControlPlayer GetController {get => _controller;}
     public float GetInitSpeed { get => _initSpeed; }
 }
