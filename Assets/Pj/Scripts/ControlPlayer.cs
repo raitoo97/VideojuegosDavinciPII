@@ -9,6 +9,7 @@ public class ControlPlayer
     private bool _wasInGround;
     private float horizontal;
     private float vertical;
+    private bool isDodgeMode;
     // Dash
     private bool unlockedDash;
     private bool canDash = true;
@@ -41,7 +42,7 @@ public class ControlPlayer
         var foward = MathF.Abs(horizontal) + MathF.Abs(vertical);
         foward = Math.Clamp(foward, 0f, 1f);
         bool isFoward = foward != 0;
-        bool isDodgeMode = Input.GetKey(KeyCode.LeftShift);
+        isDodgeMode = Input.GetKey(KeyCode.LeftShift);
         bool isGrounded = _movement.IsGrounded;
         bool isJumping = Input.GetKeyDown(KeyCode.Space);
         bool isDash = Input.GetKeyDown(KeyCode.Mouse0); 
@@ -208,7 +209,6 @@ public class ControlPlayer
     public void OnfixedUpdate()
     {
         bool IsBlocked = _movement.IsBlocked();
-        Debug.Log(IsBlocked);
         if (!IsBlocked)
         {
             _movement.Move(horizontal, vertical);
@@ -218,4 +218,5 @@ public class ControlPlayer
             _movement.RotateOnly(horizontal, vertical);
         }
     }
+    public bool GetDodgeMode { get => isDodgeMode; }
 }

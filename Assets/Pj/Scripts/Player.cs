@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     {
         Bullet.onHitPlayerBullet += HandleHitPlayerBullet;
         ZombieAttack.onHitPlayerZombie += HandleHitPlayerZombie;
+        Spikes.OnTriggerSpikes += HandleHitPlayerSpikes;
     }
     private void Update()
     {
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour
         {
             DamagePlayer(10);
         }
+        print(_movement.GetSpeed);
     }
     private void FixedUpdate()
     {
@@ -65,7 +67,6 @@ public class Player : MonoBehaviour
             OnPlayerDeath?.Invoke();
         }
     }
-    //public void DamageShield(float) { }
     public void HealthPlayer(float healt)
     {
         _currentLife = Mathf.Clamp(_currentLife += healt, 0, _maxLife); 
@@ -79,6 +80,14 @@ public class Player : MonoBehaviour
         player.GetMovement.ReceiveKnockback(knockbackDir, knockbackForce);
         DamagePlayer(damage);
     }
+    private void HandleHitPlayerSpikes(float damage)
+    {
+        int randomIndex = UnityEngine.Random.Range(0, audioManager.zombieAttackSfx.Length);
+        audioManager.PlaySfxRandomPitch(audioManager.zombieAttackSfx[randomIndex]);
+        ParticlesPool.instance.SpamParticle(ParticleType.Sparks, new Vector3(0f, 2f, 0f), new Vector3(UnityEngine.Random.Range(0f, 180f), 0f, 0f), GameManager.instance.player.transform);
+        CameraShakeManager.instance.ShakeCamera(Shakes.EnemyMisilShoot);
+        DamagePlayer(damage);
+    }
     private void HandleHitPlayerZombie(Player player, float damage)
     {
         int randomIndex = UnityEngine.Random.Range(0, audioManager.zombieAttackSfx.Length);
@@ -88,6 +97,7 @@ public class Player : MonoBehaviour
         player.DamagePlayer(damage);
     }
     //private void HandleHitShield(){}
+    //public void DamageShield(float){}
     public float GetLife { get => Mathf.Clamp(_currentLife, 0, _maxLife); }
     private void OnDisable()
     {
@@ -102,5 +112,6 @@ public class Player : MonoBehaviour
         }
     }
     public Movement GetMovement { get => _movement; }
+    public ControlPlayer GetController {get => _controller;}
     public float GetInitSpeed { get => _initSpeed; }
 }
