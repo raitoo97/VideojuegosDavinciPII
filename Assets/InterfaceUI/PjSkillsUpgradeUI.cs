@@ -110,13 +110,9 @@ public class PjSkillsUpgradeUI
                 distanceButton.interactable = false;
             }
         }
-        else
-        {
-            rateFireButton.interactable = false;
-            UpgradeShieldRatioButton.interactable = false;
-        }
+        
 
-        if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.turretCategory) && !ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
+        if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.turretCategory) && ManagerSkills.instance.GetUltimateUnlockCost(SkillCategory.turretCategory) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
         {
             UltimateTurret.interactable = true;
         }

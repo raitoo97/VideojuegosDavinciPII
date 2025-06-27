@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class itemXPBehavior : MonoBehaviour
 {
-    public float points = 50f;
+    public float points = 100f;
 
     /*public void SetXpPoints(float amount)
     {

@@ -169,6 +169,12 @@ MonoBehaviour:
     frequency: 1.5
     duration: 0.5
     pivotOffset: {x: 0, y: 0, z: 0}
+  - type: 3
+    setting: {fileID: 11400000, guid: 030cb92efd3383c4a9f29d84d818ca5b, type: 2}
+    intensity: 9.08
+    frequency: 5.24
+    duration: 0.5
+    pivotOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &9083364042843550237
 MonoBehaviour:
   m_ObjectHideFlags: 0
