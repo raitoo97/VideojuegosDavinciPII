@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3931444751640104713}
   - component: {fileID: 9083364042843550237}
   - component: {fileID: 8128287774387905897}
+  - component: {fileID: 619348640589115601}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -200,11 +201,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76993136da17a0408a6211778cdef88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _zombieListRespawns: []
-  _tempZombieListRespawns: []
-  _obstaclesList: []
-  _tempobstaclesList: []
-  _turrets: []
+--- !u!114 &619348640589115601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5743755235460010870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44be3bdb9cccc19468713daf8872bd4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pause_menu: {fileID: 0}
+  Buttons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &7340844166045931331
 GameObject:
   m_ObjectHideFlags: 0
