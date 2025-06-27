@@ -42,7 +42,6 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
         _rayTurret = new RayCastTurret(_rayLaser, mask, _distance, lineRendererMaterial,this);
         animator = _child.GetComponent<Animator>();
         animator.enabled = false;
-        Player.TriggerShootInstant += ShootInstan;
         Bullet.OnTurretDamaged += TakeDamage;
         OnDeath += Death;
         StartCoroutine(WaitForSuscription());
@@ -77,26 +76,6 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
         bullet.transform.rotation = _randomGunSight.rotation;
         AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.EnemyTurretShot);
     }
-    private void ShootInstan()
-    {
-        var allTurrets = GameObject.FindObjectsOfType<TurretBehaviour>();
-        Transform playerTransform = GameManager.instance.player.transform;
-        TurretBehaviour closest = null;
-        float minDistance = Mathf.Infinity;
-        foreach (var turret in allTurrets)
-        {
-            float dist = turret.transform.IsMostNearDistance(playerTransform);
-            if (dist < minDistance)
-            {
-                minDistance = dist;
-                closest = turret;
-            }
-        }
-        if (closest == this)
-        {
-            Shoot();
-        }
-    }
     public void TakeDamage(TurretBehaviour turret,float dmg)
     {
         if (turret != this) return;
@@ -115,7 +94,6 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     }
     private void OnDestroy()
     {
-        Player.TriggerShootInstant -= ShootInstan;
         Bullet.OnTurretDamaged -= TakeDamage;
         PointManager.instance.GetHandle.EnemyDesSuscribeEvent(this);
         WavesManager.instance.EnemyDesuscribeEventToWaveSubstract(this);
