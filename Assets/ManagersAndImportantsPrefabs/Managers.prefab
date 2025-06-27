@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44be3bdb9cccc19468713daf8872bd4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pause_menu: {fileID: 0}
+  _pauseMenu: {fileID: 0}
   Buttons:
   - {fileID: 0}
   - {fileID: 0}
@@ -281,4 +281,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3ec701048af2b644abbbf8bda5340b91, type: 3}
   - {fileID: 8300000, guid: 4cbb8ca3fd30f7346b72b25bb2e44f40, type: 3}
   EnemyTurretShot: {fileID: 8300000, guid: 8c71d4eccf5a45e4494692b8a1f9862c, type: 3}
+  Level1Music: {fileID: 8300000, guid: e86b7c37ac950ae4fb8bcc2b165d4328, type: 3}
   audioSources: []

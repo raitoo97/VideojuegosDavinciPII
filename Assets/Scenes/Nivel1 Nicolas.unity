@@ -3161,10 +3161,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1601265091}
     - target: {fileID: 619348640589115601, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: pause_menu
-      value: 
-      objectReference: {fileID: 1601265091}
-    - target: {fileID: 619348640589115601, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: Buttons.Array.data[0]
       value: 
       objectReference: {fileID: 1040682602}

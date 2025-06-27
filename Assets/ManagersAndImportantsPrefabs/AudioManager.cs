@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AudioClip[] turretPlayerImpactSfx;
     [SerializeField] public AudioClip[] skillPlayerDash;
     [SerializeField] public AudioClip   EnemyTurretShot;
+    public AudioClip Level1Music;
     public List<AudioSource> audioSources = new List<AudioSource>();
     private bool isMusicPlaying;
     public static AudioManager instance;
