@@ -77,7 +77,7 @@ public class WavesManager : MonoBehaviour
         int zombiesB = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
         int obstacleA = RandomWaveValue<Obstacles>(_obstaclesList);
         int obstaclesB = RandomWaveValue<Obstacles>(_obstaclesList);
-        ConfigWave(zombiesA,zombiesB,0,2, obstacleA, obstaclesB);
+        ConfigWave(zombiesA,zombiesB,0,0, obstacleA, obstaclesB);
         numberOfWave = 0;
     }
     private void Wave2()

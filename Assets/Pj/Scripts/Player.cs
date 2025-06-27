@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     [SerializeField]private float _maxLife = 100f;
     [SerializeField]private float _currentLife;
     public static Action OnPlayerDeath;
-    public static Action TriggerShootInstant;
     public static Player instance;
     AudioManager audioManager => AudioManager.instance;//Sound
     private void Awake()
