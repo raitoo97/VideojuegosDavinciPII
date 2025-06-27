@@ -94,10 +94,18 @@ public class TurretPj : MonoBehaviour
                             AudioManager.instance.PlaySfxRandomPitch(shotSfx);
                             if (_recoilCorutine == null)
                                 _recoilCorutine = StartCoroutine(RecoilTorret());
-                            CameraShakeManager.instance.ShakeCamera(Shakes.MisilShoot);
+                            if (!ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
+                            {
+                                CameraShakeManager.instance.ShakeCamera(Shakes.MisilShoot);
+                            }
+                            else
+                            {
+                                CameraShakeManager.instance.ShakeCamera(Shakes.MisilUltimateShot);
+                            }
                         }
                     }
                 }
+
                 if (enemy.GetComponent<TurretBehaviour>())
                 {
                     GameObject bullet = null;
@@ -112,7 +120,14 @@ public class TurretPj : MonoBehaviour
                         AudioManager.instance.PlaySfxRandomPitch(shotSfx);
                         if (_recoilCorutine == null)
                             _recoilCorutine = StartCoroutine(RecoilTorret());
-                        CameraShakeManager.instance.ShakeCamera(Shakes.MisilShoot);
+                        if (!ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
+                        {
+                            CameraShakeManager.instance.ShakeCamera(Shakes.MisilShoot);
+                        }
+                        else
+                        {
+                            CameraShakeManager.instance.ShakeCamera(Shakes.MisilUltimateShot);
+                        }
                     }
                 }
             }
