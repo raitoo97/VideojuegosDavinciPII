@@ -117,13 +117,25 @@ public class ManagerSkills : MonoBehaviour
         }
         return 0f;
     }
+    public float GetUltimateUnlockCost(SkillCategory category)
+    {
+        if (_skills.TryGetValue(category, out var skill))
+        {
+            return skill.costToUnlockUltimate;
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró la habilidad con esa categoría.");
+            return -1f;
+        }
+    }
+    #endregion
     public bool IsUnlocked(SkillCategory category)
     {
         if (!_skills.ContainsKey(category)) return false;
         ActiveSkill skill = _skills[category];
         return skill.isUnlocked;
-    } 
-    #endregion
+    }
     public void UnlockSkillCategory(SkillCategory category)
     {
         if (!_skills.ContainsKey(category)) return;
@@ -143,25 +155,14 @@ public class ManagerSkills : MonoBehaviour
         if (PointManager.instance.HasEnoughPoints(skill.costToUnlock))
         {
             return true;
-            
         }
         else return false;
     }
-    public bool AreAllSkillsMaxed(SkillCategory category)
+    public bool IsUnlockUltimate(SkillCategory category)
     {
         if (!_skills.ContainsKey(category)) return false;
         ActiveSkill skill = _skills[category];
-        if (!skill.isUnlocked) return false;
-        foreach (var progress in skill.progressPerStat)
-        {
-            SkillStat stat = skill.dataStrcut.dataScripteable.Find(x => x.skillType == progress.type);
-            int maxLevel = stat.GetMaxLevel();
-            if (progress.level < maxLevel)
-            {
-                return false;
-            }
-        }
-        return true;
+        return skill.ultimateUnlocked;
     }
     public void TryUnlockUltimate(SkillCategory category)
     {
@@ -181,24 +182,21 @@ public class ManagerSkills : MonoBehaviour
             Debug.Log("¡Mejora definitiva desbloqueada!" + category);
         }
     }
-    public bool IsUnlockUltimate(SkillCategory category)
+    public bool AreAllSkillsMaxed(SkillCategory category)
     {
         if (!_skills.ContainsKey(category)) return false;
         ActiveSkill skill = _skills[category];
-        return skill.ultimateUnlocked;
-    }
-
-    public float GetUltimateUnlockCost(SkillCategory category)
-    {
-        if (_skills.TryGetValue(category, out var skill))
+        if (!skill.isUnlocked) return false;
+        foreach (var progress in skill.progressPerStat)
         {
-            return skill.costToUnlockUltimate;
+            SkillStat stat = skill.dataStrcut.dataScripteable.Find(x => x.skillType == progress.type);
+            int maxLevel = stat.GetMaxLevel();
+            if (progress.level < maxLevel)
+            {
+                return false;
+            }
         }
-        else
-        {
-            Debug.LogWarning("No se encontró la habilidad con esa categoría.");
-            return -1f;
-        }
+        return true;
     }
 }
 [HideInInspector]

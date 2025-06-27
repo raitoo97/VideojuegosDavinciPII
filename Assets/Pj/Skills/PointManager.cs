@@ -1,49 +1,47 @@
-    using UnityEngine;
-    public class PointManager : MonoBehaviour
+using UnityEngine;
+public class PointManager : MonoBehaviour
+{
+    [SerializeField] private float _currentPoints;
+    public static PointManager instance;
+    private HandleEnemyPoints HandelEnemy;
+    private void Awake()
     {
-        [SerializeField] private float _currentPoints;
-        public static PointManager instance;
-        private HandleEnemyPoints HandelEnemy;
-        private void Awake()
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this.gameObject);
+    }
+    private void Start()
+    {
+        HandelEnemy = new HandleEnemyPoints();
+    }
+    public void AddPoints(float value)
+    {
+        _currentPoints += value;
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
         {
-            if (instance == null)
-                instance = this;
-            else
-                Destroy(this.gameObject);
+            _currentPoints += 1000;
         }
-        private void Start()
+    }
+    public bool SpendPoints(float cost)
+    {
+        if (_currentPoints >= cost)
         {
-            HandelEnemy = new HandleEnemyPoints();
+            _currentPoints -= cost;
+            return true;
         }
-        public void AddPoints(float value)
+        else
         {
-            _currentPoints += value;
+            return false;
         }
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                _currentPoints += 1000;
-            }
-        }
-        public bool SpendPoints(float cost)
-        {
-            if(_currentPoints >= cost)
-            {
-                _currentPoints -= cost;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
+    }
     public bool HasEnoughPoints(float cost)
     {
         if (_currentPoints >= cost)
         {
-           
             return true;
         }
         else
@@ -52,5 +50,5 @@
         }
     }
     public float CurrentPoints => _currentPoints;
-        public HandleEnemyPoints GetHandle => HandelEnemy;
-    }
+    public HandleEnemyPoints GetHandle => HandelEnemy;
+}
