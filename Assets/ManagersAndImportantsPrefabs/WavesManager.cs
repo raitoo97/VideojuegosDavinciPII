@@ -218,7 +218,7 @@ public class WavesManager : MonoBehaviour
         int substract = enemy.SubstractFromWave();
         currentEnemies -= substract;
     }
-    IEnumerator GetWaveUIButton()
+    public IEnumerator GetWaveUIButton()
     {
         yield return new WaitForSeconds(2);
         var RefWaveUI = ManagerUI.instance.WaveUI;
