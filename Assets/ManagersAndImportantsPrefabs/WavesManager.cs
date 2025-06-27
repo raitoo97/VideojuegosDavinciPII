@@ -39,13 +39,6 @@ public class WavesManager : MonoBehaviour
         _obstaclesList = _obstaclesList.OrderBy(x => x.name).ToList();
         _turrets = _turrets.OrderBy(x => x.name).ToList();
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            ManagerSkills.instance.TryUnlockUltimate(SkillCategory.turretCategory);
-        }
-    }
     private void SetWave(int index)
     {
         switch (index)
