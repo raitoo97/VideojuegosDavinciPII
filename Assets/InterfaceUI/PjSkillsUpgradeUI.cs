@@ -103,16 +103,14 @@ public class PjSkillsUpgradeUI
         else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.shieldCategory) && !ManagerSkills.instance.IsSkillUnloked(SkillCategory.shieldCategory))
         {
             UnlockShield.interactable = true;
-            ColorBlock cb = UnlockShield.colors;
-            Color newNormal = cb.normalColor;
-            newNormal.a = 0.2f;
-            cb.normalColor = newNormal;
-            UnlockShield.colors = cb;
+            
         } else
         {
             UnlockShield.interactable = false;
             ColorBlock cb = UnlockShield.colors;
-            cb.disabledColor = Color.black;
+            Color newNormal = cb.normalColor;
+            newNormal.a = 0.2f;
+            cb.normalColor = newNormal;
             UnlockShield.colors = cb;
         }
 
@@ -141,7 +139,9 @@ public class PjSkillsUpgradeUI
         {
             UnlockDash.interactable = false;
             ColorBlock cb = UnlockDash.colors;
-            cb.disabledColor = Color.black;
+            Color newNormal = cb.normalColor;
+            newNormal.a = 0.2f;
+            cb.normalColor = newNormal;
             UnlockDash.colors = cb;
         }
         CooldownDashText.text = ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashCooldown).ToString();
