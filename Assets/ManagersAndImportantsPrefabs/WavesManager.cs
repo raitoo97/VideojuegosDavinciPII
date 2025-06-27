@@ -77,17 +77,17 @@ public class WavesManager : MonoBehaviour
     }
     private void Wave3()
     {
-        //ConfigWave(0, 2, 0, 1);
+        ConfigWave(0,2,0,1,0,2);
         numberOfWave = 2;
     }
     private void Wave4()
     {
-        //ConfigWave(0, 2, 0, 1);
+        ConfigWave(0,2,0,1,0,2);
         numberOfWave = 2;
     }
     private void Wave5()
     {
-        //ConfigWave(0, 2, 0, 1);
+        ConfigWave(0,2,0,1,0,2);
         numberOfWave = 2;
     }
     private void Finish()
@@ -152,6 +152,11 @@ public class WavesManager : MonoBehaviour
             }
             _tempZombieListRespawns.Clear();
         }
+    }
+    private void OnDisable()
+    {
+        _currentWave = null;
+        _cleanObstaclesList = null;
     }
     public void EnemySuscribeEventToWaveSubstract(IEnemies enemy)
     {
