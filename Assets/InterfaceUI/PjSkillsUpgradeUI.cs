@@ -159,20 +159,19 @@ public class PjSkillsUpgradeUI
         {
             UnlockShield.interactable = true;
             
+          
         } else
         {
             UnlockShield.interactable = false;
-            ColorBlock cb = UnlockShield.colors;
+            UpgradeShieldDurationButton.interactable = false;
+            UpgradeShieldRatioButton.interactable = false;
+            UpgradeShieldColdownButton.interactable = false;
+            /*ColorBlock cb = UnlockShield.colors;
             Color newNormal = cb.normalColor;
             newNormal.b = 1;
             newNormal.a = 0.2f;
             cb.normalColor = newNormal;
-            UnlockShield.colors = cb;
-            
-            UpgradeShieldDurationButton.interactable = false;
-            UpgradeShieldRatioButton.interactable = false;
-            UpgradeShieldColdownButton.interactable = false;
-
+            UnlockShield.colors = cb;*/
         }
        
         RatioShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldRadius).ToString();
