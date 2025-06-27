@@ -281,6 +281,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3ec701048af2b644abbbf8bda5340b91, type: 3}
   - {fileID: 8300000, guid: 4cbb8ca3fd30f7346b72b25bb2e44f40, type: 3}
   EnemyTurretShot: {fileID: 8300000, guid: 8c71d4eccf5a45e4494692b8a1f9862c, type: 3}
+  UpgradeSkill: {fileID: 8300000, guid: aa86352d63f1e5f498b4d3f5bf3f1eb9, type: 3}
+  UnlockSkill: {fileID: 8300000, guid: 2c76a5add139588428c84bacb35aaa7b, type: 3}
   Level1Music: {fileID: 8300000, guid: e86b7c37ac950ae4fb8bcc2b165d4328, type: 3}
   buttonClick: {fileID: 8300000, guid: c83fd45221bc2ae4b82e8c82451ada38, type: 3}
   audioSources: []
