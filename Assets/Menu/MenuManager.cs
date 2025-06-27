@@ -28,32 +28,38 @@ public class MenuManager : MonoBehaviour
     }
     private void StartGame()
     {
+        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
         SceneManager.LoadScene(1);
     }
     private void Protoype()
     {
+        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
         SceneManager.LoadScene(2);
     }
     private void TutorialButon()
     {
+        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
         panelTutorial.SetActive(true);
         panelCredits.SetActive(false);
         panelMain.SetActive(false);
     }
     private void ReturnButon()
     {
+        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
         panelTutorial.SetActive(false);
         panelCredits.SetActive(false);
         panelMain.SetActive(true);
     }
     private void CreditsButon()
     {
+        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
         panelTutorial.SetActive(false);
         panelCredits.SetActive(true);
         panelMain.SetActive(false);
     }
     private void QuitGame()
     {
+        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
         Application.Quit();
         print("No funciona en Editor");
     }
