@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         var refFade = FindObjectOfType<FadeInBlack>();
         refFade.BackGroundImage.gameObject.SetActive(true);
+        StartCoroutine(StartMusic());
     }
     private void RestarLevel()
     {
