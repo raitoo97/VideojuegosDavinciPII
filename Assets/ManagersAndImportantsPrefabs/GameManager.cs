@@ -23,7 +23,9 @@ public class GameManager : MonoBehaviour
     {
         player = GameObject.FindObjectOfType<Player>().gameObject;
         Time.timeScale = 1.0f;
-        //AudioManager.instance.PlayMusic(AudioManager.instance.Level1Music);
+        AudioManager.instance.PlayMusic(AudioManager.instance.Level1Music);
+        var refFade = FindObjectOfType<FadeInBlack>();
+        refFade.BackGroundImage.gameObject.SetActive(true);
     }
     private void RestarLevel()
     {

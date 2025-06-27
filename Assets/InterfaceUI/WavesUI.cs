@@ -25,6 +25,7 @@ public class WavesUI
     {
         if(_waveButton == null || _waveText == null || _numberOfEnemies == null) return;
         _waveButton.onClick.AddListener(ActivateWave);
+        _waveButton.interactable = false;
     }
     public void OnUpdate()
     {
@@ -34,6 +35,7 @@ public class WavesUI
     }
     private void ActivateWave()
     {
+        if (!WavesManager.instance.GetInitialized) return;
         WavesManager.instance._currentWave?.Invoke();
         WavesManager.instance.AdvanceWave();
     }
