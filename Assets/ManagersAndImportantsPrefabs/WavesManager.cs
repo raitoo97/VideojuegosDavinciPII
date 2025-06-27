@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class WavesManager : MonoBehaviour
     private int index;
     private int currentEnemies = 0;
     private int numberOfWave = 0;
+    private bool _isInitialized = false;
     private void Awake()
     {
         if (instance == null) { instance = this; }
@@ -38,6 +40,8 @@ public class WavesManager : MonoBehaviour
         _zombieListRespawns = _zombieListRespawns.OrderBy(x => x.name).ToList();
         _obstaclesList = _obstaclesList.OrderBy(x => x.name).ToList();
         _turrets = _turrets.OrderBy(x => x.name).ToList();
+        _isInitialized = true;
+        StartCoroutine(GetWaveUIButton());
     }
     private void SetWave(int index)
     {
@@ -95,7 +99,7 @@ public class WavesManager : MonoBehaviour
         int zombiesB = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
         int obstacleA = RandomWaveValue<Obstacles>(_obstaclesList);
         int obstaclesB = RandomWaveValue<Obstacles>(_obstaclesList);
-        ConfigWave(zombiesA,zombiesB,0,2,obstacleA,obstaclesB);
+        ConfigWave(zombiesA,zombiesB,0,3,obstacleA,obstaclesB);
         numberOfWave = 2;
     }
     private void Wave4()
@@ -113,7 +117,7 @@ public class WavesManager : MonoBehaviour
         int zombiesB = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
         int obstacleA = RandomWaveValue<Obstacles>(_obstaclesList);
         int obstaclesB = RandomWaveValue<Obstacles>(_obstaclesList);
-        ConfigWave(zombiesA,zombiesB,0,3, obstacleA,obstaclesB);
+        ConfigWave(zombiesA,zombiesB,0,4, obstacleA,obstaclesB);
         numberOfWave = 4;
     }
     private void Finish()
@@ -214,6 +218,13 @@ public class WavesManager : MonoBehaviour
         int substract = enemy.SubstractFromWave();
         currentEnemies -= substract;
     }
+    IEnumerator GetWaveUIButton()
+    {
+        yield return new WaitForSeconds(2);
+        var RefWaveUI = ManagerUI.instance.WaveUI;
+        RefWaveUI._waveButton.interactable = true;
+    }
     public int GetCurrentEnemies { get => currentEnemies; }
     public int GetNumberWave { get => numberOfWave; }
+    public bool GetInitialized { get => _isInitialized; }
 }
