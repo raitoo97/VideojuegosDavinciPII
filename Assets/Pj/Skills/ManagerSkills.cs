@@ -156,11 +156,8 @@ public class ManagerSkills : MonoBehaviour
         else return false;
     }
 
-    public bool IsSkillUnloked (SkillCategory category)
-    {
-        if (!_skills.ContainsKey(category)) return false;
-        return _skills[category].isUnlocked;
-    }
+   
+
     public bool AreAllSkillsMaxed(SkillCategory category)
     {
         if (!_skills.ContainsKey(category)) return false;
