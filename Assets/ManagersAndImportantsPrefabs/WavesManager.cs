@@ -5,11 +5,11 @@ using UnityEngine;
 public class WavesManager : MonoBehaviour
 {
     private List<IEnemies> enemies;
-    [SerializeField]private List<RespawnZombie> _zombieListRespawns;
-    [SerializeField]private List<RespawnZombie> _tempZombieListRespawns;
-    [SerializeField]private List <Obstacles> _obstaclesList;
-    [SerializeField]private List<Obstacles> _tempobstaclesList;
-    [SerializeField]private List<TurretBehaviour> _turrets;
+    private List<RespawnZombie> _zombieListRespawns;
+    private List<RespawnZombie> _tempZombieListRespawns;
+    private List <Obstacles> _obstaclesList;
+    private List<Obstacles> _tempobstaclesList;
+    private List<TurretBehaviour> _turrets;
     public static WavesManager instance;
     public Action _currentWave;
     public Action _cleanObstaclesList;
@@ -38,13 +38,6 @@ public class WavesManager : MonoBehaviour
         _zombieListRespawns = _zombieListRespawns.OrderBy(x => x.name).ToList();
         _obstaclesList = _obstaclesList.OrderBy(x => x.name).ToList();
         _turrets = _turrets.OrderBy(x => x.name).ToList();
-    }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            ManagerSkills.instance.TryUnlockUltimate(SkillCategory.turretCategory);
-        }
     }
     private void SetWave(int index)
     {
@@ -93,7 +86,7 @@ public class WavesManager : MonoBehaviour
         int zombiesB = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
         int obstacleA = RandomWaveValue<Obstacles>(_obstaclesList);
         int obstaclesB = RandomWaveValue<Obstacles>(_obstaclesList);
-        ConfigWave(zombiesA,zombiesB,0,2,obstacleA,obstaclesB);
+        ConfigWave(zombiesA,zombiesB,0,3,obstacleA,obstaclesB);
         numberOfWave = 1;
     }
     private void Wave3()
@@ -120,7 +113,7 @@ public class WavesManager : MonoBehaviour
         int zombiesB = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
         int obstacleA = RandomWaveValue<Obstacles>(_obstaclesList);
         int obstaclesB = RandomWaveValue<Obstacles>(_obstaclesList);
-        ConfigWave(zombiesA,zombiesB,0,2, obstacleA,obstaclesB);
+        ConfigWave(zombiesA,zombiesB,0,3, obstacleA,obstaclesB);
         numberOfWave = 4;
     }
     private void Finish()
@@ -154,11 +147,12 @@ public class WavesManager : MonoBehaviour
                 }
             }
         }
-        if(_turrets != null && _turrets.Count > 0)
+        if(_turrets != null && _turrets.Count > 0 && RangeATurret >= 0 && RangeATurret < _turrets.Count)
         {
-            var turretList = _turrets.GetRange(RangeATurret, RangeBTurret);
-            _turrets.RemoveRange(RangeATurret, RangeBTurret);
-            if (turretList != null && turretList.Count > 0)
+            int amountToTake = Mathf.Min(RangeBTurret, _turrets.Count - RangeATurret);
+            var turretList = _turrets.GetRange(RangeATurret, amountToTake);
+            _turrets.RemoveRange(RangeATurret, amountToTake);
+            if (turretList.Count > 0)
             {
                 foreach (var waveTurret in turretList)
                 {

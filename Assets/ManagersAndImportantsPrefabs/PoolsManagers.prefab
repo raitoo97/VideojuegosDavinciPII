@@ -106,15 +106,15 @@ MonoBehaviour:
     initialPoolSize: 50
     ParticlePrefab: {fileID: 3070131706269945652, guid: ee408d5915d39604a91742fc0a229673, type: 3}
     pooledParticles: []
-  - type: 4
-    poolParent: {fileID: 1477309947633531035}
-    initialPoolSize: 10
-    ParticlePrefab: {fileID: 4794043405585894037, guid: 37138c0c33167b04fa1fb90b7f5a794f, type: 3}
-    pooledParticles: []
   - type: 3
     poolParent: {fileID: 1477309947633531035}
     initialPoolSize: 50
     ParticlePrefab: {fileID: 6072464643854313593, guid: 46f7e95558976ba4aa3dac5e0eb5b50d, type: 3}
+    pooledParticles: []
+  - type: 4
+    poolParent: {fileID: 1477309947633531035}
+    initialPoolSize: 10
+    ParticlePrefab: {fileID: 4794043405585894037, guid: 37138c0c33167b04fa1fb90b7f5a794f, type: 3}
     pooledParticles: []
 --- !u!114 &6783233624291543087
 MonoBehaviour:
