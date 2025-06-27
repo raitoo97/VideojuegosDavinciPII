@@ -71,9 +71,9 @@ public class TurretPj : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, 16f);
     }
     #endregion
-   IEnumerator Shoot()
+    IEnumerator Shoot()
     {
-        while (true) 
+        while (true)
         {
             if (_detectedTarget && enemy != null)
             {
@@ -105,7 +105,6 @@ public class TurretPj : MonoBehaviour
                         }
                     }
                 }
-
                 if (enemy.GetComponent<TurretBehaviour>())
                 {
                     GameObject bullet = null;
