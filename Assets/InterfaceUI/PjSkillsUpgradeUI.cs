@@ -117,6 +117,7 @@ public class PjSkillsUpgradeUI
         RatioShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldRadius).ToString();
         CooldownShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldCooldown).ToString();
         DurationShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldDuration).ToString();
+
         //Dash
         if (ManagerSkills.instance.IsSkillUnloked(SkillCategory.dashCategory))
         {
