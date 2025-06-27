@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: paqueteXPMat
+  m_Name: turretV2_misiles_mat
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -26,7 +26,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: ed8bae2a44293e942857c0fab3d2dc7c, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5074ec24f800cfa478309e8b0eb72aea, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -46,11 +46,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c25a91da977279c43bac7798a13c73d9, type: 3}
+        m_Texture: {fileID: 2800000, guid: 769e4ba805812c44780b7df3a2cb68ea, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: a2c7ffffa7c32124e99c8e485e740f8d, type: 3}
+        m_Texture: {fileID: 2800000, guid: fb03d486a5ad7924ca5b10f6f9a42e56, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
