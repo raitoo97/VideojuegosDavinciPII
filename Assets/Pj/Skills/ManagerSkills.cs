@@ -204,6 +204,19 @@ public class ManagerSkills : MonoBehaviour
         ActiveSkill skill = _skills[category];
         return skill.ultimateUnlocked;
     }
+
+    public float GetUltimateUnlockCost(SkillCategory category)
+    {
+        if (_skills.TryGetValue(category, out var skill))
+        {
+            return skill.costToUnlockUltimate;
+        }
+        else
+        {
+            Debug.LogWarning("No se encontró la habilidad con esa categoría.");
+            return -1f;
+        }
+    }
 }
 [HideInInspector]
 public class StatProgress
