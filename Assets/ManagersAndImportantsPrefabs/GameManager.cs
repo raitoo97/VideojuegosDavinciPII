@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player = GameObject.FindObjectOfType<Player>().gameObject;
+        Time.timeScale = 1.0f;
     }
     private void RestarLevel()
     {
