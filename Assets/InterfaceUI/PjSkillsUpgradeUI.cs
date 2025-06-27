@@ -92,15 +92,40 @@ public class PjSkillsUpgradeUI
         rateFireText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretShotSpeed).ToString();
         distanceText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretVisionRange).ToString();
         //shield
-        if (ManagerSkills.instance.IsSkillUnloked(SkillCategory.shieldCategory))
+        if (ManagerSkills.instance.IsUnlocked(SkillCategory.shieldCategory))
         {
             ColorBlock cb = UnlockShield.colors;
             cb.disabledColor = Color.white;
             UnlockShield.colors = cb;
             UnlockShield.interactable = false;
 
+            if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.shieldCategory, SkillStatType.shieldDuration) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.shieldCategory))
+            {
+                UpgradeShieldDurationButton.interactable = true;
+                
+            }
+            else
+            {
+                UpgradeShieldDurationButton.interactable = false;
+            }
+            if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.shieldCategory, SkillStatType.shieldRadius) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.shieldCategory))
+            {
+                UpgradeShieldRatioButton.interactable = true;
+            }
+            else
+            {
+                UpgradeShieldRatioButton.interactable = false;
+            }
+            if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.shieldCategory, SkillStatType.shieldCooldown) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.shieldCategory))
+            {
+                UpgradeShieldColdownButton.interactable = true;
+            }
+            else
+            {
+                UpgradeShieldColdownButton.interactable = false;
+            }
         }
-        else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.shieldCategory) && !ManagerSkills.instance.IsSkillUnloked(SkillCategory.shieldCategory))
+        else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.shieldCategory) && !ManagerSkills.instance.IsUnlocked(SkillCategory.shieldCategory))
         {
             UnlockShield.interactable = true;
             
@@ -109,41 +134,68 @@ public class PjSkillsUpgradeUI
             UnlockShield.interactable = false;
             ColorBlock cb = UnlockShield.colors;
             Color newNormal = cb.normalColor;
+            newNormal.b = 1;
             newNormal.a = 0.2f;
             cb.normalColor = newNormal;
             UnlockShield.colors = cb;
-        }
+            
+            UpgradeShieldDurationButton.interactable = false;
+            UpgradeShieldRatioButton.interactable = false;
+            UpgradeShieldColdownButton.interactable = false;
 
+        }
+       
         RatioShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldRadius).ToString();
         CooldownShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldCooldown).ToString();
         DurationShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldDuration).ToString();
 
         //Dash
-        if (ManagerSkills.instance.IsSkillUnloked(SkillCategory.dashCategory))
+        if (ManagerSkills.instance.IsUnlocked(SkillCategory.dashCategory))
         {
             ColorBlock cb = UnlockDash.colors;
             cb.disabledColor = Color.white;
             UnlockDash.colors = cb;
             UnlockDash.interactable = false;
 
+            if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.dashCategory, SkillStatType.dashSpeed) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory))
+            {
+                UpgradeDashSpeedButton.interactable = true;
+
+            }
+            else
+            {
+                UpgradeDashSpeedButton.interactable = false;
+            }
+
+            if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.dashCategory, SkillStatType.dashCooldown) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory))
+            {
+                UpgradeDashSCooldownButton.interactable = true;
+
+            }
+            else
+            {
+                UpgradeDashSCooldownButton.interactable = false;
+            }
+
+            
+
         }
-        else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.dashCategory) && !ManagerSkills.instance.IsSkillUnloked(SkillCategory.dashCategory))
+        else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.dashCategory) && !ManagerSkills.instance.IsUnlocked(SkillCategory.dashCategory))
         {
             UnlockDash.interactable = true;
-            ColorBlock cb = UnlockDash.colors;
-            Color newNormal = cb.normalColor;
-            newNormal.a = 0.2f;
-            cb.normalColor = newNormal;
-            UnlockDash.colors = cb;
+            
         }
         else
         {
             UnlockDash.interactable = false;
-            ColorBlock cb = UnlockDash.colors;
-            Color newNormal = cb.normalColor;
-            newNormal.a = 0.2f;
-            cb.normalColor = newNormal;
-            UnlockDash.colors = cb;
+            UpgradeDashSpeedButton.interactable = false;
+            UpgradeDashSCooldownButton.interactable = false;
+        }
+        if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory))
+        {
+            UnlockDash.interactable = false;
+            UpgradeDashSpeedButton.interactable = false;
+            UpgradeDashSCooldownButton.interactable = false;
         }
         CooldownDashText.text = ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashCooldown).ToString();
         SpeedDashText.text = ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashSpeed).ToString();
