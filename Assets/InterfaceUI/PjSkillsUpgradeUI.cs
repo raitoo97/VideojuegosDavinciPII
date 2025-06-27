@@ -89,6 +89,36 @@ public class PjSkillsUpgradeUI
     {
         pointsText.text = PointManager.instance.CurrentPoints.ToString();
         //turret
+        if (ManagerSkills.instance.IsUnlocked(SkillCategory.turretCategory))
+        {
+            if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.turretCategory, SkillStatType.turretShotSpeed) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.turretCategory))
+            {
+                rateFireButton.interactable = true;
+
+            }
+            else
+            {
+                rateFireButton.interactable = false;
+            }
+
+            if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.turretCategory, SkillStatType.turretVisionRange) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.turretCategory))
+            {
+                distanceButton.interactable = true;
+            }
+            else
+            {
+                distanceButton.interactable = false;
+            }
+           
+        }
+        else
+        {
+            
+            rateFireButton.interactable = false;
+            UpgradeShieldRatioButton.interactable = false;
+            
+
+        }
         rateFireText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretShotSpeed).ToString();
         distanceText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretVisionRange).ToString();
         //shield
