@@ -10,6 +10,7 @@ public class TurretPj : MonoBehaviour
     public Transform turretChild;
     public Transform gunSight;
     public GameObject turret;
+    public GameObject turretV2;
     private bool _detectedTarget;
     private Coroutine _shootRoutine;
     [Header("Audio/effects")]
@@ -140,6 +141,16 @@ public class TurretPj : MonoBehaviour
     public void DesactivateSelf()
     {
         if (turret == null) return;
+        if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
+        {
+            turretV2.gameObject.SetActive(false);
+            turret.gameObject.SetActive(false);
+            if (_shootRoutine != null)
+            {
+                StopCoroutine(_shootRoutine);
+                _shootRoutine = null;
+            }
+        }else 
         turret.gameObject.SetActive(false);
         if (_shootRoutine != null)
         {
@@ -149,7 +160,19 @@ public class TurretPj : MonoBehaviour
     }
     public void ActivateSelf()
     {
+
         if (turret == null) return;
+        if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
+        {
+            turretV2.gameObject.SetActive(true);
+            turretV2.transform.position = turretChild.transform.position;
+            turret.gameObject.SetActive(true);
+            if (_shootRoutine == null)
+            {
+                _shootRoutine = StartCoroutine(Shoot());
+            }
+        }else
+        turretV2.gameObject.SetActive(false);
         turret.gameObject.SetActive(true);
         if (_shootRoutine == null)
         {
