@@ -147,11 +147,12 @@ public class WavesManager : MonoBehaviour
                 }
             }
         }
-        if(_turrets != null && _turrets.Count > 0)
+        if(_turrets != null && _turrets.Count > 0 && RangeATurret >= 0 && RangeATurret < _turrets.Count)
         {
-            var turretList = _turrets.GetRange(RangeATurret, RangeBTurret);
-            _turrets.RemoveRange(RangeATurret, RangeBTurret);
-            if (turretList != null && turretList.Count > 0)
+            int amountToTake = Mathf.Min(RangeBTurret, _turrets.Count - RangeATurret);
+            var turretList = _turrets.GetRange(RangeATurret, amountToTake);
+            _turrets.RemoveRange(RangeATurret, amountToTake);
+            if (turretList.Count > 0)
             {
                 foreach (var waveTurret in turretList)
                 {
