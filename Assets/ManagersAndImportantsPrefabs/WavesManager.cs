@@ -5,11 +5,11 @@ using UnityEngine;
 public class WavesManager : MonoBehaviour
 {
     private List<IEnemies> enemies;
-    [SerializeField]private List<RespawnZombie> _zombieListRespawns;
-    [SerializeField]private List<RespawnZombie> _tempZombieListRespawns;
-    [SerializeField]private List <Obstacles> _obstaclesList;
-    [SerializeField]private List<Obstacles> _tempobstaclesList;
-    [SerializeField]private List<TurretBehaviour> _turrets;
+    private List<RespawnZombie> _zombieListRespawns;
+    private List<RespawnZombie> _tempZombieListRespawns;
+    private List <Obstacles> _obstaclesList;
+    private List<Obstacles> _tempobstaclesList;
+    private List<TurretBehaviour> _turrets;
     public static WavesManager instance;
     public Action _currentWave;
     public Action _cleanObstaclesList;
@@ -77,7 +77,7 @@ public class WavesManager : MonoBehaviour
         int zombiesB = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
         int obstacleA = RandomWaveValue<Obstacles>(_obstaclesList);
         int obstaclesB = RandomWaveValue<Obstacles>(_obstaclesList);
-        ConfigWave(zombiesA,zombiesB,0,0, obstacleA, obstaclesB);
+        ConfigWave(zombiesA,zombiesB,0,3, obstacleA, obstaclesB);
         numberOfWave = 0;
     }
     private void Wave2()
