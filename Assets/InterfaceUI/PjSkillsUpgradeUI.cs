@@ -24,6 +24,8 @@ public class PjSkillsUpgradeUI
     private Button UpgradeDashSCooldownButton;
     private Text CooldownDashText;
     private Text SpeedDashText;
+
+    AudioManager audioManager = AudioManager.instance;
     private enum UIElementName
     {
         Number,//puntos
@@ -230,43 +232,60 @@ public class PjSkillsUpgradeUI
     private void UltimateTurretFunctionUnlock()
     {
         ManagerSkills.instance.TryUnlockUltimate(SkillCategory.turretCategory);
+        AudioManager.instance.PlaySfx(audioManager.UnlockSkill);
     }
     private void UpgradeCadencia()
     {
         ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed);
+        AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
     }
     private void UpgradeDistancia()
     {
         ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
+        AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
+
     }
     private void UnlockShieldFunction()
     {
-        Debug.Log("Desbloquear escudo");
         ManagerSkills.instance.UnlockSkillCategory(SkillCategory.shieldCategory);
+        AudioManager.instance.PlaySfx(audioManager.UnlockSkill);
+
     }
     private void UpgradeShieldRatio() 
     {
         ManagerSkills.instance.UpgradeSkill(SkillCategory.shieldCategory, SkillStatType.shieldRadius);
+        AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
+
     }
     private void UpgradeShieldColdown()
     {
         ManagerSkills.instance.UpgradeSkill(SkillCategory.shieldCategory, SkillStatType.shieldCooldown);
+        AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
+
     }
     private void UpgradeShieldDuration()
     {
         ManagerSkills.instance.UpgradeSkill(SkillCategory.shieldCategory, SkillStatType.shieldDuration);
+        AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
+
     }
     private void UnlockDashFunction()
     {
         ManagerSkills.instance.UnlockSkillCategory(SkillCategory.dashCategory);
+        AudioManager.instance.PlaySfx(audioManager.UnlockSkill);
+
     }
     private void UpgradeDashSpeed() 
     {
         ManagerSkills.instance.UpgradeSkill(SkillCategory.dashCategory, SkillStatType.dashSpeed);
+        AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
+
     }
     private void UpgradeDashCooldown()
     {
         ManagerSkills.instance.UpgradeSkill(SkillCategory.dashCategory, SkillStatType.dashCooldown);
+        AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
+
     }
 }
 
