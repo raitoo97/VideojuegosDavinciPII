@@ -196,7 +196,7 @@ MonoBehaviour:
   lineRendererMaterial: {fileID: 2100000, guid: a87b5f5dcbcc8004b8dc6c9087cc9f0f, type: 2}
   mask:
     serializedVersion: 2
-    m_Bits: 8201
+    m_Bits: 8
   _fireRate: 0.5
   _collider: {fileID: 0}
   _life: 0

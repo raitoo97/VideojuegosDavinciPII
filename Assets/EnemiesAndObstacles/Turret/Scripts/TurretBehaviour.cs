@@ -24,7 +24,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     {
         _life = 200;
         _enemypoints = 60;
-        _distance = 50f;
+        _distance = Mathf.Infinity;
         _child = this.transform.GetChild(0);
         var _tempList = _child.GetComponentsInChildren<Transform>();
         foreach (var x in _tempList)
