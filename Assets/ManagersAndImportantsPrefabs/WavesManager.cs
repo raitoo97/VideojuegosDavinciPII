@@ -16,6 +16,7 @@ public class WavesManager : MonoBehaviour
     private int index;
     private int currentEnemies = 0;
     private int numberOfWave = 0;
+    private bool _isInitialized;
     private void Awake()
     {
         if (instance == null) { instance = this; }
