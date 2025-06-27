@@ -9,7 +9,7 @@ public class WavesManager : MonoBehaviour
     private List<RespawnZombie> _tempZombieListRespawns;
     private List <Obstacles> _obstaclesList;
     private List<Obstacles> _tempobstaclesList;
-    [SerializeField]private List<TurretBehaviour> _turrets;
+    private List<TurretBehaviour> _turrets;
     public static WavesManager instance;
     public Action _currentWave;
     public Action _cleanObstaclesList;
