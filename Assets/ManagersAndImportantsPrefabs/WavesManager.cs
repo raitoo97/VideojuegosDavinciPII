@@ -99,7 +99,7 @@ public class WavesManager : MonoBehaviour
         int zombiesB = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
         int obstacleA = RandomWaveValue<Obstacles>(_obstaclesList);
         int obstaclesB = RandomWaveValue<Obstacles>(_obstaclesList);
-        ConfigWave(zombiesA,zombiesB,0,2,obstacleA,obstaclesB);
+        ConfigWave(zombiesA,zombiesB,0,3,obstacleA,obstaclesB);
         numberOfWave = 2;
     }
     private void Wave4()
@@ -117,7 +117,7 @@ public class WavesManager : MonoBehaviour
         int zombiesB = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
         int obstacleA = RandomWaveValue<Obstacles>(_obstaclesList);
         int obstaclesB = RandomWaveValue<Obstacles>(_obstaclesList);
-        ConfigWave(zombiesA,zombiesB,0,3, obstacleA,obstaclesB);
+        ConfigWave(zombiesA,zombiesB,0,4, obstacleA,obstaclesB);
         numberOfWave = 4;
     }
     private void Finish()
