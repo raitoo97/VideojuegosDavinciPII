@@ -9,7 +9,7 @@ public class WavesManager : MonoBehaviour
     private List<RespawnZombie> _tempZombieListRespawns;
     private List <Obstacles> _obstaclesList;
     private List<Obstacles> _tempobstaclesList;
-    private List<TurretBehaviour> _turrets;
+    [SerializeField]private List<TurretBehaviour> _turrets;
     public static WavesManager instance;
     public Action _currentWave;
     public Action _cleanObstaclesList;
@@ -77,7 +77,7 @@ public class WavesManager : MonoBehaviour
         int zombiesB = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
         int obstacleA = RandomWaveValue<Obstacles>(_obstaclesList);
         int obstaclesB = RandomWaveValue<Obstacles>(_obstaclesList);
-        ConfigWave(zombiesA,zombiesB,0,3, obstacleA, obstaclesB);
+        ConfigWave(zombiesA,zombiesB,0,0, obstacleA, obstaclesB);
         numberOfWave = 0;
     }
     private void Wave2()
@@ -86,7 +86,7 @@ public class WavesManager : MonoBehaviour
         int zombiesB = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
         int obstacleA = RandomWaveValue<Obstacles>(_obstaclesList);
         int obstaclesB = RandomWaveValue<Obstacles>(_obstaclesList);
-        ConfigWave(zombiesA,zombiesB,0,2,obstacleA,obstaclesB);
+        ConfigWave(zombiesA,zombiesB,0,3,obstacleA,obstaclesB);
         numberOfWave = 1;
     }
     private void Wave3()
@@ -113,7 +113,7 @@ public class WavesManager : MonoBehaviour
         int zombiesB = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
         int obstacleA = RandomWaveValue<Obstacles>(_obstaclesList);
         int obstaclesB = RandomWaveValue<Obstacles>(_obstaclesList);
-        ConfigWave(zombiesA,zombiesB,0,2, obstacleA,obstaclesB);
+        ConfigWave(zombiesA,zombiesB,0,3, obstacleA,obstaclesB);
         numberOfWave = 4;
     }
     private void Finish()
