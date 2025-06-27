@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player = GameObject.FindObjectOfType<Player>().gameObject;
+        Time.timeScale = 1.0f;
+        AudioManager.instance.PlayMusic(AudioManager.instance.Level1Music);
     }
     private void RestarLevel()
     {
