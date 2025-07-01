@@ -54,7 +54,6 @@ public class RayCastTurret
     }
     public IEnumerator ChangeLaserColor()
     {
-        //Color colorOrginal = Color.green;
         Color colorOrginal = new Color(0, 1, 0, 0.2f);
         Color colorFinal = Color.red;
         float t = 0f;

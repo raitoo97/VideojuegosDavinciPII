@@ -73,7 +73,7 @@ public class WavesManager : MonoBehaviour
     private void Wave1()
     {
         int zombies = RandomWaveValue(_zombieListRespawns, 2);
-        ConfigWave(zombies,0,5);
+        ConfigWave(zombies,0,0);
         numberOfWave = 0;
     }
     private void Wave2()
@@ -104,7 +104,7 @@ public class WavesManager : MonoBehaviour
     {
         numberOfWave = 5;
     }
-    public int RandomWaveValue<T>(List<T> list,int maxValue)
+    public int RandomWaveValue<T>(List<T>list,int maxValue)
     {
         if (list == null || list.Count == 0) return 0;
         int MaxValue = Math.Clamp(maxValue, 1, list.Count);
