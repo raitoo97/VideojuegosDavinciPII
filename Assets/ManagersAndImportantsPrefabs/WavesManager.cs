@@ -73,7 +73,7 @@ public class WavesManager : MonoBehaviour
     private void Wave1()
     {
         int zombies = RandomWaveValue(_zombieListRespawns, 2);
-        ConfigWave(zombies,0,0);
+        ConfigWave(zombies,0,5);
         numberOfWave = 0;
     }
     private void Wave2()
