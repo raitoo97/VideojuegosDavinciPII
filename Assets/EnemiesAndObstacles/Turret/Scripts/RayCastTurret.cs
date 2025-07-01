@@ -6,6 +6,8 @@ public class RayCastTurret
     private Transform _transform;
     private float _distance;
     private bool _enabled;
+    private float _endWidth = 0.5f;
+    private float _startWidth = 0.05f;
     private LineRenderer _lineRenderer;
     private MonoBehaviour _corutineControl;
     private Coroutine _colorCoroutine;
@@ -19,8 +21,8 @@ public class RayCastTurret
         _lineRenderer.material = _linerenderematerial;
         _lineRenderer.positionCount = 2;
         _lineRenderer.numCapVertices = 20;
-        _lineRenderer.startWidth = 0.05f;
-        _lineRenderer.endWidth = 0.5f;
+        _lineRenderer.startWidth = _startWidth;
+        _lineRenderer.endWidth = _startWidth;
         _lineRenderer.startColor = Color.green;
         _lineRenderer.endColor = Color.green; 
     }
