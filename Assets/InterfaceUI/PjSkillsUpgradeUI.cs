@@ -12,6 +12,7 @@ public class PjSkillsUpgradeUI
     private Button UltimateTurret;
     [Header("Shield")]
     private Button UnlockShield;
+    private Button CantUnlockShield;
     private Button UpgradeShieldRatioButton;
     private Button UpgradeShieldColdownButton;
     private Button UpgradeShieldDurationButton;
@@ -34,6 +35,7 @@ public class PjSkillsUpgradeUI
         UpgradeCadencia,//Subir cadencia de torretya
         UpgradeDistance,//Subir distancia de torreta
         UnlockShield,//Desbloquear escudo
+       // CantUnlockShield, //NO PUEDE DESBLOQUEAR
         UpgradeShieldRatio,//Subir Ratio del escudo
         UpgradeShieldColdown,//Subir coldown del escudo
         UpgradeShieldDuration,//Subir duracion del escudo
@@ -57,6 +59,7 @@ public class PjSkillsUpgradeUI
         this.distanceButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeDistance.ToString());
         this.UltimateTurret = buttons.Find(x => x.gameObject.name == UIElementName.UltimateTurret.ToString());
         //Shield
+        //this.CantUnlockShield = buttons.Find(x => x.gameObject.name == UIElementName.CantUnlockShield.ToString());
         this.UnlockShield = buttons.Find(x => x.gameObject.name == UIElementName.UnlockShield.ToString());
         this.UpgradeShieldRatioButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeShieldRatio.ToString());
         this.UpgradeShieldColdownButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeShieldColdown.ToString());
@@ -78,7 +81,8 @@ public class PjSkillsUpgradeUI
         distanceButton.onClick.AddListener(UpgradeDistancia);
         UltimateTurret.onClick.AddListener(UltimateTurretFunctionUnlock);
         //shield
-        UnlockShield.onClick.AddListener(UnlockShieldFunction);
+        //CantUnlockShield.onClick.AddListener(CantUnlock);
+        UnlockShield.onClick.AddListener(CantUnlock);
         UpgradeShieldRatioButton.onClick.AddListener(UpgradeShieldRatio);
         UpgradeShieldColdownButton.onClick.AddListener(UpgradeShieldColdown);
         UpgradeShieldDurationButton.onClick.AddListener(UpgradeShieldDuration);
@@ -90,7 +94,8 @@ public class PjSkillsUpgradeUI
     public void OnUpdate()
     {
         pointsText.text = PointManager.instance.CurrentPoints.ToString();
-        //turret
+        #region TURRET
+
         if (ManagerSkills.instance.IsUnlocked(SkillCategory.turretCategory))
         {
             if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.turretCategory, SkillStatType.turretShotSpeed) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.turretCategory))
@@ -112,25 +117,17 @@ public class PjSkillsUpgradeUI
                 distanceButton.interactable = false;
             }
         }
-        
 
-        if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.turretCategory) && ManagerSkills.instance.GetUltimateUnlockCost(SkillCategory.turretCategory) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
-        {
-            UltimateTurret.interactable = true;
-        }
-        else
-        {
-           UltimateTurret.interactable = false;
-        }
-        rateFireText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretShotSpeed).ToString();
-        distanceText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretVisionRange).ToString();
-        //shield
+
+        #endregion
+
+        #region SHIELD
         if (ManagerSkills.instance.IsUnlocked(SkillCategory.shieldCategory))
         {
-            ColorBlock cb = UnlockShield.colors;
-            cb.disabledColor = Color.white;
-            UnlockShield.colors = cb;
+            
+            UnlockShield.targetGraphic.color = Color.white;
             UnlockShield.interactable = false;
+            UnlockShield.onClick.RemoveAllListeners();
 
             if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.shieldCategory, SkillStatType.shieldDuration) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.shieldCategory))
             {
@@ -160,28 +157,35 @@ public class PjSkillsUpgradeUI
         }
         else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.shieldCategory) && !ManagerSkills.instance.IsUnlocked(SkillCategory.shieldCategory))
         {
-            UnlockShield.interactable = true;
             
-          
+            UnlockShield.interactable = true;
+            UnlockShield.targetGraphic.color = Color.white;
+            UnlockShield.onClick.RemoveAllListeners();
+            UnlockShield.onClick.AddListener(UnlockShieldFunction);
+
         } else
         {
-            UnlockShield.interactable = false;
+            
+            UnlockShield.onClick.RemoveAllListeners();
+            UnlockShield.onClick.AddListener(CantUnlock);
+            UnlockShield.targetGraphic.color = Color.red;
+
             UpgradeShieldDurationButton.interactable = false;
             UpgradeShieldRatioButton.interactable = false;
             UpgradeShieldColdownButton.interactable = false;
-            /*ColorBlock cb = UnlockShield.colors;
-            Color newNormal = cb.normalColor;
-            newNormal.b = 1;
-            newNormal.a = 0.2f;
-            cb.normalColor = newNormal;
-            UnlockShield.colors = cb;*/
+
+            
         }
       
         RatioShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldRadius).ToString();
         CooldownShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldCooldown).ToString();
         DurationShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldDuration).ToString();
 
-        //Dash
+
+
+        #endregion
+
+        #region DASH
         if (ManagerSkills.instance.IsUnlocked(SkillCategory.dashCategory))
         {
             ColorBlock cb = UnlockDash.colors;
@@ -228,6 +232,20 @@ public class PjSkillsUpgradeUI
         }
         CooldownDashText.text = ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashCooldown).ToString();
         SpeedDashText.text = ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashSpeed).ToString();
+
+        #endregion
+
+
+        if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.turretCategory) && ManagerSkills.instance.GetUltimateUnlockCost(SkillCategory.turretCategory) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
+        {
+            UltimateTurret.interactable = true;
+        }
+        else
+        {
+            UltimateTurret.interactable = false;
+        }
+        rateFireText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretShotSpeed).ToString();
+        distanceText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretVisionRange).ToString();
     }
     private void UltimateTurretFunctionUnlock()
     {
@@ -286,6 +304,11 @@ public class PjSkillsUpgradeUI
         ManagerSkills.instance.UpgradeSkill(SkillCategory.dashCategory, SkillStatType.dashCooldown);
         AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
 
+    }
+
+    private void CantUnlock()
+    {
+        Debug.Log("cant unlock");
     }
 }
 
