@@ -37,6 +37,7 @@ public class WavesManager : MonoBehaviour
         _isInitialized = true;
         SetWave(index);
         StartCoroutine(GetWaveUIButton());
+
     }
     private void SetWave(int index)
     {
@@ -99,6 +100,8 @@ public class WavesManager : MonoBehaviour
         //UltimaWaveActivoTodo
         ConfigWave(9,0,5);
         numberOfWave = 4;
+        var RefWaveUI = ManagerUI.instance.WaveUI;
+        RefWaveUI._isLastWave = true;
     }
     private void Finish()
     {
@@ -108,7 +111,7 @@ public class WavesManager : MonoBehaviour
     {
         if (list == null || list.Count == 0) return 0;
         int MaxValue = Math.Clamp(maxValue, minValue, list.Count);
-        return UnityEngine.Random.Range(minValue, MaxValue + 1);
+        return UnityEngine.Random.Range(minValue, MaxValue + 1);//Le sumo uno porque Range es exclusivo
     }
     private void ConfigWave(int RangeZombies, int RangeATurret, int RangeBTurret)
     {

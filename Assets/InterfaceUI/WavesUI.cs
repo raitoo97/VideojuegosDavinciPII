@@ -9,6 +9,7 @@ public class WavesUI
     public Text _winningText;
     public Text _arrow;
     private bool _isFirstWave = true;
+    public bool _isLastWave = false;
     private enum WaveAtributes
     {
         WavesButton,
@@ -61,7 +62,16 @@ public class WavesUI
             _winningText.gameObject.SetActive(false);
             return;
         }
-        if (NumberWave < 5 && currentEnemies <= 0)
+        if (_isLastWave)
+        {
+            _waveButton.gameObject.SetActive(false);
+            _waveText.gameObject.SetActive(false);
+            ManagerUI.instance.SkillsPanel.SetActive(false);
+            _numberOfEnemies.gameObject.SetActive(false);
+            _winningText.gameObject.SetActive(true);
+            return;
+        }
+        if (NumberWave < 5 && currentEnemies <= 0 && !_isLastWave)
         {
             _waveButton.gameObject.SetActive(true);
             ManagerUI.instance.SkillsPanel.SetActive(true);
@@ -77,13 +87,6 @@ public class WavesUI
             _waveText.gameObject.SetActive(true);
             _numberOfEnemies.gameObject.SetActive(true);
             _winningText.gameObject.SetActive(false);
-        }
-        if(NumberWave >= 5)
-        {
-            _waveButton.gameObject.SetActive(false);
-            _waveText.gameObject.SetActive(false);
-            _numberOfEnemies.gameObject.SetActive(false);
-            _winningText.gameObject.SetActive(true);
         }
     }
 }
