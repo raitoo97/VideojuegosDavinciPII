@@ -12,7 +12,7 @@ public class CheckObstacles
     {
         this._transform = _transform;
         this.maskObstacles = maskObstacles;
-        _boxSize = new Vector3(3f, 3f, 20f);
+        _boxSize = new Vector3(2f, 2f, 20f);
         _halfExtents = _boxSize * 0.5f;
         _dotProduct = 0.0f;
     }
@@ -34,7 +34,6 @@ public class CheckObstacles
     public void Draw()
     {
         Gizmos.color = Color.red;
-        Vector3 halfExtents = _boxSize * 0.5f;
         Vector3 boxCenter = _transform.position + _transform.forward * 15f;
         Gizmos.matrix = Matrix4x4.TRS(boxCenter, _transform.rotation, Vector3.one);
         Gizmos.DrawWireCube(Vector3.zero, _boxSize);

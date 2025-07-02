@@ -3827,34 +3827,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1812505924371922049, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_Color.b
-      value: 0.045033824
-      objectReference: {fileID: 0}
-    - target: {fileID: 1812505924371922049, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_Color.g
-      value: 0.045033824
-      objectReference: {fileID: 0}
-    - target: {fileID: 1812505924371922049, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_Color.r
-      value: 0.8679245
-      objectReference: {fileID: 0}
-    - target: {fileID: 1812505924371922049, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: e5e2f71f038f3134ead2cddf13545d18, type: 3}
-    - target: {fileID: 1812505924371922049, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_FontData.m_MinSize
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1812505924371922049, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 32
-      objectReference: {fileID: 0}
-    - target: {fileID: 1812505924371922049, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 2572514622511211752, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -3938,14 +3910,6 @@ PrefabInstance:
     - target: {fileID: 6108571042833853355, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7172015333993909481, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 600
-      objectReference: {fileID: 0}
-    - target: {fileID: 7172015333993909481, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 49.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
