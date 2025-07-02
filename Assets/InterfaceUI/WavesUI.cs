@@ -45,7 +45,7 @@ public class WavesUI
         {
             _waveButton.gameObject.SetActive(true);
             ManagerUI.instance.SkillsPanel.SetActive(true);
-            WavesManager.instance._cleanObstaclesList?.Invoke();
+            WavesManager.instance._cleanZombieTempList?.Invoke();
             _waveText.gameObject.SetActive(false);
             _numberOfEnemies.gameObject.SetActive(false);
             _winningText.gameObject.SetActive(false);

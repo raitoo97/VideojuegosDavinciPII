@@ -6,12 +6,12 @@ using UnityEngine;
 public class WavesManager : MonoBehaviour
 {
     private List<IEnemies> enemies;
-    [SerializeField]private List<RespawnZombie> _zombieListRespawns;
+    private List<RespawnZombie> _zombieListRespawns;
     [SerializeField]private List<RespawnZombie> _tempZombieListRespawns;
-    [SerializeField]private List<TurretBehaviour> _turrets;
+    private List<TurretBehaviour> _turrets;
     public static WavesManager instance;
     public Action _currentWave;
-    public Action _cleanObstaclesList;
+    public Action _cleanZombieTempList;
     private int index;
     private int currentEnemies = 0;
     private int numberOfWave = 0;
@@ -20,14 +20,13 @@ public class WavesManager : MonoBehaviour
     {
         if (instance == null) { instance = this; }
         else { Destroy(this.gameObject); }
-        index = 0;
-        SetWave(index);
         enemies = new List<IEnemies>();
         _tempZombieListRespawns = new List<RespawnZombie>();
+        index = 0;
     }
     private void OnEnable()
     {
-        _cleanObstaclesList = CleanListObstacles;
+        _cleanZombieTempList = CleanZombieTemp;
     }
     private void Start()
     {
@@ -36,6 +35,7 @@ public class WavesManager : MonoBehaviour
         _zombieListRespawns = _zombieListRespawns.OrderBy(x => x.name).ToList();
         _turrets = _turrets.OrderBy(x => x.name).ToList();
         _isInitialized = true;
+        SetWave(index);
         StartCoroutine(GetWaveUIButton());
     }
     private void SetWave(int index)
@@ -139,7 +139,7 @@ public class WavesManager : MonoBehaviour
             }
         }
     }
-    private void CleanListObstacles()
+    private void CleanZombieTemp()
     {
         if (currentEnemies <= 0 && _tempZombieListRespawns.Count > 0)
         {
@@ -153,7 +153,7 @@ public class WavesManager : MonoBehaviour
     private void OnDisable()
     {
         _currentWave = null;
-        _cleanObstaclesList = null;
+        _cleanZombieTempList = null;
     }
     public void EnemySuscribeEventToWaveSubstract(IEnemies enemy)
     {

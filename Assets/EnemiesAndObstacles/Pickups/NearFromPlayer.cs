@@ -5,7 +5,7 @@ public class NearFromPlayer
     private Transform _transform;
     private float _distance;
     private MonoBehaviour _objectMono;
-    public NearFromPlayer(Transform _transform, MonoBehaviour _objectMono, float _distance = 7f)
+    public NearFromPlayer(Transform _transform, MonoBehaviour _objectMono, float _distance = 5f)
     {
         this._transform = _transform;
         this._objectMono = _objectMono;
@@ -26,7 +26,7 @@ public class NearFromPlayer
     IEnumerator GoToPj()
     {
         float t = 0;
-        float totalTime = 0.5f;
+        float totalTime = 1f;
         while(t <= totalTime)
         {
             t += Time.deltaTime;
