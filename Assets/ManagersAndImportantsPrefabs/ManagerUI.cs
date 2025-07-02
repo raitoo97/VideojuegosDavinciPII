@@ -13,6 +13,8 @@ public class ManagerUI : MonoBehaviour
     private PjSkillsUpgradeUI _pjSkillsUpgradeUI;
     private WavesUI _wavesUI;
     public GameObject SkillsPanel;
+    public GameObject obstacleWarning;
+    public bool canShowWarning = false;
     private void Awake()
     {
         if (instance == null) { instance = this; }
@@ -27,12 +29,26 @@ public class ManagerUI : MonoBehaviour
         PjLifeStates.OnStart();
         _pjSkillsUpgradeUI.OnStart();
         _wavesUI.OnStart();
+        obstacleWarning.gameObject.SetActive(false);
     }
     private void Update()
     {
         PjLifeStates.OnUpdate();
         _pjSkillsUpgradeUI.OnUpdate();
         _wavesUI.OnUpdate();
+        ShowWarningObstacles();
+    }
+    private void ShowWarningObstacles()
+    {
+        if (canShowWarning)
+        {
+            obstacleWarning.gameObject.SetActive(true);
+        }
+        else
+        {
+            obstacleWarning.gameObject.SetActive(false);
+        }
+
     }
     public PjStatesLifeBar getLifeBar { get => PjLifeStates; }
     public WavesUI WaveUI { get => _wavesUI; }

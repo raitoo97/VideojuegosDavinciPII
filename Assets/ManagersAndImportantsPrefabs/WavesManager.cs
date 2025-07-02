@@ -110,7 +110,7 @@ public class WavesManager : MonoBehaviour
     {
         if (list == null || list.Count == 0) return 0;
         int MaxValue = Math.Clamp(maxValue, minValue, list.Count);
-        return UnityEngine.Random.Range(minValue, MaxValue + 1);//Le sumo uno porque Range es exclusivo
+        return UnityEngine.Random.Range(minValue, MaxValue + 1);
     }
     private void ConfigWave(int RangeZombies, int RangeATurret, int RangeBTurret)
     {
