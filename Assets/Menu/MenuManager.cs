@@ -17,6 +17,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private AudioClip startSound;
     void Start()
     {
+        Time.timeScale = 1.0f;
         StartCoroutine(StartMusic());
         protoypeButton.onClick.AddListener(Protoype);
         startGameButon.onClick.AddListener(StartGame);
