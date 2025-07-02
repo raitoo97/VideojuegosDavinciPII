@@ -34,7 +34,7 @@ public class MenuManager : MonoBehaviour
     private void Protoype()
     {
         AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
     private void TutorialButon()
     {

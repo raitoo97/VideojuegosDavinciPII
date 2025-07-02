@@ -70,11 +70,6 @@ public class WavesManager : MonoBehaviour
         index++;
         SetWave(index);
     }
-    private void Update()
-    {
-        var RefWaveUI = ManagerUI.instance.WaveUI;
-        print(RefWaveUI._isLastWave);
-    }
     private void Wave1()
     {
         int zombies = RandomWaveValue<RespawnZombie>(_zombieListRespawns,1,2);
