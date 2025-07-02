@@ -1905,6 +1905,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &864170737 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7552049787264574091, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+  m_PrefabInstance: {fileID: 6935544059359077375}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &915586019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3508,6 +3513,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 836699412}
     - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: obstacleWarningArrow
+      value: 
+      objectReference: {fileID: 864170737}
+    - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: textList.Array.data[0]
       value: 
       objectReference: {fileID: 754448463}
@@ -3909,6 +3918,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6108571042833853355, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161197070741318945, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161197070741318945, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8161197070741318945, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

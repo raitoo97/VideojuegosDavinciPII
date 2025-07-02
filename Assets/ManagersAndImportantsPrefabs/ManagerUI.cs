@@ -15,6 +15,7 @@ public class ManagerUI : MonoBehaviour
     public GameObject SkillsPanel;
     public GameObject obstacleWarning;
     public bool canShowWarning = false;
+    public GameObject obstacleWarningArrow;
     private void Awake()
     {
         if (instance == null) { instance = this; }
@@ -48,7 +49,10 @@ public class ManagerUI : MonoBehaviour
         {
             obstacleWarning.gameObject.SetActive(false);
         }
-
+        float rotY = GameManager.instance.player.transform.eulerAngles.y;
+        float rotZAngle = -rotY + 180f;
+        Quaternion rotZ = Quaternion.Euler(0, 0, rotZAngle);
+        obstacleWarningArrow.transform.rotation = rotZ;
     }
     public PjStatesLifeBar getLifeBar { get => PjLifeStates; }
     public WavesUI WaveUI { get => _wavesUI; }
