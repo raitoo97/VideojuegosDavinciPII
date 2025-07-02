@@ -87,7 +87,7 @@ public class PjSkillsUpgradeUI
         UpgradeShieldColdownButton.onClick.AddListener(UpgradeShieldColdown);
         UpgradeShieldDurationButton.onClick.AddListener(UpgradeShieldDuration);
         //dash
-        UnlockDash.onClick.AddListener(UnlockDashFunction);
+        UnlockDash.onClick.AddListener(CantUnlock);
         UpgradeDashSpeedButton.onClick.AddListener(UpgradeDashSpeed);
         UpgradeDashSCooldownButton.onClick.AddListener(UpgradeDashCooldown);
     }
@@ -117,6 +117,16 @@ public class PjSkillsUpgradeUI
                 distanceButton.interactable = false;
             }
         }
+        if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.turretCategory) && ManagerSkills.instance.GetUltimateUnlockCost(SkillCategory.turretCategory) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
+        {
+            UltimateTurret.interactable = true;
+        }
+        else
+        {
+            UltimateTurret.interactable = false;
+        }
+        rateFireText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretShotSpeed).ToString();
+        distanceText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretVisionRange).ToString();
 
 
         #endregion
@@ -176,13 +186,9 @@ public class PjSkillsUpgradeUI
 
             
         }
-      
         RatioShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldRadius).ToString();
         CooldownShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldCooldown).ToString();
         DurationShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldDuration).ToString();
-
-
-
         #endregion
 
         #region DASH
@@ -192,6 +198,7 @@ public class PjSkillsUpgradeUI
             cb.disabledColor = Color.white;
             UnlockDash.colors = cb;
             UnlockDash.interactable = false;
+            UnlockDash.onClick.RemoveAllListeners();    
 
             if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.dashCategory, SkillStatType.dashSpeed) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory))
             {
@@ -215,37 +222,34 @@ public class PjSkillsUpgradeUI
         }
         else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.dashCategory) && !ManagerSkills.instance.IsUnlocked(SkillCategory.dashCategory))
         {
-            UnlockDash.interactable = true;
-            
+            UnlockDash.targetGraphic.color = Color.white;
+            UnlockDash.onClick.RemoveAllListeners();
+            UnlockDash.onClick.AddListener(UnlockDashFunction);
+
+
         }
         else
         {
-            UnlockDash.interactable = false;
             UpgradeDashSpeedButton.interactable = false;
             UpgradeDashSCooldownButton.interactable = false;
+            UnlockDash.onClick.RemoveAllListeners();
+            UnlockDash.onClick.AddListener(CantUnlock);
+            UnlockDash.targetGraphic.color = Color.red;
         }
+        //Ulti
         if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory))
         {
+           
             UnlockDash.interactable = false;
             UpgradeDashSpeedButton.interactable = false;
             UpgradeDashSCooldownButton.interactable = false;
         }
         CooldownDashText.text = ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashCooldown).ToString();
         SpeedDashText.text = ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashSpeed).ToString();
-
         #endregion
 
 
-        if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.turretCategory) && ManagerSkills.instance.GetUltimateUnlockCost(SkillCategory.turretCategory) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
-        {
-            UltimateTurret.interactable = true;
-        }
-        else
-        {
-            UltimateTurret.interactable = false;
-        }
-        rateFireText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretShotSpeed).ToString();
-        distanceText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretVisionRange).ToString();
+       
     }
     private void UltimateTurretFunctionUnlock()
     {
