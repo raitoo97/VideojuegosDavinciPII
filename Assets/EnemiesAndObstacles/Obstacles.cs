@@ -9,10 +9,6 @@ public abstract class Obstacles : MonoBehaviour
     {
         _isOnPlataform = false;
     }
-    private void Start()
-    {
-        StartCoroutine(AddTolist());
-    }
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.transform.gameObject.TryGetComponent<Player>(out var player))
@@ -37,9 +33,4 @@ public abstract class Obstacles : MonoBehaviour
     protected abstract void ActionOntriggerEnter();
     protected abstract void ActionOntriggerExitr();
     protected abstract IEnumerator ActionCoroutine();
-    IEnumerator AddTolist()
-    {
-        yield return new WaitForEndOfFrame();
-        this.gameObject.SetActive(false);
-    }
 }

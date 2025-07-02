@@ -7,13 +7,11 @@ public class WavesManager : MonoBehaviour
 {
     private List<IEnemies> enemies;
     private List<RespawnZombie> _zombieListRespawns;
-    private List<RespawnZombie> _tempZombieListRespawns;
-    private List <Obstacles> _obstaclesList;
-    private List<Obstacles> _tempobstaclesList;
+    [SerializeField]private List<RespawnZombie> _tempZombieListRespawns;
     private List<TurretBehaviour> _turrets;
     public static WavesManager instance;
     public Action _currentWave;
-    public Action _cleanObstaclesList;
+    public Action _cleanZombieTempList;
     private int index;
     private int currentEnemies = 0;
     private int numberOfWave = 0;
@@ -22,25 +20,22 @@ public class WavesManager : MonoBehaviour
     {
         if (instance == null) { instance = this; }
         else { Destroy(this.gameObject); }
-        index = 0;
-        SetWave(index);
         enemies = new List<IEnemies>();
         _tempZombieListRespawns = new List<RespawnZombie>();
-        _tempobstaclesList = new List<Obstacles>();
+        index = 0;
     }
     private void OnEnable()
     {
-        _cleanObstaclesList = CleanListObstacles;
+        _cleanZombieTempList = CleanZombieTemp;
     }
     private void Start()
     {
         _zombieListRespawns = new List<RespawnZombie>(GameObject.FindObjectsOfType<RespawnZombie>());
-        _obstaclesList = new List<Obstacles>(GameObject.FindObjectsOfType<Obstacles>());
         _turrets = new List<TurretBehaviour>(GameObject.FindObjectsOfType<TurretBehaviour>());
         _zombieListRespawns = _zombieListRespawns.OrderBy(x => x.name).ToList();
-        _obstaclesList = _obstaclesList.OrderBy(x => x.name).ToList();
         _turrets = _turrets.OrderBy(x => x.name).ToList();
         _isInitialized = true;
+        SetWave(index);
         StartCoroutine(GetWaveUIButton());
     }
     private void SetWave(int index)
@@ -77,71 +72,49 @@ public class WavesManager : MonoBehaviour
     }
     private void Wave1()
     {
-        int zombiesA = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
-        int zombiesB = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
-        int obstacleA = RandomWaveValue<Obstacles>(_obstaclesList);
-        int obstaclesB = RandomWaveValue<Obstacles>(_obstaclesList);
-        ConfigWave(zombiesA,zombiesB,0,0, obstacleA, obstaclesB);
+        int zombies = RandomWaveValue(_zombieListRespawns, 2);
+        ConfigWave(zombies,0,0);
         numberOfWave = 0;
     }
     private void Wave2()
     {
-        int zombiesA = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
-        int zombiesB = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
-        int obstacleA = RandomWaveValue<Obstacles>(_obstaclesList);
-        int obstaclesB = RandomWaveValue<Obstacles>(_obstaclesList);
-        ConfigWave(zombiesA,zombiesB,0,3,obstacleA,obstaclesB);
+        int zombies = RandomWaveValue(_zombieListRespawns, 3);
+        ConfigWave(zombies,0,2);
         numberOfWave = 1;
     }
     private void Wave3()
     {
-        int zombiesA = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
-        int zombiesB = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
-        int obstacleA = RandomWaveValue<Obstacles>(_obstaclesList);
-        int obstaclesB = RandomWaveValue<Obstacles>(_obstaclesList);
-        ConfigWave(zombiesA,zombiesB,0,3,obstacleA,obstaclesB);
+        int zombies = RandomWaveValue(_zombieListRespawns, 5);
+        ConfigWave(zombies,0,2);
         numberOfWave = 2;
     }
     private void Wave4()
     {
-        int zombiesA = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
-        int zombiesB = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
-        int obstacleA = RandomWaveValue<Obstacles>(_obstaclesList);
-        int obstaclesB = RandomWaveValue<Obstacles>(_obstaclesList);
-        ConfigWave(zombiesA,zombiesB,0,2,obstacleA,obstaclesB);
+        int zombies = RandomWaveValue(_zombieListRespawns, 6);
+        ConfigWave(zombies,0,3);
         numberOfWave = 3;
     }
     private void Wave5()
     {
-        int zombiesA = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
-        int zombiesB = RandomWaveValue<RespawnZombie>(_zombieListRespawns);
-        int obstacleA = RandomWaveValue<Obstacles>(_obstaclesList);
-        int obstaclesB = RandomWaveValue<Obstacles>(_obstaclesList);
-        ConfigWave(zombiesA,zombiesB,0,4, obstacleA,obstaclesB);
+        int zombies = RandomWaveValue(_zombieListRespawns, 9);
+        ConfigWave(zombies,0,5);
         numberOfWave = 4;
     }
     private void Finish()
     {
         numberOfWave = 5;
-        Debug.Log("Ganaste");
     }
-    public int RandomWaveValue<T>(List<T> list)
+    public int RandomWaveValue<T>(List<T>list,int maxValue)
     {
-        if(list.Count > 0 && list != null)
-        {
-            int randomValue = UnityEngine.Random.Range(0, list.Count);
-            return randomValue;
-        }
-        else
-        {
-            return 0;
-        }
+        if (list == null || list.Count == 0) return 0;
+        int MaxValue = Math.Clamp(maxValue, 1, list.Count);
+        return UnityEngine.Random.Range(1, MaxValue + 1);
     }
-    private void ConfigWave(int RangeAZombies,int RangeBZombies, int RangeATurret, int RangeBTurret,int RangeAObstacles, int RangeBObstacles )
+    private void ConfigWave(int RangeZombies, int RangeATurret, int RangeBTurret)
     {
         if (_zombieListRespawns != null && _zombieListRespawns.Count > 0)
         {
-            _tempZombieListRespawns = _zombieListRespawns.Skip(RangeAZombies).Take(RangeBZombies).ToList();
+            _tempZombieListRespawns = _zombieListRespawns.Take(RangeZombies).ToList();
             if (_tempZombieListRespawns != null && _tempZombieListRespawns.Count > 0)
             {
                 foreach (var waveZombie in _tempZombieListRespawns)
@@ -165,28 +138,9 @@ public class WavesManager : MonoBehaviour
                 }
             }
         }
-        if(_obstaclesList != null && _obstaclesList.Count > 0)
-        {
-            _tempobstaclesList = _obstaclesList.Skip(RangeAObstacles).Take(RangeBObstacles).ToList();
-            if (_tempobstaclesList != null && _tempobstaclesList.Count > 0)
-            {
-                foreach (var waveObstacles in _tempobstaclesList)
-                {
-                    waveObstacles.gameObject.SetActive(true);
-                }
-            }
-        }
     }
-    private void CleanListObstacles()
+    private void CleanZombieTemp()
     {
-        if (currentEnemies <= 0 && _tempobstaclesList.Count > 0)
-        {
-            foreach (var waveObstacles in _tempobstaclesList)
-            {
-                waveObstacles.gameObject.SetActive(false);
-            }
-            _tempobstaclesList.Clear();
-        }
         if (currentEnemies <= 0 && _tempZombieListRespawns.Count > 0)
         {
             foreach (var waveZombies in _tempZombieListRespawns)
@@ -199,7 +153,7 @@ public class WavesManager : MonoBehaviour
     private void OnDisable()
     {
         _currentWave = null;
-        _cleanObstaclesList = null;
+        _cleanZombieTempList = null;
     }
     public void EnemySuscribeEventToWaveSubstract(IEnemies enemy)
     {
