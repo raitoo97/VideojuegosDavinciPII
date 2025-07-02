@@ -36,8 +36,10 @@ public class WavesUI
     private void ActivateWave()
     {
         if (!WavesManager.instance.GetInitialized) return;
+        _waveButton.interactable = false;
         WavesManager.instance._currentWave?.Invoke();
         WavesManager.instance.AdvanceWave();
+        WavesManager.instance.StartCoroutine(WavesManager.instance.GetWaveUIButton());
     }
     private void SetActivateWaveButton()
     {

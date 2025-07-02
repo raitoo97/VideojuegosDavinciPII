@@ -5,7 +5,7 @@ public class NearFromPlayer
     private Transform _transform;
     private float _distance;
     private MonoBehaviour _objectMono;
-    public NearFromPlayer(Transform _transform, MonoBehaviour _objectMono, float _distance = 5f)
+    public NearFromPlayer(Transform _transform, MonoBehaviour _objectMono, float _distance = 7f)
     {
         this._transform = _transform;
         this._objectMono = _objectMono;
