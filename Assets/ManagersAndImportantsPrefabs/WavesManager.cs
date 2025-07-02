@@ -72,25 +72,25 @@ public class WavesManager : MonoBehaviour
     }
     private void Wave1()
     {
-        int zombies = RandomWaveValue<RespawnZombie>(_zombieListRespawns, 2);
+        int zombies = RandomWaveValue<RespawnZombie>(_zombieListRespawns,1,2);
         ConfigWave(zombies,0,0);
         numberOfWave = 0;
     }
     private void Wave2()
     {
-        int zombies = RandomWaveValue<RespawnZombie>(_zombieListRespawns, 3);
+        int zombies = RandomWaveValue<RespawnZombie>(_zombieListRespawns,2,3);
         ConfigWave(zombies,0,2);
         numberOfWave = 1;
     }
     private void Wave3()
     {
-        int zombies = RandomWaveValue<RespawnZombie>(_zombieListRespawns, 5);
+        int zombies = RandomWaveValue<RespawnZombie>(_zombieListRespawns,3,5);
         ConfigWave(zombies,0,2);
         numberOfWave = 2;
     }
     private void Wave4()
     {
-        int zombies = RandomWaveValue<RespawnZombie>(_zombieListRespawns, 6);
+        int zombies = RandomWaveValue<RespawnZombie>(_zombieListRespawns,4,6);
         ConfigWave(zombies,0,3);
         numberOfWave = 3;
     }
@@ -104,11 +104,11 @@ public class WavesManager : MonoBehaviour
     {
         numberOfWave = 5;
     }
-    public int RandomWaveValue<T>(List<T>list,int maxValue)
+    public int RandomWaveValue<T>(List<T>list,int minValue,int maxValue)
     {
         if (list == null || list.Count == 0) return 0;
-        int MaxValue = Math.Clamp(maxValue, 1, list.Count);
-        return UnityEngine.Random.Range(1, MaxValue + 1);
+        int MaxValue = Math.Clamp(maxValue, minValue, list.Count);
+        return UnityEngine.Random.Range(minValue, MaxValue + 1);
     }
     private void ConfigWave(int RangeZombies, int RangeATurret, int RangeBTurret)
     {
