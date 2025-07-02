@@ -7,12 +7,15 @@ public class WavesUI
     public Text _waveText;
     public Text _numberOfEnemies;
     public Text _winningText;
+    public Text _arrow;
+    private bool _isFirstWave = true;
     private enum WaveAtributes
     {
         WavesButton,
         WaveText,
         NumberOfRemaningEnemies,
-        WinningText
+        WinningText,
+        Arrow
     }
     public WavesUI(List<Button> button,List<Text>texts)
     {
@@ -20,6 +23,7 @@ public class WavesUI
         _waveText = texts.Find(x => x.name == WaveAtributes.WaveText.ToString());
         _numberOfEnemies = texts.Find(x => x.name == WaveAtributes.NumberOfRemaningEnemies.ToString());
         _winningText = texts.Find(x => x.name == WaveAtributes.WinningText.ToString());
+        _arrow = texts.Find(x => x.name == WaveAtributes.Arrow.ToString());
     }
     public void OnStart()
     {
@@ -40,10 +44,24 @@ public class WavesUI
         WavesManager.instance._currentWave?.Invoke();
         WavesManager.instance.AdvanceWave();
         WavesManager.instance.StartCoroutine(WavesManager.instance.GetWaveUIButton());
+        _isFirstWave = false;
+        _arrow.gameObject.SetActive(false);
     }
     private void SetActivateWaveButton()
     {
-        if (WavesManager.instance.GetNumberWave < 5 && WavesManager.instance.GetCurrentEnemies <= 0)
+        int NumberWave = WavesManager.instance.GetNumberWave;
+        int currentEnemies = WavesManager.instance.GetCurrentEnemies;
+        if (_isFirstWave)
+        {
+            _waveButton.gameObject.SetActive(true);
+            _arrow.gameObject.SetActive(true);
+            ManagerUI.instance.SkillsPanel.SetActive(false);
+            _waveText.gameObject.SetActive(false);
+            _numberOfEnemies.gameObject.SetActive(false);
+            _winningText.gameObject.SetActive(false);
+            return;
+        }
+        if (NumberWave < 5 && currentEnemies <= 0)
         {
             _waveButton.gameObject.SetActive(true);
             ManagerUI.instance.SkillsPanel.SetActive(true);
@@ -60,7 +78,7 @@ public class WavesUI
             _numberOfEnemies.gameObject.SetActive(true);
             _winningText.gameObject.SetActive(false);
         }
-        if(WavesManager.instance.GetNumberWave >= 5)
+        if(NumberWave >= 5)
         {
             _waveButton.gameObject.SetActive(false);
             _waveText.gameObject.SetActive(false);
