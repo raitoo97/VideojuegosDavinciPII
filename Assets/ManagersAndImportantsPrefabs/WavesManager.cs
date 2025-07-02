@@ -7,7 +7,7 @@ public class WavesManager : MonoBehaviour
 {
     private List<IEnemies> enemies;
     private List<RespawnZombie> _zombieListRespawns;
-    [SerializeField]private List<RespawnZombie> _tempZombieListRespawns;
+    private List<RespawnZombie> _tempZombieListRespawns;
     private List<TurretBehaviour> _turrets;
     public static WavesManager instance;
     public Action _currentWave;
@@ -32,8 +32,8 @@ public class WavesManager : MonoBehaviour
     {
         _zombieListRespawns = new List<RespawnZombie>(GameObject.FindObjectsOfType<RespawnZombie>());
         _turrets = new List<TurretBehaviour>(GameObject.FindObjectsOfType<TurretBehaviour>());
-        _zombieListRespawns = _zombieListRespawns.OrderBy(x => x.name).ToList();
-        _turrets = _turrets.OrderBy(x => x.name).ToList();
+        _zombieListRespawns = _zombieListRespawns.OrderBy(x => UnityEngine.Random.value).ToList();
+        _turrets = _turrets.OrderBy(x => UnityEngine.Random.value).ToList();
         _isInitialized = true;
         SetWave(index);
         StartCoroutine(GetWaveUIButton());
@@ -70,45 +70,52 @@ public class WavesManager : MonoBehaviour
         index++;
         SetWave(index);
     }
+    private void Update()
+    {
+        var RefWaveUI = ManagerUI.instance.WaveUI;
+        print(RefWaveUI._isLastWave);
+    }
     private void Wave1()
     {
-        int zombies = RandomWaveValue(_zombieListRespawns, 2);
+        int zombies = RandomWaveValue<RespawnZombie>(_zombieListRespawns,1,2);
         ConfigWave(zombies,0,0);
         numberOfWave = 0;
     }
     private void Wave2()
     {
-        int zombies = RandomWaveValue(_zombieListRespawns, 3);
+        int zombies = RandomWaveValue<RespawnZombie>(_zombieListRespawns,2,3);
         ConfigWave(zombies,0,2);
         numberOfWave = 1;
     }
     private void Wave3()
     {
-        int zombies = RandomWaveValue(_zombieListRespawns, 5);
+        int zombies = RandomWaveValue<RespawnZombie>(_zombieListRespawns,3,5);
         ConfigWave(zombies,0,2);
         numberOfWave = 2;
     }
     private void Wave4()
     {
-        int zombies = RandomWaveValue(_zombieListRespawns, 6);
+        int zombies = RandomWaveValue<RespawnZombie>(_zombieListRespawns,4,6);
         ConfigWave(zombies,0,3);
         numberOfWave = 3;
     }
     private void Wave5()
     {
-        int zombies = RandomWaveValue(_zombieListRespawns, 9);
-        ConfigWave(zombies,0,5);
+        //UltimaWaveActivoTodo
+        ConfigWave(9,0,5);
         numberOfWave = 4;
+        var RefWaveUI = ManagerUI.instance.WaveUI;
+        RefWaveUI._isLastWave = true;
     }
     private void Finish()
     {
         numberOfWave = 5;
     }
-    public int RandomWaveValue<T>(List<T>list,int maxValue)
+    public int RandomWaveValue<T>(List<T>list,int minValue,int maxValue)
     {
         if (list == null || list.Count == 0) return 0;
-        int MaxValue = Math.Clamp(maxValue, 1, list.Count);
-        return UnityEngine.Random.Range(1, MaxValue + 1);
+        int MaxValue = Math.Clamp(maxValue, minValue, list.Count);
+        return UnityEngine.Random.Range(minValue, MaxValue + 1);//Le sumo uno porque Range es exclusivo
     }
     private void ConfigWave(int RangeZombies, int RangeATurret, int RangeBTurret)
     {
@@ -119,6 +126,7 @@ public class WavesManager : MonoBehaviour
             {
                 foreach (var waveZombie in _tempZombieListRespawns)
                 {
+                    waveZombie.gameObject.SetActive(true);
                     waveZombie.StartWave();
                     currentEnemies += waveZombie.returnNumberOfEnemies();
                 }
@@ -146,6 +154,10 @@ public class WavesManager : MonoBehaviour
             foreach (var waveZombies in _tempZombieListRespawns)
             {
                 waveZombies.gameObject.SetActive(false);
+                if (!_zombieListRespawns.Contains(waveZombies))
+                {
+                    _zombieListRespawns.Add(waveZombies);
+                }
             }
             _tempZombieListRespawns.Clear();
         }
