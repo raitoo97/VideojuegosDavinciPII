@@ -45,6 +45,7 @@ public class WavesUI
         WavesManager.instance._currentWave?.Invoke();
         WavesManager.instance.AdvanceWave();
         WavesManager.instance.StartCoroutine(WavesManager.instance.GetWaveUIButton());
+        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
         _isFirstWave = false;
         _arrow.gameObject.SetActive(false);
     }
