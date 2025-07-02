@@ -37,7 +37,6 @@ public class WavesManager : MonoBehaviour
         _isInitialized = true;
         SetWave(index);
         StartCoroutine(GetWaveUIButton());
-
     }
     private void SetWave(int index)
     {
@@ -70,6 +69,11 @@ public class WavesManager : MonoBehaviour
     {
         index++;
         SetWave(index);
+    }
+    private void Update()
+    {
+        var RefWaveUI = ManagerUI.instance.WaveUI;
+        print(RefWaveUI._isLastWave);
     }
     private void Wave1()
     {

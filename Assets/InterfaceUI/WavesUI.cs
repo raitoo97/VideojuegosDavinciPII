@@ -62,7 +62,7 @@ public class WavesUI
             _winningText.gameObject.SetActive(false);
             return;
         }
-        if (_isLastWave)
+        if (_isLastWave && currentEnemies <= 0)
         {
             _waveButton.gameObject.SetActive(false);
             _waveText.gameObject.SetActive(false);
