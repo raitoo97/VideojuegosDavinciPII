@@ -312,7 +312,8 @@ public class PjSkillsUpgradeUI
 
     private void CantUnlock()
     {
-        Debug.Log("cant unlock");
+        PointManager.instance.StartCoroutine(PointManager.instance.CantUnlockRoutine());
+        Debug.Log("CANT UNLOCK");
     }
 }
 
