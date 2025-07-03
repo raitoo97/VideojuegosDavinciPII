@@ -19,8 +19,6 @@ public class DashUlti : MonoBehaviour
         trail.transform.forward = direction;
         trail.transform.localScale = new Vector3(1, 1, distance);
 
-        ParticlesPool.instance.SpamParticle(ParticleType.DashUlti, trail.transform.forward, trail.transform.localScale, trail.transform);
-
         StartCoroutine(DesactivateCourutine(trail));
 
     }

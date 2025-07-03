@@ -71,7 +71,7 @@ public class Movement
 
         if (true)
         {
-            Vector3 endPosition = _rb.position + dashDirection.normalized * dashForce * 0.1f;
+            Vector3 endPosition = _rb.position + dashDirection.normalized * dashForce * 0.2f;
             _dashUlti.CreateDashTrail(startPosition,endPosition);
         }
     }
