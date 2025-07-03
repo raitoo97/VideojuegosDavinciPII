@@ -6,8 +6,11 @@ public class PointManager : MonoBehaviour
 {
     [SerializeField] private float _currentPoints;
     [SerializeField] GameObject _pointsText;
+    [SerializeField] GameObject _pointsNumber;
     public static PointManager instance;
     private HandleEnemyPoints HandelEnemy;
+    private float normalizedTime;
+
     private void Awake()
     {
         if (instance == null)
@@ -57,14 +60,57 @@ public class PointManager : MonoBehaviour
     public IEnumerator CantUnlockRoutine()
     {
         var text = _pointsText.GetComponent<Text>();
+        var number = _pointsNumber.GetComponent<Text>();
+
         var originalColor = text.color;
+        var originalColorNumber = number.color;
 
-        text.color = Color.red;
-        Debug.Log("CantUnlockRoutine");
+        var originalSize = text.fontSize;
 
-        yield return new WaitForSecondsRealtime(3f);
+        float duration = 0.3f;
+        float t = 0f;
 
+        int targetSize = 22;
+        Color targetColor = Color.red;
+        while (t < duration) 
+        {
+            t += Time.deltaTime;
+            float normalizeTime = Mathf.Clamp01(t/duration);
+
+            text.color = Color.Lerp(originalColor, targetColor, normalizedTime);
+            number.color = Color.Lerp(originalColorNumber, targetColor, normalizedTime);
+
+            
+            text.fontSize = (int)Mathf.Lerp(originalSize, targetSize, normalizedTime);
+            number.fontSize = (int)Mathf.Lerp(originalSize, targetSize, normalizedTime);
+
+            yield return null;
+        }
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        // Volver atrás 
+        t = 0f;
+        while (t < duration)
+        {
+            t += Time.unscaledDeltaTime;
+            float normalizedTime = Mathf.Clamp01(t / duration);
+
+            text.color = Color.Lerp(targetColor, originalColor, normalizedTime);
+            number.color = Color.Lerp(targetColor, originalColorNumber, normalizedTime);
+
+            text.fontSize = (int)Mathf.Lerp(targetSize, originalSize, normalizedTime);
+            number.fontSize = (int)Mathf.Lerp(targetSize, originalSize, normalizedTime);
+
+            yield return null;
+        }
+
+        
         text.color = originalColor;
+        number.color = originalColorNumber;
+        text.fontSize = originalSize;
+        number.fontSize = originalSize;
+
+        PjSkillsUpgradeUI.alreadyClicked = false;
     }
     public float CurrentPoints => _currentPoints;
     public HandleEnemyPoints GetHandle => HandelEnemy;

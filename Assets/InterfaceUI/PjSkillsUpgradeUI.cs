@@ -26,6 +26,7 @@ public class PjSkillsUpgradeUI
     private Text CooldownDashText;
     private Text SpeedDashText;
 
+    public static bool alreadyClicked = false;
     AudioManager audioManager = AudioManager.instance;
     private enum UIElementName
     {
@@ -312,7 +313,11 @@ public class PjSkillsUpgradeUI
 
     private void CantUnlock()
     {
-        PointManager.instance.StartCoroutine(PointManager.instance.CantUnlockRoutine());
+        if (!alreadyClicked)
+        {
+            alreadyClicked = true;
+            PointManager.instance.StartCoroutine(PointManager.instance.CantUnlockRoutine());
+        }
         Debug.Log("CANT UNLOCK");
     }
 }
