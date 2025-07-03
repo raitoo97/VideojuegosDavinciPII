@@ -69,7 +69,7 @@ public class Movement
             AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.skillPlayerDash[randomIndex]); //sound effect
             ParticlesPool.instance.SpamParticle(ParticleType.Dash, new Vector3(0f, 0f, 0f), Vector3.zero, _rb.transform);
 
-        if (true)
+        if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.dashCategory))
         {
             Vector3 endPosition = _rb.position + dashDirection.normalized * dashForce * 0.2f;
             _dashUlti.CreateDashTrail(startPosition,endPosition);

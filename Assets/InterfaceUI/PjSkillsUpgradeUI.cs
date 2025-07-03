@@ -26,6 +26,7 @@ public class PjSkillsUpgradeUI
     private Button UpgradeDashSCooldownButton;
     private Text CooldownDashText;
     private Text SpeedDashText;
+    private Button UltimateDash;
 
     public static bool alreadyClickedUnlock = false;
     public static bool alreadyClickedUpgrade = false;
@@ -38,7 +39,6 @@ public class PjSkillsUpgradeUI
         UpgradeCadencia,//Subir cadencia de torretya
         UpgradeDistance,//Subir distancia de torreta
         UnlockShield,//Desbloquear escudo
-       // CantUnlockShield, //NO PUEDE DESBLOQUEAR
         UpgradeShieldRatio,//Subir Ratio del escudo
         UpgradeShieldColdown,//Subir coldown del escudo
         UpgradeShieldDuration,//Subir duracion del escudo
@@ -51,12 +51,11 @@ public class PjSkillsUpgradeUI
         RatioShieldText,// ratio del shield nivel
         DurationShieldText,//duracion del shield nivel
         UltimateTurret,
-        //CantUpgradeSkill
+        UltimateDash
     }
     public PjSkillsUpgradeUI(List<Text> textos,List<Button>buttons)
     {
         this.pointsText = textos.Find(x => x.gameObject.name == UIElementName.Number.ToString());
-        //this.cantUpgradeText = textos.Find(x => x.gameObject.name == UIElementName.CantUpgradeSkill.ToString());
         //Torreta
         this.rateFireText = textos.Find(x => x.gameObject.name == UIElementName.CadenciaText.ToString());
         this.distanceText = textos.Find(x => x.gameObject.name == UIElementName.DistanceText.ToString());
@@ -64,7 +63,6 @@ public class PjSkillsUpgradeUI
         this.distanceButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeDistance.ToString());
         this.UltimateTurret = buttons.Find(x => x.gameObject.name == UIElementName.UltimateTurret.ToString());
         //Shield
-        //this.CantUnlockShield = buttons.Find(x => x.gameObject.name == UIElementName.CantUnlockShield.ToString());
         this.UnlockShield = buttons.Find(x => x.gameObject.name == UIElementName.UnlockShield.ToString());
         this.UpgradeShieldRatioButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeShieldRatio.ToString());
         this.UpgradeShieldColdownButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeShieldColdown.ToString());
@@ -78,6 +76,7 @@ public class PjSkillsUpgradeUI
         this.UpgradeDashSCooldownButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeDashCooldown.ToString());
         this.CooldownDashText = textos.Find(x => x.gameObject.name == UIElementName.CooldownDashText.ToString());
         this.SpeedDashText = textos.Find(x => x.gameObject.name == UIElementName.SpeedDashText.ToString());
+        this.UltimateDash = buttons.Find(x => x.gameObject.name == UIElementName.UltimateDash.ToString());
     }
     public void OnStart()
     {
@@ -96,6 +95,7 @@ public class PjSkillsUpgradeUI
         UnlockDash.onClick.AddListener(CantUnlockSkill);
         UpgradeDashSpeedButton.onClick.AddListener(CantPurchaseUpgrade);
         UpgradeDashSCooldownButton.onClick.AddListener(CantPurchaseUpgrade);
+        UltimateDash.onClick.AddListener(UltimateDashFunctionUnlock);
     }
     public void OnUpdate()
     {
@@ -269,12 +269,13 @@ public class PjSkillsUpgradeUI
 
 
         //Ulti
-        if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory))
+        if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory) && ManagerSkills.instance.GetUltimateUnlockCost(SkillCategory.dashCategory) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.IsUnlockUltimate(SkillCategory.dashCategory))
         {
-           
-            UnlockDash.interactable = false;
-            UpgradeDashSpeedButton.interactable = false;
-            UpgradeDashSCooldownButton.interactable = false;
+            UltimateDash.interactable = true;
+        }
+        else
+        {
+            UltimateDash.interactable = false;
         }
         CooldownDashText.text = ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashCooldown).ToString();
         SpeedDashText.text = ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashSpeed).ToString();
@@ -283,6 +284,11 @@ public class PjSkillsUpgradeUI
     private void UltimateTurretFunctionUnlock()
     {
         ManagerSkills.instance.TryUnlockUltimate(SkillCategory.turretCategory);
+        AudioManager.instance.PlaySfx(audioManager.UnlockSkill);
+    }
+    private void UltimateDashFunctionUnlock()
+    {
+        ManagerSkills.instance.TryUnlockUltimate(SkillCategory.dashCategory);
         AudioManager.instance.PlaySfx(audioManager.UnlockSkill);
     }
     private void UpgradeCadencia()
