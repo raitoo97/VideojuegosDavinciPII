@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     //UI
     [SerializeField] public AudioClip   UpgradeSkill;
     [SerializeField] public AudioClip   UnlockSkill;
+    [SerializeField] public AudioClip   CantUnlockSkill;
     public AudioClip Level1Music;
     public AudioClip buttonClick;
     public List<AudioSource> audioSources = new List<AudioSource>();

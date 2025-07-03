@@ -1,9 +1,19 @@
 using UnityEngine;
+using System.Collections;
+using UnityEngine.UI;
+
 public class PointManager : MonoBehaviour
 {
     [SerializeField] private float _currentPoints;
+    [SerializeField] GameObject _pointsText;
+    [SerializeField] GameObject _pointsNumber;
+    [SerializeField] Text _cantUpgradeText;
+    [SerializeField] Text _notEnoughPoints;
+
     public static PointManager instance;
     private HandleEnemyPoints HandelEnemy;
+    private float normalizedTime;
+
     private void Awake()
     {
         if (instance == null)
@@ -48,6 +58,96 @@ public class PointManager : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public IEnumerator CantUnlockRoutine()
+    {
+        var number = _pointsNumber.GetComponent<Text>();
+        var originalColorNumber = number.color;
+        var originalSize = number.fontSize;
+
+        Color originalColor = _notEnoughPoints.color;
+
+        float duration = 0.2f;
+        float t = 0f;
+
+        int targetSize = 22;
+        Color targetColor = Color.red;
+        while (t < duration) 
+        {
+            t += Time.unscaledDeltaTime;
+            float normalizeTime = Mathf.Clamp01(t/duration);
+
+            number.color = Color.Lerp(originalColorNumber, targetColor, normalizeTime);
+            number.fontSize = (int)Mathf.Lerp(originalSize, targetSize, normalizeTime);
+
+            Color c = originalColor;
+            c.a = Mathf.Lerp(0,1,normalizeTime);
+            _notEnoughPoints.color = c;
+
+            yield return null;
+        }
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        // Volver atrás 
+        t = 0f;
+        while (t < duration)
+        {
+            t += Time.unscaledDeltaTime;
+            float normalizedTime = Mathf.Clamp01(t / duration);
+
+            number.color = Color.Lerp(targetColor, originalColorNumber, normalizedTime);
+            number.fontSize = (int)Mathf.Lerp(targetSize, originalSize, normalizedTime);
+
+            Color c = originalColor;
+            c.a = Mathf.Lerp(1, 0, normalizedTime);
+            _notEnoughPoints.color = c;
+            yield return null;
+        }
+
+        number.color = originalColorNumber;
+        number.fontSize = originalSize;
+        _notEnoughPoints.color = originalColor;
+        PjSkillsUpgradeUI.alreadyClickedUnlock = false;
+    }
+
+    public IEnumerator CantUpgradeRoutine()
+    {
+        Color originalColor = _cantUpgradeText.color;
+        float duration = 0.3f;
+        float t = 0;
+
+        while (t < duration)
+        {
+            t += Time.unscaledDeltaTime;
+            float normalizeTime = Mathf.Clamp01(t / duration);
+
+            Color c = originalColor;
+            c.a = Mathf.Lerp(0, 1, normalizeTime);
+            _cantUpgradeText.color = c;
+
+            yield return null;
+        }
+
+        yield return new WaitForSecondsRealtime(3f);
+
+        t = 0f;
+        while (t < duration) 
+        {
+            t += Time.unscaledDeltaTime;
+            float normalizeTime = Mathf.Clamp01(t / duration);
+
+            Color c = originalColor;
+            c.a = Mathf .Lerp(1,0 , normalizeTime);
+            _cantUpgradeText.color = c;
+
+            yield return null;
+        }
+
+        Color finalColor = originalColor;
+        finalColor.a = 0f;
+        _cantUpgradeText.color = finalColor;
+        PjSkillsUpgradeUI.alreadyClickedUpgrade = false;
     }
     public float CurrentPoints => _currentPoints;
     public HandleEnemyPoints GetHandle => HandelEnemy;

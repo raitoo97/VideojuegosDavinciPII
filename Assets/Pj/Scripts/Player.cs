@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField]private PlayerAnimation _playerAnimation;
     [SerializeField]private float _initSpeed;
     [SerializeField] private Shield _shield;
+    [SerializeField] private DashUlti dashUlti;
     public LayerMask groundLayer;
     public LayerMask wallLayer;
     public LayerMask maskObstacles;
@@ -32,7 +33,7 @@ public class Player : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponentInChildren<Animator>();
-        _movement = new Movement(_rb, _groundCheck, _initSpeed, groundLayer,this.transform,wallLayer);
+        _movement = new Movement(_rb, _groundCheck, _initSpeed, groundLayer,this.transform,wallLayer, dashUlti);
         _playerAnimation = new PlayerAnimation(_animator);
         _controller = new ControlPlayer(_movement, _playerAnimation, _shield);
         _checkObstacles = new CheckObstacles(this.transform, maskObstacles);
