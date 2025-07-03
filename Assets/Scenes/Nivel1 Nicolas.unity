@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.9
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0.9}
+  m_IndirectSpecularColor: {r: 0.12219284, g: 0.08811944, b: 0.11710543, a: 0.9}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3071,6 +3071,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3380641898037914481, guid: 3e9a8d47b75f9514693799a8161174d2, type: 3}
   m_PrefabInstance: {fileID: 1545619650}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1549477075 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8939657885711138235, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+  m_PrefabInstance: {fileID: 6935544059359077375}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1580239007
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3881,6 +3892,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6935544059359077390}
     - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: buttonList.Array.data[11]
+      value: 
+      objectReference: {fileID: 1549477075}
+    - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: _statusPjImageEntries.Array.data[0].EdgeStatus
       value: 
       objectReference: {fileID: 705008061}
@@ -4186,10 +4201,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6108571042833853355, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8609511457796571391, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
