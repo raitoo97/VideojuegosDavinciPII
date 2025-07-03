@@ -8,7 +8,8 @@ public enum ParticleType
     Explosion,
     Dash,
     Shield,
-    TurretUltimate
+    TurretUltimate,
+    DashUlti
 }
 public class ParticlesPool : MonoBehaviour
 {

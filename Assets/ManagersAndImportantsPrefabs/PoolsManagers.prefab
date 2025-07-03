@@ -116,6 +116,11 @@ MonoBehaviour:
     initialPoolSize: 100
     ParticlePrefab: {fileID: 4794043405585894037, guid: 37138c0c33167b04fa1fb90b7f5a794f, type: 3}
     pooledParticles: []
+  - type: 5
+    poolParent: {fileID: 1477309947633531035}
+    initialPoolSize: 100
+    ParticlePrefab: {fileID: 3070131706269945652, guid: c7e1648a8365aa64ba44b6139a82ab7c, type: 3}
+    pooledParticles: []
 --- !u!114 &6783233624291543087
 MonoBehaviour:
   m_ObjectHideFlags: 0

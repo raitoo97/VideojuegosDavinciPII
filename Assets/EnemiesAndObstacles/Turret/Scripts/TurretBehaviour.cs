@@ -79,9 +79,21 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     public void TakeDamage(TurretBehaviour turret,float dmg)
     {
         if (turret != this) return;
-        _life -= dmg;
-        int randomIndex = Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
-        AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndex]); //sound effect
+        if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
+        {
+            int randomIndexUltimate = UnityEngine.Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
+            AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndexUltimate]); //sound effect
+            ParticlesPool.instance.SpamParticle(ParticleType.TurretUltimate, new Vector3(0f, 2f, 0f), Vector3.zero, turret.transform);
+            _life -= dmg;
+        }
+        else
+        {
+            int randomIndex = UnityEngine.Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
+            AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndex]); //sound effect
+            ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 2f, 0f), Vector3.zero, turret.transform);
+            _life -= dmg;
+
+        }
         if (_life <= 0)
         {
             OnDeath?.Invoke(this);
