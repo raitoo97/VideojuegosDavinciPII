@@ -8,6 +8,7 @@ public class PointManager : MonoBehaviour
     [SerializeField] GameObject _pointsText;
     [SerializeField] GameObject _pointsNumber;
     [SerializeField] Text _cantUpgradeText;
+    [SerializeField] Text _notEnoughPoints;
 
     public static PointManager instance;
     private HandleEnemyPoints HandelEnemy;
@@ -65,6 +66,8 @@ public class PointManager : MonoBehaviour
         var originalColorNumber = number.color;
         var originalSize = number.fontSize;
 
+        Color originalColor = _notEnoughPoints.color;
+
         float duration = 0.2f;
         float t = 0f;
 
@@ -77,6 +80,11 @@ public class PointManager : MonoBehaviour
 
             number.color = Color.Lerp(originalColorNumber, targetColor, normalizeTime);
             number.fontSize = (int)Mathf.Lerp(originalSize, targetSize, normalizeTime);
+
+            Color c = originalColor;
+            c.a = Mathf.Lerp(0,1,normalizeTime);
+            _notEnoughPoints.color = c;
+
             yield return null;
         }
         yield return new WaitForSecondsRealtime(0.5f);
@@ -90,12 +98,16 @@ public class PointManager : MonoBehaviour
 
             number.color = Color.Lerp(targetColor, originalColorNumber, normalizedTime);
             number.fontSize = (int)Mathf.Lerp(targetSize, originalSize, normalizedTime);
+
+            Color c = originalColor;
+            c.a = Mathf.Lerp(1, 0, normalizedTime);
+            _notEnoughPoints.color = c;
             yield return null;
         }
 
         number.color = originalColorNumber;
         number.fontSize = originalSize;
-
+        _notEnoughPoints.color = originalColor;
         PjSkillsUpgradeUI.alreadyClickedUnlock = false;
     }
 
