@@ -31,6 +31,7 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
     {
         Bullet.onHitZombie += HandleHitZombie;
         _canEjecuteCorutine = false;
+        TrailCollider.onHitZombie += HandleHitZombie;
     }
     void Update()
     {

@@ -6,34 +6,45 @@ using UnityEngine;
 public class DashUlti : MonoBehaviour
 {
     [SerializeField] GameObject prefab;
-    public static Action<ZombieBehaviour> onHitZombie;
-    public static event Action<TurretBehaviour, float> OnTurretDamaged;
-    private float _dmgPlayer = 50f;
+    private List<GameObject> _trailPool = new List<GameObject>();
+
     public void CreateDashTrail(Vector3 start, Vector3 end)
     {
         Vector3 direction = (end - start).normalized;
         float distance = Vector3.Distance(start, end);
 
-        
-        GameObject trail = Instantiate(prefab , start + direction * (distance / 2f), Quaternion.identity);
-
+        GameObject trail = GetTrailFromPool();
+        trail.SetActive(true);
+        trail.transform.position = start + direction * (distance / 2f);
         trail.transform.forward = direction;
         trail.transform.localScale = new Vector3(1, 1, distance);
 
         ParticlesPool.instance.SpamParticle(ParticleType.DashUlti, trail.transform.forward, trail.transform.localScale, trail.transform);
-        
-        //Destroy(trail,2f);
+
+        StartCoroutine(DesactivateCourutine(trail));
+
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    private IEnumerator DesactivateCourutine(GameObject trail)
     {
-        if (other.TryGetComponent<ZombieBehaviour>(out var Zombie))
+        yield return new WaitForSeconds(5f);
+        trail.SetActive(false);
+    }
+
+    public GameObject GetTrailFromPool()
+    {
+
+        foreach (GameObject trail in _trailPool)
         {
-            onHitZombie?.Invoke(Zombie);
+            if (!trail.activeInHierarchy)
+            {
+                return trail;
+            }
         }
-        else if (other.TryGetComponent<TurretBehaviour>(out var turret))
-        {
-            OnTurretDamaged?.Invoke(turret, _dmgPlayer);
-        }
+
+        GameObject newTrail = Instantiate(prefab);
+        _trailPool.Add(newTrail);
+        return newTrail;
     }
 }
