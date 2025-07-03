@@ -55,13 +55,13 @@ public class WavesUI
         int currentEnemies = WavesManager.instance.GetCurrentEnemies;
         if (_isFirstWave)
         {
-            //_waveButton.gameObject.SetActive(true);
-            //_arrow.gameObject.SetActive(true);
-            //ManagerUI.instance.SkillsPanel.SetActive(false);
-            //_waveText.gameObject.SetActive(false);
-            //_numberOfEnemies.gameObject.SetActive(false);
-            //_winningText.gameObject.SetActive(false);
-            //return;
+            _waveButton.gameObject.SetActive(true);
+            _arrow.gameObject.SetActive(true);
+            ManagerUI.instance.SkillsPanel.SetActive(false);
+            _waveText.gameObject.SetActive(false);
+            _numberOfEnemies.gameObject.SetActive(false);
+            _winningText.gameObject.SetActive(false);
+            return;
         }
         if (_isLastWave && currentEnemies <= 0)
         {

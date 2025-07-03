@@ -13,6 +13,10 @@ public class ManagerUI : MonoBehaviour
     private PjSkillsUpgradeUI _pjSkillsUpgradeUI;
     private WavesUI _wavesUI;
     public GameObject SkillsPanel;
+    [Header("Obstacles UI")]//
+    public GameObject obstacleWarning;
+    public GameObject obstacleWarningArrow;
+    private ObstaclesDetectedUI _obstaclesDetectedUI;
     private void Awake()
     {
         if (instance == null) { instance = this; }
@@ -24,17 +28,21 @@ public class ManagerUI : MonoBehaviour
         _pjSkillsUpgradeUI = new PjSkillsUpgradeUI(textList, buttonList);
         PjLifeStates = new PjStatesLifeBar(GameManager.instance.player.GetComponent<Player>(),imagesList.Find(x => x.gameObject.name == "LifeBar"), _statusPjImageEntries);
         _wavesUI = new WavesUI(buttonList, textList);
+        _obstaclesDetectedUI = new ObstaclesDetectedUI(obstacleWarning, obstacleWarningArrow);
         PjLifeStates.OnStart();
         _pjSkillsUpgradeUI.OnStart();
         _wavesUI.OnStart();
+        _obstaclesDetectedUI.OnStart();
     }
     private void Update()
     {
         PjLifeStates.OnUpdate();
         _pjSkillsUpgradeUI.OnUpdate();
         _wavesUI.OnUpdate();
+        _obstaclesDetectedUI.OnUpdate();
     }
     public PjStatesLifeBar getLifeBar { get => PjLifeStates; }
     public WavesUI WaveUI { get => _wavesUI; }
+    public ObstaclesDetectedUI ObstaclesDetectedUI { get => _obstaclesDetectedUI;}
 }
 
