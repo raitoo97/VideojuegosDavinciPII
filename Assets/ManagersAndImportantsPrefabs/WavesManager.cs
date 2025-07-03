@@ -1,43 +1,42 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 public class WavesManager : MonoBehaviour
 {
     private List<IEnemies> enemies;
-    [SerializeField]private List<RespawnZombie> _zombieListRespawns;
-    [SerializeField]private List<RespawnZombie> _tempZombieListRespawns;
-    [SerializeField]private List <Obstacles> _obstaclesList;
-    [SerializeField]private List<Obstacles> _tempobstaclesList;
-    [SerializeField]private List<TurretBehaviour> _turrets;
+    private List<RespawnZombie> _zombieListRespawns;
+    private List<RespawnZombie> _tempZombieListRespawns;
+    private List<TurretBehaviour> _turrets;
     public static WavesManager instance;
     public Action _currentWave;
-    public Action _cleanObstaclesList;
+    public Action _cleanZombieTempList;
     private int index;
     private int currentEnemies = 0;
     private int numberOfWave = 0;
+    private bool _isInitialized = false;
     private void Awake()
     {
         if (instance == null) { instance = this; }
         else { Destroy(this.gameObject); }
-        index = 0;
-        SetWave(index);
         enemies = new List<IEnemies>();
         _tempZombieListRespawns = new List<RespawnZombie>();
-        _tempobstaclesList = new List<Obstacles>();
+        index = 0;
     }
     private void OnEnable()
     {
-        _cleanObstaclesList = CleanListObstacles;
+        _cleanZombieTempList = CleanZombieTemp;
     }
     private void Start()
     {
         _zombieListRespawns = new List<RespawnZombie>(GameObject.FindObjectsOfType<RespawnZombie>());
-        _obstaclesList = new List<Obstacles>(GameObject.FindObjectsOfType<Obstacles>());
         _turrets = new List<TurretBehaviour>(GameObject.FindObjectsOfType<TurretBehaviour>());
-        _zombieListRespawns = _zombieListRespawns.OrderBy(x => x.name).ToList();
-        _obstaclesList = _obstaclesList.OrderBy(x => x.name).ToList();
-        _turrets = _turrets.OrderBy(x => x.name).ToList();
+        _zombieListRespawns = _zombieListRespawns.OrderBy(x => UnityEngine.Random.value).ToList();
+        _turrets = _turrets.OrderBy(x => UnityEngine.Random.value).ToList();
+        _isInitialized = true;
+        SetWave(index);
+        StartCoroutine(GetWaveUIButton());
     }
     private void SetWave(int index)
     {
@@ -53,6 +52,12 @@ public class WavesManager : MonoBehaviour
                 _currentWave = Wave3;
                 break;
             case 3:
+                _currentWave = Wave4;
+                break;
+            case 4:
+                _currentWave = Wave5;
+                break;
+            case 5:
                 _currentWave = Finish;
                 break;
             default:
@@ -67,53 +72,67 @@ public class WavesManager : MonoBehaviour
     }
     private void Wave1()
     {
-        ConfigWave(0,2,0,1,0,2);
+        int zombies = RandomWaveValue<RespawnZombie>(_zombieListRespawns,1,2);
+        ConfigWave(zombies,0,0);
         numberOfWave = 0;
     }
     private void Wave2()
     {
-        ConfigWave(0,2,0,1,0,2);
+        int zombies = RandomWaveValue<RespawnZombie>(_zombieListRespawns,2,3);
+        ConfigWave(zombies,0,2);
         numberOfWave = 1;
     }
     private void Wave3()
     {
-        //ConfigWave(0, 2, 0, 1);
+        int zombies = RandomWaveValue<RespawnZombie>(_zombieListRespawns,3,5);
+        ConfigWave(zombies,0,2);
         numberOfWave = 2;
     }
     private void Wave4()
     {
-        //ConfigWave(0, 2, 0, 1);
-        numberOfWave = 2;
+        int zombies = RandomWaveValue<RespawnZombie>(_zombieListRespawns,4,6);
+        ConfigWave(zombies,0,3);
+        numberOfWave = 3;
     }
     private void Wave5()
     {
-        //ConfigWave(0, 2, 0, 1);
-        numberOfWave = 2;
+        //UltimaWaveActivoTodo
+        ConfigWave(9,0,5);
+        numberOfWave = 4;
+        var RefWaveUI = ManagerUI.instance.WaveUI;
+        RefWaveUI._isLastWave = true;
     }
     private void Finish()
     {
-        numberOfWave = 6;
-        Debug.Log("Ganaste");
+        numberOfWave = 5;
     }
-    private void ConfigWave(int RangeAZombies,int RangeBZombies, int RangeATurret, int RangeBTurret,int RangeAObstacles, int RangeBObstacles )
+    public int RandomWaveValue<T>(List<T>list,int minValue,int maxValue)
+    {
+        if (list == null || list.Count == 0) return 0;
+        int MaxValue = Math.Clamp(maxValue, minValue, list.Count);
+        return UnityEngine.Random.Range(minValue, MaxValue + 1);//Le sumo uno porque Range es exclusivo
+    }
+    private void ConfigWave(int RangeZombies, int RangeATurret, int RangeBTurret)
     {
         if (_zombieListRespawns != null && _zombieListRespawns.Count > 0)
         {
-            _tempZombieListRespawns = _zombieListRespawns.GetRange(RangeAZombies, RangeBZombies);
+            _tempZombieListRespawns = _zombieListRespawns.Take(RangeZombies).ToList();
             if (_tempZombieListRespawns != null && _tempZombieListRespawns.Count > 0)
             {
                 foreach (var waveZombie in _tempZombieListRespawns)
                 {
+                    waveZombie.gameObject.SetActive(true);
                     waveZombie.StartWave();
                     currentEnemies += waveZombie.returnNumberOfEnemies();
                 }
             }
         }
-        if(_turrets != null && _turrets.Count > 0)
+        if(_turrets != null && _turrets.Count > 0 && RangeATurret >= 0 && RangeATurret < _turrets.Count)
         {
-            var turretList = _turrets.GetRange(RangeATurret, RangeBTurret);
-            _turrets.RemoveRange(RangeATurret, RangeBTurret);
-            if (turretList != null && turretList.Count > 0)
+            int amountToTake = Mathf.Min(RangeBTurret, _turrets.Count - RangeATurret);
+            var turretList = _turrets.GetRange(RangeATurret, amountToTake);
+            _turrets.RemoveRange(RangeATurret, amountToTake);
+            if (turretList.Count > 0)
             {
                 foreach (var waveTurret in turretList)
                 {
@@ -122,36 +141,26 @@ public class WavesManager : MonoBehaviour
                 }
             }
         }
-        if(_obstaclesList != null && _obstaclesList.Count > 0)
-        {
-            _tempobstaclesList = _obstaclesList.GetRange(RangeAObstacles, RangeBObstacles);
-            if(_tempobstaclesList != null && _tempobstaclesList.Count > 0)
-            {
-                foreach (var waveObstacles in _tempobstaclesList)
-                {
-                    waveObstacles.gameObject.SetActive(true);
-                }
-            }
-        }
     }
-    private void CleanListObstacles()
+    private void CleanZombieTemp()
     {
-        if (currentEnemies <= 0 && _tempobstaclesList.Count > 0)
-        {
-            foreach (var waveObstacles in _tempobstaclesList)
-            {
-                waveObstacles.gameObject.SetActive(false);
-            }
-            _tempobstaclesList.Clear();
-        }
         if (currentEnemies <= 0 && _tempZombieListRespawns.Count > 0)
         {
             foreach (var waveZombies in _tempZombieListRespawns)
             {
                 waveZombies.gameObject.SetActive(false);
+                if (!_zombieListRespawns.Contains(waveZombies))
+                {
+                    _zombieListRespawns.Add(waveZombies);
+                }
             }
             _tempZombieListRespawns.Clear();
         }
+    }
+    private void OnDisable()
+    {
+        _currentWave = null;
+        _cleanZombieTempList = null;
     }
     public void EnemySuscribeEventToWaveSubstract(IEnemies enemy)
     {
@@ -170,6 +179,13 @@ public class WavesManager : MonoBehaviour
         int substract = enemy.SubstractFromWave();
         currentEnemies -= substract;
     }
+    public IEnumerator GetWaveUIButton()
+    {
+        yield return new WaitForSeconds(2);
+        var RefWaveUI = ManagerUI.instance.WaveUI;
+        RefWaveUI._waveButton.interactable = true;
+    }
     public int GetCurrentEnemies { get => currentEnemies; }
     public int GetNumberWave { get => numberOfWave; }
+    public bool GetInitialized { get => _isInitialized; }
 }

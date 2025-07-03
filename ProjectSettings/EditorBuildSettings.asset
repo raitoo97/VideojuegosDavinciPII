@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: f9bce2ccd8214ef479dabbd8307c3a98
   - enabled: 1
-    path: Assets/Scenes/Prototype..unity
-    guid: cd4551a274fdd1349a217adf9c321434
+    path: Assets/Scenes/Nivel1 Cinematic.unity
+    guid: d18fe719dcafc38459ceaa699ea60e4a
   - enabled: 1
-    path: Assets/Scenes/Nivel1.unity
-    guid: 557ca5d3032561b4caeefe7a7bc32a12
+    path: Assets/Scenes/Nivel1 Nicolas.unity
+    guid: 2d13a7059b225444993884e438872d5b
+  - enabled: 1
+    path: Assets/Scenes/Prototype NachoV2.unity
+    guid: 94248bc11ede9aa4d94418cce27b3b9f
   m_configObjects: {}

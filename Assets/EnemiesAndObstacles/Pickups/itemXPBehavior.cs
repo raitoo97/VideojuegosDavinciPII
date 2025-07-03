@@ -1,25 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 public class itemXPBehavior : MonoBehaviour
 {
-    public float points = 50f;
-
-    /*public void SetXpPoints(float amount)
+    public float points = 100f;
+    private NearFromPlayer _nearFromPlayer;
+    private void Start()
     {
-        _points = amount;
-    }*/
+        _nearFromPlayer = new NearFromPlayer(this.transform,this);
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other != null && other.CompareTag("Player"))
         {
-            //float points = PoolPickUp.instance.poolPickUpsStructs[0].points;
             PointManager.instance.AddPoints(points);
             this.gameObject.SetActive(false);
-            
         }
     }
-
-   
+    private void Update()
+    {
+        _nearFromPlayer.OnUpdate();
+    }
 }

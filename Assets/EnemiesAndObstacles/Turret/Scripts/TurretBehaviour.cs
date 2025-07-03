@@ -24,7 +24,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     {
         _life = 200;
         _enemypoints = 60;
-        _distance = 50f;
+        _distance = Mathf.Infinity;
         _child = this.transform.GetChild(0);
         var _tempList = _child.GetComponentsInChildren<Transform>();
         foreach (var x in _tempList)
@@ -42,7 +42,6 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
         _rayTurret = new RayCastTurret(_rayLaser, mask, _distance, lineRendererMaterial,this);
         animator = _child.GetComponent<Animator>();
         animator.enabled = false;
-        Player.TriggerShootInstant += ShootInstan;
         Bullet.OnTurretDamaged += TakeDamage;
         OnDeath += Death;
         StartCoroutine(WaitForSuscription());
@@ -77,32 +76,24 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
         bullet.transform.rotation = _randomGunSight.rotation;
         AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.EnemyTurretShot);
     }
-    private void ShootInstan()
-    {
-        var allTurrets = GameObject.FindObjectsOfType<TurretBehaviour>();
-        Transform playerTransform = GameManager.instance.player.transform;
-        TurretBehaviour closest = null;
-        float minDistance = Mathf.Infinity;
-        foreach (var turret in allTurrets)
-        {
-            float dist = turret.transform.IsMostNearDistance(playerTransform);
-            if (dist < minDistance)
-            {
-                minDistance = dist;
-                closest = turret;
-            }
-        }
-        if (closest == this)
-        {
-            Shoot();
-        }
-    }
     public void TakeDamage(TurretBehaviour turret,float dmg)
     {
         if (turret != this) return;
-        _life -= dmg;
-        int randomIndex = Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
-        AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndex]); //sound effect
+        if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
+        {
+            int randomIndexUltimate = UnityEngine.Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
+            AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndexUltimate]); //sound effect
+            ParticlesPool.instance.SpamParticle(ParticleType.TurretUltimate, new Vector3(0f, 2f, 0f), Vector3.zero, turret.transform);
+            _life -= dmg;
+        }
+        else
+        {
+            int randomIndex = UnityEngine.Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
+            AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndex]); //sound effect
+            ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 2f, 0f), Vector3.zero, turret.transform);
+            _life -= dmg;
+
+        }
         if (_life <= 0)
         {
             OnDeath?.Invoke(this);
@@ -115,7 +106,6 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     }
     private void OnDestroy()
     {
-        Player.TriggerShootInstant -= ShootInstan;
         Bullet.OnTurretDamaged -= TakeDamage;
         PointManager.instance.GetHandle.EnemyDesSuscribeEvent(this);
         WavesManager.instance.EnemyDesuscribeEventToWaveSubstract(this);

@@ -11,8 +11,11 @@ public class Movement
     private bool _applyKnockback;
     private Transform _transformPj;
     private LayerMask _layerWall;
+    private DashUlti _dashUlti;
+
+
     //Constructor
-    public Movement(Rigidbody rb, Transform _groundCheck, float speed, LayerMask groundLayer, Transform _transformPj, LayerMask _layerWall)
+    public Movement(Rigidbody rb, Transform _groundCheck, float speed, LayerMask groundLayer, Transform _transformPj, LayerMask _layerWall, DashUlti dashUlti)
     {
         _speed = speed;
         _groundLayer = groundLayer;
@@ -20,8 +23,10 @@ public class Movement
         this._transformPj = _transformPj;
         this._layerWall = _layerWall;
         _rb = rb;
-      
+        _dashUlti = dashUlti;
     }
+
+
     public void Move(float inputHorizontal, float inputVertical)
     {
         Vector3 _dir = new Vector3(inputHorizontal, 0, inputVertical).normalized;
@@ -47,19 +52,31 @@ public class Movement
         if (_rb != null)
         {
             _rb.AddForce(Vector3.up * impulse, ForceMode.Impulse);
-            Player.TriggerShootInstant?.Invoke();
         }
     }
     public void Dash()
     {
+        Vector3 startPosition = _rb.position;
         Vector3 dashDirection = LastMoveDirection;
         if (dashDirection == Vector3.zero )
-            dashDirection = _rb.transform.forward; // fallback por si no se mueve
-            _rb.AddForce(dashDirection.normalized * ManagerSkills.instance.GetValueSkill(SkillCategory.dashCategory, SkillStatType.dashSpeed), ForceMode.Impulse);
+
+        dashDirection = _rb.transform.forward; 
+        float dashForce = ManagerSkills.instance.GetValueSkill(SkillCategory.dashCategory, SkillStatType.dashSpeed);
+        _rb.AddForce(dashDirection.normalized * dashForce, ForceMode.Impulse);
+            
+
             int randomIndex = Random.Range(0, AudioManager.instance.skillPlayerDash.Length);
             AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.skillPlayerDash[randomIndex]); //sound effect
             ParticlesPool.instance.SpamParticle(ParticleType.Dash, new Vector3(0f, 0f, 0f), Vector3.zero, _rb.transform);
+
+        if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.dashCategory))
+        {
+            Vector3 endPosition = _rb.position + dashDirection.normalized * dashForce * 0.2f;
+            _dashUlti.CreateDashTrail(startPosition,endPosition);
+        }
     }
+
+    
     public void StopDash()
     {
         _rb.velocity = Vector2.zero;

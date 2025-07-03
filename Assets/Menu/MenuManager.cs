@@ -17,6 +17,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private AudioClip startSound;
     void Start()
     {
+        Time.timeScale = 1.0f;
         StartCoroutine(StartMusic());
         protoypeButton.onClick.AddListener(Protoype);
         startGameButon.onClick.AddListener(StartGame);
@@ -28,32 +29,38 @@ public class MenuManager : MonoBehaviour
     }
     private void StartGame()
     {
-        SceneManager.LoadScene(2);
+        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+        SceneManager.LoadScene(1);
     }
     private void Protoype()
     {
-        SceneManager.LoadScene(1);
+        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+        SceneManager.LoadScene(3);
     }
     private void TutorialButon()
     {
+        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
         panelTutorial.SetActive(true);
         panelCredits.SetActive(false);
         panelMain.SetActive(false);
     }
     private void ReturnButon()
     {
+        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
         panelTutorial.SetActive(false);
         panelCredits.SetActive(false);
         panelMain.SetActive(true);
     }
     private void CreditsButon()
     {
+        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
         panelTutorial.SetActive(false);
         panelCredits.SetActive(true);
         panelMain.SetActive(false);
     }
     private void QuitGame()
     {
+        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
         Application.Quit();
         print("No funciona en Editor");
     }

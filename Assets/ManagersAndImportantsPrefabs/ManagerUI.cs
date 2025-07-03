@@ -35,5 +35,6 @@ public class ManagerUI : MonoBehaviour
         _wavesUI.OnUpdate();
     }
     public PjStatesLifeBar getLifeBar { get => PjLifeStates; }
+    public WavesUI WaveUI { get => _wavesUI; }
 }
 

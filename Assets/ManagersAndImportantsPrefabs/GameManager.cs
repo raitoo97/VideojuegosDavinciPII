@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
@@ -22,6 +23,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         player = GameObject.FindObjectOfType<Player>().gameObject;
+        Time.timeScale = 1.0f;
+        var refFade = FindObjectOfType<FadeInBlack>();
+        refFade.BackGroundImage.gameObject.SetActive(true);
+        StartCoroutine(StartMusic());
     }
     private void RestarLevel()
     {
@@ -36,5 +41,10 @@ public class GameManager : MonoBehaviour
     private void OnDisable()
     {
         Player.OnPlayerDeath -= RestarLevel;
+    }
+    public IEnumerator StartMusic()
+    {
+        yield return new WaitForEndOfFrame();
+        AudioManager.instance.PlayMusic(AudioManager.instance.Level1Music);
     }
 }
