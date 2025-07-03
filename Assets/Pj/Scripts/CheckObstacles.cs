@@ -24,11 +24,11 @@ public class CheckObstacles
         _dotProduct = Vector3.Dot(_transform.forward, (Camera.main.transform.position - _transform.position).normalized);
         if (isObstaclesfront && _dotProduct > 0f)
         {
-            ManagerUI.instance.canShowWarning = true;
+            ManagerUI.instance.ObstaclesDetectedUI.canShowWarning = true;
         }
         else
         {
-            ManagerUI.instance.canShowWarning = false;
+            ManagerUI.instance.ObstaclesDetectedUI.canShowWarning = false;
         }
     }
     public void Draw()
