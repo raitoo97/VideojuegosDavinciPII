@@ -12,12 +12,15 @@ public class Player : MonoBehaviour
     [SerializeField] private DashUlti dashUlti;
     public LayerMask groundLayer;
     public LayerMask wallLayer;
+    public LayerMask maskObstacles;
     private Rigidbody _rb;
     [Header("Life")]
     [SerializeField]private float _maxLife = 100f;
     [SerializeField]private float _currentLife;
     public static Action OnPlayerDeath;
     public static Player instance;
+    [Header("Obstacles")]
+    private CheckObstacles _checkObstacles;
     AudioManager audioManager => AudioManager.instance;//Sound
     private void Awake()
     {
@@ -33,6 +36,7 @@ public class Player : MonoBehaviour
         _movement = new Movement(_rb, _groundCheck, _initSpeed, groundLayer,this.transform,wallLayer, dashUlti);
         _playerAnimation = new PlayerAnimation(_animator);
         _controller = new ControlPlayer(_movement, _playerAnimation, _shield);
+        _checkObstacles = new CheckObstacles(this.transform, maskObstacles);
         _currentLife = _maxLife;
     }
     private void OnEnable()
@@ -44,6 +48,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         _controller.OnUpdate();
+        _checkObstacles.OnUpdate();
         if (Input.GetKeyDown(KeyCode.G))
         {
             DamagePlayer(10);
@@ -108,6 +113,10 @@ public class Player : MonoBehaviour
         if(GetMovement != null)
         {
             GetMovement.OnDraw();
+        }
+        if (_checkObstacles != null)
+        {
+            _checkObstacles.Draw();
         }
     }
     public Movement GetMovement { get => _movement; }
