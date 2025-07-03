@@ -313,12 +313,12 @@ public class PjSkillsUpgradeUI
 
     private void CantUnlock()
     {
+        audioManager.PlaySfx(audioManager.CantUnlockSkill);
         if (!alreadyClicked)
         {
             alreadyClicked = true;
             PointManager.instance.StartCoroutine(PointManager.instance.CantUnlockRoutine());
         }
-        Debug.Log("CANT UNLOCK");
     }
 }
 

@@ -59,15 +59,11 @@ public class PointManager : MonoBehaviour
 
     public IEnumerator CantUnlockRoutine()
     {
-        var text = _pointsText.GetComponent<Text>();
         var number = _pointsNumber.GetComponent<Text>();
-
-        var originalColor = text.color;
         var originalColorNumber = number.color;
+        var originalSize = number.fontSize;
 
-        var originalSize = text.fontSize;
-
-        float duration = 0.3f;
+        float duration = 0.2f;
         float t = 0f;
 
         int targetSize = 22;
@@ -77,16 +73,11 @@ public class PointManager : MonoBehaviour
             t += Time.deltaTime;
             float normalizeTime = Mathf.Clamp01(t/duration);
 
-            text.color = Color.Lerp(originalColor, targetColor, normalizedTime);
-            number.color = Color.Lerp(originalColorNumber, targetColor, normalizedTime);
-
-            
-            text.fontSize = (int)Mathf.Lerp(originalSize, targetSize, normalizedTime);
-            number.fontSize = (int)Mathf.Lerp(originalSize, targetSize, normalizedTime);
-
+            number.color = Color.Lerp(originalColorNumber, targetColor, normalizeTime);
+            number.fontSize = (int)Mathf.Lerp(originalSize, targetSize, normalizeTime);
             yield return null;
         }
-        yield return new WaitForSecondsRealtime(0.1f);
+        yield return new WaitForSecondsRealtime(0.5f);
 
         // Volver atrás 
         t = 0f;
@@ -95,19 +86,12 @@ public class PointManager : MonoBehaviour
             t += Time.unscaledDeltaTime;
             float normalizedTime = Mathf.Clamp01(t / duration);
 
-            text.color = Color.Lerp(targetColor, originalColor, normalizedTime);
             number.color = Color.Lerp(targetColor, originalColorNumber, normalizedTime);
-
-            text.fontSize = (int)Mathf.Lerp(targetSize, originalSize, normalizedTime);
             number.fontSize = (int)Mathf.Lerp(targetSize, originalSize, normalizedTime);
-
             yield return null;
         }
 
-        
-        text.color = originalColor;
         number.color = originalColorNumber;
-        text.fontSize = originalSize;
         number.fontSize = originalSize;
 
         PjSkillsUpgradeUI.alreadyClicked = false;
