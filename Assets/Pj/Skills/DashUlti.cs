@@ -26,7 +26,7 @@ public class DashUlti : MonoBehaviour
 
     private IEnumerator DesactivateCourutine(GameObject trail)
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
         trail.SetActive(false);
     }
 
