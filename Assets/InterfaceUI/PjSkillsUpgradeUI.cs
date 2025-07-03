@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class PjSkillsUpgradeUI
 {
     private Text pointsText;
+    //private Text cantUpgradeText;
     [Header("Torreta")]
     private Text rateFireText;
     private Text distanceText;
@@ -26,7 +27,8 @@ public class PjSkillsUpgradeUI
     private Text CooldownDashText;
     private Text SpeedDashText;
 
-    public static bool alreadyClicked = false;
+    public static bool alreadyClickedUnlock = false;
+    public static bool alreadyClickedUpgrade = false;
     AudioManager audioManager = AudioManager.instance;
     private enum UIElementName
     {
@@ -48,11 +50,13 @@ public class PjSkillsUpgradeUI
         SpeedDashText,//speed del dash nivel
         RatioShieldText,// ratio del shield nivel
         DurationShieldText,//duracion del shield nivel
-        UltimateTurret
+        UltimateTurret,
+        //CantUpgradeSkill
     }
     public PjSkillsUpgradeUI(List<Text> textos,List<Button>buttons)
     {
         this.pointsText = textos.Find(x => x.gameObject.name == UIElementName.Number.ToString());
+        //this.cantUpgradeText = textos.Find(x => x.gameObject.name == UIElementName.CantUpgradeSkill.ToString());
         //Torreta
         this.rateFireText = textos.Find(x => x.gameObject.name == UIElementName.CadenciaText.ToString());
         this.distanceText = textos.Find(x => x.gameObject.name == UIElementName.DistanceText.ToString());
@@ -82,15 +86,16 @@ public class PjSkillsUpgradeUI
         distanceButton.onClick.AddListener(UpgradeDistancia);
         UltimateTurret.onClick.AddListener(UltimateTurretFunctionUnlock);
         //shield
-        //CantUnlockShield.onClick.AddListener(CantUnlock);
-        UnlockShield.onClick.AddListener(CantUnlock);
-        UpgradeShieldRatioButton.onClick.AddListener(UpgradeShieldRatio);
-        UpgradeShieldColdownButton.onClick.AddListener(UpgradeShieldColdown);
-        UpgradeShieldDurationButton.onClick.AddListener(UpgradeShieldDuration);
+        
+        UnlockShield.onClick.AddListener(CantUnlockSkill);
+        UpgradeShieldRatioButton.onClick.AddListener(CantPurchaseUpgrade);
+        UpgradeShieldColdownButton.onClick.AddListener(CantPurchaseUpgrade);
+        UpgradeShieldDurationButton.onClick.AddListener(CantPurchaseUpgrade);
+
         //dash
-        UnlockDash.onClick.AddListener(CantUnlock);
-        UpgradeDashSpeedButton.onClick.AddListener(UpgradeDashSpeed);
-        UpgradeDashSCooldownButton.onClick.AddListener(UpgradeDashCooldown);
+        UnlockDash.onClick.AddListener(CantUnlockSkill);
+        UpgradeDashSpeedButton.onClick.AddListener(CantPurchaseUpgrade);
+        UpgradeDashSCooldownButton.onClick.AddListener(CantPurchaseUpgrade);
     }
     public void OnUpdate()
     {
@@ -135,11 +140,27 @@ public class PjSkillsUpgradeUI
         #region SHIELD
         if (ManagerSkills.instance.IsUnlocked(SkillCategory.shieldCategory))
         {
-            
-            UnlockShield.targetGraphic.color = Color.white;
-            UnlockShield.interactable = false;
             UnlockShield.onClick.RemoveAllListeners();
+            UpgradeShieldRatioButton.onClick.RemoveAllListeners();
+            UpgradeShieldColdownButton.onClick.RemoveAllListeners();
+            UpgradeShieldDurationButton.onClick.RemoveAllListeners();
 
+            UpgradeShieldRatioButton.onClick.AddListener(UpgradeShieldRatio);
+            UpgradeShieldColdownButton.onClick.AddListener(UpgradeShieldColdown);
+            UpgradeShieldDurationButton.onClick.AddListener(UpgradeShieldDuration);
+
+            UnlockShield.targetGraphic.color = Color.white;
+            UpgradeShieldRatioButton.targetGraphic.color = Color.white;
+            UpgradeShieldColdownButton.targetGraphic.color = Color.white;
+            UpgradeShieldDurationButton.targetGraphic.color = Color.white;
+
+            UnlockShield.interactable = false;
+            /*
+            UpgradeShieldDurationButton.interactable = true;
+            UpgradeShieldRatioButton.interactable = true;
+            UpgradeShieldColdownButton.interactable = true;
+            */
+            
             if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.shieldCategory, SkillStatType.shieldDuration) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.shieldCategory))
             {
                 UpgradeShieldDurationButton.interactable = true;
@@ -165,6 +186,7 @@ public class PjSkillsUpgradeUI
             {
                 UpgradeShieldColdownButton.interactable = false;
             }
+            
         }
         else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.shieldCategory) && !ManagerSkills.instance.IsUnlocked(SkillCategory.shieldCategory))
         {
@@ -178,13 +200,24 @@ public class PjSkillsUpgradeUI
         {
             
             UnlockShield.onClick.RemoveAllListeners();
-            UnlockShield.onClick.AddListener(CantUnlock);
-            UnlockShield.targetGraphic.color = Color.red;
+            UpgradeShieldRatioButton.onClick.RemoveAllListeners();
+            UpgradeShieldColdownButton.onClick.RemoveAllListeners();
+            UpgradeShieldDurationButton.onClick.RemoveAllListeners();
 
+            UnlockShield.onClick.AddListener(CantUnlockSkill);
+            UpgradeShieldRatioButton.onClick.AddListener(CantPurchaseUpgrade);
+            UpgradeShieldColdownButton.onClick.AddListener(CantPurchaseUpgrade);
+            UpgradeShieldDurationButton.onClick.AddListener(CantPurchaseUpgrade);
+
+            UnlockShield.targetGraphic.color = Color.red;
+            UpgradeShieldRatioButton.targetGraphic.color = Color.red;
+            UpgradeShieldColdownButton.targetGraphic.color = Color.red;
+            UpgradeShieldDurationButton.targetGraphic.color = Color.red;
+            /*
             UpgradeShieldDurationButton.interactable = false;
             UpgradeShieldRatioButton.interactable = false;
             UpgradeShieldColdownButton.interactable = false;
-
+            */
             
         }
         RatioShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldRadius).ToString();
@@ -234,7 +267,7 @@ public class PjSkillsUpgradeUI
             UpgradeDashSpeedButton.interactable = false;
             UpgradeDashSCooldownButton.interactable = false;
             UnlockDash.onClick.RemoveAllListeners();
-            UnlockDash.onClick.AddListener(CantUnlock);
+            UnlockDash.onClick.AddListener(CantUnlockSkill);
             UnlockDash.targetGraphic.color = Color.red;
         }
         //Ulti
@@ -248,9 +281,6 @@ public class PjSkillsUpgradeUI
         CooldownDashText.text = ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashCooldown).ToString();
         SpeedDashText.text = ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashSpeed).ToString();
         #endregion
-
-
-       
     }
     private void UltimateTurretFunctionUnlock()
     {
@@ -311,14 +341,25 @@ public class PjSkillsUpgradeUI
 
     }
 
-    private void CantUnlock()
+    private void CantUnlockSkill()
     {
         audioManager.PlaySfx(audioManager.CantUnlockSkill);
-        if (!alreadyClicked)
+        if (!alreadyClickedUnlock)
         {
-            alreadyClicked = true;
+            alreadyClickedUnlock = true;
             PointManager.instance.StartCoroutine(PointManager.instance.CantUnlockRoutine());
         }
+    }
+
+    private void CantPurchaseUpgrade()
+    {
+        audioManager.PlaySfx(audioManager.CantUnlockSkill);
+        if (!alreadyClickedUpgrade)
+        {
+            alreadyClickedUpgrade = true;
+            PointManager.instance.StartCoroutine(PointManager.instance.CantUpgradeRoutine());
+        }
+        Debug.Log("Deberias desbloquear la habilidad primero");
     }
 }
 

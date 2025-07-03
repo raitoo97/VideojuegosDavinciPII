@@ -7,6 +7,8 @@ public class PointManager : MonoBehaviour
     [SerializeField] private float _currentPoints;
     [SerializeField] GameObject _pointsText;
     [SerializeField] GameObject _pointsNumber;
+    [SerializeField] Text _cantUpgradeText;
+
     public static PointManager instance;
     private HandleEnemyPoints HandelEnemy;
     private float normalizedTime;
@@ -70,7 +72,7 @@ public class PointManager : MonoBehaviour
         Color targetColor = Color.red;
         while (t < duration) 
         {
-            t += Time.deltaTime;
+            t += Time.unscaledDeltaTime;
             float normalizeTime = Mathf.Clamp01(t/duration);
 
             number.color = Color.Lerp(originalColorNumber, targetColor, normalizeTime);
@@ -94,7 +96,46 @@ public class PointManager : MonoBehaviour
         number.color = originalColorNumber;
         number.fontSize = originalSize;
 
-        PjSkillsUpgradeUI.alreadyClicked = false;
+        PjSkillsUpgradeUI.alreadyClickedUnlock = false;
+    }
+
+    public IEnumerator CantUpgradeRoutine()
+    {
+        Color originalColor = _cantUpgradeText.color;
+        float duration = 0.3f;
+        float t = 0;
+
+        while (t < duration)
+        {
+            t += Time.unscaledDeltaTime;
+            float normalizeTime = Mathf.Clamp01(t / duration);
+
+            Color c = originalColor;
+            c.a = Mathf.Lerp(0, 1, normalizeTime);
+            _cantUpgradeText.color = c;
+
+            yield return null;
+        }
+
+        yield return new WaitForSecondsRealtime(3f);
+
+        t = 0f;
+        while (t < duration) 
+        {
+            t += Time.unscaledDeltaTime;
+            float normalizeTime = Mathf.Clamp01(t / duration);
+
+            Color c = originalColor;
+            c.a = Mathf .Lerp(1,0 , normalizeTime);
+            _cantUpgradeText.color = c;
+
+            yield return null;
+        }
+
+        Color finalColor = originalColor;
+        finalColor.a = 0f;
+        _cantUpgradeText.color = finalColor;
+        PjSkillsUpgradeUI.alreadyClickedUpgrade = false;
     }
     public float CurrentPoints => _currentPoints;
     public HandleEnemyPoints GetHandle => HandelEnemy;
