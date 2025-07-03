@@ -13,7 +13,7 @@ public class ManagerUI : MonoBehaviour
     private PjSkillsUpgradeUI _pjSkillsUpgradeUI;
     private WavesUI _wavesUI;
     public GameObject SkillsPanel;
-    [Header("Obstacles UI")]
+    [Header("Obstacles UI")]//
     public GameObject obstacleWarning;
     public GameObject obstacleWarningArrow;
     private ObstaclesDetectedUI _obstaclesDetectedUI;
