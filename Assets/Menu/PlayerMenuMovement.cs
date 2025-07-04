@@ -66,7 +66,5 @@ public class PlayerMenuMovement
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(center, 0.5f);
     }
-    public float GetSpeed { get => _speed; }
     public bool IsGrounded => _isGrounded;
-    public float CurrentSpeed { get; private set; }
 }

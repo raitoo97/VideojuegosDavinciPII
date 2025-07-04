@@ -4,13 +4,13 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
+    public static MenuManager instance;
     public Button startGameButon;
     public Button returnMenuButon;
     public Button returnMenuButon2;
     public Button tutorialButon;
     public Button creditsButon;
     public Button ExitButton;
-    public GameObject canvas;
     public GameObject panelMain;
     public GameObject panelTutorial;
     public GameObject panelCredits;
@@ -19,22 +19,16 @@ public class MenuManager : MonoBehaviour
     public RuntimeAnimatorController _newAnimator;
     public RuntimeAnimatorController _originalAnimator;
     public bool FinishCinematic;
-    public static MenuManager instance;
     private void Awake()
     {
         if (instance == null)
-        {
             instance = this;
-        }
         else
-        {
             Destroy(this.gameObject);
-        }
     }
     void Start()
     {
         Time.timeScale = 1.0f;
-        canvas.gameObject.SetActive(false);
         FinishCinematic = false;
         StartCoroutine(StartMusic());
         startGameButon.onClick.AddListener(StartGame);
@@ -43,17 +37,6 @@ public class MenuManager : MonoBehaviour
         tutorialButon.onClick.AddListener(TutorialButon);
         creditsButon.onClick.AddListener(CreditsButon);
         ExitButton.onClick.AddListener(QuitGame);
-    }
-    private void Update()
-    {
-        if (FinishCinematic)
-        {
-            canvas.gameObject.SetActive(true);
-        }
-        else
-        {
-            canvas.gameObject.SetActive(false);
-        }
     }
     private void StartGame()
     {
