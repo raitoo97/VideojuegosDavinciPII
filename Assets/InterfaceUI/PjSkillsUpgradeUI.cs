@@ -268,8 +268,6 @@ public class PjSkillsUpgradeUI
                 UpgradeDashSpeedButton.onClick.RemoveAllListeners();
                 UpgradeDashSpeedButton.onClick.AddListener(UpgradeDashSpeed);
                 UpgradeDashSpeedButton.targetGraphic.color = Color.white;
-
-
             }
             else
             {
@@ -316,15 +314,14 @@ public class PjSkillsUpgradeUI
         {
             UpgradeDashSCooldownButton.interactable = false;
             UpgradeDashSpeedButton.interactable = false;
-            UpgradeDashSpeedButton.targetGraphic.color = Color.white;
-            UpgradeDashSCooldownButton.targetGraphic.color = Color.white;
+            UpgradeDashSpeedButton.targetGraphic.color = Color.gray;
+            UpgradeDashSCooldownButton.targetGraphic.color = Color.gray;
         }
         //Ulti
         if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory) && ManagerSkills.instance.GetUltimateUnlockCost(SkillCategory.dashCategory) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.IsUnlockUltimate(SkillCategory.dashCategory))
         {
             UltimateDash.interactable = true;
             UltimateDash.targetGraphic.color = Color.white;
-
         }
         else
         {
