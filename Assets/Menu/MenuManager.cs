@@ -102,8 +102,6 @@ public class MenuManager : MonoBehaviour
         {
             AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
             Application.Quit();
-            print("No funciona en Editor");
-
         }
     }
     public IEnumerator StartMusic()
