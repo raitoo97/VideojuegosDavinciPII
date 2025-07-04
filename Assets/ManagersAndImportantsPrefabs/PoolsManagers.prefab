@@ -134,12 +134,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   poolPickUpsStructs:
-  - _prefab: {fileID: 1556657292120010325, guid: 57659153babd040449316b509efcce9e, type: 3}
+  - _prefab: {fileID: 6035384779011271666, guid: f1c8b9627ebf8ef48bcf1a31cb9705ba, type: 3}
     type: 0
     initList: 20
     chance: 70
     _itemPool: []
-  - _prefab: {fileID: 2126536242982309865, guid: 235d79255b24dad46864f72e04f78b3e, type: 3}
+  - _prefab: {fileID: 4283784203745896996, guid: 48323c3d8119d7b449d6498c1b5ec360, type: 3}
     type: 1
     initList: 20
     chance: 20
