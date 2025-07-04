@@ -285,6 +285,8 @@ public class PjSkillsUpgradeUI
         if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory) && ManagerSkills.instance.GetUltimateUnlockCost(SkillCategory.dashCategory) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.IsUnlockUltimate(SkillCategory.dashCategory))
         {
             UltimateDash.interactable = true;
+            UpgradeDashSCooldownButton.interactable = false;
+            UpgradeDashSpeedButton.interactable=false;
         }
         else
         {
