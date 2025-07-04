@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
-    public Button protoypeButton;
+    public static MenuManager instance;
     public Button startGameButon;
     public Button returnMenuButon;
     public Button returnMenuButon2;
@@ -15,54 +15,94 @@ public class MenuManager : MonoBehaviour
     public GameObject panelTutorial;
     public GameObject panelCredits;
     [SerializeField] private AudioClip startSound;
+    private Animator _playerRefMenuAnimator;
+    public RuntimeAnimatorController _newAnimator;
+    public RuntimeAnimatorController _originalAnimator;
+    public bool FinishCinematic;
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(this.gameObject);
+    }
     void Start()
     {
         Time.timeScale = 1.0f;
+        FinishCinematic = false;
         StartCoroutine(StartMusic());
-        protoypeButton.onClick.AddListener(Protoype);
         startGameButon.onClick.AddListener(StartGame);
         returnMenuButon.onClick.AddListener(ReturnButon);
-        returnMenuButon2.onClick.AddListener(ReturnButon);
+        returnMenuButon2.onClick.AddListener(ReturnButonTutorial);
         tutorialButon.onClick.AddListener(TutorialButon);
         creditsButon.onClick.AddListener(CreditsButon);
         ExitButton.onClick.AddListener(QuitGame);
     }
     private void StartGame()
     {
-        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
-        SceneManager.LoadScene(1);
-    }
-    private void Protoype()
-    {
-        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
-        SceneManager.LoadScene(3);
+        if (FinishCinematic)
+        {
+            AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+            SceneManager.LoadScene(1);
+        }
     }
     private void TutorialButon()
     {
-        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
-        panelTutorial.SetActive(true);
-        panelCredits.SetActive(false);
-        panelMain.SetActive(false);
+        if (FinishCinematic)
+        {
+            AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+            panelTutorial.SetActive(true);
+            panelCredits.SetActive(false);
+            panelMain.SetActive(false);
+            var refPlayerMenu = GameObject.FindObjectOfType<PlayerMenu>();
+            if (refPlayerMenu != null)
+                _playerRefMenuAnimator = refPlayerMenu.GetAnimator;
+            _playerRefMenuAnimator.runtimeAnimatorController = _newAnimator;
+            refPlayerMenu.GetController.ChangeModeCinematic = false;
+        }
     }
     private void ReturnButon()
     {
-        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
-        panelTutorial.SetActive(false);
-        panelCredits.SetActive(false);
-        panelMain.SetActive(true);
+        if (FinishCinematic)
+        {
+            AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+            panelTutorial.SetActive(false);
+            panelCredits.SetActive(false);
+            panelMain.SetActive(true);
+        }
+    }
+    private void ReturnButonTutorial()
+    {
+        if (FinishCinematic)
+        {
+            AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+            panelTutorial.SetActive(false);
+            panelCredits.SetActive(false);
+            panelMain.SetActive(true);
+            var refPlayerMenu = GameObject.FindObjectOfType<PlayerMenu>();
+            if (refPlayerMenu != null)
+                _playerRefMenuAnimator = refPlayerMenu.GetAnimator;
+            _playerRefMenuAnimator.runtimeAnimatorController = _originalAnimator;
+            refPlayerMenu.GetController.ChangeModeCinematic = true;
+        }
     }
     private void CreditsButon()
     {
-        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
-        panelTutorial.SetActive(false);
-        panelCredits.SetActive(true);
-        panelMain.SetActive(false);
+        if (FinishCinematic)
+        {
+            AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+            panelTutorial.SetActive(false);
+            panelCredits.SetActive(true);
+            panelMain.SetActive(false);
+        }
     }
     private void QuitGame()
     {
-        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
-        Application.Quit();
-        print("No funciona en Editor");
+        if (FinishCinematic)
+        {
+            AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+            Application.Quit();
+        }
     }
     public IEnumerator StartMusic()
     {

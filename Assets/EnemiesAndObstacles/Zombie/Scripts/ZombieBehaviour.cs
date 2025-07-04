@@ -70,7 +70,6 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
             _anims.ChangeState(STATE.Atack);
             _agent.isStopped = true;
             _agent.SetDestination(_agent.transform.position);
-            
             foreach (var col in _attackColliders)
             {
                 col.enabled = true;
@@ -102,7 +101,6 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
             
         }
     }
-
     private void HandleDashUlti(ZombieBehaviour enemy)
     {
         ParticlesPool.instance.SpamParticle(ParticleType.DashUlti, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
@@ -120,7 +118,6 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
         }
         Bullet.onHitZombie -= HandleHitZombie;
         TrailCollider.onHitZombie -= HandleDashUlti;
-
     }
     IEnumerator corrutinaDeath()
     {
