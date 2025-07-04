@@ -59,6 +59,13 @@ public class PlayerMenuMovement
     {
         return Physics.CheckSphere(_transformPj.position + _transformPj.up + _transformPj.forward, radius, _layerWall);
     }
+    public void DrawGizmos()
+    {
+        if (_transformPj == null) return;
+        Vector3 center = _transformPj.position + _transformPj.up + _transformPj.forward;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(center, 0.5f);
+    }
     public float GetSpeed { get => _speed; }
     public bool IsGrounded => _isGrounded;
     public float CurrentSpeed { get; private set; }

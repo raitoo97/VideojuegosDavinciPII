@@ -26,6 +26,13 @@ public class PlayerMenu : MonoBehaviour
     {
         _controller.OnfixedUpdate();
     }
+    private void OnDrawGizmos()
+    {
+        if (_movement != null)
+        {
+            _movement.DrawGizmos();
+        }
+    }
     public Animator GetAnimator { get => _animator; }
     public PlayerMenuMovement GetMovement { get => _movement; }
     public PlayerMenuController GetController { get => _controller; }
