@@ -141,6 +141,10 @@ PrefabInstance:
       value: POSTAPO_ENV_Floor_C (6)
       objectReference: {fileID: 0}
     - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -247,6 +251,10 @@ PrefabInstance:
       value: POSTAPO_ENV_Floor_B (7)
       objectReference: {fileID: 0}
     - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -271,6 +279,10 @@ PrefabInstance:
     - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
       propertyPath: m_Name
       value: POSTAPO_ENV_Floor_C (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -332,6 +344,10 @@ PrefabInstance:
     - target: {fileID: 5172475404056278000, guid: 13d93671d0920ac4aa4a9e89e3c8a3f0, type: 3}
       propertyPath: m_Name
       value: POSTAPO_ENV_BUILDING_27
+      objectReference: {fileID: 0}
+    - target: {fileID: 5172475404056278000, guid: 13d93671d0920ac4aa4a9e89e3c8a3f0, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 5172475404056278000, guid: 13d93671d0920ac4aa4a9e89e3c8a3f0, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -634,6 +650,10 @@ PrefabInstance:
       value: POSTAPO_ENV_Floor_B
       objectReference: {fileID: 0}
     - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -735,6 +755,10 @@ PrefabInstance:
     - target: {fileID: 6340338370166086944, guid: 142cadfaecfa85141bced3bbe680e4f2, type: 3}
       propertyPath: m_Name
       value: POSTAPO_ENV_PROP_8 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6340338370166086944, guid: 142cadfaecfa85141bced3bbe680e4f2, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6340338370166086944, guid: 142cadfaecfa85141bced3bbe680e4f2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -942,127 +966,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2039637124002248056, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
   m_PrefabInstance: {fileID: 6999409}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &649582099
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 649582100}
-  - component: {fileID: 649582103}
-  - component: {fileID: 649582102}
-  - component: {fileID: 649582101}
-  m_Layer: 5
-  m_Name: Prototype
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &649582100
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649582099}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1.01}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1951711349}
-  m_Father: {fileID: 666463066}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &649582101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649582099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 649582102}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &649582102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649582099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &649582103
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 649582099}
-  m_CullTransparentMesh: 1
 --- !u!1 &666463065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,7 +997,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 649582100}
   - {fileID: 1273051729}
   - {fileID: 1491031122}
   - {fileID: 1671862450}
@@ -1179,6 +1081,10 @@ PrefabInstance:
     - target: {fileID: 6340338370166086944, guid: 142cadfaecfa85141bced3bbe680e4f2, type: 3}
       propertyPath: m_Name
       value: POSTAPO_ENV_PROP_8 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6340338370166086944, guid: 142cadfaecfa85141bced3bbe680e4f2, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6340338370166086944, guid: 142cadfaecfa85141bced3bbe680e4f2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1377,6 +1283,10 @@ PrefabInstance:
       value: POSTAPO_ENV_BUILDING_3
       objectReference: {fileID: 0}
     - target: {fileID: 7196797975133538645, guid: 37569a9c9db0c9b408f35d417ee54f0a, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 7196797975133538645, guid: 37569a9c9db0c9b408f35d417ee54f0a, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -1488,6 +1398,10 @@ PrefabInstance:
       value: POSTAPO_ENV_Floor_B (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -1507,6 +1421,10 @@ PrefabInstance:
     - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
       propertyPath: m_Name
       value: POSTAPO_ENV_Floor_C
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1608,6 +1526,10 @@ PrefabInstance:
     - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
       propertyPath: m_Name
       value: POSTAPO_ENV_Floor_B (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -1725,6 +1647,10 @@ PrefabInstance:
       value: POSTAPO_ENV_Floor_C (4)
       objectReference: {fileID: 0}
     - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -1784,6 +1710,10 @@ PrefabInstance:
     - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
       propertyPath: m_Name
       value: POSTAPO_ENV_Floor_C (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2166,6 +2096,10 @@ PrefabInstance:
       value: POSTAPO_ENV_BUILDING_9
       objectReference: {fileID: 0}
     - target: {fileID: 8263911716809142989, guid: 017593ec3dd117e48b82932a7e3f614d, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8263911716809142989, guid: 017593ec3dd117e48b82932a7e3f614d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -2272,6 +2206,10 @@ PrefabInstance:
       value: POSTAPO_ENV_Floor_B (6)
       objectReference: {fileID: 0}
     - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -2343,6 +2281,10 @@ PrefabInstance:
     - target: {fileID: 6732016643324579187, guid: 7b46f271c6a67074daf9821edb267853, type: 3}
       propertyPath: m_Name
       value: POSTAPO_ENV_BUILDING_22
+      objectReference: {fileID: 0}
+    - target: {fileID: 6732016643324579187, guid: 7b46f271c6a67074daf9821edb267853, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6732016643324579187, guid: 7b46f271c6a67074daf9821edb267853, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2507,7 +2449,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b63ee46e52f4db4abc9670b069bfa41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  protoypeButton: {fileID: 649582101}
   startGameButon: {fileID: 1273051730}
   returnMenuButon: {fileID: 1878804870}
   returnMenuButon2: {fileID: 1498275724}
@@ -2518,6 +2459,8 @@ MonoBehaviour:
   panelTutorial: {fileID: 1198504900}
   panelCredits: {fileID: 435935656}
   startSound: {fileID: 8300000, guid: db88c01aaefd2b34fbade2af91f45468, type: 3}
+  _newAnimator: {fileID: 9100000, guid: 371eb145139d5d942aa3c8babe173626, type: 2}
+  _originalAnimator: {fileID: 9100000, guid: 2e79d8cf87d4ccc4297d6cb9b18f3b98, type: 2}
 --- !u!4 &1308702654
 Transform:
   m_ObjectHideFlags: 0
@@ -2542,7 +2485,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1327996281}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Escenary
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2647,6 +2590,10 @@ PrefabInstance:
       value: POSTAPO_ENV_Floor_B (9)
       objectReference: {fileID: 0}
     - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -2706,6 +2653,10 @@ PrefabInstance:
     - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
       propertyPath: m_Name
       value: POSTAPO_ENV_Floor_B (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -2975,6 +2926,10 @@ PrefabInstance:
       value: POSTAPO_ENV_Floor_C (8)
       objectReference: {fileID: 0}
     - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -3115,6 +3070,10 @@ PrefabInstance:
       value: POSTAPO_ENV_PROP_8 (1)
       objectReference: {fileID: 0}
     - target: {fileID: 6340338370166086944, guid: 142cadfaecfa85141bced3bbe680e4f2, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 6340338370166086944, guid: 142cadfaecfa85141bced3bbe680e4f2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -3184,6 +3143,10 @@ PrefabInstance:
     - target: {fileID: 6340338370166086944, guid: 142cadfaecfa85141bced3bbe680e4f2, type: 3}
       propertyPath: m_Name
       value: POSTAPO_ENV_PROP_8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6340338370166086944, guid: 142cadfaecfa85141bced3bbe680e4f2, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6340338370166086944, guid: 142cadfaecfa85141bced3bbe680e4f2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3290,6 +3253,10 @@ PrefabInstance:
     - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
       propertyPath: m_Name
       value: POSTAPO_ENV_Floor_B (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3473,6 +3440,10 @@ PrefabInstance:
       value: POSTAPO_ENV_Floor_B (4)
       objectReference: {fileID: 0}
     - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -3545,7 +3516,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 90.446915
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -3571,8 +3542,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1810908407}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.10660548, y: 0.005832459, z: -0.001199276, w: -0.9942836}
-  m_LocalPosition: {x: -1.6276698, y: 17.759743, z: -18.625076}
+  m_LocalRotation: {x: -0.19407128, y: 0.0073358715, z: -0.0011394677, w: -0.9809594}
+  m_LocalPosition: {x: -2.376468, y: 16.617254, z: -10.858749}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3639,6 +3610,10 @@ PrefabInstance:
     - target: {fileID: 1009674589139877151, guid: f173dbb081affda449202465e9e74f68, type: 3}
       propertyPath: m_Name
       value: POSTAPO_ENV_BUILDING_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009674589139877151, guid: f173dbb081affda449202465e9e74f68, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1009674589139877151, guid: f173dbb081affda449202465e9e74f68, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3780,85 +3755,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2039637124002248056, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
   m_PrefabInstance: {fileID: 1964909119}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1951711348
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1951711349}
-  - component: {fileID: 1951711351}
-  - component: {fileID: 1951711350}
-  m_Layer: 5
-  m_Name: Text (Legacy)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1951711349
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951711348}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 649582100}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1951711350
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951711348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Protoype Level
---- !u!222 &1951711351
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1951711348}
-  m_CullTransparentMesh: 1
 --- !u!1001 &1952026595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3870,6 +3766,10 @@ PrefabInstance:
     - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
       propertyPath: m_Name
       value: POSTAPO_ENV_Floor_C (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -3933,6 +3833,10 @@ PrefabInstance:
       value: POSTAPO_ENV_Floor_C (3)
       objectReference: {fileID: 0}
     - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -3992,6 +3896,10 @@ PrefabInstance:
     - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
       propertyPath: m_Name
       value: POSTAPO_ENV_Floor_C (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4055,6 +3963,10 @@ PrefabInstance:
       value: POSTAPO_ENV_Floor_C (7)
       objectReference: {fileID: 0}
     - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 1658995392205434818, guid: 6a893e96d42ad5c4d84852931db00fd2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -4114,6 +4026,10 @@ PrefabInstance:
     - target: {fileID: 6340338370166086944, guid: 142cadfaecfa85141bced3bbe680e4f2, type: 3}
       propertyPath: m_Name
       value: POSTAPO_ENV_PROP_8 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6340338370166086944, guid: 142cadfaecfa85141bced3bbe680e4f2, type: 3}
+      propertyPath: m_Layer
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 6340338370166086944, guid: 142cadfaecfa85141bced3bbe680e4f2, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4306,6 +4222,10 @@ PrefabInstance:
       value: POSTAPO_ENV_Floor_B (5)
       objectReference: {fileID: 0}
     - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
+      propertyPath: m_Layer
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093234021357466653, guid: 3c67711f486be654c96abc29da8493c2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -4332,11 +4252,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8171489603418973836, guid: b679a1b87974d524eb10ee15fface9f4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.7
+      value: 10.94
       objectReference: {fileID: 0}
     - target: {fileID: 8171489603418973836, guid: b679a1b87974d524eb10ee15fface9f4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.58
+      value: -3.89
       objectReference: {fileID: 0}
     - target: {fileID: 8171489603418973836, guid: b679a1b87974d524eb10ee15fface9f4, type: 3}
       propertyPath: m_LocalRotation.w

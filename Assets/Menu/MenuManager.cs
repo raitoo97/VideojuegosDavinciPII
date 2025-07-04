@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 public class MenuManager : MonoBehaviour
 {
-    public Button protoypeButton;
     public Button startGameButon;
     public Button returnMenuButon;
     public Button returnMenuButon2;
@@ -15,14 +14,16 @@ public class MenuManager : MonoBehaviour
     public GameObject panelTutorial;
     public GameObject panelCredits;
     [SerializeField] private AudioClip startSound;
+    private Animator _playerRefMenuAnimator;
+    public RuntimeAnimatorController _newAnimator;
+    public RuntimeAnimatorController _originalAnimator;
     void Start()
     {
         Time.timeScale = 1.0f;
         StartCoroutine(StartMusic());
-        protoypeButton.onClick.AddListener(Protoype);
         startGameButon.onClick.AddListener(StartGame);
         returnMenuButon.onClick.AddListener(ReturnButon);
-        returnMenuButon2.onClick.AddListener(ReturnButon);
+        returnMenuButon2.onClick.AddListener(ReturnButonTutorial);
         tutorialButon.onClick.AddListener(TutorialButon);
         creditsButon.onClick.AddListener(CreditsButon);
         ExitButton.onClick.AddListener(QuitGame);
@@ -32,17 +33,17 @@ public class MenuManager : MonoBehaviour
         AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
         SceneManager.LoadScene(1);
     }
-    private void Protoype()
-    {
-        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
-        SceneManager.LoadScene(3);
-    }
     private void TutorialButon()
     {
         AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
         panelTutorial.SetActive(true);
         panelCredits.SetActive(false);
         panelMain.SetActive(false);
+        var refPlayerMenu = GameObject.FindObjectOfType<PlayerMenu>();
+        if (refPlayerMenu != null)
+            _playerRefMenuAnimator = refPlayerMenu.GetAnimator;
+        _playerRefMenuAnimator.runtimeAnimatorController = _newAnimator;
+        refPlayerMenu.GetController.ChangeModeCinematic = false;
     }
     private void ReturnButon()
     {
@@ -50,6 +51,18 @@ public class MenuManager : MonoBehaviour
         panelTutorial.SetActive(false);
         panelCredits.SetActive(false);
         panelMain.SetActive(true);
+    }
+    private void ReturnButonTutorial()
+    {
+        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+        panelTutorial.SetActive(false);
+        panelCredits.SetActive(false);
+        panelMain.SetActive(true);
+        var refPlayerMenu = GameObject.FindObjectOfType<PlayerMenu>();
+        if (refPlayerMenu != null)
+            _playerRefMenuAnimator = refPlayerMenu.GetAnimator;
+        _playerRefMenuAnimator.runtimeAnimatorController = _originalAnimator;
+        refPlayerMenu.GetController.ChangeModeCinematic = true;
     }
     private void CreditsButon()
     {
