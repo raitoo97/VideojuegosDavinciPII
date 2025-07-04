@@ -22,9 +22,10 @@ public class HandleEnemyPoints
     private void HandleEnemyDeath(IEnemies enemy)
     {
         Transform t = enemy.GetTransform();
+        Vector3 offset = Vector3.up * 2;
         var xpPickup = PoolPickUp.instance.poolPickUpsStructs.Find(p => p.type == PickupType.Xp);
-        xpPickup?.Drop(t);
+        xpPickup?.Drop(t.position + offset);
         var healPickup = PoolPickUp.instance.poolPickUpsStructs.Find(p => p.type == PickupType.Health);
-        healPickup?.Drop(t);
+        healPickup?.Drop(t.position + offset);
     }
 }

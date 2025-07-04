@@ -43,15 +43,11 @@ public class PoolPickUp : MonoBehaviour
         //[SerializeField] public float points;
         [SerializeField] float chance;
         private bool dropped;
-
         [SerializeField] private List<GameObject> _itemPool = new List<GameObject>();
-        
-
         public void OnStart()
         {
             CompleteList(initList);
         }
-    
         public void CompleteList(int initList)
         {
             for(int i = 0; i < initList; i++)
@@ -59,25 +55,17 @@ public class PoolPickUp : MonoBehaviour
                 var _clonedItem = GameObject.Instantiate(_prefab);
                 _clonedItem.SetActive(false);
                 _itemPool.Add(_clonedItem);
-
             }
         }
-
-
-        public void Drop(Transform parent)
+        public void Drop(Vector3 position)
         {
             dropped = (UnityEngine.Random.Range(0f, 100f)) <= chance;
-
             if (dropped)
             {
-
                 var _clonedPrefab = GetItem();
-                _clonedPrefab.transform.position = parent.position;
-                
+                _clonedPrefab.transform.position = position;
             }
         }
-
-
         public GameObject GetItem()
         {
             foreach (var item in _itemPool)
@@ -89,14 +77,12 @@ public class PoolPickUp : MonoBehaviour
                     return item;
                 }
             }
-
             CompleteList(1);
             GameObject newItem = _itemPool[_itemPool.Count - 1];
             newItem.SetActive(true);
             //AssignBehaviorValues(newItem);
             return newItem;
         }
-
         /*
         private void AssignBehaviorValues(GameObject item)
         {
@@ -112,9 +98,5 @@ public class PoolPickUp : MonoBehaviour
                 xp.SetXpPoints(points);
             }
         }*/
-    
-    
     }
-    
-    
 }
