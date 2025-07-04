@@ -1,7 +1,7 @@
 using Cinemachine;
 using System.Collections;
 using UnityEngine;
-public class CameraEvents : MonoBehaviour
+public class CameraEventsMenu : MonoBehaviour
 {
     public CinemachineVirtualCamera VirtualCameraMain;
     public CinemachineVirtualCamera VirtualCameraCinematic;

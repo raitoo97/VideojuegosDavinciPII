@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.AI;
 public class ZombieMenuBehavior : MonoBehaviour
 {
-    [SerializeField]private ZombieAnimations _anims;
     [SerializeField]private NavMeshAgent _agent;
     private Transform _currentTarget;
     private float _nearDistance = 2f;
@@ -11,7 +10,6 @@ public class ZombieMenuBehavior : MonoBehaviour
     private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
-        _anims = GetComponent<ZombieAnimations>();
     }
     private void Start()
     {
@@ -25,9 +23,8 @@ public class ZombieMenuBehavior : MonoBehaviour
     void Update()
     {
         if (_currentTarget == null) return;
-        _anims.ChangeState(STATE.Run);
         _agent.isStopped = false;
-        if(Vector3.Distance(this.transform.position, _currentTarget.position) < _nearDistance)
+        if (this.transform.IsWithinDistanceOf(_currentTarget,_nearDistance))
         {
             _currentTarget = GetTarget();
         }
