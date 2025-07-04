@@ -8,7 +8,7 @@ public class WavesUI
     public Text _numberOfEnemies;
     public Text _winningText;
     public Text _arrow;
-    private bool _isFirstWave = false; //CAMBIO POARA LABUIRRAR
+    private bool _isFirstWave = true; //CAMBIO POARA LABUIRRAR
     public bool _isLastWave = false;
     private enum WaveAtributes
     {
