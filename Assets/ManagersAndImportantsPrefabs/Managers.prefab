@@ -83,6 +83,12 @@ MonoBehaviour:
     costToUnlock: 700
     ultimateUnlocked: 0
     costToUnlockUltimate: 500
+  - category: 3
+    dataStrcut: {fileID: 11400000, guid: 8581eba0a40c62b42843a21f19a0a758, type: 2}
+    isUnlocked: 0
+    costToUnlock: 0
+    ultimateUnlocked: 0
+    costToUnlockUltimate: 1000
 --- !u!114 &7709783099561902853
 MonoBehaviour:
   m_ObjectHideFlags: 0
