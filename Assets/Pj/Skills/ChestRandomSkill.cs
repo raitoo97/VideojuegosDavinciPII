@@ -22,11 +22,12 @@ public class ChestRandomSkill : MonoBehaviour
     }
     private void ChoseRandomCategory()
     {
-        if (_availableCategories.Count == 0)
+        if (_availableCategories.Count <= 0)
         {
             return;
         }
-        SkillCategory random = _availableCategories[Random.Range(0, _availableCategories.Count)];
+        int randomIndex = Random.Range(0, _availableCategories.Count);
+        SkillCategory random = _availableCategories[randomIndex];
         ManagerSkills.instance.UnlockSkillCategory(random);
         _availableCategories.Remove(random);
         Debug.Log("Desbloqueaste: " + random);

@@ -49,10 +49,6 @@ public class Player : MonoBehaviour
     {
         _controller.OnUpdate();
         _checkObstacles.OnUpdate();
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            DamagePlayer(10);
-        }
     }
     private void FixedUpdate()
     {
