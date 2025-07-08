@@ -3,29 +3,40 @@ public class DoppelgangerSkill : MonoBehaviour
 {
     [SerializeField]private GameObject _pjDoppelganger;
     private GameObject _currentInstance;
-    public float cooldown = 3f;
-    private float cooldownTimer = 0f;
+    public float _cooldown;
+    public float _lifeCopy;
+    private float _cooldownTimer = 0f;
     private void Update()
     {
+        GetSkillsValue();
+        if (_cooldownTimer > 0f)
+            _cooldownTimer -= Time.deltaTime;
         ActivateSkill();
     }
     private void ActivateSkill()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl) && ManagerSkills.instance.IsUnlocked(SkillCategory.dopplegangerCategory))
+        if (Input.GetKeyDown(KeyCode.LeftControl))
         {
+            if (!ManagerSkills.instance.IsUnlocked(SkillCategory.dopplegangerCategory))
+            {
+                Debug.Log("Habilidad no activa");
+                return;
+            }
+            if (_cooldownTimer > 0f)
+            {
+                return;
+            }
             _currentInstance = Instantiate(_pjDoppelganger);
             var entity = _currentInstance.GetComponent<DopplegangerEntity>();
-            entity.Initialize(1000f);
-            _currentInstance.gameObject.transform.position = this.transform.position + Vector3.back * 2;
-            _currentInstance.gameObject.transform.rotation = this.transform.rotation;
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftControl) && !ManagerSkills.instance.IsUnlocked(SkillCategory.dopplegangerCategory))
-        {
-            print("Habilidad no activa");
+            entity.Initialize(_lifeCopy);
+            _currentInstance.transform.position = this.transform.position + Vector3.back * 2;
+            _currentInstance.transform.rotation = this.transform.rotation;
+            _cooldownTimer = _cooldown;
         }
     }
-    private bool CanUseSkill()
+    private void GetSkillsValue()
     {
-        return false;
+        _cooldown = ManagerSkills.instance.GetValueSkill(SkillCategory.dopplegangerCategory, SkillStatType.coldowndoppleganger);
+        _lifeCopy = ManagerSkills.instance.GetValueSkill(SkillCategory.dopplegangerCategory, SkillStatType.dopplegangerLife);
     }
 }
