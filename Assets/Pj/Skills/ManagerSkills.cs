@@ -7,7 +7,8 @@ public enum SkillCategory
     dashCategory,
     shieldCategory,
     dopplegangerCategory,
-    survivorCategory
+    survivorCategory,
+    None,
 }
 public class ManagerSkills : MonoBehaviour
 {
@@ -144,6 +145,7 @@ public class ManagerSkills : MonoBehaviour
         ActiveSkill skill = _skills[category];
         if (skill.isUnlocked) return;
         skill.isUnlocked = true;
+        print("Desbloqueaste" + category);
         var entry = skillEntries.Find(x => x.category == category);
         if (entry != null) entry.isUnlocked = true;
     }
