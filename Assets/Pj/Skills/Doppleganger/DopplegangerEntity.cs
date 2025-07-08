@@ -2,17 +2,17 @@ using System.Collections.Generic;
 using UnityEngine;
 public class DopplegangerEntity : MonoBehaviour
 {
-    [SerializeField]private float _maxLife;
-    [SerializeField]private float _currentLife;
+    public float _maxLife;
+    private float _currentLife;
     public static List<Transform> activeClones = new List<Transform>();
     private void OnEnable()
     {
         ZombieAttack.onHitDopplegangerZombie += HandleHitDopplegangerZombie;
         activeClones.Add(this.transform);
     }
-    private void Start()
+    private void Update()
     {
-        _currentLife = _maxLife;
+        print($"La vida actual es : {_currentLife}");
     }
     private void HandleHitDopplegangerZombie(DopplegangerEntity doppleganger, float damage)
     {
@@ -24,7 +24,7 @@ public class DopplegangerEntity : MonoBehaviour
     {
         _currentLife -= damage;
         int randomIndex = Random.Range(0, AudioManager.instance.playerDamageSfx.Length);
-        AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.playerDamageSfx[randomIndex]); //sound effect
+        AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.playerDamageSfx[randomIndex]);
         if (_currentLife <= 0f)
         {
             Destroy(gameObject);
@@ -34,5 +34,10 @@ public class DopplegangerEntity : MonoBehaviour
     {
         ZombieAttack.onHitDopplegangerZombie -= HandleHitDopplegangerZombie;
         activeClones.Remove(this.transform);
+    }
+    public void Initialize(float maxLife)
+    {
+        _maxLife = maxLife;
+        _currentLife = _maxLife;
     }
 }

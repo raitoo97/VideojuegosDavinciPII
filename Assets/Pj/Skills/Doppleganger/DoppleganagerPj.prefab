@@ -1713,7 +1713,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxLife: 25
-  _currentLife: 0
 --- !u!65 &5322328830958283993
 BoxCollider:
   m_ObjectHideFlags: 0
