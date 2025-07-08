@@ -33,16 +33,6 @@ public class CameraShakeManager : MonoBehaviour
         if (virtualCam == null) return;
         noise = virtualCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
-    void Update()
-    {
-        if (noise != null && virtualCam != null)
-        {
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                ShakeCamera(Shakes.PlayerUnderAtack);
-            }
-        }
-    }
     public void ShakeCamera(Shakes type)
     {
         if (!DictionaryShake.ContainsKey(type)) return;
