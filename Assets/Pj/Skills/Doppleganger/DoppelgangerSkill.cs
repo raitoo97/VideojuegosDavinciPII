@@ -11,7 +11,7 @@ public class DoppelgangerSkill : MonoBehaviour
             _currentInstance.gameObject.transform.position = this.transform.position + Vector3.back * 2;
             _currentInstance.gameObject.transform.rotation = this.transform.rotation;
         }
-        else
+        else if (Input.GetKeyDown(KeyCode.LeftControl) && !ManagerSkills.instance.IsUnlocked(SkillCategory.dopplegangerCategory))
         {
             print("Habilidad no activa");
         }
