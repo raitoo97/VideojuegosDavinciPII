@@ -8,8 +8,12 @@ public enum SkillStatType
     dashCooldown,
     shieldDuration,
     shieldRadius,
-    shieldCooldown
-
+    shieldCooldown,
+    dopplegangerLife,
+    coldowndoppleganger,
+    lifeSurvivor,
+    ratioPickUp,
+    chanceHealthDrop
 }
 [Serializable]
 public class SkillStat

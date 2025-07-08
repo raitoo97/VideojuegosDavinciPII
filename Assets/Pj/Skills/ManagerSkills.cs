@@ -5,7 +5,9 @@ public enum SkillCategory
 {
     turretCategory,
     dashCategory,
-    shieldCategory
+    shieldCategory,
+    dopplegangerCategory,
+    survivorCategory
 }
 public class ManagerSkills : MonoBehaviour
 {
@@ -141,12 +143,9 @@ public class ManagerSkills : MonoBehaviour
         if (!_skills.ContainsKey(category)) return;
         ActiveSkill skill = _skills[category];
         if (skill.isUnlocked) return;
-        if (PointManager.instance.SpendPoints(skill.costToUnlock))
-        {
-            skill.isUnlocked = true;
-            var entry = skillEntries.Find(x => x.category == category);
-            if (entry != null) entry.isUnlocked = true;
-        }
+        skill.isUnlocked = true;
+        var entry = skillEntries.Find(x => x.category == category);
+        if (entry != null) entry.isUnlocked = true;
     }
     public bool CanUnlockSkillCategory(SkillCategory category)
     {
