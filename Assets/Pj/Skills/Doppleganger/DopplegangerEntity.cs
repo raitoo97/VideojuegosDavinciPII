@@ -34,20 +34,15 @@ public class DopplegangerEntity : MonoBehaviour
     }
     private void UltimateDoppelganger()
     {
+        Debug.Log("Ultimate activada");
         if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.dopplegangerCategory))
         {
             var Colliders = Physics.OverlapSphere(this.transform.position, 5, layerMask);
             foreach (var zombies in Colliders)
             {
                 if (zombies.TryGetComponent<ZombieBehaviour>(out var zombie))
-                {
                     ultiDopplegangerActivate?.Invoke(zombie);
-                }
             }
-        }
-        else
-        {
-            print("No");
         }
     }
     private void OnDisable()

@@ -181,6 +181,7 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
         }
         Bullet.onHitZombie -= HandleHitZombie;
         TrailCollider.onHitZombie -= HandleDashUlti;
+        DopplegangerEntity.ultiDopplegangerActivate -= HandleDopplegangerUlti;
     }
     IEnumerator corrutinaDeath()
     {
