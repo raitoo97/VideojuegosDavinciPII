@@ -17,7 +17,7 @@ MonoBehaviour:
     valuesByLevel:
     - 50
     - 100
-    - 500
+    - 300
     costPerLevel:
     - 0
     - 600
