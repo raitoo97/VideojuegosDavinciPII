@@ -8,6 +8,7 @@ public class DopplegangerEntity : MonoBehaviour
     public static List<Transform> activeClones = new List<Transform>();
     public static event Action<ZombieBehaviour> ultiDopplegangerActivate;
     public LayerMask layerMask;
+    private bool _ultiExecuted = false;
     private void OnEnable()
     {
         ZombieAttack.onHitDopplegangerZombie += HandleHitDopplegangerZombie;
@@ -24,13 +25,14 @@ public class DopplegangerEntity : MonoBehaviour
         _currentLife -= damage;
         int randomIndex = UnityEngine.Random.Range(0, AudioManager.instance.playerDamageSfx.Length);
         AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.playerDamageSfx[randomIndex]);
-        if (_currentLife <= 0f)
+        if (_currentLife <= 0f && !_ultiExecuted)
         {
-            UltimateDoppleganger();
+            _ultiExecuted = true;
+            UltimateDoppelganger();
             Destroy(gameObject);
         }
     }
-    private void UltimateDoppleganger()
+    private void UltimateDoppelganger()
     {
         if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.dopplegangerCategory))
         {
