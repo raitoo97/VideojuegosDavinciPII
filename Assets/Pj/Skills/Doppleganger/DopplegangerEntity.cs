@@ -10,10 +10,6 @@ public class DopplegangerEntity : MonoBehaviour
         ZombieAttack.onHitDopplegangerZombie += HandleHitDopplegangerZombie;
         activeClones.Add(this.transform);
     }
-    private void Update()
-    {
-        print($"La vida actual es : {_currentLife}");
-    }
     private void HandleHitDopplegangerZombie(DopplegangerEntity doppleganger, float damage)
     {
         int randomIndex = Random.Range(0, AudioManager.instance.zombieAttackSfx.Length);
@@ -32,6 +28,14 @@ public class DopplegangerEntity : MonoBehaviour
     }
     private void OnDisable()
     {
+        if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.dopplegangerCategory))
+        {
+            print("Esta Desbloqueada");
+        }
+        else
+        {
+            print("No");
+        }
         ZombieAttack.onHitDopplegangerZombie -= HandleHitDopplegangerZombie;
         activeClones.Remove(this.transform);
     }
