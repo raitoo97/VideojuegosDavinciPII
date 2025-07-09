@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 public class DopplegangerEntity : MonoBehaviour
@@ -5,6 +6,8 @@ public class DopplegangerEntity : MonoBehaviour
     public float _maxLife;
     private float _currentLife;
     public static List<Transform> activeClones = new List<Transform>();
+    public static event Action<ZombieBehaviour> ultiDopplegangerActivate;
+    public LayerMask layerMask;
     private void OnEnable()
     {
         ZombieAttack.onHitDopplegangerZombie += HandleHitDopplegangerZombie;
@@ -12,30 +15,41 @@ public class DopplegangerEntity : MonoBehaviour
     }
     private void HandleHitDopplegangerZombie(DopplegangerEntity doppleganger, float damage)
     {
-        int randomIndex = Random.Range(0, AudioManager.instance.zombieAttackSfx.Length);
+        int randomIndex = UnityEngine.Random.Range(0, AudioManager.instance.zombieAttackSfx.Length);
         AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.zombieAttackSfx[randomIndex]);
         doppleganger.TakeDamage(damage);
     }
     public void TakeDamage(float damage)
     {
         _currentLife -= damage;
-        int randomIndex = Random.Range(0, AudioManager.instance.playerDamageSfx.Length);
+        int randomIndex = UnityEngine.Random.Range(0, AudioManager.instance.playerDamageSfx.Length);
         AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.playerDamageSfx[randomIndex]);
         if (_currentLife <= 0f)
         {
+            UltimateDoppleganger();
             Destroy(gameObject);
         }
     }
-    private void OnDisable()
+    private void UltimateDoppleganger()
     {
         if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.dopplegangerCategory))
         {
-            print("Esta Desbloqueada");
+            var Colliders = Physics.OverlapSphere(this.transform.position, 5, layerMask);
+            foreach (var zombies in Colliders)
+            {
+                if (zombies.TryGetComponent<ZombieBehaviour>(out var zombie))
+                {
+                    ultiDopplegangerActivate?.Invoke(zombie);
+                }
+            }
         }
         else
         {
             print("No");
         }
+    }
+    private void OnDisable()
+    {
         ZombieAttack.onHitDopplegangerZombie -= HandleHitDopplegangerZombie;
         activeClones.Remove(this.transform);
     }

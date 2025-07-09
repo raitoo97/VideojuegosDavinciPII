@@ -1713,6 +1713,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxLife: 25
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 448
 --- !u!65 &5322328830958283993
 BoxCollider:
   m_ObjectHideFlags: 0
