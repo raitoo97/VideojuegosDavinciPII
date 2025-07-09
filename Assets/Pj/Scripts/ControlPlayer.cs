@@ -174,7 +174,7 @@ public class ControlPlayer
             }
         }
         //SHIELD
-        if (unlockedShield && isShield && canShield && !isDodgeMode)
+        if (unlockedShield && isShield && canShield)
         {
             _shield.canShield = true;
             _shield.ActivateShield();
