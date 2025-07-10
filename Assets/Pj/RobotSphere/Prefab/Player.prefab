@@ -7008,6 +7008,7 @@ GameObject:
   - component: {fileID: 5530007455955783020}
   - component: {fileID: 8845614960691900477}
   - component: {fileID: 3522650585358744689}
+  - component: {fileID: 8502253604514901170}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -7141,7 +7142,7 @@ MonoBehaviour:
   maskObstacles:
     serializedVersion: 2
     m_Bits: 32768
-  _maxLife: 100
+  maxLife: 100
   _currentLife: 0
 --- !u!114 &3522650585358744689
 MonoBehaviour:
@@ -7167,6 +7168,18 @@ MonoBehaviour:
   turretV2: {fileID: 8465308312998442173}
   shotSfx: {fileID: 8300000, guid: 8d872766192051b47a9acd049369b8f7, type: 3}
   recoilPoint: {fileID: 8534146939420824425}
+--- !u!114 &8502253604514901170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469785779143389137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1534f7adb37ec284b9da1e98148c7e19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4469881310358930350
 GameObject:
   m_ObjectHideFlags: 0

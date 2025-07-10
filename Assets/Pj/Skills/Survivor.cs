@@ -4,17 +4,26 @@ using UnityEngine;
 
 public class Survivor : MonoBehaviour
 {
-    private float _playerHP;
+    public static Survivor instance;
     private void Start()
     {
-        if ( Player.instance != null)
+        if (instance == null)
         {
-            _playerHP = Player.instance.maxLife;
+            instance = this;
         }
     }
 
     private void Update()
     {
         
+    }
+    public void UpgradeLife()
+    {
+        if ( Player.instance != null )
+        {
+            var result = ManagerSkills.instance.GetValueSkill(SkillCategory.survivorCategory, SkillStatType.lifeSurvivor);
+            Player.instance.maxLife = result;
+            Debug.Log("GET LEVEL: " + ManagerSkills.instance.GetLevel(SkillCategory.survivorCategory, SkillStatType.lifeSurvivor));
+        }
     }
 }

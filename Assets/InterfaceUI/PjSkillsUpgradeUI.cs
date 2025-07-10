@@ -27,6 +27,10 @@ public class PjSkillsUpgradeUI
     private Text CooldownDashText;
     private Text SpeedDashText;
     private Button UltimateDash;
+    [Header("Survivor")]
+    private Button UnlockSurvivor;
+    private Button UpgradeLife;
+    private Text UpgradeLifeText;
 
     public static bool alreadyClickedUnlock = false;
     public static bool alreadyClickedUpgrade = false;
@@ -52,7 +56,10 @@ public class PjSkillsUpgradeUI
         RatioShieldText,// ratio del shield nivel
         DurationShieldText,//duracion del shield nivel
         UltimateTurret,
-        UltimateDash
+        UltimateDash,
+        UnlockSurvivor, //SURVIVOR
+        UpgradeLife,
+        UpgradeLifeText
     }
     public PjSkillsUpgradeUI(List<Text> textos,List<Button>buttons)
     {
@@ -79,6 +86,11 @@ public class PjSkillsUpgradeUI
         this.CooldownDashText = textos.Find(x => x.gameObject.name == UIElementName.CooldownDashText.ToString());
         this.SpeedDashText = textos.Find(x => x.gameObject.name == UIElementName.SpeedDashText.ToString());
         this.UltimateDash = buttons.Find(x => x.gameObject.name == UIElementName.UltimateDash.ToString());
+        //SURVIVOR
+        this.UnlockSurvivor = buttons.Find(x=> x.gameObject.name == UIElementName.UnlockSurvivor.ToString());
+        this.UpgradeLife = buttons.Find(x=> x.gameObject.name == UIElementName.UpgradeLife.ToString());
+        this.UpgradeLifeText = textos.Find(x => x.gameObject.name == UIElementName.UpgradeLifeText.ToString());
+
     }
     public void OnStart()
     {
@@ -178,7 +190,13 @@ public class PjSkillsUpgradeUI
             UnlockShield.onClick.RemoveAllListeners();
             UnlockShield.targetGraphic.color = Color.white;
             UnlockShield.interactable = false;
-            if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.shieldCategory, SkillStatType.shieldDuration) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.shieldCategory))
+
+            if (ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldDuration) >= 2)
+            {
+                UpgradeShieldDurationButton.interactable = false;
+                UpgradeShieldDurationButton.targetGraphic.color = Color.gray;
+            }
+            else if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.shieldCategory, SkillStatType.shieldDuration) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.shieldCategory))
             {
                 UpgradeShieldDurationButton.onClick.RemoveAllListeners();
                 UpgradeShieldDurationButton.onClick.AddListener(UpgradeShieldDuration);
@@ -192,7 +210,13 @@ public class PjSkillsUpgradeUI
                 UpgradeShieldDurationButton.targetGraphic.color = Color.gray;
 
             }
-            if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.shieldCategory, SkillStatType.shieldRadius) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.shieldCategory))
+
+            if (ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldRadius) >= 2)
+            {
+                UpgradeShieldRatioButton.interactable = false;
+                UpgradeShieldRatioButton.targetGraphic.color = Color.gray;
+            }
+            else if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.shieldCategory, SkillStatType.shieldRadius) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.shieldCategory))
             {
                 UpgradeShieldRatioButton.onClick.RemoveAllListeners();
                 UpgradeShieldRatioButton.onClick.AddListener(UpgradeShieldRatio);
@@ -205,7 +229,13 @@ public class PjSkillsUpgradeUI
                 UpgradeShieldRatioButton.onClick.AddListener(NotEnoughPoints);
                 UpgradeShieldRatioButton.targetGraphic.color = Color.gray;
             }
-            if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.shieldCategory, SkillStatType.shieldCooldown) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.shieldCategory))
+
+            if (ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldCooldown) >= 2)
+            {
+                UpgradeShieldColdownButton.interactable = false;
+                UpgradeShieldColdownButton.targetGraphic.color = Color.gray;
+            }
+            else if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.shieldCategory, SkillStatType.shieldCooldown) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.shieldCategory))
             {
                 UpgradeShieldColdownButton.onClick.RemoveAllListeners();
                 UpgradeShieldColdownButton.onClick.AddListener(UpgradeShieldColdown);
@@ -277,9 +307,16 @@ public class PjSkillsUpgradeUI
             UnlockDash.onClick.RemoveAllListeners();
             UnlockDash.interactable = false;
 
-            if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.dashCategory, SkillStatType.dashSpeed) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory))
+            if (ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashSpeed) >= 2)
             {
                 UpgradeDashSpeedButton.onClick.RemoveAllListeners();
+                UpgradeDashSpeedButton.interactable = false;
+                UpgradeDashSpeedButton.targetGraphic.color = Color.gray;
+            }
+            else if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.dashCategory, SkillStatType.dashSpeed) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory))
+            {
+                UpgradeDashSpeedButton.onClick.RemoveAllListeners();
+                UpgradeDashSpeedButton.interactable = true;
                 UpgradeDashSpeedButton.onClick.AddListener(UpgradeDashSpeed);
                 UpgradeDashSpeedButton.targetGraphic.color = Color.white;
             }
@@ -290,7 +327,12 @@ public class PjSkillsUpgradeUI
                 UpgradeDashSpeedButton.targetGraphic.color = Color.gray;
             }
 
-            if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.dashCategory, SkillStatType.dashCooldown) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory))
+            if (ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashCooldown) >= 2)
+            {
+                UpgradeDashSCooldownButton.interactable = false;
+                UpgradeDashSCooldownButton.targetGraphic.color = Color.gray;
+            }
+            else if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.dashCategory, SkillStatType.dashCooldown) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory))
             {
                 UpgradeDashSCooldownButton.onClick.RemoveAllListeners();
                 UpgradeDashSCooldownButton.onClick.AddListener(UpgradeDashCooldown);
@@ -312,15 +354,15 @@ public class PjSkillsUpgradeUI
         else
         {
             UnlockDash.onClick.RemoveAllListeners();
-            UpgradeDashSpeedButton.onClick.RemoveAllListeners();
-            UpgradeDashSCooldownButton.onClick.RemoveAllListeners();
-
             UnlockDash.onClick.AddListener(NotEnoughPoints);
-            UpgradeDashSpeedButton.onClick.AddListener(CantPurchaseUpgrade);
-            UpgradeDashSCooldownButton.onClick.AddListener(CantPurchaseUpgrade);
-
             UnlockDash.targetGraphic.color = Color.gray;
+
+            UpgradeDashSpeedButton.onClick.RemoveAllListeners();
+            UpgradeDashSpeedButton.onClick.AddListener(CantPurchaseUpgrade);
             UpgradeDashSpeedButton.targetGraphic.color = Color.gray;
+
+            UpgradeDashSCooldownButton.onClick.RemoveAllListeners();
+            UpgradeDashSCooldownButton.onClick.AddListener(CantPurchaseUpgrade);
             UpgradeDashSCooldownButton.targetGraphic.color = Color.gray;
         }
 
@@ -345,6 +387,69 @@ public class PjSkillsUpgradeUI
 
         CooldownDashText.text = ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashCooldown).ToString();
         SpeedDashText.text = ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashSpeed).ToString();
+        #endregion
+
+        #region SURVIVOR
+        if (ManagerSkills.instance.IsUnlocked(SkillCategory.survivorCategory))
+        {
+            UnlockSurvivor.onClick.RemoveAllListeners();
+            UnlockSurvivor.interactable = false;
+
+            if (ManagerSkills.instance.GetLevel(SkillCategory.survivorCategory, SkillStatType.lifeSurvivor) >= 2)
+            {
+                UpgradeLife.interactable = false;
+                UpgradeLife.targetGraphic.color = Color.gray;
+            }
+            else if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.survivorCategory, SkillStatType.lifeSurvivor) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.survivorCategory))
+            {
+                 UpgradeLife.onClick.RemoveAllListeners();
+                 UpgradeLife.onClick.AddListener(UpgradeMaxLife);
+                 UpgradeLife.targetGraphic.color = Color.white;
+            }
+            else
+            {
+                UpgradeLife.onClick.RemoveAllListeners();
+                UpgradeLife.onClick.AddListener(NotEnoughPoints);
+                UpgradeLife.targetGraphic.color = Color.gray;
+            }
+        }
+        else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.dashCategory) && !ManagerSkills.instance.IsUnlocked(SkillCategory.dashCategory))
+        {
+            UnlockSurvivor.targetGraphic.color = Color.white;
+            UnlockSurvivor.onClick.RemoveAllListeners();
+            UnlockSurvivor.onClick.AddListener(UnlockSurvivorFunc);
+        }
+        else
+        {
+            UnlockSurvivor.onClick.RemoveAllListeners();
+            UpgradeLife.onClick.RemoveAllListeners();
+
+            UnlockSurvivor.onClick.AddListener(NotEnoughPoints);
+            UpgradeLife.onClick.AddListener(CantPurchaseUpgrade);
+
+            UnlockSurvivor.targetGraphic.color = Color.gray;
+            UpgradeLife.targetGraphic.color = Color.gray;
+        }
+
+        if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory))
+        {
+            UpgradeLife.interactable = false;
+            UpgradeLife.targetGraphic.color = Color.gray;
+        }
+        //Ulti
+        /*
+        if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory) && ManagerSkills.instance.GetUltimateUnlockCost(SkillCategory.dashCategory) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.IsUnlockUltimate(SkillCategory.dashCategory))
+        {
+            UltimateDash.interactable = true;
+            UltimateDash.targetGraphic.color = Color.white;
+        }
+        else
+        {
+            UltimateDash.interactable = false;
+            UltimateDash.targetGraphic.color = Color.gray;
+        }
+        */
+        UpgradeLifeText.text = ManagerSkills.instance.GetLevel(SkillCategory.survivorCategory, SkillStatType.lifeSurvivor).ToString();
         #endregion
     }
     private void UltimateTurretFunctionUnlock()
@@ -415,7 +520,19 @@ public class PjSkillsUpgradeUI
         AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
 
     }
+    private void UnlockSurvivorFunc()
+    {
+        ManagerSkills.instance.UnlockSkillCategory(SkillCategory.survivorCategory);
+        AudioManager.instance.PlaySfx(audioManager.UnlockSkill);
 
+    }
+    private void UpgradeMaxLife()
+    {
+        ManagerSkills.instance.UpgradeSkill(SkillCategory.survivorCategory, SkillStatType.lifeSurvivor);
+        AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
+        Survivor.instance.UpgradeLife();
+
+    }
     private void NotEnoughPoints()
     {
         audioManager.PlaySfx(audioManager.CantUnlockSkill);
