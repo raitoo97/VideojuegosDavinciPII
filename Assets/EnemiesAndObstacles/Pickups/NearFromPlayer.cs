@@ -5,7 +5,7 @@ public class NearFromPlayer
     private Transform _transform;
     private float _distance;
     private MonoBehaviour _objectMono;
-    public NearFromPlayer(Transform _transform, MonoBehaviour _objectMono, float _distance = 6f)
+    public NearFromPlayer(Transform _transform, MonoBehaviour _objectMono, float _distance)
     {
         this._transform = _transform;
         this._objectMono = _objectMono;
@@ -33,5 +33,11 @@ public class NearFromPlayer
             _transform.position = Vector3.Lerp(_transform.position, GameManager.instance.player.transform.position, t / totalTime);
             yield return null;
         }
+    }
+
+    public void SetNewDistance(float newDistance)
+    {
+        _distance = newDistance;
+        Debug.Log("DISTANCIA DE " + _distance);
     }
 }

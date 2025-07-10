@@ -26,7 +26,7 @@ public class ManagerUI : MonoBehaviour
     {
         imagesList = imagesList.OrderBy(x => x.name).ToList();
         _pjSkillsUpgradeUI = new PjSkillsUpgradeUI(textList, buttonList);
-        PjLifeStates = new PjStatesLifeBar(GameManager.instance.player.GetComponent<Player>(),imagesList.Find(x => x.gameObject.name == "LifeBar"), _statusPjImageEntries);
+        PjLifeStates = new PjStatesLifeBar(GameManager.instance.player.GetComponent<Player>(),imagesList.Find(x => x.gameObject.name == "LifeBar"), _statusPjImageEntries, imagesList.Find(x => x.gameObject.name == "LifeBarEdge"));
         _wavesUI = new WavesUI(buttonList, textList);
         _obstaclesDetectedUI = new ObstaclesDetectedUI(obstacleWarning, obstacleWarningArrow);
         PjLifeStates.OnStart();

@@ -6,27 +6,34 @@ using UnityEngine;
 
 public class Shield : MonoBehaviour
 {
-    //todo lo comentado es el slow motion
+    
     [SerializeField] public GameObject shield;
     [SerializeField] private Rigidbody _rb;
      
-    public bool canShield;
-    /*private float slowDuration = 1f;
-    private float timeLow = 0.1f;
-    private float timenormal = 1f;
-    private float originalFixedDeltaTime;*/
+    public bool canShield = false;
     public float power = 2f;
     public float radius;
+    public static Shield instance;
+
+    //SlowMotion Params
+    private float slowDuration = 2f;
+    private float timeLow = 0.1f;
+    private float timenormal = 1f;
+    private float originalFixedDeltaTime;
+
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
-        //originalFixedDeltaTime = Time.fixedDeltaTime;
+        originalFixedDeltaTime = Time.fixedDeltaTime;
         
     }
 
     
     void Update()
     {
-        
         transform.localScale = new Vector3(radius,radius,radius);
         
         transform.Rotate(Vector3.up, 40f * Time.deltaTime);
@@ -52,21 +59,21 @@ public class Shield : MonoBehaviour
                 rb.AddExplosionForce(power, explosionPos, radius, 1f, ForceMode.Impulse);
             }
         }
-       /* SLOWMOTION
-        * Time.timeScale = timeLow;
-        float t = 0f;
-        while (t <= slowDuration)
+        if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.shieldCategory))
         {
-            t += Time.unscaledDeltaTime;
-            Time.timeScale = Mathf.Lerp(timeLow, timenormal, t / slowDuration);
-            Time.fixedDeltaTime = originalFixedDeltaTime * Time.timeScale;
-            
-            yield return null;
-
-
-        }*/
-       
-       yield return null;
+         //SLOWMOTION
+         Time.timeScale = timeLow;
+         float t = 0f;
+         while (t <= slowDuration)
+         {
+             t += Time.unscaledDeltaTime;
+             Time.timeScale = Mathf.Lerp(timeLow, timenormal, t / slowDuration);
+             Time.fixedDeltaTime = originalFixedDeltaTime * Time.timeScale;
+             yield return null;
+         }
+        }
+        canShield = true;
+        yield return null;
     }
 
    
@@ -84,7 +91,7 @@ public class Shield : MonoBehaviour
     }
     public void DeactivateShield()
     {
-
+        canShield = false;
         shield.SetActive(false);
     }
 }

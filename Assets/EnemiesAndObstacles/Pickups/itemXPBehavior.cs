@@ -3,10 +3,8 @@ public class itemXPBehavior : MonoBehaviour
 {
     public float points = 100f;
     private NearFromPlayer _nearFromPlayer;
-    private void Start()
-    {
-        _nearFromPlayer = new NearFromPlayer(this.transform,this);
-    }
+    public float distance = 6;
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other != null && other.CompareTag("Player"))
@@ -17,6 +15,13 @@ public class itemXPBehavior : MonoBehaviour
     }
     private void Update()
     {
-        _nearFromPlayer.OnUpdate();
+        _nearFromPlayer?.OnUpdate();
+    }
+
+    public void InitDistanceBehavior(float newDistance)
+    {
+        distance = newDistance;
+        _nearFromPlayer = new NearFromPlayer(this.transform, this, distance);
+        
     }
 }
