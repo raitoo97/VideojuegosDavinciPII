@@ -12,7 +12,7 @@ public class CheckObstacles
     {
         this._transform = _transform;
         this.maskObstacles = maskObstacles;
-        _boxSize = new Vector3(10f, 10f, 25f);
+        _boxSize = new Vector3(10f, 10f, 30f);
         _halfExtents = _boxSize * 0.5f;
         _dotProduct = 0.0f;
     }

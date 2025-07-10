@@ -103,7 +103,6 @@ public class PlayerMenuController
         if (!_cinematicMode)
         {
             bool IsBlocked = _movement.IsBlocked();
-            Debug.Log(IsBlocked);
             if (!IsBlocked)
             {
                 _movement.Move(horizontal, vertical);

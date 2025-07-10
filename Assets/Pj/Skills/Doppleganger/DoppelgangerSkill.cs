@@ -68,7 +68,6 @@ public class DoppelgangerSkill : MonoBehaviour
         {
             if (!ManagerSkills.instance.IsUnlocked(SkillCategory.dopplegangerCategory))
             {
-                Debug.Log("Habilidad no activa");
                 return;
             }
             if (_cooldownTimer > 0f)

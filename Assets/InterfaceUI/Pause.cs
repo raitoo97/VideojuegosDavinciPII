@@ -37,25 +37,24 @@ public class Pause : MonoBehaviour
     }
     private void GoToMainMenu()
     {
-        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+        AudioManager.instance.PlaySfx(AudioManager.instance.buttonClick);
         SceneManager.LoadScene(0);
     }
     private void ExitGame()
     {
-        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+        AudioManager.instance.PlaySfx(AudioManager.instance.buttonClick);
         Application.Quit();
-        Debug.Log("Funciona solo en build");
     }
     private void ContinueButton()
     {
-        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+        AudioManager.instance.PlaySfx(AudioManager.instance.buttonClick);
         Time.timeScale = 1.0f;
         _pauseMenu.SetActive(false);
         _onPause = false;
     }
     private void PauseButton()
     {
-        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+        AudioManager.instance.PlaySfx(AudioManager.instance.buttonClick);
         Time.timeScale = 0.0f;
         _pauseMenu.SetActive(true);
         _onPause = true;
