@@ -285,6 +285,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21cbb805c1eca04d9866ccb7e587592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSources: []
+  audioMixer: {fileID: 24100000, guid: d85bcb4a32efbb84d9d8975763dc573e, type: 2}
+  masterGroup: {fileID: 24300002, guid: d85bcb4a32efbb84d9d8975763dc573e, type: 2}
+  musicGroup: {fileID: 3691469778755458622, guid: d85bcb4a32efbb84d9d8975763dc573e, type: 2}
+  sfxGroup: {fileID: -1024111228763657964, guid: d85bcb4a32efbb84d9d8975763dc573e, type: 2}
   zombieAttackSfx:
   - {fileID: 8300000, guid: 1a3606d1c4d626d4fba48d18bd004da3, type: 3}
   - {fileID: 8300000, guid: 57bbf0b3ae9cf684584724c6b2555fde, type: 3}
@@ -309,4 +314,9 @@ MonoBehaviour:
   CantUnlockSkill: {fileID: 8300000, guid: e8a9b32c9d645ba43aa59d9e93cd7c0c, type: 3}
   Level1Music: {fileID: 8300000, guid: e86b7c37ac950ae4fb8bcc2b165d4328, type: 3}
   buttonClick: {fileID: 8300000, guid: c83fd45221bc2ae4b82e8c82451ada38, type: 3}
-  audioSources: []
+  _masterSlider: {fileID: 0}
+  _initMasterVolumen: 0.5
+  _musicSlider: {fileID: 0}
+  _initMusicVolumen: 0.5
+  _sfxSlider: {fileID: 0}
+  _initSfxVolumen: 0.5
