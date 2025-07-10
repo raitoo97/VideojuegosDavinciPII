@@ -36,7 +36,6 @@ public class WavesUI
     {
         SetActivateWaveButton();
         _numberOfEnemies.text = WavesManager.instance.GetCurrentEnemies.ToString();
-        Debug.Log("Number Of Wave: " + WavesManager.instance.GetNumberWave);
     }
     private void ActivateWave()
     {

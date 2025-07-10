@@ -13,7 +13,7 @@ public enum SkillStatType
     coldowndoppleganger,
     lifeSurvivor,
     ratioPickUp,
-    chanceHealthDrop
+    healingPickup
 }
 [Serializable]
 public class SkillStat

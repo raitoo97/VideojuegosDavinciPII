@@ -178,7 +178,6 @@ public class ManagerSkills : MonoBehaviour
             skill.ultimateUnlocked = true;
             var entry = skillEntries.Find(x => x.category == category);
             if (entry != null) entry.ultimateUnlocked = true;
-            Debug.Log("¡Mejora definitiva desbloqueada!" + category);
         }
     }
     public bool AreAllSkillsMaxed(SkillCategory category)
