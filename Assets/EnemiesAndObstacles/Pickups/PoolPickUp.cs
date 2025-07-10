@@ -40,7 +40,6 @@ public class PoolPickUp : MonoBehaviour
         [SerializeField] GameObject _prefab;
         public PickupType type;
         public int initList;
-        //[SerializeField] public float points;
         [SerializeField] float chance;
         private bool dropped;
         [SerializeField] private List<GameObject> _itemPool = new List<GameObject>();
@@ -64,6 +63,18 @@ public class PoolPickUp : MonoBehaviour
             {
                 var _clonedPrefab = GetItem();
                 _clonedPrefab.transform.position = position;
+                if (_clonedPrefab.TryGetComponent<itemXPBehavior>(out var xpItem))
+                {
+                    float dist = Survivor.instance.GetCurrentPickupDistance();
+                    xpItem.InitDistanceBehavior(dist);
+                }
+                if (_clonedPrefab.TryGetComponent<itemHealthBehavior>(out var hpItem))
+                {
+                    float dist = Survivor.instance.GetCurrentPickupDistance();
+                    hpItem.InitDistanceBehavior(dist);
+                    float healing = Survivor.instance.GetCurrentHealingPickup();
+                    hpItem.healingPoints = healing;
+                }
             }
         }
         public GameObject GetItem()
@@ -73,30 +84,14 @@ public class PoolPickUp : MonoBehaviour
                 if (!item.activeSelf)
                 {
                     item.SetActive(true);
-                    //AssignBehaviorValues(item);
                     return item;
                 }
             }
             CompleteList(1);
             GameObject newItem = _itemPool[_itemPool.Count - 1];
             newItem.SetActive(true);
-            //AssignBehaviorValues(newItem);
             return newItem;
         }
-        /*
-        private void AssignBehaviorValues(GameObject item)
-        {
-            Debug.Log($"[DEBUG] Asignando puntos: {points} al item {type}");
-
-            if (type == PickupType.Health && item.TryGetComponent<itemHealthBehavior>(out var heal))
-            {
-                heal.SetHealingPoints(points);
-            }
-
-            if (type == PickupType.Xp && item.TryGetComponent<itemXPBehavior> (out var xp))
-            {
-                xp.SetXpPoints(points);
-            }
-        }*/
+       
     }
 }

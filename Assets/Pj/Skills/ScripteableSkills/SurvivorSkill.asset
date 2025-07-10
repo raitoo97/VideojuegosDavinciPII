@@ -10,33 +10,33 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d18f75e9f13b7104cbe84e68462834b9, type: 3}
-  m_Name: ShieldSkill
+  m_Name: SurvivorSkill
   m_EditorClassIdentifier: 
   dataScripteable:
-  - skillType: 4
+  - skillType: 9
     valuesByLevel:
-    - 2
-    - 3
-    - 4
+    - 100
+    - 200
+    - 300
     costPerLevel:
     - 0
-    - 200
     - 400
-  - skillType: 5
+    - 800
+  - skillType: 10
     valuesByLevel:
-    - 3
-    - 4
-    - 5
+    - 6
+    - 10
+    - 20
     costPerLevel:
     - 0
-    - 200
     - 400
-  - skillType: 6
+    - 600
+  - skillType: 11
     valuesByLevel:
-    - 22
-    - 13
-    - 9
+    - 0
+    - 0
+    - 0
     costPerLevel:
     - 0
-    - 200
-    - 400
+    - 0
+    - 0
