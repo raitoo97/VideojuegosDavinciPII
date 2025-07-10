@@ -33,10 +33,10 @@ MonoBehaviour:
     - 600
   - skillType: 11
     valuesByLevel:
-    - 0
-    - 0
-    - 0
+    - 10
+    - 25
+    - 50
     costPerLevel:
     - 0
-    - 0
-    - 0
+    - 400
+    - 700
