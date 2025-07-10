@@ -12,21 +12,36 @@ public enum LifeStatus
 }
 public class PjStatesLifeBar
 {
-    private Image image;
+    private Image LifeBar;
+    private Image LifeBarEdge;
     private List<LifeController> _statusPjImageEntries = new List<LifeController>();
     private Player _player;
     private Dictionary<LifeStatus, LifeController> _dictionaryLife = new Dictionary<LifeStatus, LifeController>();
-    public PjStatesLifeBar(Player _player, Image image, List<LifeController> _statusPjImageEntries)
+
+    //LifeBarEdge
+    private float baseMaxLife;
+    private float baseEdgeWith = 712f;
+    public PjStatesLifeBar(Player _player, Image image, List<LifeController> _statusPjImageEntries, Image lifeBarEdge)
     {
         this._player = _player;
-        this.image = image;
+        this.LifeBar = image;
         this._statusPjImageEntries = _statusPjImageEntries;
+        this.LifeBarEdge = lifeBarEdge;
     }
     public void OnStart()
     {
         foreach (var entry in _statusPjImageEntries)
         {
             _dictionaryLife[entry.lifeStatusType] = new LifeController(entry.lifeStatusType, entry.statusImage,entry.EdgeStatus);
+        }
+
+        if (Player.instance != null)
+        {
+            baseMaxLife = Player.instance.maxLife;
+        }
+        if (LifeBarEdge != null)
+        {
+            baseEdgeWith = LifeBarEdge.rectTransform.sizeDelta.x;
         }
     }
     public void OnUpdate()
@@ -48,13 +63,20 @@ public class PjStatesLifeBar
             currentStatus = LifeStatus.MoreMoreInjured;
         else
             currentStatus = LifeStatus.AlmostDead;
+        UpdateLifeBarEdge();
         UpdateLifeBar();
         UpdateStatusImage(currentStatus);
     }
     private void UpdateLifeBar()
     {
-        float lifeToAmount = (_player.GetLife) / 100f;
-        image.fillAmount = Mathf.Clamp(lifeToAmount, 0f, 1f);
+        float lifeToAmount = (_player.GetLife) / Player.instance.maxLife;
+        LifeBar.fillAmount = Mathf.Clamp(lifeToAmount, 0f, 1f);
+    }
+
+    public void UpdateLifeBarEdge()
+    {
+        float percent = Player.instance.maxLife / baseMaxLife;
+        LifeBarEdge.rectTransform.sizeDelta = new Vector2(baseEdgeWith * percent, LifeBarEdge.rectTransform.sizeDelta.y);
     }
     private void UpdateStatusImage(LifeStatus status)
     {

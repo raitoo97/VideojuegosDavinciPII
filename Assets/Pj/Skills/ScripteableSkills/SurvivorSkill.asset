@@ -15,11 +15,11 @@ MonoBehaviour:
   dataScripteable:
   - skillType: 9
     valuesByLevel:
-    - 150
+    - 100
     - 200
     - 300
     costPerLevel:
-    - 200
+    - 0
     - 400
     - 800
   - skillType: 10
@@ -28,7 +28,7 @@ MonoBehaviour:
     - 10
     - 20
     costPerLevel:
-    - 200
+    - 0
     - 400
     - 600
   - skillType: 11
