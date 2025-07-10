@@ -22,6 +22,7 @@ public class itemHealthBehavior : MonoBehaviour
     {
         distance = newDistance;
         _nearFromPlayer = new NearFromPlayer(this.transform, this, distance);
-
     }
+
+
 }

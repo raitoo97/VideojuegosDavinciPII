@@ -7,6 +7,7 @@ public class Survivor : MonoBehaviour
     [SerializeField] itemHealthBehavior _healthItem;
     [SerializeField] itemXPBehavior _xpItem;
     public float currentPickupDistance = 6f;
+    public float currentHealingPickup;
     public static Survivor instance;
     private void Start()
     {
@@ -14,8 +15,6 @@ public class Survivor : MonoBehaviour
         {
             instance = this;
         }
-
-        Debug.Log(ManagerSkills.instance.GetLevel(SkillCategory.survivorCategory, SkillStatType.ratioPickUp));
     }
 
     public void UpgradeLife()
@@ -27,7 +26,7 @@ public class Survivor : MonoBehaviour
         }
     }
 
-    public void UpgradePickup()
+    public void UpgradePickupDistance()
     {
         if ( Player.instance != null )
         {
@@ -35,5 +34,14 @@ public class Survivor : MonoBehaviour
         }
     }
 
+    public void UpgradePickupHealing()
+    {
+        if ( Player.instance != null )
+        {
+            currentHealingPickup = ManagerSkills.instance.GetValueSkill(SkillCategory.survivorCategory, SkillStatType.healingPickup);
+        }
+    }
+
     public float GetCurrentPickupDistance() => currentPickupDistance;
+    public float GetCurrentHealingPickup() => currentHealingPickup;
 }

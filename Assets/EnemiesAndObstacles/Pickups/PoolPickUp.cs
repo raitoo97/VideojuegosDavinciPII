@@ -72,6 +72,8 @@ public class PoolPickUp : MonoBehaviour
                 {
                     float dist = Survivor.instance.GetCurrentPickupDistance();
                     hpItem.InitDistanceBehavior(dist);
+                    float healing = Survivor.instance.GetCurrentHealingPickup();
+                    hpItem.healingPoints = healing;
                 }
             }
         }
