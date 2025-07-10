@@ -83,6 +83,12 @@ MonoBehaviour:
     costToUnlock: 700
     ultimateUnlocked: 0
     costToUnlockUltimate: 500
+  - category: 4
+    dataStrcut: {fileID: 11400000, guid: 1f475a3f3215efb4497b3e2fb1956ae7, type: 2}
+    isUnlocked: 0
+    costToUnlock: 700
+    ultimateUnlocked: 0
+    costToUnlockUltimate: 500
 --- !u!114 &7709783099561902853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,6 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imagesList:
+  - {fileID: 0}
   - {fileID: 0}
   buttonList:
   - {fileID: 0}
@@ -111,7 +118,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   textList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
