@@ -5,16 +5,31 @@ public class Spikes : Obstacles
 {
     public static Action<float> OnTriggerSpikes;
     private float damage;
+    private bool canShield;
+    private bool _hasActiveShield;
     protected override void Awake()
     {
         base.Awake();
         damage = 10f;
+
+        
+    }
+
+    private void Start()
+    {
+        if (Shield.instance != null)
+        {
+            canShield = Shield.instance.canShield;
+            _hasActiveShield = canShield;
+        }
     }
     protected override void ActionOntriggerEnter()
     {
-        _isOnPlataform = true;
-        if (_corrutine == null)
-            _corrutine = StartCoroutine(ActionCoroutine());
+            _isOnPlataform = true;
+        bool shieldActive = Shield.instance != null && Shield.instance.canShield;
+
+            if (_corrutine == null && !shieldActive)
+                _corrutine = StartCoroutine(ActionCoroutine());
     }
     protected override void ActionOntriggerExitr()
     {

@@ -16,7 +16,6 @@ public class ObstaclesDetectedUI
     public void OnUpdate()
     {
         ShowWarningObstacles();
-        Debug.Log(canShowWarning);
     }
     private void ShowWarningObstacles()
     {
