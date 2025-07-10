@@ -21,6 +21,7 @@ public class ChestRandomSkill : MonoBehaviour
         _availableCategories.Add(SkillCategory.dashCategory);
         _availableCategories.Add(SkillCategory.shieldCategory);
         _availableCategories.Add(SkillCategory.dopplegangerCategory);
+        _availableCategories.Add(SkillCategory.survivorCategory);
     }
     private void ChoseRandomCategory()
     {
