@@ -34,7 +34,6 @@ public class Shield : MonoBehaviour
     
     void Update()
     {
-        Debug.Log(canShield);
         transform.localScale = new Vector3(radius,radius,radius);
         
         transform.Rotate(Vector3.up, 40f * Time.deltaTime);

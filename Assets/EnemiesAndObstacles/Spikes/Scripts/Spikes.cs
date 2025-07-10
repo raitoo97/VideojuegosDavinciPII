@@ -42,6 +42,7 @@ public class Spikes : Obstacles
     {
         while (_isOnPlataform)
         {
+
             OnTriggerSpikes?.Invoke(damage);
             yield return new WaitForSeconds(2);
             OnTriggerSpikes?.Invoke(damage);

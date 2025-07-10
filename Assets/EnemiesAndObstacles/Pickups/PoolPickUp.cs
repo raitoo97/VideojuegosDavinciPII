@@ -40,7 +40,6 @@ public class PoolPickUp : MonoBehaviour
         [SerializeField] GameObject _prefab;
         public PickupType type;
         public int initList;
-        //[SerializeField] public float points;
         [SerializeField] float chance;
         private bool dropped;
         [SerializeField] private List<GameObject> _itemPool = new List<GameObject>();
@@ -83,20 +82,6 @@ public class PoolPickUp : MonoBehaviour
             //AssignBehaviorValues(newItem);
             return newItem;
         }
-        /*
-        private void AssignBehaviorValues(GameObject item)
-        {
-            Debug.Log($"[DEBUG] Asignando puntos: {points} al item {type}");
-
-            if (type == PickupType.Health && item.TryGetComponent<itemHealthBehavior>(out var heal))
-            {
-                heal.SetHealingPoints(points);
-            }
-
-            if (type == PickupType.Xp && item.TryGetComponent<itemXPBehavior> (out var xp))
-            {
-                xp.SetXpPoints(points);
-            }
-        }*/
+       
     }
 }

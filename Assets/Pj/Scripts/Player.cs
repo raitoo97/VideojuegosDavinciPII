@@ -14,11 +14,13 @@ public class Player : MonoBehaviour
     public LayerMask wallLayer;
     public LayerMask maskObstacles;
     private Rigidbody _rb;
+
     [Header("Life")]
-    [SerializeField]private float _maxLife = 100f;
+    public float maxLife = 100f;
     [SerializeField]private float _currentLife;
     public static Action OnPlayerDeath;
     public static Player instance;
+
     [Header("Obstacles")]
     private CheckObstacles _checkObstacles;
     AudioManager audioManager => AudioManager.instance;//Sound
@@ -37,7 +39,7 @@ public class Player : MonoBehaviour
         _playerAnimation = new PlayerAnimation(_animator);
         _controller = new ControlPlayer(_movement, _playerAnimation, _shield);
         _checkObstacles = new CheckObstacles(this.transform, maskObstacles);
-        _currentLife = _maxLife;
+        _currentLife = maxLife;
     }
     private void OnEnable()
     {
@@ -49,10 +51,7 @@ public class Player : MonoBehaviour
     {
         _controller.OnUpdate();
         _checkObstacles.OnUpdate();
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            DamagePlayer(10);
-        }
+       
     }
     private void FixedUpdate()
     {
@@ -73,7 +72,7 @@ public class Player : MonoBehaviour
     }
     public void HealthPlayer(float healt)
     {
-        _currentLife = Mathf.Clamp(_currentLife += healt, 0, _maxLife); 
+        _currentLife = Mathf.Clamp(_currentLife += healt, 0, maxLife); 
     }
     private void HandleHitPlayerBullet(Player player,float damage, Transform bulletPos)
     {
@@ -100,9 +99,7 @@ public class Player : MonoBehaviour
         ParticlesPool.instance.SpamParticle(ParticleType.Sparks, new Vector3(0f, 2f, 0f), new Vector3(UnityEngine.Random.Range(0f, 180f), 0f, 0f), GameManager.instance.player.transform);
         player.DamagePlayer(damage);
     }
-    //private void HandleHitShield(){}
-    //public void DamageShield(float){}
-    public float GetLife { get => Mathf.Clamp(_currentLife, 0, _maxLife); }
+    public float GetLife { get => Mathf.Clamp(_currentLife, 0, maxLife); }
     private void OnDisable()
     {
         Bullet.onHitPlayerBullet -= HandleHitPlayerBullet;
