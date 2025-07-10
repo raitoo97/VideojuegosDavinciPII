@@ -3,6 +3,7 @@ using UnityEngine;
 public class ChestRandomSkill : MonoBehaviour
 {
     private List<SkillCategory> _availableCategories;
+    private float _valueChest;
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
@@ -13,6 +14,7 @@ public class ChestRandomSkill : MonoBehaviour
     private void Awake()
     {
         _availableCategories = new List<SkillCategory>();
+        _valueChest = 3000f;
     }
     private void Start()
     {
@@ -26,10 +28,13 @@ public class ChestRandomSkill : MonoBehaviour
         {
             return;
         }
-        int randomIndex = Random.Range(0, _availableCategories.Count);
-        SkillCategory random = _availableCategories[randomIndex];
-        ManagerSkills.instance.UnlockSkillCategory(random);
-        _availableCategories.Remove(random);
-        Debug.Log("Desbloqueaste: " + random);
+        if (PointManager.instance.SpendPoints(_valueChest))
+        {
+            int randomIndex = Random.Range(0, _availableCategories.Count);
+            SkillCategory random = _availableCategories[randomIndex];
+            ManagerSkills.instance.UnlockSkillCategory(random);
+            _availableCategories.Remove(random);
+            Debug.Log("Desbloqueaste: " + random);
+        }
     }
 }

@@ -38,8 +38,6 @@ public class DoppelgangerSkill : MonoBehaviour
         {
             ManagerSkills.instance.TryUnlockUltimate(SkillCategory.dopplegangerCategory);
         }
-        print(ManagerSkills.instance.GetValueSkill(SkillCategory.dopplegangerCategory, SkillStatType.coldowndoppleganger));
-        print(ManagerSkills.instance.GetValueSkill(SkillCategory.dopplegangerCategory, SkillStatType.dopplegangerLife));
     }
     private void CheckMaterial()
     {
