@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Survivor : MonoBehaviour
 {
+    [SerializeField] itemHealthBehavior _healthItem;
+    [SerializeField] itemXPBehavior _xpItem;
+    public float currentPickupDistance = 6f;
     public static Survivor instance;
     private void Start()
     {
@@ -11,19 +14,26 @@ public class Survivor : MonoBehaviour
         {
             instance = this;
         }
+
+        Debug.Log(ManagerSkills.instance.GetLevel(SkillCategory.survivorCategory, SkillStatType.ratioPickUp));
     }
 
-    private void Update()
-    {
-        
-    }
     public void UpgradeLife()
     {
         if ( Player.instance != null )
         {
             var result = ManagerSkills.instance.GetValueSkill(SkillCategory.survivorCategory, SkillStatType.lifeSurvivor);
             Player.instance.maxLife = result;
-            Debug.Log("GET LEVEL: " + ManagerSkills.instance.GetLevel(SkillCategory.survivorCategory, SkillStatType.lifeSurvivor));
         }
     }
+
+    public void UpgradePickup()
+    {
+        if ( Player.instance != null )
+        {
+            currentPickupDistance = ManagerSkills.instance.GetValueSkill(SkillCategory.survivorCategory, SkillStatType.ratioPickUp);
+        }
+    }
+
+    public float GetCurrentPickupDistance() => currentPickupDistance;
 }

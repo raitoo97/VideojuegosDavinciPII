@@ -63,6 +63,16 @@ public class PoolPickUp : MonoBehaviour
             {
                 var _clonedPrefab = GetItem();
                 _clonedPrefab.transform.position = position;
+                if (_clonedPrefab.TryGetComponent<itemXPBehavior>(out var xpItem))
+                {
+                    float dist = Survivor.instance.GetCurrentPickupDistance();
+                    xpItem.InitDistanceBehavior(dist);
+                }
+                if (_clonedPrefab.TryGetComponent<itemHealthBehavior>(out var hpItem))
+                {
+                    float dist = Survivor.instance.GetCurrentPickupDistance();
+                    hpItem.InitDistanceBehavior(dist);
+                }
             }
         }
         public GameObject GetItem()
@@ -72,14 +82,12 @@ public class PoolPickUp : MonoBehaviour
                 if (!item.activeSelf)
                 {
                     item.SetActive(true);
-                    //AssignBehaviorValues(item);
                     return item;
                 }
             }
             CompleteList(1);
             GameObject newItem = _itemPool[_itemPool.Count - 1];
             newItem.SetActive(true);
-            //AssignBehaviorValues(newItem);
             return newItem;
         }
        

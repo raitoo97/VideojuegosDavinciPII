@@ -30,7 +30,9 @@ public class PjSkillsUpgradeUI
     [Header("Survivor")]
     private Button UnlockSurvivor;
     private Button UpgradeLife;
+    private Button UpgradeRadioPickup;
     private Text UpgradeLifeText;
+    private Text UpgradeRadioText;
 
     public static bool alreadyClickedUnlock = false;
     public static bool alreadyClickedUpgrade = false;
@@ -59,7 +61,9 @@ public class PjSkillsUpgradeUI
         UltimateDash,
         UnlockSurvivor, //SURVIVOR
         UpgradeLife,
-        UpgradeLifeText
+        UpgradeRadioPickup,
+        UpgradeLifeText,
+        UpgradeRadioText
     }
     public PjSkillsUpgradeUI(List<Text> textos,List<Button>buttons)
     {
@@ -89,7 +93,9 @@ public class PjSkillsUpgradeUI
         //SURVIVOR
         this.UnlockSurvivor = buttons.Find(x=> x.gameObject.name == UIElementName.UnlockSurvivor.ToString());
         this.UpgradeLife = buttons.Find(x=> x.gameObject.name == UIElementName.UpgradeLife.ToString());
+        this.UpgradeRadioPickup = buttons.Find(x=> x.gameObject.name == UIElementName.UpgradeRadioPickup.ToString());
         this.UpgradeLifeText = textos.Find(x => x.gameObject.name == UIElementName.UpgradeLifeText.ToString());
+        this.UpgradeRadioText = textos.Find(x => x.gameObject.name == UIElementName.UpgradeRadioText.ToString());
 
     }
     public void OnStart()
@@ -411,9 +417,27 @@ public class PjSkillsUpgradeUI
                 UpgradeLife.onClick.RemoveAllListeners();
                 UpgradeLife.onClick.AddListener(NotEnoughPoints);
                 UpgradeLife.targetGraphic.color = Color.gray;
+            }  
+            
+            if (ManagerSkills.instance.GetLevel(SkillCategory.survivorCategory, SkillStatType.ratioPickUp) >= 2)
+            {
+                UpgradeRadioPickup.interactable = false;
+                UpgradeRadioPickup.targetGraphic.color = Color.gray;
+            }
+            else if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.survivorCategory, SkillStatType.ratioPickUp) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.survivorCategory))
+            {
+                UpgradeRadioPickup.onClick.RemoveAllListeners();
+                UpgradeRadioPickup.onClick.AddListener(UpgradeRadio);
+                UpgradeRadioPickup.targetGraphic.color = Color.white;
+            }
+            else
+            {
+                UpgradeRadioPickup.onClick.RemoveAllListeners();
+                UpgradeRadioPickup.onClick.AddListener(NotEnoughPoints);
+                UpgradeRadioPickup.targetGraphic.color = Color.gray;
             }
         }
-        else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.dashCategory) && !ManagerSkills.instance.IsUnlocked(SkillCategory.dashCategory))
+        else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.survivorCategory) && !ManagerSkills.instance.IsUnlocked(SkillCategory.survivorCategory))
         {
             UnlockSurvivor.targetGraphic.color = Color.white;
             UnlockSurvivor.onClick.RemoveAllListeners();
@@ -423,12 +447,15 @@ public class PjSkillsUpgradeUI
         {
             UnlockSurvivor.onClick.RemoveAllListeners();
             UpgradeLife.onClick.RemoveAllListeners();
+            UpgradeRadioPickup.onClick.RemoveAllListeners();
 
             UnlockSurvivor.onClick.AddListener(NotEnoughPoints);
             UpgradeLife.onClick.AddListener(CantPurchaseUpgrade);
+            UpgradeRadioPickup.onClick.AddListener(CantPurchaseUpgrade);
 
             UnlockSurvivor.targetGraphic.color = Color.gray;
             UpgradeLife.targetGraphic.color = Color.gray;
+            UpgradeRadioPickup.targetGraphic.color = Color.gray;
         }
 
         if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory))
@@ -449,7 +476,8 @@ public class PjSkillsUpgradeUI
             UltimateDash.targetGraphic.color = Color.gray;
         }
         */
-        UpgradeLifeText.text = ManagerSkills.instance.GetLevel(SkillCategory.survivorCategory, SkillStatType.lifeSurvivor).ToString();
+        UpgradeLifeText.text = ManagerSkills.instance.GetValueSkill(SkillCategory.survivorCategory, SkillStatType.lifeSurvivor).ToString();
+        UpgradeRadioText.text = ManagerSkills.instance.GetValueSkill(SkillCategory.survivorCategory,SkillStatType.ratioPickUp).ToString();
         #endregion
     }
     private void UltimateTurretFunctionUnlock()
@@ -531,7 +559,11 @@ public class PjSkillsUpgradeUI
         ManagerSkills.instance.UpgradeSkill(SkillCategory.survivorCategory, SkillStatType.lifeSurvivor);
         AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
         Survivor.instance.UpgradeLife();
-
+    }private void UpgradeRadio()
+    {
+        ManagerSkills.instance.UpgradeSkill(SkillCategory.survivorCategory, SkillStatType.ratioPickUp);
+        AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
+        Survivor.instance.UpgradePickup();
     }
     private void NotEnoughPoints()
     {
@@ -551,7 +583,6 @@ public class PjSkillsUpgradeUI
             alreadyClickedUpgrade = true;
             PointManager.instance.StartCoroutine(PointManager.instance.CantUpgradeRoutine());
         }
-        Debug.Log("Deberias desbloquear la habilidad primero");
     }
 }
 
