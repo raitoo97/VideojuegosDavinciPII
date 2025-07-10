@@ -3982,6 +3982,26 @@ PrefabInstance:
       propertyPath: _statusPjImageEntries.Array.data[4].statusImage
       value: 
       objectReference: {fileID: 2063888160}
+    - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: skillEntries.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: skillEntries.Array.data[3].category
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: skillEntries.Array.data[3].dataStrcut
+      value: 
+      objectReference: {fileID: 11400000, guid: 1f475a3f3215efb4497b3e2fb1956ae7, type: 2}
+    - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: skillEntries.Array.data[3].costToUnlock
+      value: 700
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: skillEntries.Array.data[3].costToUnlockUltimate
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 9083364042843550237, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: _pointsText
       value: 
