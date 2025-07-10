@@ -184,8 +184,8 @@ public class PjSkillsUpgradeUI
             UltimateTurret.targetGraphic.color = Color.gray;
         }
         
-        rateFireText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretShotSpeed).ToString();
-        distanceText.text = ManagerSkills.instance.GetLevel(SkillCategory.turretCategory, SkillStatType.turretVisionRange).ToString();
+        rateFireText.text = ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed).ToString();
+        distanceText.text = ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange).ToString();
 
 
         #endregion
@@ -302,9 +302,9 @@ public class PjSkillsUpgradeUI
             UltimateShield.targetGraphic.color = Color.gray;
         }
 
-        RatioShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldRadius).ToString();
-        CooldownShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldCooldown).ToString();
-        DurationShieldText.text = ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldDuration).ToString();
+        RatioShieldText.text = ManagerSkills.instance.GetValueSkill(SkillCategory.shieldCategory, SkillStatType.shieldRadius).ToString();
+        CooldownShieldText.text = ManagerSkills.instance.GetValueSkill(SkillCategory.shieldCategory, SkillStatType.shieldCooldown).ToString();
+        DurationShieldText.text = ManagerSkills.instance.GetValueSkill(SkillCategory.shieldCategory, SkillStatType.shieldDuration).ToString();
         #endregion
 
         #region DASH
@@ -391,8 +391,8 @@ public class PjSkillsUpgradeUI
             UltimateDash.targetGraphic.color = Color.gray;
         }
 
-        CooldownDashText.text = ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashCooldown).ToString();
-        SpeedDashText.text = ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashSpeed).ToString();
+        CooldownDashText.text = ManagerSkills.instance.GetValueSkill(SkillCategory.dashCategory, SkillStatType.dashCooldown).ToString();
+        SpeedDashText.text = ManagerSkills.instance.GetValueSkill(SkillCategory.dashCategory, SkillStatType.dashSpeed).ToString();
         #endregion
 
         #region SURVIVOR
