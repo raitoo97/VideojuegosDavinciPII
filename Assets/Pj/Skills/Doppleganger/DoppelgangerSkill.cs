@@ -29,18 +29,7 @@ public class DoppelgangerSkill : MonoBehaviour
             _cooldownTimer -= Time.deltaTime;
         ActivateSkill();
         CheckMaterial();
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            ManagerSkills.instance.UpgradeSkill(SkillCategory.dopplegangerCategory, SkillStatType.dopplegangerLife);
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            ManagerSkills.instance.UpgradeSkill(SkillCategory.dopplegangerCategory, SkillStatType.coldowndoppleganger);
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            ManagerSkills.instance.TryUnlockUltimate(SkillCategory.dopplegangerCategory);
-        }
+        
     }
     private void CheckMaterial()
     {

@@ -29,13 +29,25 @@ public class PjSkillsUpgradeUI
     private Text SpeedDashText;
     private Button UltimateDash;
     [Header("Survivor")]
-    private Image UnlockSurvivor;
+    //private Image UnlockSurvivor;
     private Button UpgradeLife;
     private Button UpgradeRadioPickup;
     private Button UpgradePickupHealing;
     private Text UpgradeLifeText;
     private Text UpgradeRadioText;
     private Text UpgradePickupHealingText;
+
+    [Header("Doppleganger")]
+    private Button UpgradeDoppleLife;
+    private Button UpgradeDoppleCooldwn;
+    private Button UltimateDopple;
+    
+    private Text UpgradeDoppleLifeText;
+    private Text UpgradeDoppleCooldwnText;
+        
+        
+        
+        
 
     public static bool alreadyClickedUnlock = false;
     public static bool alreadyClickedUpgrade = false;
@@ -62,13 +74,20 @@ public class PjSkillsUpgradeUI
         DurationShieldText,//duracion del shield nivel
         UltimateTurret,
         UltimateDash,
-        //UnlockSurvivor, //SURVIVOR
+         //SURVIVOR
         UpgradeLife,
         UpgradeRadioPickup,
         UpgradePickupHealing,
         UpgradeLifeText,
         UpgradeRadioText,
-        UpgradePickupHealingText
+        UpgradePickupHealingText,
+
+        //Doppleganger
+        UpgradeDoppleLife,
+        UpgradeDoppleLifeText,
+        UpgradeDoppleCooldwn,
+        UpgradeDoppleCooldwnText,
+        UltimateDopple
     }
 
     
@@ -107,6 +126,14 @@ public class PjSkillsUpgradeUI
         this.UpgradeRadioText = textos.Find(x => x.gameObject.name == UIElementName.UpgradeRadioText.ToString());
         this.UpgradePickupHealingText = textos.Find(x => x.gameObject.name == UIElementName.UpgradePickupHealingText.ToString());
 
+        //Doppleganger
+        this.UpgradeDoppleLife = buttons.Find(x=> x.gameObject.name == UIElementName.UpgradeDoppleLife.ToString());
+        this.UpgradeDoppleLifeText = textos.Find(x => x.gameObject.name == UIElementName.UpgradeDoppleLifeText.ToString());
+
+        this.UpgradeDoppleCooldwn = buttons.Find(x=> x.gameObject.name == UIElementName.UpgradeDoppleCooldwn.ToString());
+        this.UpgradeDoppleCooldwnText = textos.Find(x => x.gameObject.name == UIElementName.UpgradeDoppleCooldwnText.ToString());
+
+        this.UltimateDopple = buttons.Find(x=> x.gameObject.name == UIElementName.UltimateDopple.ToString());
     }
     public void OnStart()
     {
@@ -131,6 +158,11 @@ public class PjSkillsUpgradeUI
         UpgradeLife.onClick.AddListener(CantPurchaseUpgrade);
         UpgradeRadioPickup.onClick.AddListener(CantPurchaseUpgrade);
         UpgradePickupHealing.onClick.AddListener(CantPurchaseUpgrade);
+
+        //dopple
+        UpgradeDoppleLife.onClick.AddListener(CantPurchaseUpgrade);
+        UpgradeDoppleCooldwn.onClick.AddListener(CantPurchaseUpgrade);
+        UltimateDopple.onClick.AddListener(UltimateDoppleFunctionUnlock);
     }
     public void OnUpdate()
     {
@@ -217,9 +249,9 @@ public class PjSkillsUpgradeUI
         #region SHIELD
         if (ManagerSkills.instance.IsUnlocked(SkillCategory.shieldCategory))
         {
-            Color c = ManagerUI.instance.UltiUnlockedShield.color;
+            Color c = ManagerUI.instance.UnlockedShield.color;
             c.a = 1;
-            ManagerUI.instance.UltiUnlockedShield.color = c;
+            ManagerUI.instance.UnlockedShield.color = c;
             ManagerUI.instance.ShieldText.gameObject.SetActive(true);
 
             if (ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldDuration) >= 2)
@@ -335,9 +367,9 @@ public class PjSkillsUpgradeUI
         #region DASH
         if (ManagerSkills.instance.IsUnlocked(SkillCategory.dashCategory))
         {
-            Color d = ManagerUI.instance.UltiUnlockedDash.color;
+            Color d = ManagerUI.instance.UnlockedDash.color;
             d.a = 1;
-            ManagerUI.instance.UltiUnlockedDash.color = d;
+            ManagerUI.instance.UnlockedDash.color = d;
             ManagerUI.instance.DashText.gameObject.SetActive(true);
             //UnlockDash.onClick.RemoveAllListeners();
             //UnlockDash.interactable = false;
@@ -427,9 +459,9 @@ public class PjSkillsUpgradeUI
         #region SURVIVOR
         if (ManagerSkills.instance.IsUnlocked(SkillCategory.survivorCategory))
         {
-            Color s = ManagerUI.instance.UltiUnlockedSurvivor.color;
+            Color s = ManagerUI.instance.UnlockedSurvivor.color;
             s.a = 1;
-            ManagerUI.instance.UltiUnlockedSurvivor.color = s;
+            ManagerUI.instance.UnlockedSurvivor.color = s;
             ManagerUI.instance.SurvivorText.gameObject.SetActive(true);
 
             //UnlockSurvivor.onClick.RemoveAllListeners();
@@ -534,6 +566,87 @@ public class PjSkillsUpgradeUI
         UpgradeRadioText.text = ManagerSkills.instance.GetValueSkill(SkillCategory.survivorCategory,SkillStatType.ratioPickUp).ToString();
         UpgradePickupHealingText.text = ManagerSkills.instance.GetValueSkill(SkillCategory.survivorCategory,SkillStatType.healingPickup).ToString();
         #endregion
+
+        #region DOPPLE
+        if (ManagerSkills.instance.IsUnlocked(SkillCategory.dopplegangerCategory))
+        {
+            Color d = ManagerUI.instance.UnlockedDoppleganger.color;
+            d.a = 1;
+            ManagerUI.instance.UnlockedDoppleganger.color = d;
+            ManagerUI.instance.DopplegangerText.gameObject.SetActive(true);
+
+            if (ManagerSkills.instance.GetLevel(SkillCategory.dopplegangerCategory, SkillStatType.dopplegangerLife) >= 2)
+            {
+                UpgradeDoppleLife.onClick.RemoveAllListeners();
+                UpgradeDoppleLife.interactable = false;
+                UpgradeDoppleLife.targetGraphic.color = Color.gray;
+            }
+            else if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.dopplegangerCategory, SkillStatType.dopplegangerLife) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dopplegangerCategory))
+            {
+                UpgradeDoppleLife.onClick.RemoveAllListeners();
+                UpgradeDoppleLife.interactable = true;
+                UpgradeDoppleLife.onClick.AddListener(UpgradeDoppleLifeSkill);
+                UpgradeDoppleLife.targetGraphic.color = Color.white;
+            }
+            else
+            {
+                UpgradeDoppleLife.onClick.RemoveAllListeners();
+                UpgradeDoppleLife.onClick.AddListener(NotEnoughPoints);
+                UpgradeDoppleLife.targetGraphic.color = Color.gray;
+            }
+
+            if (ManagerSkills.instance.GetLevel(SkillCategory.dopplegangerCategory, SkillStatType.coldowndoppleganger) >= 2)
+            {
+                UpgradeDoppleCooldwn.interactable = false;
+                UpgradeDoppleCooldwn.targetGraphic.color = Color.gray;
+            }
+            else if (ManagerSkills.instance.GetValueSkillCost(SkillCategory.dopplegangerCategory, SkillStatType.coldowndoppleganger) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dopplegangerCategory))
+            {
+                UpgradeDoppleCooldwn.onClick.RemoveAllListeners();
+                UpgradeDoppleCooldwn.onClick.AddListener(UpgradeDoppleCooldownSkill);
+                UpgradeDoppleCooldwn.targetGraphic.color = Color.white;
+            }
+            else
+            {
+                UpgradeDoppleCooldwn.onClick.RemoveAllListeners();
+                UpgradeDoppleCooldwn.onClick.AddListener(NotEnoughPoints);
+                UpgradeDoppleCooldwn.targetGraphic.color = Color.gray;
+            }
+        }
+        else
+        {
+
+            UpgradeDoppleLife.onClick.RemoveAllListeners();
+            UpgradeDoppleLife.onClick.AddListener(CantPurchaseUpgrade);
+            UpgradeDoppleLife.targetGraphic.color = Color.gray;
+
+            UpgradeDoppleCooldwn.onClick.RemoveAllListeners();
+            UpgradeDoppleCooldwn.onClick.AddListener(CantPurchaseUpgrade);
+            UpgradeDoppleCooldwn.targetGraphic.color = Color.gray;
+        }
+
+        if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dopplegangerCategory))
+        {
+            UpgradeDoppleLife.interactable = false;
+            UpgradeDoppleCooldwn.interactable = false;
+            UpgradeDoppleLife.targetGraphic.color = Color.gray;
+            UpgradeDoppleCooldwn.targetGraphic.color = Color.gray;
+        }
+        //Ulti
+        if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dopplegangerCategory) && ManagerSkills.instance.GetUltimateUnlockCost(SkillCategory.dopplegangerCategory) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.IsUnlockUltimate(SkillCategory.dopplegangerCategory))
+        {
+            UltimateDopple.interactable = true;
+            UltimateDopple.targetGraphic.color = Color.white;
+        }
+        else
+        {
+            UltimateDopple.interactable = false;
+            UltimateDopple.targetGraphic.color = Color.gray;
+        }
+
+        UpgradeDoppleLifeText.text = ManagerSkills.instance.GetValueSkill(SkillCategory.dopplegangerCategory, SkillStatType.dopplegangerLife).ToString();
+        UpgradeDoppleCooldwnText.text = ManagerSkills.instance.GetValueSkill(SkillCategory.dopplegangerCategory, SkillStatType.coldowndoppleganger).ToString();
+        #endregion
     }
     private void UltimateTurretFunctionUnlock()
     {
@@ -561,12 +674,7 @@ public class PjSkillsUpgradeUI
         AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
 
     }
-    private void UnlockShieldFunction()
-    {
-        ManagerSkills.instance.UnlockSkillCategory(SkillCategory.shieldCategory);
-        AudioManager.instance.PlaySfx(audioManager.UnlockSkill);
-
-    }
+   
     private void UpgradeShieldRatio() 
     {
         ManagerSkills.instance.UpgradeSkill(SkillCategory.shieldCategory, SkillStatType.shieldRadius);
@@ -585,12 +693,12 @@ public class PjSkillsUpgradeUI
         AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
 
     }
-    private void UnlockDashFunction()
-    {
-        ManagerSkills.instance.UnlockSkillCategory(SkillCategory.dashCategory);
-        AudioManager.instance.PlaySfx(audioManager.UnlockSkill);
+    //private void UnlockDashFunction()
+    //{
+    //    ManagerSkills.instance.UnlockSkillCategory(SkillCategory.dashCategory);
+    //    AudioManager.instance.PlaySfx(audioManager.UnlockSkill);
 
-    }
+    //}
     private void UpgradeDashSpeed() 
     {
         ManagerSkills.instance.UpgradeSkill(SkillCategory.dashCategory, SkillStatType.dashSpeed);
@@ -603,12 +711,7 @@ public class PjSkillsUpgradeUI
         AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
 
     }
-    private void UnlockSurvivorFunc()
-    {
-        ManagerSkills.instance.UnlockSkillCategory(SkillCategory.survivorCategory);
-        AudioManager.instance.PlaySfx(audioManager.UnlockSkill);
-
-    }
+    
     private void UpgradeMaxLife()
     {
         ManagerSkills.instance.UpgradeSkill(SkillCategory.survivorCategory, SkillStatType.lifeSurvivor);
@@ -625,6 +728,22 @@ public class PjSkillsUpgradeUI
         ManagerSkills.instance.UpgradeSkill(SkillCategory.survivorCategory, SkillStatType.healingPickup);
         AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
         Survivor.instance.UpgradePickupHealing();
+    }
+    private void UpgradeDoppleLifeSkill()
+    {
+        ManagerSkills.instance.UpgradeSkill(SkillCategory.dopplegangerCategory, SkillStatType.dopplegangerLife);
+        AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
+    }
+    private void UpgradeDoppleCooldownSkill()
+    {
+        ManagerSkills.instance.UpgradeSkill(SkillCategory.dopplegangerCategory, SkillStatType.coldowndoppleganger);
+        AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
+    }
+
+    private void UltimateDoppleFunctionUnlock()
+    {
+        ManagerSkills.instance.TryUnlockUltimate(SkillCategory.dopplegangerCategory);
+        AudioManager.instance.PlaySfx(audioManager.UnlockSkill);
     }
     private void NotEnoughPoints()
     {

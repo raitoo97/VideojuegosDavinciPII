@@ -5,12 +5,14 @@ using UnityEngine.UI;
 public class ManagerUI : MonoBehaviour
 {
     public List<Image> imagesList = new List<Image>();
-    public Image UltiUnlockedShield;
+    public Image UnlockedShield;
     public Image ShieldText;
-    public Image UltiUnlockedDash;
+    public Image UnlockedDash;
     public Image DashText;
-    public Image UltiUnlockedSurvivor;
+    public Image UnlockedSurvivor;
     public Image SurvivorText;
+    public Image UnlockedDoppleganger;
+    public Image DopplegangerText;
 
     public List<Button> buttonList = new List<Button>();
     public List <Text> textList = new List<Text>();
@@ -57,20 +59,25 @@ public class ManagerUI : MonoBehaviour
         _unlockSkillButton.onClick.AddListener(ButtonUnlockSkillClicked);
 
         //Images of Skills unlock half alpha
-        Color c = UltiUnlockedShield.color;
+        Color c = UnlockedShield.color;
         c.a = 0.2f;
-        UltiUnlockedShield.color = c;
+        UnlockedShield.color = c;
         ShieldText.gameObject.SetActive(false);
 
-        Color d = UltiUnlockedDash.color;
+        Color d = UnlockedDash.color;
         d.a = 0.2f;
-        UltiUnlockedDash.color = d;
+        UnlockedDash.color = d;
         DashText.gameObject.SetActive(false);
 
-        Color s = UltiUnlockedSurvivor.color;
+        Color s = UnlockedSurvivor.color;
         s.a = 0.2f;
-        UltiUnlockedSurvivor.color = s;
+        UnlockedSurvivor.color = s;
         SurvivorText.gameObject.SetActive(false);
+
+        Color g = UnlockedDoppleganger.color;
+        g.a = 0.2f;
+        UnlockedDoppleganger.color = g;
+        DopplegangerText.gameObject.SetActive(false);
     }
     private void Update()
     {
