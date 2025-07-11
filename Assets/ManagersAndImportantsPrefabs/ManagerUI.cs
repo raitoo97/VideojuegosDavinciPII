@@ -17,6 +17,9 @@ public class ManagerUI : MonoBehaviour
     public GameObject SkillsPanel;
     private bool _isCanvasEnable;
     private Button _skillsButton;
+    private Button _unlockSkillButton;
+    public bool unlockSkill = false;
+
     [Header("Obstacles UI")]
     public GameObject obstacleWarning;
     public GameObject obstacleWarningArrow;
@@ -42,6 +45,8 @@ public class ManagerUI : MonoBehaviour
         _isCanvasEnable = false;
         this._skillsButton = buttonList.Find(x => x.gameObject.name == "ButtonSkill");
         _skillsButton.onClick.AddListener(ButtonSkillClicked);
+        _unlockSkillButton = buttonList.Find(x => x.gameObject.name == "ButtonUnlockRandomSkill");
+        _unlockSkillButton.onClick.AddListener(ButtonUnlockSkillClicked);
     }
     private void Update()
     {
@@ -87,6 +92,15 @@ public class ManagerUI : MonoBehaviour
         _skillsButton.onClick.AddListener(ButtonSkillClicked);
     }
 
+    private void ButtonUnlockSkillClicked()
+    {
+        if (!unlockSkill)
+        {
+            unlockSkill = true;
+        }
+    }
+
+   
     public PjStatesLifeBar getLifeBar { get => PjLifeStates; }
     public WavesUI WaveUI { get => _wavesUI; }
     public ObstaclesDetectedUI ObstaclesDetectedUI { get => _obstaclesDetectedUI;}
