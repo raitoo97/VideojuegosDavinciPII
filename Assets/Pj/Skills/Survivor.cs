@@ -16,7 +16,6 @@ public class Survivor : MonoBehaviour
             instance = this;
         }
     }
-
     public void UpgradeLife()
     {
         if ( Player.instance != null )
