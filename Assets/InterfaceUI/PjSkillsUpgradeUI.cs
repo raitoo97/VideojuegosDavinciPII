@@ -13,7 +13,7 @@ public class PjSkillsUpgradeUI
     private Button distanceButton;
     private Button UltimateTurret;
     [Header("Shield")]
-    private Button UnlockShield;
+    //private Button UnlockShield;
     private Button UpgradeShieldRatioButton;
     private Button UpgradeShieldColdownButton;
     private Button UpgradeShieldDurationButton;
@@ -22,14 +22,14 @@ public class PjSkillsUpgradeUI
     private Text CooldownShieldText;
     private Text DurationShieldText;
     [Header("Dash")]
-    private Button UnlockDash;
+    //private Button UnlockDash;
     private Button UpgradeDashSpeedButton;
     private Button UpgradeDashSCooldownButton;
     private Text CooldownDashText;
     private Text SpeedDashText;
     private Button UltimateDash;
     [Header("Survivor")]
-    private Button UnlockSurvivor;
+    private Image UnlockSurvivor;
     private Button UpgradeLife;
     private Button UpgradeRadioPickup;
     private Button UpgradePickupHealing;
@@ -47,12 +47,12 @@ public class PjSkillsUpgradeUI
         DistanceText,// distancia de la torreta
         UpgradeCadencia,//Subir cadencia de torretya
         UpgradeDistance,//Subir distancia de torreta
-        UnlockShield,//Desbloquear escudo
+        //UnlockShield,//Desbloquear escudo
         UpgradeShieldRatio,//Subir Ratio del escudo
         UpgradeShieldColdown,//Subir coldown del escudo
         UpgradeShieldDuration,//Subir duracion del escudo
         UltimateShield,
-        UnlockDash,//DesbloqueDash
+        //UnlockDash,//DesbloqueDash
         UpgradeDashSpeed,//Subir Speed Del Dash
         UpgradeDashCooldown,//Subir Coldown del dash
         CooldownDashText,//_cooldown del dash nivel
@@ -62,7 +62,7 @@ public class PjSkillsUpgradeUI
         DurationShieldText,//duracion del shield nivel
         UltimateTurret,
         UltimateDash,
-        UnlockSurvivor, //SURVIVOR
+        //UnlockSurvivor, //SURVIVOR
         UpgradeLife,
         UpgradeRadioPickup,
         UpgradePickupHealing,
@@ -70,6 +70,8 @@ public class PjSkillsUpgradeUI
         UpgradeRadioText,
         UpgradePickupHealingText
     }
+
+    
     public PjSkillsUpgradeUI(List<Text> textos,List<Button>buttons)
     {
         this.pointsText = textos.Find(x => x.gameObject.name == UIElementName.Number.ToString());
@@ -80,7 +82,7 @@ public class PjSkillsUpgradeUI
         this.distanceButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeDistance.ToString());
         this.UltimateTurret = buttons.Find(x => x.gameObject.name == UIElementName.UltimateTurret.ToString());
         //Shield
-        this.UnlockShield = buttons.Find(x => x.gameObject.name == UIElementName.UnlockShield.ToString());
+        //this.UnlockShield = buttons.Find(x => x.gameObject.name == UIElementName.UnlockShield.ToString());
         this.UpgradeShieldRatioButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeShieldRatio.ToString());
         this.UpgradeShieldColdownButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeShieldColdown.ToString());
         this.UpgradeShieldDurationButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeShieldDuration.ToString());
@@ -89,17 +91,18 @@ public class PjSkillsUpgradeUI
         this.CooldownShieldText = textos.Find(x => x.gameObject.name == UIElementName.CooldownShieldText.ToString());
         this.DurationShieldText = textos.Find(x => x.gameObject.name == UIElementName.DurationShieldText.ToString());
         //Dash
-        this.UnlockDash = buttons.Find(x => x.gameObject.name == UIElementName.UnlockDash.ToString());
+        //this.UnlockDash = buttons.Find(x => x.gameObject.name == UIElementName.UnlockDash.ToString());
         this.UpgradeDashSpeedButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeDashSpeed.ToString());
         this.UpgradeDashSCooldownButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeDashCooldown.ToString());
         this.CooldownDashText = textos.Find(x => x.gameObject.name == UIElementName.CooldownDashText.ToString());
         this.SpeedDashText = textos.Find(x => x.gameObject.name == UIElementName.SpeedDashText.ToString());
         this.UltimateDash = buttons.Find(x => x.gameObject.name == UIElementName.UltimateDash.ToString());
         //SURVIVOR
-        this.UnlockSurvivor = buttons.Find(x=> x.gameObject.name == UIElementName.UnlockSurvivor.ToString());
+        //this.UnlockSurvivor = buttons.Find(x=> x.gameObject.name == UIElementName.UnlockSurvivor.ToString());
         this.UpgradeLife = buttons.Find(x=> x.gameObject.name == UIElementName.UpgradeLife.ToString());
         this.UpgradeRadioPickup = buttons.Find(x=> x.gameObject.name == UIElementName.UpgradeRadioPickup.ToString());
         this.UpgradePickupHealing = buttons.Find(x=> x.gameObject.name == UIElementName.UpgradePickupHealing.ToString());
+
         this.UpgradeLifeText = textos.Find(x => x.gameObject.name == UIElementName.UpgradeLifeText.ToString());
         this.UpgradeRadioText = textos.Find(x => x.gameObject.name == UIElementName.UpgradeRadioText.ToString());
         this.UpgradePickupHealingText = textos.Find(x => x.gameObject.name == UIElementName.UpgradePickupHealingText.ToString());
@@ -114,14 +117,14 @@ public class PjSkillsUpgradeUI
         UltimateTurret.onClick.AddListener(UltimateTurretFunctionUnlock);
         //shield
         
-        UnlockShield.onClick.AddListener(NotEnoughPoints);
+        //UnlockShield.onClick.AddListener(NotEnoughPoints);
         UpgradeShieldRatioButton.onClick.AddListener(CantPurchaseUpgrade);
         UpgradeShieldColdownButton.onClick.AddListener(CantPurchaseUpgrade);
         UpgradeShieldDurationButton.onClick.AddListener(CantPurchaseUpgrade);
         UltimateShield.onClick.AddListener(UltimateShieldFunctionUnlock);
 
         //dash
-        UnlockDash.onClick.AddListener(NotEnoughPoints);
+        //UnlockDash.onClick.AddListener(NotEnoughPoints);
         UpgradeDashSpeedButton.onClick.AddListener(CantPurchaseUpgrade);
         UpgradeDashSCooldownButton.onClick.AddListener(CantPurchaseUpgrade);
         UltimateDash.onClick.AddListener(UltimateDashFunctionUnlock);
@@ -211,9 +214,9 @@ public class PjSkillsUpgradeUI
         #region SHIELD
         if (ManagerSkills.instance.IsUnlocked(SkillCategory.shieldCategory))
         {
-            UnlockShield.onClick.RemoveAllListeners();
-            UnlockShield.targetGraphic.color = Color.white;
-            UnlockShield.interactable = false;
+            Color c = ManagerUI.instance.UltiUnlockedShield.color;
+            c.a = 1;
+            ManagerUI.instance.UltiUnlockedShield.color = c;
 
             if (ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldDuration) >= 2)
             {
@@ -277,24 +280,24 @@ public class PjSkillsUpgradeUI
         }
         else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.shieldCategory) && !ManagerSkills.instance.IsUnlocked(SkillCategory.shieldCategory))
         {
-            UnlockShield.interactable = true;
-            UnlockShield.targetGraphic.color = Color.white;
-            UnlockShield.onClick.RemoveAllListeners();
-            UnlockShield.onClick.AddListener(UnlockShieldFunction);
+            //UnlockShield.interactable = true;
+            //UnlockShield.targetGraphic.color = Color.white;
+            //UnlockShield.onClick.RemoveAllListeners();
+            //UnlockShield.onClick.AddListener(UnlockShieldFunction);
 
         } else
         {
-            UnlockShield.onClick.RemoveAllListeners();
+            //UnlockShield.onClick.RemoveAllListeners();
             UpgradeShieldRatioButton.onClick.RemoveAllListeners();
             UpgradeShieldColdownButton.onClick.RemoveAllListeners();
             UpgradeShieldDurationButton.onClick.RemoveAllListeners();
 
-            UnlockShield.onClick.AddListener(NotEnoughPoints);
+            //UnlockShield.onClick.AddListener(NotEnoughPoints);
             UpgradeShieldRatioButton.onClick.AddListener(CantPurchaseUpgrade);
             UpgradeShieldColdownButton.onClick.AddListener(CantPurchaseUpgrade);
             UpgradeShieldDurationButton.onClick.AddListener(CantPurchaseUpgrade);
 
-            UnlockShield.targetGraphic.color = Color.gray;
+            //UnlockShield.targetGraphic.color = Color.gray;
             UpgradeShieldRatioButton.targetGraphic.color = Color.gray;
             UpgradeShieldColdownButton.targetGraphic.color = Color.gray;
             UpgradeShieldDurationButton.targetGraphic.color = Color.gray;
@@ -328,8 +331,11 @@ public class PjSkillsUpgradeUI
         #region DASH
         if (ManagerSkills.instance.IsUnlocked(SkillCategory.dashCategory))
         {
-            UnlockDash.onClick.RemoveAllListeners();
-            UnlockDash.interactable = false;
+            Color d = ManagerUI.instance.UltiUnlockedDash.color;
+            d.a = 1;
+            ManagerUI.instance.UltiUnlockedDash.color = d;
+            //UnlockDash.onClick.RemoveAllListeners();
+            //UnlockDash.interactable = false;
 
             if (ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashSpeed) >= 2)
             {
@@ -371,15 +377,15 @@ public class PjSkillsUpgradeUI
         }
         else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.dashCategory) && !ManagerSkills.instance.IsUnlocked(SkillCategory.dashCategory))
         {
-            UnlockDash.targetGraphic.color = Color.white;
-            UnlockDash.onClick.RemoveAllListeners();
-            UnlockDash.onClick.AddListener(UnlockDashFunction);
+            //UnlockDash.targetGraphic.color = Color.white;
+            //UnlockDash.onClick.RemoveAllListeners();
+            //UnlockDash.onClick.AddListener(UnlockDashFunction);
         }
         else
         {
-            UnlockDash.onClick.RemoveAllListeners();
-            UnlockDash.onClick.AddListener(NotEnoughPoints);
-            UnlockDash.targetGraphic.color = Color.gray;
+            //UnlockDash.onClick.RemoveAllListeners();
+            //UnlockDash.onClick.AddListener(NotEnoughPoints);
+            //UnlockDash.targetGraphic.color = Color.gray;
 
             UpgradeDashSpeedButton.onClick.RemoveAllListeners();
             UpgradeDashSpeedButton.onClick.AddListener(CantPurchaseUpgrade);
@@ -416,8 +422,11 @@ public class PjSkillsUpgradeUI
         #region SURVIVOR
         if (ManagerSkills.instance.IsUnlocked(SkillCategory.survivorCategory))
         {
-            UnlockSurvivor.onClick.RemoveAllListeners();
-            UnlockSurvivor.interactable = false;
+            Color s = ManagerUI.instance.UltiUnlockedSurvivor.color;
+            s.a = 1;
+            ManagerUI.instance.UltiUnlockedSurvivor.color = s;
+            //UnlockSurvivor.onClick.RemoveAllListeners();
+            //UnlockSurvivor.interactable = false;
             if (ManagerSkills.instance.GetLevel(SkillCategory.survivorCategory, SkillStatType.lifeSurvivor) >= 2)
             {
                 UpgradeLife.interactable = false;
@@ -474,23 +483,23 @@ public class PjSkillsUpgradeUI
         }
         else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.survivorCategory) && !ManagerSkills.instance.IsUnlocked(SkillCategory.survivorCategory))
         {
-            UnlockSurvivor.targetGraphic.color = Color.white;
-            UnlockSurvivor.onClick.RemoveAllListeners();
-            UnlockSurvivor.onClick.AddListener(UnlockSurvivorFunc);
+            //UnlockSurvivor.targetGraphic.color = Color.white;
+            //UnlockSurvivor.onClick.RemoveAllListeners();
+            //UnlockSurvivor.onClick.AddListener(UnlockSurvivorFunc);
         }
         else
         {
-            UnlockSurvivor.onClick.RemoveAllListeners();
+            //UnlockSurvivor.onClick.RemoveAllListeners();
             UpgradeLife.onClick.RemoveAllListeners();
             UpgradeRadioPickup.onClick.RemoveAllListeners();
             UpgradePickupHealing.onClick.RemoveAllListeners();
 
-            UnlockSurvivor.onClick.AddListener(NotEnoughPoints);
+            //UnlockSurvivor.onClick.AddListener(NotEnoughPoints);
             UpgradeLife.onClick.AddListener(CantPurchaseUpgrade);
             UpgradeRadioPickup.onClick.AddListener(CantPurchaseUpgrade);
             UpgradePickupHealing.onClick.AddListener(CantPurchaseUpgrade);
 
-            UnlockSurvivor.targetGraphic.color = Color.gray;
+            //UnlockSurvivor.targetGraphic.color = Color.gray;
             UpgradeLife.targetGraphic.color = Color.gray;
             UpgradeRadioPickup.targetGraphic.color = Color.gray;
             UpgradePickupHealing.targetGraphic.color = Color.gray;

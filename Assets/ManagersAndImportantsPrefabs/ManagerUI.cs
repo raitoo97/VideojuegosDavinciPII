@@ -5,6 +5,10 @@ using UnityEngine.UI;
 public class ManagerUI : MonoBehaviour
 {
     public List<Image> imagesList = new List<Image>();
+    public Image UltiUnlockedShield;
+    public Image UltiUnlockedDash;
+    public Image UltiUnlockedSurvivor;
+
     public List<Button> buttonList = new List<Button>();
     public List <Text> textList = new List<Text>();
     public List<LifeController> _statusPjImageEntries = new List<LifeController>();
@@ -32,6 +36,7 @@ public class ManagerUI : MonoBehaviour
     void Start()
     {
         imagesList = imagesList.OrderBy(x => x.name).ToList();
+
         _pjSkillsUpgradeUI = new PjSkillsUpgradeUI(textList, buttonList);
         PjLifeStates = new PjStatesLifeBar(GameManager.instance.player.GetComponent<Player>(),imagesList.Find(x => x.gameObject.name == "LifeBar"), _statusPjImageEntries, imagesList.Find(x => x.gameObject.name == "LifeBarEdge"));
         _wavesUI = new WavesUI(buttonList, textList);
@@ -47,6 +52,19 @@ public class ManagerUI : MonoBehaviour
         _skillsButton.onClick.AddListener(ButtonSkillClicked);
         _unlockSkillButton = buttonList.Find(x => x.gameObject.name == "ButtonUnlockRandomSkill");
         _unlockSkillButton.onClick.AddListener(ButtonUnlockSkillClicked);
+
+        //Images of Skills unlock half alpha
+        Color c = UltiUnlockedShield.color;
+        c.a = 0.2f;
+        UltiUnlockedShield.color = c;
+
+        Color d = UltiUnlockedDash.color;
+        d.a = 0.2f;
+        UltiUnlockedDash.color = d;
+
+        Color s = UltiUnlockedSurvivor.color;
+        s.a = 0.2f;
+        UltiUnlockedSurvivor.color = s;
     }
     private void Update()
     {

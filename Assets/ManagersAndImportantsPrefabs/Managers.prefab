@@ -111,10 +111,10 @@ MonoBehaviour:
   imagesList:
   - {fileID: 0}
   - {fileID: 0}
+  UltiUnlockedShield: {fileID: 0}
+  UltiUnlockedDash: {fileID: 0}
+  UltiUnlockedSurvivor: {fileID: 0}
   buttonList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
