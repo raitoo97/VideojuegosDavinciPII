@@ -3983,10 +3983,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 864170737}
     - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: buttonList.Array.size
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: textList.Array.data[0]
       value: 
       objectReference: {fileID: 754448463}
