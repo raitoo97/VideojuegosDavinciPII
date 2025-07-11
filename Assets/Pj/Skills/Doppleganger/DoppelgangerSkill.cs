@@ -13,8 +13,11 @@ public class DoppelgangerSkill : MonoBehaviour
     [SerializeField]private List<MeshRenderer> _materialsPj = new List<MeshRenderer>();
     [Header("TurretMaterialChange")]
     [SerializeField]private MeshRenderer _turretMaterial;
+    [SerializeField]private MeshRenderer _ultiTurretMaterial;
     [SerializeField]private Material _orginalMaterialTurret;
     [SerializeField]private Material _dopplegangerMaterialTurert;
+    [SerializeField]private Material _orginalUltiMaterialTurret;
+    [SerializeField]private Material _dopplegangerultiMaterialTurert;
     [Header("MisileMaterialChange")]
     [SerializeField]private MeshRenderer _misilMaterial;
     [SerializeField]private Material _orginalMaterialMisil;
@@ -50,6 +53,7 @@ public class DoppelgangerSkill : MonoBehaviour
             }
             _turretMaterial.material = _dopplegangerMaterialTurert;
             _misilMaterial.material = _dopplegangerMaterialMisil;
+            _ultiTurretMaterial.material = _dopplegangerultiMaterialTurert;
         }
         else
         {
@@ -60,6 +64,7 @@ public class DoppelgangerSkill : MonoBehaviour
             }
             _turretMaterial.material = _orginalMaterialTurret;
             _misilMaterial.material = _orginalMaterialMisil;
+            _ultiTurretMaterial.material = _orginalUltiMaterialTurret;
         }
     }
     private void ActivateSkill()

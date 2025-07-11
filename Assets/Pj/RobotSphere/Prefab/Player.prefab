@@ -7209,8 +7209,11 @@ MonoBehaviour:
   - {fileID: 4800818106210811011}
   - {fileID: 4463238399952459927}
   _turretMaterial: {fileID: 7517474590342754816}
+  _ultiTurretMaterial: {fileID: 8769638603274740286}
   _orginalMaterialTurret: {fileID: 2100000, guid: b0992a53beaddc9468ed80d0508873a1, type: 2}
   _dopplegangerMaterialTurert: {fileID: 2100000, guid: b8980f8a50b56d24f87221672d1994bc, type: 2}
+  _orginalUltiMaterialTurret: {fileID: 2100000, guid: 35365a2c4e9c0454c923b32799f23110, type: 2}
+  _dopplegangerultiMaterialTurert: {fileID: 2100000, guid: a8cf18de82308ba4daef0a1fd2f2ca4d, type: 2}
   _misilMaterial: {fileID: 3635696662406691457}
   _orginalMaterialMisil: {fileID: 2100000, guid: 8cabdd6a3da070f478d7cd1eee1bfbb8, type: 2}
   _dopplegangerMaterialMisil: {fileID: 2100000, guid: d9ace35347513b148815ff1af7f2e6dd, type: 2}
@@ -9564,7 +9567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1492982283791042998, guid: 28c3627aff1225249a42b934e1645a1e, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4438494846224099833, guid: 28c3627aff1225249a42b934e1645a1e, type: 3}
       propertyPath: m_Name
@@ -9773,5 +9776,10 @@ Transform:
 --- !u!1 &8465308312998442173 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5474381727625545831, guid: 051ea63b29b5dcd4bbece427b28e7364, type: 3}
+  m_PrefabInstance: {fileID: 4504224298124999898}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8769638603274740286 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4092017262686232860, guid: 051ea63b29b5dcd4bbece427b28e7364, type: 3}
   m_PrefabInstance: {fileID: 4504224298124999898}
   m_PrefabAsset: {fileID: 0}
