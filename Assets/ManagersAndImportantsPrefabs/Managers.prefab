@@ -111,9 +111,14 @@ MonoBehaviour:
   imagesList:
   - {fileID: 0}
   - {fileID: 0}
-  UltiUnlockedShield: {fileID: 0}
-  UltiUnlockedDash: {fileID: 0}
-  UltiUnlockedSurvivor: {fileID: 0}
+  UnlockedShield: {fileID: 0}
+  ShieldText: {fileID: 0}
+  UnlockedDash: {fileID: 0}
+  DashText: {fileID: 0}
+  UnlockedSurvivor: {fileID: 0}
+  SurvivorText: {fileID: 0}
+  UnlockedDoppleganger: {fileID: 0}
+  DopplegangerText: {fileID: 0}
   buttonList:
   - {fileID: 0}
   - {fileID: 0}
@@ -131,7 +136,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   textList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
