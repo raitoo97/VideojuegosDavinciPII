@@ -6,8 +6,11 @@ public class ManagerUI : MonoBehaviour
 {
     public List<Image> imagesList = new List<Image>();
     public Image UltiUnlockedShield;
+    public Image ShieldText;
     public Image UltiUnlockedDash;
+    public Image DashText;
     public Image UltiUnlockedSurvivor;
+    public Image SurvivorText;
 
     public List<Button> buttonList = new List<Button>();
     public List <Text> textList = new List<Text>();
@@ -57,14 +60,17 @@ public class ManagerUI : MonoBehaviour
         Color c = UltiUnlockedShield.color;
         c.a = 0.2f;
         UltiUnlockedShield.color = c;
+        ShieldText.gameObject.SetActive(false);
 
         Color d = UltiUnlockedDash.color;
         d.a = 0.2f;
         UltiUnlockedDash.color = d;
+        DashText.gameObject.SetActive(false);
 
         Color s = UltiUnlockedSurvivor.color;
         s.a = 0.2f;
         UltiUnlockedSurvivor.color = s;
+        SurvivorText.gameObject.SetActive(false);
     }
     private void Update()
     {

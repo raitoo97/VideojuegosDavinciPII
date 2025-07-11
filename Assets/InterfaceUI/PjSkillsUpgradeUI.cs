@@ -217,6 +217,7 @@ public class PjSkillsUpgradeUI
             Color c = ManagerUI.instance.UltiUnlockedShield.color;
             c.a = 1;
             ManagerUI.instance.UltiUnlockedShield.color = c;
+            ManagerUI.instance.ShieldText.gameObject.SetActive(true);
 
             if (ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldDuration) >= 2)
             {
@@ -334,6 +335,7 @@ public class PjSkillsUpgradeUI
             Color d = ManagerUI.instance.UltiUnlockedDash.color;
             d.a = 1;
             ManagerUI.instance.UltiUnlockedDash.color = d;
+            ManagerUI.instance.DashText.gameObject.SetActive(true);
             //UnlockDash.onClick.RemoveAllListeners();
             //UnlockDash.interactable = false;
 
@@ -425,6 +427,8 @@ public class PjSkillsUpgradeUI
             Color s = ManagerUI.instance.UltiUnlockedSurvivor.color;
             s.a = 1;
             ManagerUI.instance.UltiUnlockedSurvivor.color = s;
+            ManagerUI.instance.SurvivorText.gameObject.SetActive(true);
+
             //UnlockSurvivor.onClick.RemoveAllListeners();
             //UnlockSurvivor.interactable = false;
             if (ManagerSkills.instance.GetLevel(SkillCategory.survivorCategory, SkillStatType.lifeSurvivor) >= 2)

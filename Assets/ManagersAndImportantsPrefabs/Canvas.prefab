@@ -3900,12 +3900,12 @@ GameObject:
   - component: {fileID: 2811631416007533139}
   - component: {fileID: 7439116329422051620}
   m_Layer: 5
-  m_Name: unlockDashimg
+  m_Name: DashText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3265257308144446227
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4781,12 +4781,12 @@ GameObject:
   - component: {fileID: 9207139366628058807}
   - component: {fileID: 1850791456016598966}
   m_Layer: 5
-  m_Name: unlockShieldimg
+  m_Name: ShieldText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4412018645436005418
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5124,12 +5124,12 @@ GameObject:
   - component: {fileID: 2634339112936009262}
   - component: {fileID: 2924569122679846393}
   m_Layer: 5
-  m_Name: unlockDashimg
+  m_Name: SurvivorText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6707587714296742100
 RectTransform:
   m_ObjectHideFlags: 0

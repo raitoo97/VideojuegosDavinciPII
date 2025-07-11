@@ -3414,6 +3414,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8259254345434229832, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
   m_PrefabInstance: {fileID: 1613580880}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1628966605 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1850791456016598966, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+  m_PrefabInstance: {fileID: 6935544059359077375}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1629169351 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7031151534950892445, guid: fa5d75be1d0a8914b8f587b109b5fd03, type: 3}
@@ -3894,6 +3905,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2078594816 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7439116329422051620, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+  m_PrefabInstance: {fileID: 6935544059359077375}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2100558991 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3887680317037031158, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
@@ -3908,6 +3930,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2110952883 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2924569122679846393, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+  m_PrefabInstance: {fileID: 6935544059359077375}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &674666195276945780 stripped
@@ -4004,9 +4037,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 928850366}
     - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: DashText
+      value: 
+      objectReference: {fileID: 2078594816}
+    - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: ShieldText
+      value: 
+      objectReference: {fileID: 1628966605}
+    - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: SkillsPanel
       value: 
       objectReference: {fileID: 6935544059359077393}
+    - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: SurvivorText
+      value: 
+      objectReference: {fileID: 2110952883}
     - target: {fileID: 7709783099561902853, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: obstacleWarning
       value: 
