@@ -13,6 +13,7 @@ public class ManagerUI : MonoBehaviour
     private PjSkillsUpgradeUI _pjSkillsUpgradeUI;
     private WavesUI _wavesUI;
     public GameObject SkillsPanel;
+    private bool _isCanvasEnable;
     [Header("Obstacles UI")]//
     public GameObject obstacleWarning;
     public GameObject obstacleWarningArrow;
@@ -33,6 +34,9 @@ public class ManagerUI : MonoBehaviour
         _pjSkillsUpgradeUI.OnStart();
         _wavesUI.OnStart();
         _obstaclesDetectedUI.OnStart();
+        
+        SkillsPanel.SetActive(false);
+        _isCanvasEnable = false;
     }
     private void Update()
     {
@@ -40,7 +44,35 @@ public class ManagerUI : MonoBehaviour
         _pjSkillsUpgradeUI.OnUpdate();
         _wavesUI.OnUpdate();
         _obstaclesDetectedUI.OnUpdate();
+
+        if (Input.GetKeyUp(KeyCode.I))
+        {
+            CanvasState();
+        }
     }
+    public void CanvasState()
+    {
+        if (!_isCanvasEnable)
+        {
+            ActiveSkillsMenu();
+        }
+        else
+        {
+            DeactivateSkillsMenu();
+        }
+    }
+    public void ActiveSkillsMenu()
+    {
+        _isCanvasEnable = true;
+        SkillsPanel.SetActive(true);
+    }
+    public void DeactivateSkillsMenu()
+    {
+        _isCanvasEnable = false;
+        SkillsPanel.SetActive(false);
+    }
+
+
     public PjStatesLifeBar getLifeBar { get => PjLifeStates; }
     public WavesUI WaveUI { get => _wavesUI; }
     public ObstaclesDetectedUI ObstaclesDetectedUI { get => _obstaclesDetectedUI;}

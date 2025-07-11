@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PjSkillsUpgradeUI
 {
+    
     private Text pointsText;
     //private Text cantUpgradeText;
     [Header("Torreta")]
@@ -106,6 +107,7 @@ public class PjSkillsUpgradeUI
     }
     public void OnStart()
     {
+        
         //turret
         rateFireButton.onClick.AddListener(UpgradeCadencia);
         distanceButton.onClick.AddListener(UpgradeDistancia);
@@ -126,6 +128,7 @@ public class PjSkillsUpgradeUI
     }
     public void OnUpdate()
     {
+        
         pointsText.text = PointManager.instance.CurrentPoints.ToString();
         #region TURRET
         if (ManagerSkills.instance.IsUnlocked(SkillCategory.turretCategory))
