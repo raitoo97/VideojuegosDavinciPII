@@ -8,7 +8,6 @@ public class ChestRandomSkill : MonoBehaviour
     {
         if (ManagerUI.instance.unlockSkill)
         {
-            Debug.Log("ENTRO");
             ChoseRandomCategory();
             ManagerUI.instance.unlockSkill = false;
         }
