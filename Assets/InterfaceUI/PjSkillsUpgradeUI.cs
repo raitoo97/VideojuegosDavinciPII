@@ -115,19 +115,22 @@ public class PjSkillsUpgradeUI
         rateFireButton.onClick.AddListener(UpgradeCadencia);
         distanceButton.onClick.AddListener(UpgradeDistancia);
         UltimateTurret.onClick.AddListener(UltimateTurretFunctionUnlock);
+
         //shield
-        
-        //UnlockShield.onClick.AddListener(NotEnoughPoints);
         UpgradeShieldRatioButton.onClick.AddListener(CantPurchaseUpgrade);
         UpgradeShieldColdownButton.onClick.AddListener(CantPurchaseUpgrade);
         UpgradeShieldDurationButton.onClick.AddListener(CantPurchaseUpgrade);
         UltimateShield.onClick.AddListener(UltimateShieldFunctionUnlock);
 
         //dash
-        //UnlockDash.onClick.AddListener(NotEnoughPoints);
         UpgradeDashSpeedButton.onClick.AddListener(CantPurchaseUpgrade);
         UpgradeDashSCooldownButton.onClick.AddListener(CantPurchaseUpgrade);
         UltimateDash.onClick.AddListener(UltimateDashFunctionUnlock);
+
+        //survivor
+        UpgradeLife.onClick.AddListener(CantPurchaseUpgrade);
+        UpgradeRadioPickup.onClick.AddListener(CantPurchaseUpgrade);
+        UpgradePickupHealing.onClick.AddListener(CantPurchaseUpgrade);
     }
     public void OnUpdate()
     {
