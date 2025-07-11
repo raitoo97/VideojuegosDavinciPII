@@ -49,11 +49,6 @@ public class ManagerUI : MonoBehaviour
         _pjSkillsUpgradeUI.OnUpdate();
         _wavesUI.OnUpdate();
         _obstaclesDetectedUI.OnUpdate();
-
-        if (Input.GetKeyUp(KeyCode.I) )
-        {
-            CanvasState();
-        }
     }
     public void CanvasState()
     {
