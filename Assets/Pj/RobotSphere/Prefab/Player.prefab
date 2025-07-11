@@ -7009,6 +7009,7 @@ GameObject:
   - component: {fileID: 8845614960691900477}
   - component: {fileID: 3522650585358744689}
   - component: {fileID: 8502253604514901170}
+  - component: {fileID: 7952817579950777749}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -7180,6 +7181,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1534f7adb37ec284b9da1e98148c7e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _healthItem: {fileID: 1351961921853501234, guid: 48323c3d8119d7b449d6498c1b5ec360, type: 3}
+  _xpItem: {fileID: 8692203202147117288, guid: f1c8b9627ebf8ef48bcf1a31cb9705ba, type: 3}
+  currentPickupDistance: 6
+  currentHealingPickup: 0
+--- !u!114 &7952817579950777749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469785779143389137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b30fdace6d4ec4d46a19816eb343e642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pjDoppelganger: {fileID: 3213307166000300331, guid: eed6f93100608b4498c73f25df3c4d3e, type: 3}
+  _cooldown: 0
+  _lifeCopy: 0
+  _orginalMaterialPj: {fileID: 2100000, guid: 9f2645559b8b14773b709fbd9bd6e2ff, type: 2}
+  _dopplegangerMaterialPj: {fileID: 2100000, guid: daa117fd4130ad945887c819c7cc436c, type: 2}
+  _materialsPj:
+  - {fileID: 7148942357825062219}
+  - {fileID: 591807889504016435}
+  - {fileID: 8193395384591518997}
+  - {fileID: 4800818106210811011}
+  - {fileID: 4463238399952459927}
+  _turretMaterial: {fileID: 7517474590342754816}
+  _ultiTurretMaterial: {fileID: 8769638603274740286}
+  _orginalMaterialTurret: {fileID: 2100000, guid: b0992a53beaddc9468ed80d0508873a1, type: 2}
+  _dopplegangerMaterialTurert: {fileID: 2100000, guid: b8980f8a50b56d24f87221672d1994bc, type: 2}
+  _orginalUltiMaterialTurret: {fileID: 2100000, guid: 35365a2c4e9c0454c923b32799f23110, type: 2}
+  _dopplegangerultiMaterialTurert: {fileID: 2100000, guid: a8cf18de82308ba4daef0a1fd2f2ca4d, type: 2}
+  _misilMaterial: {fileID: 3635696662406691457}
+  _orginalMaterialMisil: {fileID: 2100000, guid: 8cabdd6a3da070f478d7cd1eee1bfbb8, type: 2}
+  _dopplegangerMaterialMisil: {fileID: 2100000, guid: d9ace35347513b148815ff1af7f2e6dd, type: 2}
 --- !u!1 &4469881310358930350
 GameObject:
   m_ObjectHideFlags: 0
@@ -9532,10 +9569,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4438494846224099833, guid: 28c3627aff1225249a42b934e1645a1e, type: 3}
+      propertyPath: m_Name
+      value: Misiles
+      objectReference: {fileID: 0}
     - target: {fileID: 4507897027042812086, guid: 28c3627aff1225249a42b934e1645a1e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 8cabdd6a3da070f478d7cd1eee1bfbb8, type: 2}
+    - target: {fileID: 4572129172454568547, guid: 28c3627aff1225249a42b934e1645a1e, type: 3}
+      propertyPath: m_Name
+      value: BodyTurret
+      objectReference: {fileID: 0}
     - target: {fileID: 6469413858101552536, guid: 28c3627aff1225249a42b934e1645a1e, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -9620,6 +9665,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1492982283791042998, guid: 28c3627aff1225249a42b934e1645a1e, type: 3}
   m_PrefabInstance: {fileID: 935572985350183479}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &3635696662406691457 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4507897027042812086, guid: 28c3627aff1225249a42b934e1645a1e, type: 3}
+  m_PrefabInstance: {fileID: 935572985350183479}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4127248945300740953 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3872319012708696430, guid: 28c3627aff1225249a42b934e1645a1e, type: 3}
@@ -9656,6 +9706,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.01, y: 0.01, z: 0.02}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &7517474590342754816 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7253255986165082167, guid: 28c3627aff1225249a42b934e1645a1e, type: 3}
+  m_PrefabInstance: {fileID: 935572985350183479}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4504224298124999898
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9721,5 +9776,10 @@ Transform:
 --- !u!1 &8465308312998442173 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5474381727625545831, guid: 051ea63b29b5dcd4bbece427b28e7364, type: 3}
+  m_PrefabInstance: {fileID: 4504224298124999898}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8769638603274740286 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4092017262686232860, guid: 051ea63b29b5dcd4bbece427b28e7364, type: 3}
   m_PrefabInstance: {fileID: 4504224298124999898}
   m_PrefabAsset: {fileID: 0}

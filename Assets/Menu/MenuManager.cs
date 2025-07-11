@@ -42,7 +42,7 @@ public class MenuManager : MonoBehaviour
     {
         if (FinishCinematic)
         {
-            AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+            AudioManager.instance.PlaySfx(AudioManager.instance.buttonClick);
             SceneManager.LoadScene(1);
         }
     }
@@ -50,7 +50,7 @@ public class MenuManager : MonoBehaviour
     {
         if (FinishCinematic)
         {
-            AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+            AudioManager.instance.PlaySfx(AudioManager.instance.buttonClick);
             panelTutorial.SetActive(true);
             panelCredits.SetActive(false);
             panelMain.SetActive(false);
@@ -65,7 +65,7 @@ public class MenuManager : MonoBehaviour
     {
         if (FinishCinematic)
         {
-            AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+            AudioManager.instance.PlaySfx(AudioManager.instance.buttonClick);
             panelTutorial.SetActive(false);
             panelCredits.SetActive(false);
             panelMain.SetActive(true);
@@ -75,7 +75,7 @@ public class MenuManager : MonoBehaviour
     {
         if (FinishCinematic)
         {
-            AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+            AudioManager.instance.PlaySfx(AudioManager.instance.buttonClick);
             panelTutorial.SetActive(false);
             panelCredits.SetActive(false);
             panelMain.SetActive(true);
@@ -90,7 +90,7 @@ public class MenuManager : MonoBehaviour
     {
         if (FinishCinematic)
         {
-            AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+            AudioManager.instance.PlaySfx(AudioManager.instance.buttonClick);
             panelTutorial.SetActive(false);
             panelCredits.SetActive(true);
             panelMain.SetActive(false);
@@ -100,7 +100,7 @@ public class MenuManager : MonoBehaviour
     {
         if (FinishCinematic)
         {
-            AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+            AudioManager.instance.PlaySfx(AudioManager.instance.buttonClick);
             Application.Quit();
         }
     }

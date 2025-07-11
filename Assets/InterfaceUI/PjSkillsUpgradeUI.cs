@@ -54,8 +54,8 @@ public class PjSkillsUpgradeUI
         UnlockDash,//DesbloqueDash
         UpgradeDashSpeed,//Subir Speed Del Dash
         UpgradeDashCooldown,//Subir Coldown del dash
-        CooldownDashText,//cooldown del dash nivel
-        CooldownShieldText,// cooldown del shield nivel
+        CooldownDashText,//_cooldown del dash nivel
+        CooldownShieldText,// _cooldown del shield nivel
         SpeedDashText,//speed del dash nivel
         RatioShieldText,// ratio del shield nivel
         DurationShieldText,//duracion del shield nivel

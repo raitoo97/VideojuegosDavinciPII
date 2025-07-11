@@ -8,7 +8,7 @@ public class WavesUI
     public Text _numberOfEnemies;
     public Text _winningText;
     public Text _arrow;
-    private bool _isFirstWave = false;
+    private bool _isFirstWave = true;
     public bool _isLastWave = false;
     private enum WaveAtributes
     {
@@ -44,7 +44,7 @@ public class WavesUI
         WavesManager.instance._currentWave?.Invoke();
         WavesManager.instance.AdvanceWave();
         WavesManager.instance.StartCoroutine(WavesManager.instance.GetWaveUIButton());
-        AudioManager.instance.PlayMusic(AudioManager.instance.buttonClick);
+        AudioManager.instance.PlaySfx(AudioManager.instance.buttonClick);
         _isFirstWave = false;
         _arrow.gameObject.SetActive(false);
     }

@@ -7,7 +7,7 @@ public enum SkillCategory
     dashCategory,
     shieldCategory,
     dopplegangerCategory,
-    survivorCategory
+    survivorCategory,
 }
 public class ManagerSkills : MonoBehaviour
 {
@@ -176,6 +176,7 @@ public class ManagerSkills : MonoBehaviour
         if (PointManager.instance.SpendPoints(skill.costToUnlockUltimate))
         {
             skill.ultimateUnlocked = true;
+            Debug.Log("se desbloqueo la ultimate de" + category);
             var entry = skillEntries.Find(x => x.category == category);
             if (entry != null) entry.ultimateUnlocked = true;
         }

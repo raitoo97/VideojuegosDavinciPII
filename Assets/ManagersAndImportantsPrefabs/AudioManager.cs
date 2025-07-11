@@ -1,23 +1,36 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager instance;
+    public List<AudioSource> audioSources = new List<AudioSource>();
+    //AudioMixer
+    public AudioMixer audioMixer;
+    public AudioMixerGroup masterGroup;
+    public AudioMixerGroup musicGroup;
+    public AudioMixerGroup sfxGroup;
     //Zombie Audio
-    [SerializeField] public AudioClip[] zombieAttackSfx;
-    [SerializeField] public AudioClip[] missileImpactSfx;
-    [SerializeField] public AudioClip[] playerDamageSfx;
-    [SerializeField] public AudioClip[] turretPlayerImpactSfx;
-    [SerializeField] public AudioClip[] skillPlayerDash;
-    [SerializeField] public AudioClip   EnemyTurretShot;
+    [SerializeField]public AudioClip[]zombieAttackSfx;
+    [SerializeField]public AudioClip[]missileImpactSfx;
+    [SerializeField]public AudioClip[]playerDamageSfx;
+    [SerializeField]public AudioClip[]turretPlayerImpactSfx;
+    [SerializeField]public AudioClip[]skillPlayerDash;
+    [SerializeField]public AudioClip EnemyTurretShot;
     //UI
-    [SerializeField] public AudioClip   UpgradeSkill;
-    [SerializeField] public AudioClip   UnlockSkill;
-    [SerializeField] public AudioClip   CantUnlockSkill;
+    [SerializeField]public AudioClip UpgradeSkill;
+    [SerializeField]public AudioClip UnlockSkill;
+    [SerializeField]public AudioClip CantUnlockSkill;
     public AudioClip Level1Music;
     public AudioClip buttonClick;
-    public List<AudioSource> audioSources = new List<AudioSource>();
-    private bool isMusicPlaying;
-    public static AudioManager instance;
+    [Header("UI")]
+    [SerializeField]private Slider _masterSlider;
+    [SerializeField]private float _initMasterVolumen = 0.5f;
+    [SerializeField]private Slider _musicSlider;
+    [SerializeField]private float _initMusicVolumen = 0.5f;
+    [SerializeField]private Slider _sfxSlider;
+    [SerializeField] private float _initSfxVolumen = 0.5f;
     private void Awake()
     {
         if(instance == null)
@@ -28,17 +41,12 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         CompleteAudioSource(10);
-    }
-    // MUTEA EL SONIDO
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.M)) ToggleMusic();
-    }
-    public void PlaySfx(AudioClip clip)
-    {
-        var audioSource = GetSource();
-        if(audioSource == null || clip == null) return;
-        audioSource.PlayOneShot(clip);
+        _masterSlider.value = _initMasterVolumen;
+        SetMasterVolume(_initMasterVolumen);
+        _musicSlider.value = _initMusicVolumen;
+        SetMusicVolume(_initMusicVolumen);
+        _sfxSlider.value = _initSfxVolumen;
+        SetSfxVolume(_initSfxVolumen);
     }
     public void CompleteAudioSource(int num)
     {
@@ -52,16 +60,18 @@ public class AudioManager : MonoBehaviour
     {
         return audioSources.Find(x => x.isPlaying == false);
     }
-    public AudioSource GetSourceSpecific(AudioClip clip)
+    public void PlaySfx(AudioClip clip)
     {
-        var au = audioSources.Find(x => x.clip == clip);
-        if (au == null) return null;
-        return au;
+        var audioSource = GetSource();
+        if (audioSource == null || clip == null) return;
+        audioSource.outputAudioMixerGroup = sfxGroup;
+        audioSource.PlayOneShot(clip);
     }
     public void PlaySfxRandomPitch(AudioClip clip) 
     {
         var audioSource = GetSource();
         if (audioSource == null || clip == null) return;
+        audioSource.outputAudioMixerGroup = sfxGroup;
         audioSource.pitch = Random.Range(1f, 1.2f);
         audioSource.PlayOneShot(clip);
     }
@@ -69,30 +79,21 @@ public class AudioManager : MonoBehaviour
     {
         var audioSource = GetSource();
         if (audioSource == null || clip == null) return;
-        audioSource.PlayOneShot(clip);
+        audioSource.outputAudioMixerGroup = musicGroup;
+        audioSource.clip = clip;
+        audioSource.loop = true;
+        audioSource.Play();
     }
-    public void PauseMusicClip(AudioClip clip)
+    public void SetMasterVolume(float value)
     {
-        var au = GetSourceSpecific(clip);
-        if (au == null) return;
-        au.Stop();
+        audioMixer.SetFloat("Master", Mathf.Log10(value) * 20);
     }
-    private void ToggleMusic()
+    public void SetMusicVolume(float value)
     {
-        isMusicPlaying=!isMusicPlaying;
-        if (isMusicPlaying)
-        {
-            foreach (var audioSource in audioSources)
-            {
-                audioSource.mute = false;
-            }
-        }
-        else
-        {
-            foreach (var audioSource in audioSources)
-            {
-                audioSource.mute = true;
-            }
-        }
+        audioMixer.SetFloat("Music", Mathf.Log10(value) * 20);
+    }
+    public void SetSfxVolume(float value)
+    {
+        audioMixer.SetFloat("Sfx", Mathf.Log10(value) * 20);
     }
 }

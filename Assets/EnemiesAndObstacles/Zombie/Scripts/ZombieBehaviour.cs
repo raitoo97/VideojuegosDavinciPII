@@ -32,6 +32,7 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
         Bullet.onHitZombie += HandleHitZombie;
         _canEjecuteCorutine = false;
         TrailCollider.onHitZombie += HandleDashUlti;
+        DopplegangerEntity.ultiDopplegangerActivate += HandleDopplegangerUlti;
     }
     void Update()
     {
@@ -51,37 +52,92 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
             }
             return;
         }
-        if (!this.transform.IsWithinDistanceOf(GameManager.instance.player.transform, _idleDistance))
+        Transform target = GetClosestClone();
+        if (target == null)
         {
-            _anims.ChangeState(STATE.Idle);
-            _agent.isStopped = true;
-            _agent.SetDestination(_agent.transform.position);
-            
-        }
-        else if (!this.transform.IsWithinDistanceOf(GameManager.instance.player.transform, _runDistance))
-        {
-            _anims.ChangeState(STATE.Run);
-            _agent.isStopped = false;
-            _agent.SetDestination(GameManager.instance.player.transform.position);
-            
-        }
-        else if (this.transform.IsWithinDistanceOf(GameManager.instance.player.transform, _atackDistance))
-        {
-            _anims.ChangeState(STATE.Atack);
-            _agent.isStopped = true;
-            _agent.SetDestination(_agent.transform.position);
-            foreach (var col in _attackColliders)
+            target = GameManager.instance.player.transform;
+            if (!this.transform.IsWithinDistanceOf(target, _idleDistance))
             {
-                col.enabled = true;
+                _anims.ChangeState(STATE.Idle);
+                _agent.isStopped = true;
+                _agent.SetDestination(_agent.transform.position);
+
+            }
+            else if (!this.transform.IsWithinDistanceOf(target, _runDistance))
+            {
+                _anims.ChangeState(STATE.Run);
+                _agent.isStopped = false;
+                _agent.SetDestination(target.position);
+
+            }
+            else if (this.transform.IsWithinDistanceOf(target, _atackDistance))
+            {
+                _anims.ChangeState(STATE.Atack);
+                _agent.isStopped = true;
+                _agent.SetDestination(_agent.transform.position);
+                foreach (var col in _attackColliders)
+                {
+                    col.enabled = true;
+                }
+            }
+            else
+            {
+                foreach (var col in _attackColliders)
+                {
+                    col.enabled = false;
+                }
             }
         }
         else
         {
-            foreach (var col in _attackColliders)
+            if (!this.transform.IsWithinDistanceOf(target, _idleDistance))
             {
-                col.enabled = false;
+                _anims.ChangeState(STATE.Idle);
+                _agent.isStopped = true;
+                _agent.SetDestination(_agent.transform.position);
+
+            }
+            else if (!this.transform.IsWithinDistanceOf(target, _runDistance))
+            {
+                _anims.ChangeState(STATE.Run);
+                _agent.isStopped = false;
+                _agent.SetDestination(target.position);
+
+            }
+            else if (this.transform.IsWithinDistanceOf(target, _atackDistance))
+            {
+                _anims.ChangeState(STATE.Atack);
+                _agent.isStopped = true;
+                _agent.SetDestination(_agent.transform.position);
+                foreach (var col in _attackColliders)
+                {
+                    col.enabled = true;
+                }
+            }
+            else
+            {
+                foreach (var col in _attackColliders)
+                {
+                    col.enabled = false;
+                }
             }
         }
+    }
+    private Transform GetClosestClone()
+    {
+        Transform closest = null;
+        float closestDistance = Mathf.Infinity;
+        foreach (var clone in DopplegangerEntity.activeClones)
+        {
+            if (clone == null) continue;
+            float dist = this.transform.IsMostNearDistance(clone.transform);
+            if (dist < closestDistance)
+            {
+                closestDistance = dist;
+                closest = clone;
+            }
+        }
+        return closest;
     }
     private void HandleHitZombie(ZombieBehaviour enemy)
     {
@@ -101,6 +157,13 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
             
         }
     }
+    private void HandleDopplegangerUlti(ZombieBehaviour enemy)
+    {
+        int randomIndex = UnityEngine.Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
+        AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndex]); //sound effect
+        ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
+        enemy.life = 0;
+    }
     private void HandleDashUlti(ZombieBehaviour enemy)
     {
         ParticlesPool.instance.SpamParticle(ParticleType.DashUlti, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
@@ -118,6 +181,7 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
         }
         Bullet.onHitZombie -= HandleHitZombie;
         TrailCollider.onHitZombie -= HandleDashUlti;
+        DopplegangerEntity.ultiDopplegangerActivate -= HandleDopplegangerUlti;
     }
     IEnumerator corrutinaDeath()
     {

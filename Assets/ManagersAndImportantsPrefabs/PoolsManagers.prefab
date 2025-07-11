@@ -93,12 +93,12 @@ MonoBehaviour:
   particleConfigs:
   - type: 0
     poolParent: {fileID: 1477309947633531035}
-    initialPoolSize: 50
+    initialPoolSize: 150
     ParticlePrefab: {fileID: 8817004157864307695, guid: 1de6070cfbee4bc4584d63e1f626b4ce, type: 3}
     pooledParticles: []
   - type: 1
     poolParent: {fileID: 1477309947633531035}
-    initialPoolSize: 50
+    initialPoolSize: 150
     ParticlePrefab: {fileID: 4211811163603552197, guid: 4b7768051c4528d45a331fdcb71e424d, type: 3}
     pooledParticles: []
   - type: 2
@@ -113,7 +113,7 @@ MonoBehaviour:
     pooledParticles: []
   - type: 4
     poolParent: {fileID: 1477309947633531035}
-    initialPoolSize: 100
+    initialPoolSize: 150
     ParticlePrefab: {fileID: 4794043405585894037, guid: 37138c0c33167b04fa1fb90b7f5a794f, type: 3}
     pooledParticles: []
   - type: 5

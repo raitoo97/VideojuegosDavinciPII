@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 9083364042843550237}
   - component: {fileID: 8128287774387905897}
   - component: {fileID: 619348640589115601}
+  - component: {fileID: 6556462145234021743}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -74,21 +75,27 @@ MonoBehaviour:
   - category: 1
     dataStrcut: {fileID: 11400000, guid: 9274209409056a14da20637bf99c7aa2, type: 2}
     isUnlocked: 0
-    costToUnlock: 700
+    costToUnlock: 0
     ultimateUnlocked: 0
     costToUnlockUltimate: 500
   - category: 2
     dataStrcut: {fileID: 11400000, guid: 89d9bd1f9ef1d184bab913c343934b99, type: 2}
     isUnlocked: 0
-    costToUnlock: 700
+    costToUnlock: 0
     ultimateUnlocked: 0
     costToUnlockUltimate: 500
   - category: 4
     dataStrcut: {fileID: 11400000, guid: 1f475a3f3215efb4497b3e2fb1956ae7, type: 2}
     isUnlocked: 0
-    costToUnlock: 700
+    costToUnlock: 0
     ultimateUnlocked: 0
     costToUnlockUltimate: 500
+  - category: 3
+    dataStrcut: {fileID: 11400000, guid: 8581eba0a40c62b42843a21f19a0a758, type: 2}
+    isUnlocked: 0
+    costToUnlock: 0
+    ultimateUnlocked: 0
+    costToUnlockUltimate: 1000
 --- !u!114 &7709783099561902853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +248,18 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &6556462145234021743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5743755235460010870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba490707b5cb2841a8f3677c6ef0018, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7340844166045931331
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +304,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a21cbb805c1eca04d9866ccb7e587592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSources: []
+  audioMixer: {fileID: 24100000, guid: d85bcb4a32efbb84d9d8975763dc573e, type: 2}
+  masterGroup: {fileID: 24300002, guid: d85bcb4a32efbb84d9d8975763dc573e, type: 2}
+  musicGroup: {fileID: 3691469778755458622, guid: d85bcb4a32efbb84d9d8975763dc573e, type: 2}
+  sfxGroup: {fileID: -1024111228763657964, guid: d85bcb4a32efbb84d9d8975763dc573e, type: 2}
   zombieAttackSfx:
   - {fileID: 8300000, guid: 1a3606d1c4d626d4fba48d18bd004da3, type: 3}
   - {fileID: 8300000, guid: 57bbf0b3ae9cf684584724c6b2555fde, type: 3}
@@ -309,4 +333,9 @@ MonoBehaviour:
   CantUnlockSkill: {fileID: 8300000, guid: e8a9b32c9d645ba43aa59d9e93cd7c0c, type: 3}
   Level1Music: {fileID: 8300000, guid: e86b7c37ac950ae4fb8bcc2b165d4328, type: 3}
   buttonClick: {fileID: 8300000, guid: c83fd45221bc2ae4b82e8c82451ada38, type: 3}
-  audioSources: []
+  _masterSlider: {fileID: 0}
+  _initMasterVolumen: 0.5
+  _musicSlider: {fileID: 0}
+  _initMusicVolumen: 0.5
+  _sfxSlider: {fileID: 0}
+  _initSfxVolumen: 0.5
