@@ -12,9 +12,12 @@ public class ManagerUI : MonoBehaviour
     private PjStatesLifeBar PjLifeStates;
     private PjSkillsUpgradeUI _pjSkillsUpgradeUI;
     private WavesUI _wavesUI;
+
+    [Header("Skills UI")]
     public GameObject SkillsPanel;
     private bool _isCanvasEnable;
-    [Header("Obstacles UI")]//
+    private Button _skillsButton;
+    [Header("Obstacles UI")]
     public GameObject obstacleWarning;
     public GameObject obstacleWarningArrow;
     private ObstaclesDetectedUI _obstaclesDetectedUI;
@@ -37,6 +40,8 @@ public class ManagerUI : MonoBehaviour
         
         SkillsPanel.SetActive(false);
         _isCanvasEnable = false;
+        this._skillsButton = buttonList.Find(x => x.gameObject.name == "ButtonSkill");
+        _skillsButton.onClick.AddListener(ButtonSkillClicked);
     }
     private void Update()
     {
@@ -45,7 +50,7 @@ public class ManagerUI : MonoBehaviour
         _wavesUI.OnUpdate();
         _obstaclesDetectedUI.OnUpdate();
 
-        if (Input.GetKeyUp(KeyCode.I))
+        if (Input.GetKeyUp(KeyCode.I) )
         {
             CanvasState();
         }
@@ -70,8 +75,22 @@ public class ManagerUI : MonoBehaviour
     {
         _isCanvasEnable = false;
         SkillsPanel.SetActive(false);
+
     }
 
+    private void ButtonSkillClicked()
+    {
+        CanvasState();
+        _skillsButton.onClick.RemoveAllListeners();
+        _skillsButton.onClick.AddListener(ButtonSkillDeclicked);
+    }
+
+    private void ButtonSkillDeclicked()
+    {
+        CanvasState();
+        _skillsButton.onClick.RemoveAllListeners();
+        _skillsButton.onClick.AddListener(ButtonSkillClicked);
+    }
 
     public PjStatesLifeBar getLifeBar { get => PjLifeStates; }
     public WavesUI WaveUI { get => _wavesUI; }
