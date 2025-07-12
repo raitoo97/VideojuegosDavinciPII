@@ -76,5 +76,9 @@ public class RayCastTurret
         _lineRenderer.endColor = Color.green;
         _lineRenderer.endWidth = _startWidth;
     }
+    public void HiddenLaser()
+    {
+        _lineRenderer.enabled = false;
+    }
     public bool IsEnabled { get => _enabled ; }
 }
