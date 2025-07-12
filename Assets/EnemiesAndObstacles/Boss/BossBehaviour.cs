@@ -2,8 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 public class BossBehaviour : MonoBehaviour
 {
-    [SerializeField]private List<RespawnZombie> _respawnZombies = new List<RespawnZombie>();
     private List<IBossSkill> _bossSkills = new List<IBossSkill>();
+    [Header("TurretSkill")]
+    [SerializeField]private Transform _rayLaser;
+    [SerializeField]private RayCastTurret _rayTurret;
+    [SerializeField]private Transform _gunSight;
+    public Material lineRendererMaterial;
+    public LayerMask mask;
+    [Header("ZombieSkill")]
+    [SerializeField]private List<RespawnZombie> _respawnZombies = new List<RespawnZombie>();
     private InvokeZombie _InvokeZombie;
     void Start()
     {
@@ -45,18 +52,19 @@ public class TurretBoss : IBossSkill
     private Transform _child;
     private Vector3 _dirRotVector;
     private Quaternion _dirRotQuaternion;
-    public Material lineRendererMaterial;
-    public LayerMask mask;
+    private Material lineRendererMaterial;
+    private LayerMask mask;
     private float _shootCooldown;
     private float _distance;
     private float _fireRate = 0.5f;
+    private MonoBehaviour _bossrefCorutine;
     private void Awake()
     {
         _distance = Mathf.Infinity;
     }
     private void Start()
     {
-        //_rayTurret = new RayCastTurret(_rayLaser, mask, _distance, lineRendererMaterial, this);
+        _rayTurret = new RayCastTurret(_rayLaser, mask, _distance, lineRendererMaterial,_bossrefCorutine, .5f);
     }
     public void BossSkill()
     {
