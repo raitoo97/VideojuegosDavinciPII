@@ -2,8 +2,8 @@ using UnityEngine;
 using UnityEngine.AI;
 public class RespawnZombie : MonoBehaviour
 {
-    public int numberOfRespawn;
-    private bool _canRespawn;
+    public int numberOfRespawn = 25;
+    [SerializeField]private bool _canRespawn;
     private void Start()
     {
         _canRespawn = true;

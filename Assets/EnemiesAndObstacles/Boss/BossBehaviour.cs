@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class BossBehaviour : MonoBehaviour
 {
-    [SerializeField] private GameObject RespawnZombie;
+    [SerializeField] private GameObject _respawnZombie;
     void Start()
     {
-        
-    }
 
-    // Update is called once per frame
+    }
     void Update()
     {
-        var go = Instantiate(RespawnZombie,this.transform.position,this.transform.rotation);
-        if (go == null) return;
-        if(go.TryGetComponent<RespawnZombie>(out var Respawn))
-        {
-            Respawn.StartWave();
-        }
+
+    }
+    public void ZombieWave()
+    {
+        //if (_respawnZombie == null) return;
+        //_respawnZombie.SetActive(true);
+        //if (_respawnZombie.TryGetComponent<RespawnZombie>(out var _respawn))
+        //{
+        //    _respawn.StartWave();
+        //}
     }
 }
 public class InvokeZombie : IBossSkill
