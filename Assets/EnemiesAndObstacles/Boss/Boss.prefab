@@ -824,7 +824,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7977019527158611995}
-  - component: {fileID: 7495019692769980141}
   m_Layer: 9
   m_Name: TurretBoss
   m_TagString: Untagged
@@ -848,24 +847,6 @@ Transform:
   - {fileID: 3108228653606509873}
   m_Father: {fileID: 2616411412868244346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7495019692769980141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2134974193571203174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da013323b60ca9f43a579cbb988ca4d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rayLaser: {fileID: 4177359052283221581}
-  _gunSight: {fileID: 4177359052283221581}
-  lineRendererMaterial: {fileID: 2100000, guid: a87b5f5dcbcc8004b8dc6c9087cc9f0f, type: 2}
-  mask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!1 &2192157153455497064
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,7 +2035,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7396236798222036041}
-  - component: {fileID: 3145573011153958025}
   m_Layer: 9
   m_Name: TurretBoss (1)
   m_TagString: Untagged
@@ -2078,24 +2058,6 @@ Transform:
   - {fileID: 4690367336808557545}
   m_Father: {fileID: 2616411412868244346}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3145573011153958025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6459648899703207750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da013323b60ca9f43a579cbb988ca4d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rayLaser: {fileID: 7760707755731665334}
-  _gunSight: {fileID: 7760707755731665334}
-  lineRendererMaterial: {fileID: 2100000, guid: a87b5f5dcbcc8004b8dc6c9087cc9f0f, type: 2}
-  mask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!1 &6506855869525408539
 GameObject:
   m_ObjectHideFlags: 0
