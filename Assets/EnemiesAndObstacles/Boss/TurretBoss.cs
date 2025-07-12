@@ -29,11 +29,8 @@ public class TurretBoss : MonoBehaviour
     {
         if (_child == null || GameManager.instance.player == null) return;
         _dirRotVector = GameManager.instance.player.transform.position - _child.position;
-        Debug.Log("child pos: " + _child.position + " | player pos: " + GameManager.instance.player.transform.position);
-        Debug.Log("targetDir: " + _dirRotVector);
         if (_dirRotVector != Vector3.zero)
         {
-            print("entro");
             _dirRotQuaternion = Quaternion.LookRotation(_dirRotVector);
             float tripodSpeed = 5f;
             _child.rotation = Quaternion.Slerp(_child.rotation, _dirRotQuaternion, tripodSpeed * Time.deltaTime);
