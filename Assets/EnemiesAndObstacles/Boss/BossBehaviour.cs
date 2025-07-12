@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BossBehaviour : MonoBehaviour
 {
-    [SerializeField] private GameObject _respawnZombie;
+    [SerializeField]private List<RespawnZombie> _respawnZombies = new List<RespawnZombie>();
     void Start()
     {
 
@@ -15,12 +15,14 @@ public class BossBehaviour : MonoBehaviour
     }
     public void ZombieWave()
     {
-        //if (_respawnZombie == null) return;
-        //_respawnZombie.SetActive(true);
-        //if (_respawnZombie.TryGetComponent<RespawnZombie>(out var _respawn))
-        //{
-        //    _respawn.StartWave();
-        //}
+        if(_respawnZombies.Count <= 0)
+        {
+            return;
+        }
+        foreach(var respawn in _respawnZombies)
+        {
+            respawn.StartWave();
+        }
     }
 }
 public class InvokeZombie : IBossSkill

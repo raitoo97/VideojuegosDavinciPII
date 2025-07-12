@@ -32,9 +32,10 @@ public class TurretBoss : MonoBehaviour
         if (_dirRotVector != Vector3.zero)
         {
             _dirRotQuaternion = Quaternion.LookRotation(_dirRotVector);
-            float tripodSpeed = 5f;
+            float tripodSpeed = GameManager.instance.player.GetComponent<Player>().GetInitSpeed * 2.5f;
             _child.rotation = Quaternion.Slerp(_child.rotation, _dirRotQuaternion, tripodSpeed * Time.deltaTime);
         }
+        _rayTurret.OnUpdate();
         _shootCooldown -= Time.deltaTime;
         if (_rayTurret.IsEnabled && _shootCooldown <= 0f)
         {

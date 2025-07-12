@@ -596,7 +596,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8e02a860a8ac549a9d7f03375673ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _respawnZombie: {fileID: 882690885128057459}
+  _respawnZombies:
+  - {fileID: 2825250613217304803}
+  - {fileID: 2814349488127521471}
 --- !u!1 &1630271769561556720
 GameObject:
   m_ObjectHideFlags: 0
@@ -2979,11 +2981,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
---- !u!1 &882690885128057459 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4408208145857088383, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
+--- !u!114 &2825250613217304803 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1596426200669379055, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
   m_PrefabInstance: {fileID: 3536147442561186060}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d764500b40e3f91479d88ee32e10b9b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4867317301859751236 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8259254345434229832, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
@@ -3046,6 +3054,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
+--- !u!114 &2814349488127521471 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1596426200669379055, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
+  m_PrefabInstance: {fileID: 3542422887818521424}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d764500b40e3f91479d88ee32e10b9b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &4879635663321270040 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8259254345434229832, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}

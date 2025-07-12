@@ -6,8 +6,8 @@ public class RayCastTurret
     private Transform _transform;
     private float _distance;
     private bool _enabled;
-    private float _endWidth = 0.5f;
-    private float _startWidth = 0.05f;
+    private float _endWidth = 0.05f;
+    private float _startWidth = 0.5f;
     private LineRenderer _lineRenderer;
     private MonoBehaviour _corutineControl;
     private Coroutine _colorCoroutine;
