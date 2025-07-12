@@ -13,7 +13,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     public Material lineRendererMaterial;
     public LayerMask mask;
     private float _shootCooldown;
-    [SerializeField] private float _fireRate = 0.5f;
+    [SerializeField]private float _fireRate = 0.5f;
     public event System.Action<IEnemies> OnDeath;
     public event System.Action<IEnemies> _substractEnemyFromWave;
     private float _enemypoints;
