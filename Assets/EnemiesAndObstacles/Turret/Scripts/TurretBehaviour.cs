@@ -30,7 +30,7 @@ public class TurretBehaviour : MonoBehaviour , IEnemies
     }
     void Start()
     {
-        _rayTurret = new RayCastTurret(_rayLaser, mask, _distance, lineRendererMaterial,this);
+        _rayTurret = new RayCastTurret(_rayLaser, mask, _distance, lineRendererMaterial,this,2);
         animator = _child.GetComponent<Animator>();
         animator.enabled = false;
         Bullet.OnTurretDamaged += TakeDamage;

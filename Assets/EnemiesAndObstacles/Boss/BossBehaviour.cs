@@ -27,14 +27,14 @@ public class InvokeZombie : IBossSkill
     }
     public void BossSkill()
     {
-        if (_respawnZombies.Count <= 0)
-        {
-            return;
-        }
-        foreach (var respawn in _respawnZombies)
-        {
-            respawn.StartWave();
-        }
+        //if (_respawnZombies.Count <= 0)
+        //{
+        //    return;
+        //}
+        //foreach (var respawn in _respawnZombies)
+        //{
+        //    respawn.StartWave();
+        //}
     }
 }
 public class TurretBoss : IBossSkill

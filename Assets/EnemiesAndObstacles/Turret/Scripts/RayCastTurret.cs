@@ -11,7 +11,8 @@ public class RayCastTurret
     private LineRenderer _lineRenderer;
     private MonoBehaviour _corutineControl;
     private Coroutine _colorCoroutine;
-    public RayCastTurret(Transform transform,LayerMask mask, float distance,Material _linerenderematerial,MonoBehaviour corutineControl)
+    float _totalTime;
+    public RayCastTurret(Transform transform, LayerMask mask, float distance, Material _linerenderematerial, MonoBehaviour corutineControl, float _totaltime)
     {
         _transform = transform;
         _mask = mask;
@@ -25,6 +26,7 @@ public class RayCastTurret
         _lineRenderer.endWidth = _startWidth;
         _lineRenderer.startColor = new Color(0, 1, 0, 0.2f);
         _lineRenderer.endColor = new Color(0, 1, 0, 0.2f);
+        this._totalTime = _totaltime;
     }
     public void OnUpdate()
     {
@@ -57,13 +59,12 @@ public class RayCastTurret
         Color colorOrginal = new Color(0, 1, 0, 0.2f);
         Color colorFinal = Color.red;
         float t = 0f;
-        float totalTime = 2f;
-        while (t <= totalTime)
+        while (t <= _totalTime)
         {
             t += Time.deltaTime;
-            _lineRenderer.endColor = Color.Lerp(colorOrginal, colorFinal, t/ totalTime);
-            _lineRenderer.startColor = Color.Lerp(colorOrginal, colorFinal, t / totalTime);
-            _lineRenderer.endWidth = Mathf.Lerp(_startWidth, _endWidth, t / totalTime);
+            _lineRenderer.endColor = Color.Lerp(colorOrginal, colorFinal, t/ _totalTime);
+            _lineRenderer.startColor = Color.Lerp(colorOrginal, colorFinal, t / _totalTime);
+            _lineRenderer.endWidth = Mathf.Lerp(_startWidth, _endWidth, t / _totalTime);
             yield return null;
         }
         _enabled = true;
