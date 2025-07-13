@@ -41,7 +41,7 @@ public class BossBehaviour : MonoBehaviour
     {
         //_navMeshAgent.SetDestination(GameManager.instance.player.transform.position);
         //_InvokeZombie.UpdateSkill();
-        //_punch.BossSkill(); //PunchSkill
+        //_punch.BossSkill();
     }
     #region//InvokeZombie
     private void InvokeZombies()
