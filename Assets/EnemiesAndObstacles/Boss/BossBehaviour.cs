@@ -22,11 +22,12 @@ public class BossBehaviour : MonoBehaviour
         _meleAtack = GetComponentInChildren<BossMeleAtack>();
         _animator = GetComponentInChildren<Animator>();
         _punch = new Punch(_navMeshAgent,ActivatePunchCollider,this.transform, _animator);
-        _InvokeZombie = new InvokeZombie(_respawnZombies);
+        _InvokeZombie = new InvokeZombie(_respawnZombies, _animator, _navMeshAgent);
     }
     void Start()
     {
         _bossSkills.Add(_InvokeZombie);
+        _InvokeZombie.Onstart();
         foreach (var turrets in _turretBoss)
         {
             _bossSkills.Add(turrets);
@@ -38,26 +39,14 @@ public class BossBehaviour : MonoBehaviour
     }
     private void Update()
     {
-        _navMeshAgent.SetDestination(GameManager.instance.player.transform.position);
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            _navMeshAgent.isStopped = true;
-            _animator.SetBool("Run", false);
-            _animator.SetTrigger("Invoke");
-        }
-        else
-        {
-            _navMeshAgent.isStopped = false;
-            _animator.SetBool("Run", true);
-        }
+        //_navMeshAgent.SetDestination(GameManager.instance.player.transform.position);
+        //_InvokeZombie.UpdateSkill();
+        //_punch.BossSkill(); //PunchSkill
     }
     #region//InvokeZombie
     private void InvokeZombies()
     {
-        foreach (var respawn in _respawnZombies)
-        {
-            respawn.StartWave();
-        }
+        _InvokeZombie.BossSkill();
     }
     #endregion
     #region//Punch
@@ -72,29 +61,60 @@ public class BossBehaviour : MonoBehaviour
         _meleAtack.DisablePunchCollider();
     }
     #endregion
-    public Punch getPunch { get => _punch; }
 }
 public class InvokeZombie : IBossSkill
 {
     private List<RespawnZombie> _respawnZombies = new List<RespawnZombie>();
     public bool canRespawn = true;
-    public InvokeZombie(List<RespawnZombie> _respawnZombies)
+    private float _invokeCooldown = 10f;
+    private float _invokeTimer = 0f;
+    private bool _isInvoking = false;
+    private Animator _animator;
+    private NavMeshAgent _navMeshAgent;
+    public InvokeZombie(List<RespawnZombie> _respawnZombies, Animator _animator, NavMeshAgent _navMeshAgent)
     {
         this._respawnZombies = _respawnZombies;
+        this._animator = _animator;
+        this._navMeshAgent = _navMeshAgent;
+    }
+    public void Onstart()
+    {
+        _invokeTimer = _invokeCooldown;
+    }
+    public void UpdateSkill()
+    {
+        if (_isInvoking)return;
+        _invokeTimer -= Time.deltaTime;
+        if (_invokeTimer <= 0f)
+        {
+            _isInvoking = true;
+            _navMeshAgent.isStopped = true;
+            _animator.SetBool("Run", false);
+            _animator.SetTrigger("Invoke");
+        }
+        else
+        {
+            _navMeshAgent.isStopped = false;
+            _navMeshAgent.SetDestination(GameManager.instance.player.transform.position);
+            _animator.SetBool("Run", true);
+        }
     }
     public void BossSkill()
     {
-        if (canRespawn)
+        if (!canRespawn || _respawnZombies.Count <= 0)
         {
-            if (_respawnZombies.Count <= 0)
-            {
-                return;
-            }
-            foreach (var respawn in _respawnZombies)
-            {
-                respawn.StartWave();
-            }
+            _isInvoking = false;
+            _navMeshAgent.isStopped = false;
+            _invokeTimer = _invokeCooldown;
+            return;
         }
+        foreach (var respawn in _respawnZombies)
+        {
+            respawn.StartWave();
+        }
+        _invokeTimer = _invokeCooldown;
+        _isInvoking = false;
+        _navMeshAgent.isStopped = false;
     }
 }
 [Serializable]
@@ -174,12 +194,12 @@ public class Punch : IBossSkill
     private NavMeshAgent _agent;
     private Action _onPunch;
     private Animator _animator;
-    public Punch(NavMeshAgent agent, Action onPunch,Transform transform,Animator animator)
+    public Punch(NavMeshAgent _agent, Action _onPunch,Transform _transform,Animator _animator)
     {
-        _agent = agent;
-        _onPunch = onPunch;
-        _transform = transform;
-        _animator = animator;
+        this._agent = _agent;
+        this._onPunch = _onPunch;
+        this._transform = _transform;
+        this._animator = _animator;
     }
     public void BossSkill()
     {
