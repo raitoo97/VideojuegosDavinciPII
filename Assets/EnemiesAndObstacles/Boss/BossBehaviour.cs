@@ -38,8 +38,29 @@ public class BossBehaviour : MonoBehaviour
     }
     private void Update()
     {
-        _punch.BossSkill();
+        _navMeshAgent.SetDestination(GameManager.instance.player.transform.position);
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            _navMeshAgent.isStopped = true;
+            _animator.SetBool("Run", false);
+            _animator.SetTrigger("Invoke");
+        }
+        else
+        {
+            _navMeshAgent.isStopped = false;
+            _animator.SetBool("Run", true);
+        }
     }
+    #region//InvokeZombie
+    private void InvokeZombies()
+    {
+        foreach (var respawn in _respawnZombies)
+        {
+            respawn.StartWave();
+        }
+    }
+    #endregion
+    #region//Punch
     private void ActivatePunchCollider()
     {
         StartCoroutine(PunchColliderWindow());
@@ -50,6 +71,7 @@ public class BossBehaviour : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         _meleAtack.DisablePunchCollider();
     }
+    #endregion
     public Punch getPunch { get => _punch; }
 }
 public class InvokeZombie : IBossSkill
@@ -146,7 +168,7 @@ public class TurretBoss : IBossSkill
 public class Punch : IBossSkill
 {
     private float _attackRange = 4f;
-    private float _cooldown = 1f;
+    private float _cooldown = 0.5f;
     private float _cooldownTimer = 0f;
     private Transform _transform;
     private NavMeshAgent _agent;
