@@ -1,10 +1,12 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 public class BossBehaviour : MonoBehaviour
 {
-    [SerializeField] private NavMeshAgent _navMeshAgent;
+    [SerializeField]private NavMeshAgent _navMeshAgent;
+    [SerializeField]private Animator _animator;
     [SerializeField]private List<IBossSkill> _bossSkills = new List<IBossSkill>();
     [Header("TurretSkill")]
     [SerializeField]private List <TurretBoss> _turretBoss;
@@ -13,13 +15,17 @@ public class BossBehaviour : MonoBehaviour
     private InvokeZombie _InvokeZombie;
     [Header("PunchSkill")]
     private Punch _punch;
+    [SerializeField]private BossMeleAtack _meleAtack;
     private void Awake()
     {
-        _navMeshAgent = this.GetComponent<NavMeshAgent>();
+        _navMeshAgent = GetComponent<NavMeshAgent>();
+        _meleAtack = GetComponentInChildren<BossMeleAtack>();
+        _animator = GetComponentInChildren<Animator>();
+        _punch = new Punch(_navMeshAgent,ActivatePunchCollider,this.transform, _animator);
+        _InvokeZombie = new InvokeZombie(_respawnZombies);
     }
     void Start()
     {
-        _InvokeZombie = new InvokeZombie(_respawnZombies);
         _bossSkills.Add(_InvokeZombie);
         foreach (var turrets in _turretBoss)
         {
@@ -32,7 +38,19 @@ public class BossBehaviour : MonoBehaviour
     }
     private void Update()
     {
+        _punch.BossSkill();
     }
+    private void ActivatePunchCollider()
+    {
+        StartCoroutine(PunchColliderWindow());
+    }
+    private IEnumerator PunchColliderWindow()
+    {
+        _meleAtack.EnablePunchCollider();         
+        yield return new WaitForSeconds(0.1f);
+        _meleAtack.DisablePunchCollider();
+    }
+    public Punch getPunch { get => _punch; }
 }
 public class InvokeZombie : IBossSkill
 {
@@ -127,8 +145,41 @@ public class TurretBoss : IBossSkill
 }
 public class Punch : IBossSkill
 {
+    private float _attackRange = 4f;
+    private float _cooldown = 1f;
+    private float _cooldownTimer = 0f;
+    private Transform _transform;
+    private NavMeshAgent _agent;
+    private Action _onPunch;
+    private Animator _animator;
+    public Punch(NavMeshAgent agent, Action onPunch,Transform transform,Animator animator)
+    {
+        _agent = agent;
+        _onPunch = onPunch;
+        _transform = transform;
+        _animator = animator;
+    }
     public void BossSkill()
     {
-        
+        if (_cooldownTimer > 0f)
+            _cooldownTimer -= Time.deltaTime;
+        bool distance = _transform.IsWithinDistanceOf(GameManager.instance.player.transform, _attackRange);
+        if (!distance)
+        {
+            _animator.SetBool("Run", true);
+            _agent.isStopped = false;
+            _agent.SetDestination(GameManager.instance.player.transform.position);
+        }
+        else
+        {
+            _animator.SetBool("Run", false);
+            _animator.SetTrigger("Punch");
+            _agent.isStopped = true;
+            if (_cooldownTimer <= 0f)
+            {
+                _onPunch?.Invoke();
+                _cooldownTimer = _cooldown;
+            }
+        }
     }
 }
