@@ -15,7 +15,7 @@ public class BossBehaviour : MonoBehaviour
     private InvokeZombie _InvokeZombie;
     [Header("PunchSkill")]
     private Punch _punch;
-    [SerializeField]private BossMeleAtack _meleAtack;
+    [SerializeField]private BossMeleAtack _bossMeleeAttack;
     [Header("Random Habilities")]
     private float _turretSkillDuration = 5f;
     private float _zombieSkillDuration = 6f;
@@ -23,15 +23,18 @@ public class BossBehaviour : MonoBehaviour
     [SerializeField]private float _specialSkillTimer = 0f;
     private bool _isUsingSpecialSkill = false;
     private IBossSkill _currentSpecialSkill;
+    private MultipleTurretSkill _multipleTurretSkill;
     [Header("Life")]
     private float life = 100;
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
-        _meleAtack = GetComponentInChildren<BossMeleAtack>();
+        _bossMeleeAttack = GetComponentInChildren<BossMeleAtack>();
         _animator = GetComponentInChildren<Animator>();
         _punch = new Punch(_navMeshAgent,ActivatePunchCollider,this.transform, _animator);
         _InvokeZombie = new InvokeZombie(_respawnZombies, _animator, _navMeshAgent);
+        if (_turretBoss.Count > 0)
+            _multipleTurretSkill = new MultipleTurretSkill(_turretBoss);
     }
     void Start()
     {
@@ -48,6 +51,10 @@ public class BossBehaviour : MonoBehaviour
     }
     private void Update()
     {
+        CheckHability();
+    }
+    private void CheckHability()
+    {
         if (!_isUsingSpecialSkill)
         {
             _punch.BossSkill(true);
@@ -61,7 +68,7 @@ public class BossBehaviour : MonoBehaviour
         {
             if (_currentSpecialSkill != null)
             {
-                _currentSpecialSkill.BossSkill();
+                _currentSpecialSkill.BossSkill(true);
             }
             _punch.BossSkill(false);
             _specialSkillTimer -= Time.deltaTime;
@@ -74,46 +81,43 @@ public class BossBehaviour : MonoBehaviour
     private void TryActivateRandomSkill()
     {
         int choice = UnityEngine.Random.Range(0, 100);
-        print(choice);
-        _animator.ResetTrigger("Punch");
-        if (choice < 20)
+        if (choice < 30)
         {
             if (_turretBoss.Count > 0)
             {
-                _currentSpecialSkill = new MultipleTurretSkill(_turretBoss);
+                _currentSpecialSkill = _multipleTurretSkill;
                 _isUsingSpecialSkill = true;
                 _specialSkillTimer = _turretSkillDuration;
                 _navMeshAgent.isStopped = true;
             }
         }
-        else if (choice < 40)
+        else if (choice < 50)
         {
             _currentSpecialSkill = _InvokeZombie;
-            _currentSpecialSkill.BossSkill();
+            _currentSpecialSkill.BossSkill(true);
             _isUsingSpecialSkill = true;
             _specialSkillTimer = _zombieSkillDuration;
             _navMeshAgent.isStopped = true;
         }
         else
         {
-            _currentSpecialSkill = null;
-            _isUsingSpecialSkill = false;
-            _navMeshAgent.isStopped = false;
-            _specialSkillTimer = _delayBetweenSkills;
+            EndSpecialSkill();
         }
     }
     private void EndSpecialSkill()
     {
         _isUsingSpecialSkill = false;
-        if (_currentSpecialSkill is MultipleTurretSkill turretSkill)
+        if (_currentSpecialSkill != null)
         {
-            turretSkill.EndSkill();
+            _currentSpecialSkill.EndSkill();
+            _currentSpecialSkill = null;
         }
-        _currentSpecialSkill = null;
+        _punch.EndSkill();
         _navMeshAgent.isStopped = false;
+        _specialSkillTimer = _delayBetweenSkills;
     }
     #region//InvokeZombie
-    private void InvokeZombies()//se llama en animation event
+    private void InvokeZombies()
     {
         _InvokeZombie.SpawnZombies();
         EndSpecialSkill();
@@ -126,9 +130,9 @@ public class BossBehaviour : MonoBehaviour
     }
     private IEnumerator PunchColliderWindow()
     {
-        _meleAtack.EnablePunchCollider();         
+        _bossMeleeAttack.EnablePunchCollider();         
         yield return new WaitForSeconds(0.1f);
-        _meleAtack.DisablePunchCollider();
+        _bossMeleeAttack.DisablePunchCollider();
     }
     #endregion
 }
@@ -159,8 +163,13 @@ public class InvokeZombie : IBossSkill
         {
             respawn.StartWave();
         }
-        _navMeshAgent.isStopped = false;
+        EndSkill();
+    }
+    public void EndSkill()
+    {
+        _animator.ResetTrigger("Invoke");
         _animator.SetBool("Run", true);
+        _navMeshAgent.isStopped = false;
         _isInvoking = false;
     }
 }
@@ -244,6 +253,7 @@ public class TurretBoss : IBossSkill
     public void EndSkill()
     {
         _rayTurret.HiddenLaser();
+        _animator.ResetTrigger("Turret");
         _animator.SetBool("Run", true);
         canShoot = false;
         _hasTriggeredTurretAnim = false;
@@ -323,5 +333,12 @@ public class Punch : IBossSkill
                 _cooldownTimer = _cooldown;
             }
         }
+    }
+    public void EndSkill()
+    {
+        _animator.ResetTrigger("Punch");
+        _animator.SetBool("Run", false);
+        _agent.isStopped = true;
+        _hasTriggeredPunchAnim = false;
     }
 }
