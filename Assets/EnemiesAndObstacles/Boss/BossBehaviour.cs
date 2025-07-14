@@ -23,6 +23,8 @@ public class BossBehaviour : MonoBehaviour
     [SerializeField]private float _specialSkillTimer = 0f;
     private bool _isUsingSpecialSkill = false;
     private IBossSkill _currentSpecialSkill;
+    [Header("Life")]
+    private float life = 100;
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -74,7 +76,7 @@ public class BossBehaviour : MonoBehaviour
         int choice = UnityEngine.Random.Range(0, 100);
         print(choice);
         _animator.ResetTrigger("Punch");
-        if (choice < 30)
+        if (choice < 20)
         {
             if (_turretBoss.Count > 0)
             {
@@ -84,7 +86,7 @@ public class BossBehaviour : MonoBehaviour
                 _navMeshAgent.isStopped = true;
             }
         }
-        else if (choice < 50)
+        else if (choice < 40)
         {
             _currentSpecialSkill = _InvokeZombie;
             _currentSpecialSkill.BossSkill();
