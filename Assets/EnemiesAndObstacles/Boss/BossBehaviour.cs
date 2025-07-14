@@ -19,7 +19,7 @@ public class BossBehaviour : MonoBehaviour
     [Header("Random Habilities")]
     private float _turretSkillDuration = 5f;
     private float _zombieSkillDuration = 6f;
-    private float _delayBetweenSkills = 5f;
+    private float _delayBetweenSkills = 3f;
     [SerializeField]private float _specialSkillTimer = 0f;
     private bool _isUsingSpecialSkill = false;
     private IBossSkill _currentSpecialSkill;
@@ -51,9 +51,9 @@ public class BossBehaviour : MonoBehaviour
     }
     private void Update()
     {
-        CheckHability();
+        CheckAbility();
     }
-    private void CheckHability()
+    private void CheckAbility()
     {
         if (!_isUsingSpecialSkill)
         {
@@ -80,6 +80,7 @@ public class BossBehaviour : MonoBehaviour
     }
     private void TryActivateRandomSkill()
     {
+        _animator.ResetTrigger("Punch");
         int choice = UnityEngine.Random.Range(0, 100);
         if (choice < 30)
         {
@@ -89,6 +90,10 @@ public class BossBehaviour : MonoBehaviour
                 _isUsingSpecialSkill = true;
                 _specialSkillTimer = _turretSkillDuration;
                 _navMeshAgent.isStopped = true;
+            }
+            else
+            {
+                EndSpecialSkill();
             }
         }
         else if (choice < 50)
