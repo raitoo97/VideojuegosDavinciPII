@@ -249,10 +249,12 @@ public class PjSkillsUpgradeUI
         #region SHIELD
         if (ManagerSkills.instance.IsUnlocked(SkillCategory.shieldCategory))
         {
+
             Color c = ManagerUI.instance.UnlockedShield.color;
             c.a = 1;
             ManagerUI.instance.UnlockedShield.color = c;
             ManagerUI.instance.ShieldText.gameObject.SetActive(true);
+            CooldownFeedback.instance.ShowIfActive(SkillCategory.shieldCategory);
 
             if (ManagerSkills.instance.GetLevel(SkillCategory.shieldCategory, SkillStatType.shieldDuration) >= 2)
             {
@@ -371,8 +373,7 @@ public class PjSkillsUpgradeUI
             d.a = 1;
             ManagerUI.instance.UnlockedDash.color = d;
             ManagerUI.instance.DashText.gameObject.SetActive(true);
-            //UnlockDash.onClick.RemoveAllListeners();
-            //UnlockDash.interactable = false;
+            CooldownFeedback.instance.ShowIfActive(SkillCategory.dashCategory);
 
             if (ManagerSkills.instance.GetLevel(SkillCategory.dashCategory, SkillStatType.dashSpeed) >= 2)
             {
@@ -574,6 +575,7 @@ public class PjSkillsUpgradeUI
             d.a = 1;
             ManagerUI.instance.UnlockedDoppleganger.color = d;
             ManagerUI.instance.DopplegangerText.gameObject.SetActive(true);
+            CooldownFeedback.instance.ShowIfActive(SkillCategory.dopplegangerCategory);
 
             if (ManagerSkills.instance.GetLevel(SkillCategory.dopplegangerCategory, SkillStatType.dopplegangerLife) >= 2)
             {

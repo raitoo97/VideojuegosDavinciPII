@@ -21,6 +21,7 @@ public class ManagerUI : MonoBehaviour
     private PjStatesLifeBar PjLifeStates;
     private PjSkillsUpgradeUI _pjSkillsUpgradeUI;
     private WavesUI _wavesUI;
+    [SerializeField] CooldownFeedback _cooldownFeedback;
 
     [Header("Skills UI")]
     public GameObject SkillsPanel;
@@ -33,6 +34,7 @@ public class ManagerUI : MonoBehaviour
     public GameObject obstacleWarning;
     public GameObject obstacleWarningArrow;
     private ObstaclesDetectedUI _obstaclesDetectedUI;
+
     private void Awake()
     {
         if (instance == null) { instance = this; }
