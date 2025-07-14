@@ -9,11 +9,24 @@ public class Survivor : MonoBehaviour
     public float currentPickupDistance = 6f;
     public float currentHealingPickup;
     public static Survivor instance;
+    private float regenRate = 5f;
     private void Start()
     {
         if (instance == null)
         {
             instance = this;
+        }
+    }
+
+    private void Update()
+    {
+        if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.survivorCategory))
+        {
+            if (Player.instance._currentLife < Player.instance.maxLife)
+            {
+                Player.instance._currentLife += regenRate * Time.deltaTime;
+                Player.instance._currentLife = Mathf.Min(Player.instance._currentLife, Player.instance.maxLife);
+            }
         }
     }
     public void UpgradeLife()

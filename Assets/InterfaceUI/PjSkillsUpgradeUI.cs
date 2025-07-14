@@ -33,6 +33,7 @@ public class PjSkillsUpgradeUI
     private Button UpgradeLife;
     private Button UpgradeRadioPickup;
     private Button UpgradePickupHealing;
+    private Button UltiSurvivor;
     private Text UpgradeLifeText;
     private Text UpgradeRadioText;
     private Text UpgradePickupHealingText;
@@ -81,7 +82,7 @@ public class PjSkillsUpgradeUI
         UpgradeLifeText,
         UpgradeRadioText,
         UpgradePickupHealingText,
-
+        UltiSurvivor,
         //Doppleganger
         UpgradeDoppleLife,
         UpgradeDoppleLifeText,
@@ -101,7 +102,6 @@ public class PjSkillsUpgradeUI
         this.distanceButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeDistance.ToString());
         this.UltimateTurret = buttons.Find(x => x.gameObject.name == UIElementName.UltimateTurret.ToString());
         //Shield
-        //this.UnlockShield = buttons.Find(x => x.gameObject.name == UIElementName.UnlockShield.ToString());
         this.UpgradeShieldRatioButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeShieldRatio.ToString());
         this.UpgradeShieldColdownButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeShieldColdown.ToString());
         this.UpgradeShieldDurationButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeShieldDuration.ToString());
@@ -110,17 +110,16 @@ public class PjSkillsUpgradeUI
         this.CooldownShieldText = textos.Find(x => x.gameObject.name == UIElementName.CooldownShieldText.ToString());
         this.DurationShieldText = textos.Find(x => x.gameObject.name == UIElementName.DurationShieldText.ToString());
         //Dash
-        //this.UnlockDash = buttons.Find(x => x.gameObject.name == UIElementName.UnlockDash.ToString());
         this.UpgradeDashSpeedButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeDashSpeed.ToString());
         this.UpgradeDashSCooldownButton = buttons.Find(x => x.gameObject.name == UIElementName.UpgradeDashCooldown.ToString());
         this.CooldownDashText = textos.Find(x => x.gameObject.name == UIElementName.CooldownDashText.ToString());
         this.SpeedDashText = textos.Find(x => x.gameObject.name == UIElementName.SpeedDashText.ToString());
         this.UltimateDash = buttons.Find(x => x.gameObject.name == UIElementName.UltimateDash.ToString());
         //SURVIVOR
-        //this.UnlockSurvivor = buttons.Find(x=> x.gameObject.name == UIElementName.UnlockSurvivor.ToString());
         this.UpgradeLife = buttons.Find(x=> x.gameObject.name == UIElementName.UpgradeLife.ToString());
         this.UpgradeRadioPickup = buttons.Find(x=> x.gameObject.name == UIElementName.UpgradeRadioPickup.ToString());
         this.UpgradePickupHealing = buttons.Find(x=> x.gameObject.name == UIElementName.UpgradePickupHealing.ToString());
+        this.UltiSurvivor = buttons.Find(x=> x.gameObject.name == UIElementName.UltiSurvivor.ToString());
 
         this.UpgradeLifeText = textos.Find(x => x.gameObject.name == UIElementName.UpgradeLifeText.ToString());
         this.UpgradeRadioText = textos.Find(x => x.gameObject.name == UIElementName.UpgradeRadioText.ToString());
@@ -158,6 +157,7 @@ public class PjSkillsUpgradeUI
         UpgradeLife.onClick.AddListener(CantPurchaseUpgrade);
         UpgradeRadioPickup.onClick.AddListener(CantPurchaseUpgrade);
         UpgradePickupHealing.onClick.AddListener(CantPurchaseUpgrade);
+        UltiSurvivor.onClick.AddListener(UltimateSurvivorFunctionUnlock);
 
         //dopple
         UpgradeDoppleLife.onClick.AddListener(CantPurchaseUpgrade);
@@ -551,18 +551,18 @@ public class PjSkillsUpgradeUI
             UpgradeLife.targetGraphic.color = Color.gray;
         }
         //Ulti
-        /*
-        if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory) && ManagerSkills.instance.GetUltimateUnlockCost(SkillCategory.dashCategory) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.IsUnlockUltimate(SkillCategory.dashCategory))
+        
+        if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.survivorCategory) && ManagerSkills.instance.GetUltimateUnlockCost(SkillCategory.survivorCategory) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.IsUnlockUltimate(SkillCategory.survivorCategory))
         {
-            UltimateDash.interactable = true;
-            UltimateDash.targetGraphic.color = Color.white;
+            UltiSurvivor.interactable = true;
+            UltiSurvivor.targetGraphic.color = Color.white;
         }
         else
         {
-            UltimateDash.interactable = false;
-            UltimateDash.targetGraphic.color = Color.gray;
+            UltiSurvivor.interactable = false;
+            UltiSurvivor.targetGraphic.color = Color.gray;
         }
-        */
+        
         UpgradeLifeText.text = ManagerSkills.instance.GetValueSkill(SkillCategory.survivorCategory, SkillStatType.lifeSurvivor).ToString();
         UpgradeRadioText.text = ManagerSkills.instance.GetValueSkill(SkillCategory.survivorCategory,SkillStatType.ratioPickUp).ToString();
         UpgradePickupHealingText.text = ManagerSkills.instance.GetValueSkill(SkillCategory.survivorCategory,SkillStatType.healingPickup).ToString();
@@ -665,6 +665,11 @@ public class PjSkillsUpgradeUI
         ManagerSkills.instance.TryUnlockUltimate(SkillCategory.shieldCategory);
         AudioManager.instance.PlaySfx(audioManager.UnlockSkill);
     }
+    private void UltimateSurvivorFunctionUnlock()
+    {
+        ManagerSkills.instance.TryUnlockUltimate(SkillCategory.survivorCategory);
+        AudioManager.instance.PlaySfx(audioManager.UnlockSkill);
+    }
     private void UpgradeCadencia()
     {
         ManagerSkills.instance.UpgradeSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed);
@@ -695,12 +700,7 @@ public class PjSkillsUpgradeUI
         AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
 
     }
-    //private void UnlockDashFunction()
-    //{
-    //    ManagerSkills.instance.UnlockSkillCategory(SkillCategory.dashCategory);
-    //    AudioManager.instance.PlaySfx(audioManager.UnlockSkill);
-
-    //}
+    
     private void UpgradeDashSpeed() 
     {
         ManagerSkills.instance.UpgradeSkill(SkillCategory.dashCategory, SkillStatType.dashSpeed);

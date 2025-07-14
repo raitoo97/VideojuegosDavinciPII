@@ -24,6 +24,7 @@ public class UltiHoverHandler : MonoBehaviour
             {SkillCategory.turretCategory, "Fires a powerful shot with a large blast radius, damaging multiple enemies at once." },
             {SkillCategory.shieldCategory, "Slows down time itself, giving you a brief moment of clarity and control." },
             {SkillCategory.dashCategory, "Your dash tears through the ground, leaving a trail of energy that damages enemies, turrets are unaffected." },
+            {SkillCategory.survivorCategory, "Gain pasive health regeneration." },
             {SkillCategory.dopplegangerCategory, "Your doppelgangers explode upon death, dealing damage to nearby enemies." }
         };
     }
