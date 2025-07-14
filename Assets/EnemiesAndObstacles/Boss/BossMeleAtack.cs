@@ -17,13 +17,8 @@ public class BossMeleAtack : MonoBehaviour
     {
         _armCollider.enabled = false;
     }
-    private void Update()
-    {
-        print("Arm Enable" + _armCollider.enabled);
-    }
     private void OnTriggerEnter(Collider other)
     {
-        print(other.name);
         if (other.GetComponent<Player>())
         {
             var player = other.GetComponent<Player>();

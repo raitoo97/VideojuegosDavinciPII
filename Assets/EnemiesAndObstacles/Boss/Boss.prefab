@@ -642,18 +642,20 @@ MonoBehaviour:
     _lineRendererMaterial: {fileID: 2100000, guid: a87b5f5dcbcc8004b8dc6c9087cc9f0f, type: 2}
     _mask:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 8
     _bossrefCorutine: {fileID: 8632812616792405662}
-    canShoot: 0
+    _animator: {fileID: 1138809082459953065}
+    _agent: {fileID: 2094302705399732386}
   - _rayLaser: {fileID: 7760707755731665334}
     _gunSight: {fileID: 7760707755731665334}
     _child: {fileID: 4690367336808557545}
     _lineRendererMaterial: {fileID: 2100000, guid: a87b5f5dcbcc8004b8dc6c9087cc9f0f, type: 2}
     _mask:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 8
     _bossrefCorutine: {fileID: 8632812616792405662}
-    canShoot: 0
+    _animator: {fileID: 1138809082459953065}
+    _agent: {fileID: 2094302705399732386}
   _respawnZombies:
   - {fileID: 2825250613217304803}
   - {fileID: 2814349488127521471}
