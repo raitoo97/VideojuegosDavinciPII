@@ -21,7 +21,10 @@ public class UltiHoverHandler : MonoBehaviour
 
         ultiDescription = new Dictionary<SkillCategory, string>() 
         {
-            {SkillCategory.turretCategory, "Powerful shot, aplies a grand blast radius affecting multiple enemies at once." }
+            {SkillCategory.turretCategory, "Fires a powerful shot with a large blast radius, damaging multiple enemies at once." },
+            {SkillCategory.shieldCategory, "Slows down time itself, giving you a brief moment of clarity and control." },
+            {SkillCategory.dashCategory, "Your dash tears through the ground, leaving a trail of energy that damages enemies, turrets are unaffected." },
+            {SkillCategory.dopplegangerCategory, "Your doppelgangers explode upon death, dealing damage to nearby enemies." }
         };
     }
 
