@@ -111,7 +111,18 @@ MonoBehaviour:
   imagesList:
   - {fileID: 0}
   - {fileID: 0}
+  UnlockedShield: {fileID: 0}
+  ShieldText: {fileID: 0}
+  UnlockedDash: {fileID: 0}
+  DashText: {fileID: 0}
+  UnlockedSurvivor: {fileID: 0}
+  SurvivorText: {fileID: 0}
+  UnlockedDoppleganger: {fileID: 0}
+  DopplegangerText: {fileID: 0}
   buttonList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -145,6 +156,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _statusPjImageEntries:
   - lifeStatusType: 0
     statusImage: {fileID: 0}
@@ -161,7 +176,9 @@ MonoBehaviour:
   - lifeStatusType: 4
     statusImage: {fileID: 0}
     EdgeStatus: {fileID: 0}
+  _cooldownFeedback: {fileID: 0}
   SkillsPanel: {fileID: 0}
+  unlockSkill: 0
   obstacleWarning: {fileID: 0}
   obstacleWarningArrow: {fileID: 0}
 --- !u!114 &3931444751640104713

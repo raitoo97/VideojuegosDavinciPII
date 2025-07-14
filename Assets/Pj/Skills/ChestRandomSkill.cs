@@ -6,9 +6,10 @@ public class ChestRandomSkill : MonoBehaviour
     private float _valueChest;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (ManagerUI.instance.unlockSkill)
         {
             ChoseRandomCategory();
+            ManagerUI.instance.unlockSkill = false;
         }
     }
     private void Awake()

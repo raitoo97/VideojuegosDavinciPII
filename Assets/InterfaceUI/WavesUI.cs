@@ -56,7 +56,7 @@ public class WavesUI
         {
             _waveButton.gameObject.SetActive(true);
             _arrow.gameObject.SetActive(true);
-            ManagerUI.instance.SkillsPanel.SetActive(false);
+            //ManagerUI.instance.SkillsPanel.SetActive(false);
             _waveText.gameObject.SetActive(false);
             _numberOfEnemies.gameObject.SetActive(false);
             _winningText.gameObject.SetActive(false);
@@ -66,7 +66,7 @@ public class WavesUI
         {
             _waveButton.gameObject.SetActive(false);
             _waveText.gameObject.SetActive(false);
-            ManagerUI.instance.SkillsPanel.SetActive(false);
+            //ManagerUI.instance.SkillsPanel.SetActive(false);
             _numberOfEnemies.gameObject.SetActive(false);
             _winningText.gameObject.SetActive(true);
             return;
@@ -74,7 +74,7 @@ public class WavesUI
         if (NumberWave < 5 && currentEnemies <= 0 && !_isLastWave)
         {
             _waveButton.gameObject.SetActive(true);
-            ManagerUI.instance.SkillsPanel.SetActive(true);
+            //ManagerUI.instance.SkillsPanel.SetActive(true);
             WavesManager.instance._cleanZombieTempList?.Invoke();
             _waveText.gameObject.SetActive(false);
             _numberOfEnemies.gameObject.SetActive(false);
@@ -83,7 +83,7 @@ public class WavesUI
         else
         {
             _waveButton.gameObject.SetActive(false);
-            ManagerUI.instance.SkillsPanel.SetActive(false);
+            //ManagerUI.instance.SkillsPanel.SetActive(false);
             _waveText.gameObject.SetActive(true);
             _numberOfEnemies.gameObject.SetActive(true);
             _winningText.gameObject.SetActive(false);

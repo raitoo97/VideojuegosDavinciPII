@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 
     [Header("Life")]
     public float maxLife = 100f;
-    [SerializeField]private float _currentLife;
+    [SerializeField]public float _currentLife;
     public static Action OnPlayerDeath;
     public static Player instance;
 

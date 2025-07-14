@@ -7,6 +7,7 @@ public class DoppelgangerSkill : MonoBehaviour
     public float _cooldown;
     public float _lifeCopy;
     private float _cooldownTimer = 0f;
+    private bool doppleCooldownVisual = false;
     [Header("PjMaterialChange")]
     [SerializeField]private Material _orginalMaterialPj;
     [SerializeField]private Material _dopplegangerMaterialPj;
@@ -27,20 +28,13 @@ public class DoppelgangerSkill : MonoBehaviour
         GetSkillsValue();
         if (_cooldownTimer > 0f)
             _cooldownTimer -= Time.deltaTime;
+        if (_cooldownTimer <= 0)
+        {
+            doppleCooldownVisual = false;
+        }
         ActivateSkill();
         CheckMaterial();
-        if (Input.GetKeyDown(KeyCode.V))
-        {
-            ManagerSkills.instance.UpgradeSkill(SkillCategory.dopplegangerCategory, SkillStatType.dopplegangerLife);
-        }
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            ManagerSkills.instance.UpgradeSkill(SkillCategory.dopplegangerCategory, SkillStatType.coldowndoppleganger);
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            ManagerSkills.instance.TryUnlockUltimate(SkillCategory.dopplegangerCategory);
-        }
+        
     }
     private void CheckMaterial()
     {
@@ -85,6 +79,11 @@ public class DoppelgangerSkill : MonoBehaviour
             _currentInstance.transform.position = this.transform.position + Vector3.back * 2;
             _currentInstance.transform.rotation = this.transform.rotation;
             _cooldownTimer = _cooldown;
+            if (!doppleCooldownVisual)
+            {
+                CooldownFeedback.instance.Cooldown(SkillCategory.dopplegangerCategory, SkillStatType.coldowndoppleganger);
+                doppleCooldownVisual = true;
+            }
         }
     }
     private void GetSkillsValue()
