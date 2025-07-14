@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-public class SkillHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class UltiHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public SkillCategory skillCategory;
     public SkillStatType stat;

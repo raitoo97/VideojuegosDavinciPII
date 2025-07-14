@@ -10,7 +10,6 @@ public class SkillHoverHandler : MonoBehaviour
     [SerializeField] Text skillText;
 
     private Dictionary<(SkillCategory, SkillStatType), string> skillDescription;
-
     private void Awake()
     {
         instance = this;
