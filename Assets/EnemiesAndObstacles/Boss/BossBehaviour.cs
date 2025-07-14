@@ -73,6 +73,7 @@ public class BossBehaviour : MonoBehaviour
     {
         int choice = UnityEngine.Random.Range(0, 100);
         print(choice);
+        _animator.ResetTrigger("Punch");
         if (choice < 30)
         {
             if (_turretBoss.Count > 0)
@@ -93,7 +94,9 @@ public class BossBehaviour : MonoBehaviour
         }
         else
         {
+            _currentSpecialSkill = null;
             _isUsingSpecialSkill = false;
+            _navMeshAgent.isStopped = false;
             _specialSkillTimer = _delayBetweenSkills;
         }
     }
@@ -108,7 +111,7 @@ public class BossBehaviour : MonoBehaviour
         _navMeshAgent.isStopped = false;
     }
     #region//InvokeZombie
-    private void InvokeZombies()
+    private void InvokeZombies()//se llama en animation event
     {
         _InvokeZombie.SpawnZombies();
         EndSpecialSkill();
@@ -141,7 +144,7 @@ public class InvokeZombie : IBossSkill
     }
     public void BossSkill(bool canUse = true)
     {
-        if (_isInvoking || _respawnZombies.Count == 0) return;
+        if (!canUse || _isInvoking || _respawnZombies.Count == 0) return;
         _isInvoking = true;
         _navMeshAgent.isStopped = true;
         _animator.SetBool("Run", false);
@@ -177,6 +180,7 @@ public class TurretBoss : IBossSkill
     private float _distance;
     private RayCastTurret _rayTurret;
     private bool canShoot;
+    private bool _hasTriggeredTurretAnim = false;
     public TurretBoss(Transform _rayLaser, Transform _gunSight, Transform _child, Material _lineRendererMaterial, LayerMask _mask, MonoBehaviour _bossrefCorutine, Animator _animator, NavMeshAgent _agent)
     {
         this._rayLaser = _rayLaser;
@@ -197,12 +201,16 @@ public class TurretBoss : IBossSkill
     }
     public void BossSkill(bool canUse = true)
     {
-        if (!canShoot) return;
+        if (!canShoot || !canUse) return;
         if (_child == null || GameManager.instance.player == null) return;
         _dirRotVector = GameManager.instance.player.transform.position - _child.position;
         _agent.isStopped = true;
-        _animator.SetBool("Run", false);
-        _animator.SetTrigger("Turret");
+        if (!_hasTriggeredTurretAnim)
+        {
+            _animator.SetBool("Run", false);
+            _animator.SetTrigger("Turret");
+            _hasTriggeredTurretAnim = true;
+        }
         if (_dirRotVector != Vector3.zero)
         {
             _dirRotQuaternion = Quaternion.LookRotation(_dirRotVector);
@@ -236,6 +244,7 @@ public class TurretBoss : IBossSkill
         _rayTurret.HiddenLaser();
         _animator.SetBool("Run", true);
         canShoot = false;
+        _hasTriggeredTurretAnim = false;
     }
 }
 public class MultipleTurretSkill : IBossSkill
@@ -249,8 +258,8 @@ public class MultipleTurretSkill : IBossSkill
     {
         foreach (var turret in _turrets)
         {
-            turret.SetCanShoot(true);
-            turret.BossSkill();
+            turret.SetCanShoot(canUse);
+            turret.BossSkill(canUse);
         }
     }
     public void EndSkill()
@@ -270,6 +279,7 @@ public class Punch : IBossSkill
     private NavMeshAgent _agent;
     private Action _onPunch;
     private Animator _animator;
+    private bool _hasTriggeredPunchAnim = false;
     public Punch(NavMeshAgent _agent, Action _onPunch,Transform _transform,Animator _animator)
     {
         this._agent = _agent;
@@ -283,6 +293,7 @@ public class Punch : IBossSkill
         {
             _animator.SetBool("Run", false);
             _agent.isStopped = true;
+            _hasTriggeredPunchAnim = false;
             return;
         }
         if (_cooldownTimer > 0f)
@@ -293,11 +304,16 @@ public class Punch : IBossSkill
             _animator.SetBool("Run", true);
             _agent.isStopped = false;
             _agent.SetDestination(GameManager.instance.player.transform.position);
+            _hasTriggeredPunchAnim = false;
         }
         else
         {
             _animator.SetBool("Run", false);
-            _animator.SetTrigger("Punch");
+            if (!_hasTriggeredPunchAnim)
+            {
+                _animator.SetTrigger("Punch");
+                _hasTriggeredPunchAnim = true;
+            }
             _agent.isStopped = true;
             if (_cooldownTimer <= 0f)
             {
