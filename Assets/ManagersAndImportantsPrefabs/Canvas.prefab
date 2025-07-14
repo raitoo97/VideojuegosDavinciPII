@@ -3934,7 +3934,7 @@ GameObject:
   - component: {fileID: 8998547729934842007}
   - component: {fileID: 5917200661386304255}
   m_Layer: 5
-  m_Name: panel
+  m_Name: skillPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8019,7 +8019,7 @@ GameObject:
   - component: {fileID: 8729607089827700808}
   - component: {fileID: 1576824831781213466}
   m_Layer: 5
-  m_Name: text
+  m_Name: skillText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9425,8 +9425,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faccc83ab6ddc644f8a1120770a63395, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 3384883968633545113}
-  text: {fileID: 1576824831781213466}
+  skillPanel: {fileID: 3384883968633545113}
+  skillText: {fileID: 1576824831781213466}
 --- !u!1 &8457996812552394228
 GameObject:
   m_ObjectHideFlags: 0

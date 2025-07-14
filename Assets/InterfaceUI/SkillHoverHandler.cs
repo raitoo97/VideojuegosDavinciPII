@@ -6,15 +6,15 @@ using UnityEngine.UI;
 public class SkillHoverHandler : MonoBehaviour
 {
     public static SkillHoverHandler instance;
-    [SerializeField] GameObject panel;
-    [SerializeField] Text text;
+    [SerializeField] GameObject skillPanel;
+    [SerializeField] Text skillText;
 
     private Dictionary<(SkillCategory, SkillStatType), string> skillDescription;
 
     private void Awake()
     {
         instance = this;
-        panel.SetActive(false);
+        skillPanel.SetActive(false);
 
         skillDescription = new Dictionary<(SkillCategory, SkillStatType), string>
         {
@@ -36,7 +36,7 @@ public class SkillHoverHandler : MonoBehaviour
             },
             {
                 (SkillCategory.shieldCategory, SkillStatType.shieldRadius), 
-                "Increase the size of the shiel."
+                "Increase the size of the shield."
             },
             {
                 (SkillCategory.shieldCategory, SkillStatType.shieldDuration),
@@ -73,21 +73,18 @@ public class SkillHoverHandler : MonoBehaviour
     {
         if (skillDescription.TryGetValue((category,stat), out string description))
         {
-            text.text = description;
+            skillText.text = description;
         }
         else
         {
-            text.text = "No description available";
+            skillText.text = "No description available";
         }
 
-        panel.SetActive(true);
-        //text.gameObject.SetActive(true);
-
+        skillPanel.SetActive(true);
     }
 
     public void HidePanel()
     {
-        panel.SetActive(false);
-        //text.gameObject.SetActive(false);
+        skillPanel.SetActive(false);
     }
 }
