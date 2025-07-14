@@ -48,7 +48,7 @@ public class BossBehaviour : MonoBehaviour
     {
         if (!_isUsingSpecialSkill)
         {
-            _punch.BossSkill();
+            _punch.BossSkill(true);
             _specialSkillTimer -= Time.deltaTime;
             if (_specialSkillTimer <= 0f)
             {
@@ -61,6 +61,7 @@ public class BossBehaviour : MonoBehaviour
             {
                 _currentSpecialSkill.BossSkill();
             }
+            _punch.BossSkill(false);
             _specialSkillTimer -= Time.deltaTime;
             if (_specialSkillTimer <= 0f)
             {
@@ -138,7 +139,7 @@ public class InvokeZombie : IBossSkill
         this._animator = _animator;
         this._navMeshAgent = _navMeshAgent;
     }
-    public void BossSkill()
+    public void BossSkill(bool canUse = true)
     {
         if (_isInvoking || _respawnZombies.Count == 0) return;
         _isInvoking = true;
@@ -194,7 +195,7 @@ public class TurretBoss : IBossSkill
         _distance = Mathf.Infinity;
         _rayTurret = new RayCastTurret(_rayLaser, _mask, _distance, _lineRendererMaterial,_bossrefCorutine, 2f);
     }
-    public void BossSkill()
+    public void BossSkill(bool canUse = true)
     {
         if (!canShoot) return;
         if (_child == null || GameManager.instance.player == null) return;
@@ -244,7 +245,7 @@ public class MultipleTurretSkill : IBossSkill
     {
         _turrets = turrets;
     }
-    public void BossSkill()
+    public void BossSkill(bool canUse = true)
     {
         foreach (var turret in _turrets)
         {
@@ -276,8 +277,14 @@ public class Punch : IBossSkill
         this._transform = _transform;
         this._animator = _animator;
     }
-    public void BossSkill()
+    public void BossSkill(bool canUse = true)
     {
+        if (!canUse)
+        {
+            _animator.SetBool("Run", false);
+            _agent.isStopped = true;
+            return;
+        }
         if (_cooldownTimer > 0f)
             _cooldownTimer -= Time.deltaTime;
         bool distance = _transform.IsWithinDistanceOf(GameManager.instance.player.transform, _attackRange);
