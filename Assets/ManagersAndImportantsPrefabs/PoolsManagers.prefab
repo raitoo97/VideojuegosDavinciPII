@@ -50,15 +50,15 @@ MonoBehaviour:
   bulletConfigs:
   - type: 0
     prefab: {fileID: 575709201184222177, guid: b871cd1e7ee799f4180d4201074fc5d8, type: 3}
-    initialSize: 50
+    initialSize: 150
     _parent: {fileID: 1477309947633531035}
   - type: 1
     prefab: {fileID: 6554155068203961422, guid: 607f4da4f30cd5241a5ac79a8704232a, type: 3}
-    initialSize: 50
+    initialSize: 150
     _parent: {fileID: 1477309947633531035}
   - type: 2
     prefab: {fileID: 2791607998676314047, guid: 83281941d0a13834bb648df67530d132, type: 3}
-    initialSize: 50
+    initialSize: 150
     _parent: {fileID: 1477309947633531035}
 --- !u!114 &2694690536876157383
 MonoBehaviour:
@@ -136,11 +136,11 @@ MonoBehaviour:
   poolPickUpsStructs:
   - _prefab: {fileID: 6035384779011271666, guid: f1c8b9627ebf8ef48bcf1a31cb9705ba, type: 3}
     type: 0
-    initList: 20
+    initList: 150
     chance: 70
     _itemPool: []
   - _prefab: {fileID: 4283784203745896996, guid: 48323c3d8119d7b449d6498c1b5ec360, type: 3}
     type: 1
-    initList: 20
+    initList: 150
     chance: 20
     _itemPool: []

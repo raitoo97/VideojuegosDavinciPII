@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
         Bullet.onHitPlayerBullet += HandleHitPlayerBullet;
         ZombieAttack.onHitPlayerZombie += HandleHitPlayerZombie;
         Spikes.OnTriggerSpikes += HandleHitPlayerSpikes;
+        BossMeleAtack.onHitPlayerBoss += HandleHitPlayerBoss;
     }
     private void Update()
     {
@@ -99,11 +100,20 @@ public class Player : MonoBehaviour
         ParticlesPool.instance.SpamParticle(ParticleType.Sparks, new Vector3(0f, 2f, 0f), new Vector3(UnityEngine.Random.Range(0f, 180f), 0f, 0f), GameManager.instance.player.transform);
         player.DamagePlayer(damage);
     }
+    private void HandleHitPlayerBoss(Player player, float damage)
+    {
+        int randomIndex = UnityEngine.Random.Range(0, audioManager.zombieAttackSfx.Length);
+        audioManager.PlaySfxRandomPitch(audioManager.zombieAttackSfx[randomIndex]);
+        CameraShakeManager.instance.ShakeCamera(Shakes.PlayerUnderAtack);
+        ParticlesPool.instance.SpamParticle(ParticleType.Sparks, new Vector3(0f, 2f, 0f), new Vector3(UnityEngine.Random.Range(0f, 180f), 0f, 0f), GameManager.instance.player.transform);
+        player.DamagePlayer(damage);
+    }
     public float GetLife { get => Mathf.Clamp(_currentLife, 0, maxLife); }
     private void OnDisable()
     {
         Bullet.onHitPlayerBullet -= HandleHitPlayerBullet;
         ZombieAttack.onHitPlayerZombie -= HandleHitPlayerZombie;
+        BossMeleAtack.onHitPlayerBoss -= HandleHitPlayerBoss;
     }
     private void OnDrawGizmos()
     {

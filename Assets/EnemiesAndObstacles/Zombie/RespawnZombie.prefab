@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d764500b40e3f91479d88ee32e10b9b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keepSpawning: 0
+  numberOfRespawn: 25
