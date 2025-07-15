@@ -130,7 +130,7 @@ public class TurretPj : MonoBehaviour
                         }
                     }
                 }
-                if (enemy.GetComponent<BossBehaviour>())
+                if (enemy.GetComponentInParent<BossBehaviour>())
                 {
                     GameObject bullet = null;
                     if (!ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
