@@ -173,6 +173,10 @@ public class BossBehaviour : MonoBehaviour , IEnemies
         _navMeshAgent.isStopped = false;
         _specialSkillTimer = _delayBetweenSkills;
     }
+    public void DesactivatePunch()
+    {
+        _punch.OnEndPunchAnimation();
+    }
     #endregion
     #region//InvokeZombie
     private void InvokeZombies()//Se activa por animation event
@@ -382,8 +386,8 @@ public class Punch : IBossSkill
     {
         if (!canUse)
         {
+            _animator.SetBool("IsPunching", false);
             _animator.SetBool("Run", false);
-            _animator.ResetTrigger("Punch");
             _agent.isStopped = true;
             _hasTriggeredPunchAnim = false;
             return;
@@ -402,14 +406,19 @@ public class Punch : IBossSkill
             _agent.isStopped = true;
             if (!_hasTriggeredPunchAnim)
             {
-                _animator.SetTrigger("Punch");
+                _animator.SetBool("IsPunching", true);
                 _hasTriggeredPunchAnim = true;
             }
         }
     }
+    public void OnEndPunchAnimation()
+    {
+        _animator.SetBool("IsPunching", false);
+        _hasTriggeredPunchAnim = false;
+    }
     public void EndSkill()
     {
-        _animator.ResetTrigger("Punch");
+        _animator.SetBool("IsPunching", false);
         _animator.SetBool("Run", true);
         _agent.isStopped = false;
         _hasTriggeredPunchAnim = false;
