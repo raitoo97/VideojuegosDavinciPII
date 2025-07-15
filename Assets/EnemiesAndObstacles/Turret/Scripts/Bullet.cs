@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     public static Action<Player,float,Transform> onHitPlayerBullet;
     public static Action<ZombieBehaviour> onHitZombie;
     public static event Action<TurretBehaviour, float> OnTurretDamaged;
+    public static Action <BossBehaviour, float> OnBossDamaged;
     [Header("Player dmg")]
     private float _dmgPlayer;
     private float _ultimtateRadius;
@@ -61,6 +62,10 @@ public class Bullet : MonoBehaviour
                 }
             }
             DesactivateBullet();
+        }
+        if(shooterType == ShooterType.Player && other.TryGetComponent<BossBehaviour>(out var boss))
+        {
+            OnBossDamaged?.Invoke(boss, 3);
         }
         if (other.gameObject.layer == 13)//Ground
         {

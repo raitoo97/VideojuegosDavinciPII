@@ -31,7 +31,7 @@ public class BossBehaviour : MonoBehaviour
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _bossMeleeAttack = GetComponentInChildren<BossMeleAtack>();
         _animator = GetComponentInChildren<Animator>();
-        _punch = new Punch(_navMeshAgent,ActivatePunchCollider,this.transform, _animator);
+        _punch = new Punch(_navMeshAgent,this.transform, _animator);
         _InvokeZombie = new InvokeZombie(_respawnZombies, _animator, _navMeshAgent);
         if (_turretBoss.Count > 0)
             _multipleTurretSkill = new MultipleTurretSkill(_turretBoss);
@@ -53,6 +53,25 @@ public class BossBehaviour : MonoBehaviour
     {
         CheckAbility();
     }
+    private void HandleHitBoss(BossBehaviour enemy)
+    {
+        if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
+        {
+            int randomIndexUltimate = UnityEngine.Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
+            AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndexUltimate]); //sound effect
+            ParticlesPool.instance.SpamParticle(ParticleType.TurretUltimate, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
+            enemy.life = 0;
+        }
+        else
+        {
+            int randomIndex = UnityEngine.Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
+            AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndex]); //sound effect
+            ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
+            enemy.life = 0;
+
+        }
+    }
+    #region//UsingAbility
     private void CheckAbility()
     {
         if (!_isUsingSpecialSkill)
@@ -121,22 +140,21 @@ public class BossBehaviour : MonoBehaviour
         _navMeshAgent.isStopped = false;
         _specialSkillTimer = _delayBetweenSkills;
     }
+    #endregion
     #region//InvokeZombie
-    private void InvokeZombies()
+    private void InvokeZombies()//Se activa por animation event
     {
         _InvokeZombie.SpawnZombies();
         EndSpecialSkill();
     }
     #endregion
     #region//Punch
-    private void ActivatePunchCollider()
+    private void ActivatePunchCollider()//Se activa por animation event
     {
-        StartCoroutine(PunchColliderWindow());
+        _bossMeleeAttack.EnablePunchCollider();
     }
-    private IEnumerator PunchColliderWindow()
+    private void DesactivatePunchCollider()//Se activa por animation event
     {
-        _bossMeleeAttack.EnablePunchCollider();         
-        yield return new WaitForSeconds(0.1f);
         _bossMeleeAttack.DisablePunchCollider();
     }
     #endregion
@@ -260,6 +278,7 @@ public class TurretBoss : IBossSkill
         _rayTurret.HiddenLaser();
         _animator.ResetTrigger("Turret");
         _animator.SetBool("Run", true);
+        _agent.isStopped = false;
         canShoot = false;
         _hasTriggeredTurretAnim = false;
     }
@@ -290,17 +309,13 @@ public class MultipleTurretSkill : IBossSkill
 public class Punch : IBossSkill
 {
     private float _attackRange = 4f;
-    private float _cooldown = 0.2f;
-    private float _cooldownTimer = 0f;
     private Transform _transform;
     private NavMeshAgent _agent;
-    private Action _onPunch;
     private Animator _animator;
     private bool _hasTriggeredPunchAnim = false;
-    public Punch(NavMeshAgent _agent, Action _onPunch,Transform _transform,Animator _animator)
+    public Punch(NavMeshAgent _agent,Transform _transform,Animator _animator)
     {
         this._agent = _agent;
-        this._onPunch = _onPunch;
         this._transform = _transform;
         this._animator = _animator;
     }
@@ -313,8 +328,6 @@ public class Punch : IBossSkill
             _hasTriggeredPunchAnim = false;
             return;
         }
-        if (_cooldownTimer > 0f)
-            _cooldownTimer -= Time.deltaTime;
         bool distance = _transform.IsWithinDistanceOf(GameManager.instance.player.transform, _attackRange);
         if (!distance)
         {
@@ -326,24 +339,19 @@ public class Punch : IBossSkill
         else
         {
             _animator.SetBool("Run", false);
+            _agent.isStopped = true;
             if (!_hasTriggeredPunchAnim)
             {
                 _animator.SetTrigger("Punch");
                 _hasTriggeredPunchAnim = true;
-            }
-            _agent.isStopped = true;
-            if (_cooldownTimer <= 0f)
-            {
-                _onPunch?.Invoke();
-                _cooldownTimer = _cooldown;
             }
         }
     }
     public void EndSkill()
     {
         _animator.ResetTrigger("Punch");
-        _animator.SetBool("Run", false);
-        _agent.isStopped = true;
+        _animator.SetBool("Run", true);
+        _agent.isStopped = false;
         _hasTriggeredPunchAnim = false;
     }
 }
