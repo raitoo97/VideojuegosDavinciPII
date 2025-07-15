@@ -25,12 +25,12 @@ public class BossBehaviour : MonoBehaviour , IEnemies
     private MultipleTurretSkill _multipleTurretSkill;
     [Header("Life")]
     private float _currentLife = 0;
-    private float _maxLife = 10000;
+    private float _maxLife = 100;
     public event Action<IEnemies> OnDeath;
-    private bool isdead;
+    private bool _isdead;
     private void Awake()
     {
-        isdead = false;
+        _isdead = false;
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _bossMeleeAttack = GetComponentInChildren<BossMeleAtack>();
         _animator = GetComponentInChildren<Animator>();
@@ -42,6 +42,8 @@ public class BossBehaviour : MonoBehaviour , IEnemies
     private void OnEnable()
     {
         Bullet.OnBossDamaged += HandleHitBoss;
+        _animator.SetBool("Dead", false);
+        OnDeath += Dead;
     }
     void Start()
     {
@@ -59,10 +61,11 @@ public class BossBehaviour : MonoBehaviour , IEnemies
     }
     private void Update()
     {
-        if (isdead) return;
+        if (_isdead) return;
         print(_currentLife);
         CheckAbility();
     }
+    #region//BossLife
     private void HandleHitBoss(BossBehaviour Boss,float damage)
     {
         if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
@@ -79,12 +82,29 @@ public class BossBehaviour : MonoBehaviour , IEnemies
             ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 1f, 0f), Vector3.zero, Boss.transform,2);
             Boss._currentLife -= damage;
         }
-
+        if(_currentLife <= 0)
+        {
+            _isdead = true;
+            OnDeath?.Invoke(this);
+        }
     }
-    private void Dead()
+    public void DestroyBoss()//se llama por animation event
     {
-
+        Destroy(gameObject);
     }
+    private void Dead(IEnemies boss)
+    {
+        if (_currentSpecialSkill != null)
+        {
+            _currentSpecialSkill.EndSkill();
+            _currentSpecialSkill = null;
+        }
+        _punch.EndSkill();
+        _navMeshAgent.isStopped = true;
+        _currentSpecialSkill = null;
+        _animator.SetBool("Dead", true);
+    }
+    #endregion
     #region//UsingAbility
     private void CheckAbility()
     {
@@ -174,7 +194,7 @@ public class BossBehaviour : MonoBehaviour , IEnemies
     private void OnDisable()
     {
         Bullet.OnBossDamaged -= HandleHitBoss;
-        isdead = true;
+        OnDeath -= Dead;
     }
     private void OnDestroy()
     {
