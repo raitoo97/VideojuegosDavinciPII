@@ -7,7 +7,7 @@ public class Survivor : MonoBehaviour
     [SerializeField] itemHealthBehavior _healthItem;
     [SerializeField] itemXPBehavior _xpItem;
     public float currentPickupDistance = 6f;
-    public float currentHealingPickup;
+    public float currentHealingPickup = 10f;
     public static Survivor instance;
     private float regenRate = 5f;
     private void Start()
