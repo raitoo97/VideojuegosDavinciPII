@@ -5,6 +5,15 @@ using UnityEngine.UI;
 public class ManagerUI : MonoBehaviour
 {
     public List<Image> imagesList = new List<Image>();
+    public Image UnlockedShield;
+    public Image ShieldText;
+    public Image UnlockedDash;
+    public Image DashText;
+    public Image UnlockedSurvivor;
+    public Image SurvivorText;
+    public Image UnlockedDoppleganger;
+    public Image DopplegangerText;
+
     public List<Button> buttonList = new List<Button>();
     public List <Text> textList = new List<Text>();
     public List<LifeController> _statusPjImageEntries = new List<LifeController>();
@@ -12,11 +21,20 @@ public class ManagerUI : MonoBehaviour
     private PjStatesLifeBar PjLifeStates;
     private PjSkillsUpgradeUI _pjSkillsUpgradeUI;
     private WavesUI _wavesUI;
+    [SerializeField] CooldownFeedback _cooldownFeedback;
+
+    [Header("Skills UI")]
     public GameObject SkillsPanel;
-    [Header("Obstacles UI")]//
+    private bool _isCanvasEnable;
+    private Button _skillsButton;
+    private Button _unlockSkillButton;
+    public bool unlockSkill = false;
+
+    [Header("Obstacles UI")]
     public GameObject obstacleWarning;
     public GameObject obstacleWarningArrow;
     private ObstaclesDetectedUI _obstaclesDetectedUI;
+
     private void Awake()
     {
         if (instance == null) { instance = this; }
@@ -25,6 +43,7 @@ public class ManagerUI : MonoBehaviour
     void Start()
     {
         imagesList = imagesList.OrderBy(x => x.name).ToList();
+
         _pjSkillsUpgradeUI = new PjSkillsUpgradeUI(textList, buttonList);
         PjLifeStates = new PjStatesLifeBar(GameManager.instance.player.GetComponent<Player>(),imagesList.Find(x => x.gameObject.name == "LifeBar"), _statusPjImageEntries, imagesList.Find(x => x.gameObject.name == "LifeBarEdge"));
         _wavesUI = new WavesUI(buttonList, textList);
@@ -33,6 +52,34 @@ public class ManagerUI : MonoBehaviour
         _pjSkillsUpgradeUI.OnStart();
         _wavesUI.OnStart();
         _obstaclesDetectedUI.OnStart();
+        
+        SkillsPanel.SetActive(false);
+        _isCanvasEnable = false;
+        this._skillsButton = buttonList.Find(x => x.gameObject.name == "ButtonSkill");
+        _skillsButton.onClick.AddListener(ButtonSkillClicked);
+        _unlockSkillButton = buttonList.Find(x => x.gameObject.name == "ButtonUnlockRandomSkill");
+        _unlockSkillButton.onClick.AddListener(ButtonUnlockSkillClicked);
+
+        //Images of Skills unlock half alpha
+        Color c = UnlockedShield.color;
+        c.a = 0.2f;
+        UnlockedShield.color = c;
+        ShieldText.gameObject.SetActive(false);
+
+        Color d = UnlockedDash.color;
+        d.a = 0.2f;
+        UnlockedDash.color = d;
+        DashText.gameObject.SetActive(false);
+
+        Color s = UnlockedSurvivor.color;
+        s.a = 0.2f;
+        UnlockedSurvivor.color = s;
+        SurvivorText.gameObject.SetActive(false);
+
+        Color g = UnlockedDoppleganger.color;
+        g.a = 0.2f;
+        UnlockedDoppleganger.color = g;
+        DopplegangerText.gameObject.SetActive(false);
     }
     private void Update()
     {
@@ -41,6 +88,52 @@ public class ManagerUI : MonoBehaviour
         _wavesUI.OnUpdate();
         _obstaclesDetectedUI.OnUpdate();
     }
+    public void CanvasState()
+    {
+        if (!_isCanvasEnable)
+        {
+            ActiveSkillsMenu();
+        }
+        else
+        {
+            DeactivateSkillsMenu();
+        }
+    }
+    public void ActiveSkillsMenu()
+    {
+        _isCanvasEnable = true;
+        SkillsPanel.SetActive(true);
+    }
+    public void DeactivateSkillsMenu()
+    {
+        _isCanvasEnable = false;
+        SkillsPanel.SetActive(false);
+
+    }
+
+    private void ButtonSkillClicked()
+    {
+        CanvasState();
+        _skillsButton.onClick.RemoveAllListeners();
+        _skillsButton.onClick.AddListener(ButtonSkillDeclicked);
+    }
+
+    private void ButtonSkillDeclicked()
+    {
+        CanvasState();
+        _skillsButton.onClick.RemoveAllListeners();
+        _skillsButton.onClick.AddListener(ButtonSkillClicked);
+    }
+
+    private void ButtonUnlockSkillClicked()
+    {
+        if (!unlockSkill)
+        {
+            unlockSkill = true;
+        }
+    }
+
+   
     public PjStatesLifeBar getLifeBar { get => PjLifeStates; }
     public WavesUI WaveUI { get => _wavesUI; }
     public ObstaclesDetectedUI ObstaclesDetectedUI { get => _obstaclesDetectedUI;}

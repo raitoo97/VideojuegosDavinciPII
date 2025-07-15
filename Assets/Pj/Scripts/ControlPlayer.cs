@@ -18,7 +18,7 @@ public class ControlPlayer
     private float dashCooldownTimer = 0f;
     private float dashDuration = 0.2f;
     private float dashTimer = 0f;
-    //private float dashImpulse = 40f;
+    private bool dashCooldownVisualActive = false;
     //Shield
     private bool canShield = true;
     private bool isShielding = false;
@@ -28,6 +28,8 @@ public class ControlPlayer
     private float shieldDuration;
     private float shieldCooldownTimer = 0f;
     private float shieldTimer = 0f;
+    private bool shieldCooldownVisualActive = false;
+
     public ControlPlayer(Movement m, PlayerAnimation a, Shield s)
     {
         _movement = m;
@@ -149,7 +151,6 @@ public class ControlPlayer
         // ---------- DASH ----------
         if (isDash && unlockedDash && canDash && isDodgeMode && isGrounded)
         {
-            //_animation.SetDodge("dodging", foward * 3);
             _movement.Dash();
             isDashing = true;
             canDash = false;
@@ -168,9 +169,15 @@ public class ControlPlayer
         if (!canDash)
         {
             dashCooldownTimer -= Time.deltaTime;
+            if (!dashCooldownVisualActive)
+            {
+                CooldownFeedback.instance.Cooldown(SkillCategory.dashCategory, SkillStatType.dashCooldown);
+                dashCooldownVisualActive = true;
+            }
             if (dashCooldownTimer <= 0f)
             {
                 canDash = true;
+                dashCooldownVisualActive = false;
             }
         }
         //SHIELD
@@ -195,10 +202,16 @@ public class ControlPlayer
         if (!canShield)
         {
             shieldCooldownTimer -= Time.deltaTime;
+            if (!shieldCooldownVisualActive)
+            {
+                CooldownFeedback.instance.Cooldown(SkillCategory.shieldCategory, SkillStatType.shieldCooldown);
+                shieldCooldownVisualActive= true;
+            }
             if (shieldCooldownTimer <= 0)
             {
                 canShield = false;
                 canShield = true;
+                shieldCooldownVisualActive = false;
             }
         }
         //      ======== MOVIMIENTO FÍSICO Y ESTADO ========
