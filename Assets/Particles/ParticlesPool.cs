@@ -87,6 +87,7 @@ public class SpecificParticle
         ParticleObject.transform.SetParent(customSpawnParent);
         ParticleObject.transform.localPosition = Vector3.zero + offsetPos;
         ParticleObject.transform.rotation = customSpawnParent.rotation * Quaternion.Euler(offsetRot);
+        ParticleObject.transform.localScale = Vector3.one;
         var ParticleSystem = ParticleObject.GetComponent<ParticleSystem>();
         if (ParticleSystem == null) return;
         coroutineRunner.StartCoroutine(PlayParticleCoroutine(ParticleSystem));
