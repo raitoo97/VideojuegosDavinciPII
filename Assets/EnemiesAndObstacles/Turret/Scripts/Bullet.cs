@@ -70,6 +70,7 @@ public class Bullet : MonoBehaviour
         if(shooterType == ShooterType.Player && other.TryGetComponent<BossBehaviour>(out var boss))
         {
             OnBossDamaged?.Invoke(boss, _dmgPlayer);
+            DesactivateBullet();
         }
         if (other.gameObject.layer == 13)//Ground
         {

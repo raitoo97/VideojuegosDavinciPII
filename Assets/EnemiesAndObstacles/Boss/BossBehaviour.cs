@@ -64,17 +64,16 @@ public class BossBehaviour : MonoBehaviour
         if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
         {
             int randomIndexUltimate = UnityEngine.Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
-            AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndexUltimate]); //sound effect
-            ParticlesPool.instance.SpamParticle(ParticleType.TurretUltimate, new Vector3(0f, 2f, 0f), Vector3.zero, Boss.transform);
+            AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndexUltimate]);
+            ParticlesPool.instance.SpamParticle(ParticleType.TurretUltimate, new Vector3(0f, 1f, 0f), Vector3.zero, Boss.transform);
             Boss._currentLife -= damage;
         }
         else
         {
             int randomIndex = UnityEngine.Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
-            AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndex]); //sound effect
-            ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 2f, 0f), Vector3.zero, Boss.transform);
-            Boss._currentLife = damage;
-
+            AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndex]);
+            ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 1f, 0f), Vector3.zero, Boss.transform);
+            Boss._currentLife -= damage;
         }
     }
     #region//UsingAbility
@@ -164,6 +163,10 @@ public class BossBehaviour : MonoBehaviour
         _bossMeleeAttack.DisablePunchCollider();
     }
     #endregion
+    private void OnDisable()
+    {
+        Bullet.OnBossDamaged -= HandleHitBoss;
+    }
 }
 public class InvokeZombie : IBossSkill
 {
