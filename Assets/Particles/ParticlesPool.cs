@@ -34,6 +34,12 @@ public class ParticlesPool : MonoBehaviour
         var particle = _particles[type];
         particle.PlayParticle(offset, offsetRot, customSpawnParent);
     }
+    public void SpamParticle(ParticleType type, Vector3 offset, Vector3 offsetRot, Transform customSpawnParent,float size)
+    {
+        if (!_particles.ContainsKey(type)) return;
+        var particle = _particles[type];
+        particle.PlayParticle(offset, offsetRot, customSpawnParent,size);
+    }
 }
 [Serializable]
 public class SpecificParticle
@@ -81,6 +87,18 @@ public class SpecificParticle
         ParticleObject.transform.SetParent(customSpawnParent);
         ParticleObject.transform.localPosition = Vector3.zero + offsetPos;
         ParticleObject.transform.rotation = customSpawnParent.rotation * Quaternion.Euler(offsetRot);
+        var ParticleSystem = ParticleObject.GetComponent<ParticleSystem>();
+        if (ParticleSystem == null) return;
+        coroutineRunner.StartCoroutine(PlayParticleCoroutine(ParticleSystem));
+    }
+    public void PlayParticle(Vector3 offsetPos, Vector3 offsetRot, Transform customSpawnParent, float size)
+    {
+        if (pooledParticles == null) return;
+        var ParticleObject = ReturnParticle();
+        ParticleObject.transform.SetParent(customSpawnParent);
+        ParticleObject.transform.localPosition = Vector3.zero + offsetPos;
+        ParticleObject.transform.rotation = customSpawnParent.rotation * Quaternion.Euler(offsetRot);
+        ParticleObject.transform.localScale = Vector3.one * size;
         var ParticleSystem = ParticleObject.GetComponent<ParticleSystem>();
         if (ParticleSystem == null) return;
         coroutineRunner.StartCoroutine(PlayParticleCoroutine(ParticleSystem));

@@ -23,11 +23,11 @@ public class TurretPj : MonoBehaviour
     }
     void Update()
     {
-        RotateTorrete(GetZombie());
+        RotateTorrete(GetEnemy());
         RotateArroundDetail();
     }
     #region
-    private Vector3 GetZombie()
+    private Vector3 GetEnemy()
     {
         float visionRange = ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
         _colliders = Physics.OverlapSphere(this.transform.position, visionRange, mask);

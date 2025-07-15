@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class BossBehaviour : MonoBehaviour
+public class BossBehaviour : MonoBehaviour , IEnemies
 {
     [SerializeField]private NavMeshAgent _navMeshAgent;
     [SerializeField]private Animator _animator;
@@ -25,9 +25,12 @@ public class BossBehaviour : MonoBehaviour
     private MultipleTurretSkill _multipleTurretSkill;
     [Header("Life")]
     private float _currentLife = 0;
-    private float _maxLife = 1000;
+    private float _maxLife = 10000;
+    public event Action<IEnemies> OnDeath;
+    private bool isdead;
     private void Awake()
     {
+        isdead = false;
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _bossMeleeAttack = GetComponentInChildren<BossMeleAtack>();
         _animator = GetComponentInChildren<Animator>();
@@ -56,6 +59,7 @@ public class BossBehaviour : MonoBehaviour
     }
     private void Update()
     {
+        if (isdead) return;
         print(_currentLife);
         CheckAbility();
     }
@@ -65,16 +69,21 @@ public class BossBehaviour : MonoBehaviour
         {
             int randomIndexUltimate = UnityEngine.Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
             AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndexUltimate]);
-            ParticlesPool.instance.SpamParticle(ParticleType.TurretUltimate, new Vector3(0f, 1f, 0f), Vector3.zero, Boss.transform);
+            ParticlesPool.instance.SpamParticle(ParticleType.TurretUltimate, new Vector3(0f, 2f, 0f), Vector3.zero, Boss.transform,10);
             Boss._currentLife -= damage;
         }
         else
         {
             int randomIndex = UnityEngine.Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
             AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndex]);
-            ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 1f, 0f), Vector3.zero, Boss.transform);
+            ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 1f, 0f), Vector3.zero, Boss.transform,2);
             Boss._currentLife -= damage;
         }
+
+    }
+    private void Dead()
+    {
+
     }
     #region//UsingAbility
     private void CheckAbility()
@@ -90,11 +99,11 @@ public class BossBehaviour : MonoBehaviour
         }
         else
         {
+            _punch.BossSkill(false);
             if (_currentSpecialSkill != null)
             {
                 _currentSpecialSkill.BossSkill(true);
             }
-            _punch.BossSkill(false);
             _specialSkillTimer -= Time.deltaTime;
             if (_specialSkillTimer <= 0f)
             {
@@ -104,7 +113,6 @@ public class BossBehaviour : MonoBehaviour
     }
     private void TryActivateRandomSkill()
     {
-        _animator.ResetTrigger("Punch");
         int choice = UnityEngine.Random.Range(0, 100);
         if (choice < 30)
         {
@@ -166,7 +174,29 @@ public class BossBehaviour : MonoBehaviour
     private void OnDisable()
     {
         Bullet.OnBossDamaged -= HandleHitBoss;
+        isdead = true;
     }
+    private void OnDestroy()
+    {
+        _punch = null;
+        _InvokeZombie = null;
+        _multipleTurretSkill = null;
+    }
+    #region//no se usa esta parte del enemy
+    public float GetPointValue()
+    {
+        throw new NotImplementedException();
+    }
+    public int SubstractFromWave()
+    {
+        throw new NotImplementedException();
+    }
+    public Transform GetTransform()
+    {
+        throw new NotImplementedException();
+    }
+    public event Action<IEnemies> _substractEnemyFromWave;
+    #endregion
 }
 public class InvokeZombie : IBossSkill
 {
@@ -333,6 +363,7 @@ public class Punch : IBossSkill
         if (!canUse)
         {
             _animator.SetBool("Run", false);
+            _animator.ResetTrigger("Punch");
             _agent.isStopped = true;
             _hasTriggeredPunchAnim = false;
             return;
