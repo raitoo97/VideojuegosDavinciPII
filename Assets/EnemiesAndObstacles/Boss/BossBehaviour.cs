@@ -173,10 +173,6 @@ public class BossBehaviour : MonoBehaviour , IEnemies
         _navMeshAgent.isStopped = false;
         _specialSkillTimer = _delayBetweenSkills;
     }
-    public void DesactivatePunch()
-    {
-        _punch.OnEndPunchAnimation();
-    }
     #endregion
     #region//InvokeZombie
     private void InvokeZombies()//Se activa por animation event
@@ -193,6 +189,10 @@ public class BossBehaviour : MonoBehaviour , IEnemies
     private void DesactivatePunchCollider()//Se activa por animation event
     {
         _bossMeleeAttack.DisablePunchCollider();
+    }
+    public void DesactivatePunch()
+    {
+        _punch.OnEndPunchAnimation();
     }
     #endregion
     private void OnDisable()
