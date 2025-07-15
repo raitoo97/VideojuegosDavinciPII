@@ -1,18 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopHoverHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static ShopHoverHandler instance;
+    [SerializeField] GameObject panel;
+    [SerializeField] Text text;
+
+    private void Awake()
     {
-        
+        if (instance == null) { instance = this; }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ShowPanel(float cost)
     {
-        
+        text.text = "Pay the cost: " + cost + " to unlock skills";
+        panel.SetActive(true);
     }
+
+    public void HidePanel() 
+    {
+        panel.SetActive(false);
+    }
+
 }

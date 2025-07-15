@@ -3,21 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class ShopHover : MonoBehaviour//, IPointerEnterHandler, IPointerExitHandler
+public class ShopHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public float cost;
     
-    void Update()
+    
+    public void OnPointerEnter(PointerEventData eventData)
     {
-        
-    }
-    void OnPointerEnter(PointerEventData eventData)
-    {
-        
+        ShopHoverHandler.instance.ShowPanel(cost);
     }
 
-    void OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData eventData)
     {
-
+        ShopHoverHandler.instance.HidePanel();
     }
 }
