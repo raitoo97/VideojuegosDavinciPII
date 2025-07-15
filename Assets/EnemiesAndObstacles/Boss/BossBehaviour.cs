@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -25,7 +24,8 @@ public class BossBehaviour : MonoBehaviour
     private IBossSkill _currentSpecialSkill;
     private MultipleTurretSkill _multipleTurretSkill;
     [Header("Life")]
-    private float life = 100;
+    private float _currentLife = 0;
+    private float _maxLife = 1000;
     private void Awake()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
@@ -36,8 +36,13 @@ public class BossBehaviour : MonoBehaviour
         if (_turretBoss.Count > 0)
             _multipleTurretSkill = new MultipleTurretSkill(_turretBoss);
     }
+    private void OnEnable()
+    {
+        Bullet.OnBossDamaged += HandleHitBoss;
+    }
     void Start()
     {
+        _currentLife = _maxLife;
         _bossSkills.Add(_InvokeZombie);
         _bossSkills.Add(_punch);
         foreach (var turrets in _turretBoss)
@@ -51,23 +56,24 @@ public class BossBehaviour : MonoBehaviour
     }
     private void Update()
     {
+        print(_currentLife);
         CheckAbility();
     }
-    private void HandleHitBoss(BossBehaviour enemy)
+    private void HandleHitBoss(BossBehaviour Boss,float damage)
     {
         if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
         {
             int randomIndexUltimate = UnityEngine.Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
             AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndexUltimate]); //sound effect
-            ParticlesPool.instance.SpamParticle(ParticleType.TurretUltimate, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
-            enemy.life = 0;
+            ParticlesPool.instance.SpamParticle(ParticleType.TurretUltimate, new Vector3(0f, 2f, 0f), Vector3.zero, Boss.transform);
+            Boss._currentLife -= damage;
         }
         else
         {
             int randomIndex = UnityEngine.Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
             AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndex]); //sound effect
-            ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
-            enemy.life = 0;
+            ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 2f, 0f), Vector3.zero, Boss.transform);
+            Boss._currentLife = damage;
 
         }
     }

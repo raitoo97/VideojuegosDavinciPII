@@ -130,6 +130,30 @@ public class TurretPj : MonoBehaviour
                         }
                     }
                 }
+                if (enemy.GetComponent<BossBehaviour>())
+                {
+                    GameObject bullet = null;
+                    if (!ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
+                        bullet = PoolBullet.instance.bulletConfigs.Find(x => x.type == ShooterType.Player).GetBullet();
+                    else
+                        bullet = PoolBullet.instance.bulletConfigs.Find(x => x.type == ShooterType.SuperPlayer).GetBullet();
+                    if (bullet != null)
+                    {
+                        bullet.transform.position = gunSight.position;
+                        bullet.transform.rotation = gunSight.rotation;
+                        AudioManager.instance.PlaySfxRandomPitch(shotSfx);
+                        if (_recoilCorutine == null)
+                            _recoilCorutine = StartCoroutine(RecoilTorret());
+                        if (!ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
+                        {
+                            CameraShakeManager.instance.ShakeCamera(Shakes.MisilShoot);
+                        }
+                        else
+                        {
+                            CameraShakeManager.instance.ShakeCamera(Shakes.MisilUltimateShot);
+                        }
+                    }
+                }
             }
             yield return new WaitForSeconds(ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretShotSpeed));
         }
