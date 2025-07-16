@@ -119,7 +119,7 @@ public class WavesManager : MonoBehaviour
         int MaxValue = Math.Clamp(maxValue, minValue, list.Count);
         return UnityEngine.Random.Range(minValue, MaxValue + 1);
     }
-    private void ConfigWave(int RangeZombies, int RangeATurret, int RangeBTurret)
+    private void ConfigWave(int RangeZombies, int RangeATurret, int RangeBTurret) //Arranca Wave
     {
         if (_zombieListRespawns != null && _zombieListRespawns.Count > 0)
         {
@@ -150,7 +150,7 @@ public class WavesManager : MonoBehaviour
             }
         }
     }
-    private void CleanZombieTemp()
+    private void CleanZombieTemp() //Termino Wave
     {
         if (currentEnemies <= 0 && _tempZombieListRespawns.Count > 0)
         {

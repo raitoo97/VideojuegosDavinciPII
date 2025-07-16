@@ -9,9 +9,9 @@ public class BatBehavior : MonoBehaviour
     private float _damage = 30f;
     private float _existenceTime = 25f;
 
-    void Update()
+    void FixedUpdate()
     {
-        transform.position += transform.forward * _speed * Time.deltaTime;
+        transform.position += transform.forward * _speed * Time.fixedDeltaTime;
     }
     private void OnEnable()
     {
