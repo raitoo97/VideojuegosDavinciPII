@@ -61,6 +61,10 @@ public class BossIntroController : MonoBehaviour
     {
         _bossAnimator.SetTrigger("StopWalk");
     }
+    public void StartFogChangeColor()
+    {
+        StartCoroutine(ChangeWeather.LerpFogColor());
+    }
     public void EndIntroCinematic()
     {
         _playerController.gameObject.SetActive(true);
@@ -101,5 +105,39 @@ public class BossIntroController : MonoBehaviour
         }
         _fadeImage.color = _fadeColorinit;
         _fadeImage.gameObject.SetActive(true);
+    }
+}
+public static class ChangeWeather
+{
+    static Vector4 _fogVec = new Vector4(0.298f, 0f, 0f, 1f);
+    static Vector4 _skyVec = new Vector4(0.188f, 0f, 0f, 1f);
+    static Vector4 _equatorVec = new Vector4(0.545f, 0f, 0f, 1f);
+    static Vector4 _groundVec = new Vector4(0.361f, 0.039f, 0.039f, 1f);
+    public static IEnumerator LerpFogColor()
+    {
+        Color targetFog = new Color(_fogVec.x, _fogVec.y, _fogVec.z, _fogVec.w);
+        Color targetSky = new Color(_skyVec.x, _skyVec.y, _skyVec.z, _skyVec.w);
+        Color targetEquator = new Color(_equatorVec.x, _equatorVec.y, _equatorVec.z, _equatorVec.w);
+        Color targetGround = new Color(_groundVec.x, _groundVec.y, _groundVec.z, _groundVec.w);
+        Color startColorFog = RenderSettings.fogColor;
+        Color startColorSky = RenderSettings.ambientSkyColor;
+        Color startColorEquator = RenderSettings.ambientEquatorColor;
+        Color startColorGround = RenderSettings.ambientGroundColor;
+        float time = 0f;
+        float duration = 10;
+        while (time < duration)
+        {
+            float t = time / duration;
+            RenderSettings.fogColor = Color.Lerp(startColorFog, targetFog, t);
+            RenderSettings.ambientSkyColor = Color.Lerp(startColorSky, targetSky, t);
+            RenderSettings.ambientEquatorColor = Color.Lerp(startColorEquator, targetEquator, t);
+            RenderSettings.ambientGroundColor = Color.Lerp(startColorGround, targetGround, t);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        RenderSettings.fogColor = targetFog;
+        RenderSettings.ambientSkyColor = targetSky;
+        RenderSettings.ambientEquatorColor = targetEquator;
+        RenderSettings.ambientGroundColor = targetGround;
     }
 }
