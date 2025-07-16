@@ -1539,7 +1539,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5378784295618754113, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
   m_PrefabInstance: {fileID: 6935544059359077375}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 697798082}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -2755,6 +2755,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5281304932425052220, guid: 35af3478df6b290428b8009a3d948746, type: 3}
   m_PrefabInstance: {fileID: 669133446}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &697798082 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8609511457796571391, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+  m_PrefabInstance: {fileID: 6935544059359077375}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &705008061 stripped
 MonoBehaviour:
@@ -4191,6 +4196,8 @@ PlayableDirector:
     value: {fileID: 39817419}
   - key: {fileID: 8704881080661365381, guid: 828cba3c2f1553c4984b86dd019d8919, type: 2}
     value: {fileID: 1406852125}
+  - key: {fileID: -6445853120062882938, guid: 828cba3c2f1553c4984b86dd019d8919, type: 2}
+    value: {fileID: 697798082}
   m_ExposedReferences:
     m_References: []
 --- !u!114 &1406852123
@@ -4212,6 +4219,9 @@ MonoBehaviour:
   _bossNavMesh: {fileID: 39817422}
   _bossAnimator: {fileID: 39817418}
   _bossIntroTimeline: {fileID: 1406852122}
+  _fadeImage: {fileID: 117903015}
+  _fadeColorinit: {r: 0, g: 0, b: 0, a: 0}
+  _fadeColorfinish: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &1406852124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4243,6 +4253,9 @@ MonoBehaviour:
     m_Signals:
     - {fileID: 11400000, guid: 3b27a95d2a1bd02428ce6c5243c0acfb, type: 2}
     - {fileID: 11400000, guid: 249254c7b8a6eb142a63b20536305065, type: 2}
+    - {fileID: 11400000, guid: 463d7a8822185e34486f606b81950058, type: 2}
+    - {fileID: 11400000, guid: 64498903b23159b40b79479a3c147553, type: 2}
+    - {fileID: 11400000, guid: 32e78da683330624f998b2638e3925cc, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
@@ -4263,6 +4276,48 @@ MonoBehaviour:
         - m_Target: {fileID: 1406852123}
           m_TargetAssemblyTypeName: BossIntroController, Assembly-CSharp
           m_MethodName: StartIntroCinematic
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1406852123}
+          m_TargetAssemblyTypeName: BossIntroController, Assembly-CSharp
+          m_MethodName: StartScreaming
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1406852123}
+          m_TargetAssemblyTypeName: BossIntroController, Assembly-CSharp
+          m_MethodName: ActivateFadeOut
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1406852123}
+          m_TargetAssemblyTypeName: BossIntroController, Assembly-CSharp
+          m_MethodName: ActivateFadeIn
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
