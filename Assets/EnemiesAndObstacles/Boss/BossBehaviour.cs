@@ -58,6 +58,11 @@ public class BossBehaviour : MonoBehaviour , IEnemies
         {
             turrets.OnStart();
         }
+        _currentSpecialSkill = _InvokeZombie;
+        _currentSpecialSkill.BossSkill(true);
+        _isUsingSpecialSkill = true;
+        _specialSkillTimer = _zombieSkillDuration;
+        _navMeshAgent.isStopped = true;
     }
     private void Update()
     {
@@ -134,6 +139,7 @@ public class BossBehaviour : MonoBehaviour , IEnemies
     private void TryActivateRandomSkill()
     {
         int choice = UnityEngine.Random.Range(0, 100);
+        print(choice);
         if (choice < 30)
         {
             if (_turretBoss.Count > 0)
@@ -175,7 +181,7 @@ public class BossBehaviour : MonoBehaviour , IEnemies
     }
     #endregion
     #region//InvokeZombie
-    private void InvokeZombies()//Se activa por animation event
+    public void InvokeZombies()//Se activa por animation event
     {
         _InvokeZombie.SpawnZombies();
         EndSpecialSkill();
