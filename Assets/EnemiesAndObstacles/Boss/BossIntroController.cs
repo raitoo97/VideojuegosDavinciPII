@@ -68,7 +68,6 @@ public class BossIntroController : MonoBehaviour
     public void EndIntroCinematic()
     {
         _playerController.gameObject.SetActive(true);
-        _playerTransform.position = _playerNewPosition.position;
         _playerController.enabled = true;
         _turretPlayerController.enabled = true;
         _playerAnimator.enabled = true;
@@ -90,6 +89,7 @@ public class BossIntroController : MonoBehaviour
             time += 0.2f;
         }
         _fadeImage.color = _fadeColorfinish;
+        _playerTransform.position = _playerNewPosition.position;
         _playerController.gameObject.SetActive(false);
         _fadeImage.gameObject.SetActive(false);
     }
