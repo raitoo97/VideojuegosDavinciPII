@@ -9,7 +9,7 @@ public class BossIntroController : MonoBehaviour
     [SerializeField]private Player _playerController;
     [SerializeField]private TurretPj _turretPlayerController;
     [SerializeField]private DoppelgangerSkill _dopplePlayerController;
-    [SerializeField] private Survivor _survivorPlayerController;
+    [SerializeField]private Survivor _survivorPlayerController;
     [SerializeField]private Animator _playerAnimator;
     [SerializeField]private Transform _playerTransform;
     [SerializeField]private Transform _playerNewPosition;
@@ -30,8 +30,6 @@ public class BossIntroController : MonoBehaviour
         {
             _bossIntroTimeline.Play();
         }
-        print(_playerTransform.position);
-        print(_playerNewPosition.position);
     }
     public void StartIntroCinematic()
     {
