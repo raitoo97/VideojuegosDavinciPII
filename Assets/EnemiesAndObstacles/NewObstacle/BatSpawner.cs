@@ -21,7 +21,7 @@ public class BatSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (canSpawnBats)
+        if (WavesManager.instance.waveStarted && canSpawnBats)
         {
             StartCoroutine(Spawn(_prefab));
         }

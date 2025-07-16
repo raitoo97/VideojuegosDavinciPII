@@ -18,6 +18,7 @@ public class WavesManager : MonoBehaviour
     public Action _currentWave;
     public Action _cleanZombieTempList;
     public static WavesManager instance;
+    public bool waveStarted = false;
     private void Awake()
     {
         if (instance == null) { instance = this; }
@@ -130,6 +131,7 @@ public class WavesManager : MonoBehaviour
                     waveZombie.gameObject.SetActive(true);
                     waveZombie.StartWave();
                     currentEnemies += waveZombie.returnNumberOfEnemies();
+                    waveStarted = true;
                 }
             }
         }
@@ -161,6 +163,7 @@ public class WavesManager : MonoBehaviour
                 }
             }
             _tempZombieListRespawns.Clear();
+            waveStarted = false;
         }
     }
     private void OnDisable()
