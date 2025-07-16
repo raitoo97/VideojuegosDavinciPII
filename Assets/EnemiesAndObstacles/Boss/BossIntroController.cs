@@ -6,15 +6,19 @@ using UnityEngine.UI;
 public class BossIntroController : MonoBehaviour
 {
     [Header("PLAYER")]
-    [SerializeField] private Player _playerController;
-    [SerializeField] private TurretPj _turretPlayerController;
-    [SerializeField] private Animator _playerAnimator;           
+    [SerializeField]private Player _playerController;
+    [SerializeField]private TurretPj _turretPlayerController;
+    [SerializeField]private DoppelgangerSkill _dopplePlayerController;
+    [SerializeField] private Survivor _survivorPlayerController;
+    [SerializeField]private Animator _playerAnimator;
+    [SerializeField]private Transform _playerTransform;
+    [SerializeField]private Transform _playerNewPosition;
     [Header("BOSS")]
-    [SerializeField] private BossBehaviour _bossBehaviour;
-    [SerializeField] private NavMeshAgent _bossNavMesh;
-    [SerializeField] private Animator _bossAnimator;             
+    [SerializeField]private BossBehaviour _bossBehaviour;
+    [SerializeField]private NavMeshAgent _bossNavMesh;
+    [SerializeField]private Animator _bossAnimator;             
     [Header("TIMELINE")]
-    [SerializeField] private PlayableDirector _bossIntroTimeline;
+    [SerializeField]private PlayableDirector _bossIntroTimeline;
     [Header("UI / FADE")]
     [SerializeField]private Image _fadeImage;
     [SerializeField]private Color _fadeColorinit;
@@ -26,6 +30,8 @@ public class BossIntroController : MonoBehaviour
         {
             _bossIntroTimeline.Play();
         }
+        print(_playerTransform.position);
+        print(_playerNewPosition.position);
     }
     public void StartIntroCinematic()
     {
@@ -35,6 +41,11 @@ public class BossIntroController : MonoBehaviour
     }
     public void ActivateFadeOut()
     {
+        _playerController.enabled = false;
+        _turretPlayerController.enabled = false;
+        _playerAnimator.enabled = false;
+        _dopplePlayerController.enabled = false;
+        _survivorPlayerController.enabled = false;
         StartCoroutine(FadeOut());
     }
     public void ActivateFadeIn()
@@ -43,8 +54,6 @@ public class BossIntroController : MonoBehaviour
     }
     private void PlayCinematicSequence()
     {
-        _playerController.enabled = false;
-        _turretPlayerController.enabled = false;
         _bossBehaviour.enabled = false;
         _bossNavMesh.enabled = false;
         _bossAnimator.applyRootMotion = true;
@@ -56,8 +65,13 @@ public class BossIntroController : MonoBehaviour
     }
     public void EndIntroCinematic()
     {
+        _playerController.gameObject.SetActive(true);
+        _playerTransform.position = _playerNewPosition.position;
         _playerController.enabled = true;
         _turretPlayerController.enabled = true;
+        _playerAnimator.enabled = true;
+        _dopplePlayerController.enabled = true;
+        _survivorPlayerController.enabled = true;
         _bossBehaviour.enabled = true;
         _bossNavMesh.enabled = true;
         _bossAnimator.applyRootMotion = false;
@@ -74,6 +88,7 @@ public class BossIntroController : MonoBehaviour
             time += 0.2f;
         }
         _fadeImage.color = _fadeColorfinish;
+        _playerController.gameObject.SetActive(false);
         _fadeImage.gameObject.SetActive(false);
     }
     private IEnumerator FadeIn()
