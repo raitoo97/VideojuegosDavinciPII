@@ -1,18 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BatSpawner : MonoBehaviour
 {
     [SerializeField] GameObject _prefab;
-    private Transform _transform;
+    [SerializeField] private List <Transform> _spawnPoints = new List<Transform>();
 
     private void Start()
     {
-        if (_transform == null)
+        foreach (Transform spawn in transform)
         {
-            _transform = GetComponentInChildren<Transform>();
-            Debug.Log("TRANSFORM CONSEGUIDO DE: " + _transform.gameObject.name);
+            _spawnPoints.Add(spawn);
         }
     }
 
@@ -20,7 +21,14 @@ public class BatSpawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            Instantiate(_prefab, _transform.position, Quaternion.identity);
+            Debug.Log("ENTRE");
+            Spawn(_prefab);
         }
+    }
+
+    public void Spawn(GameObject prefab)
+    {
+        Transform chosenSpawn = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Count)];
+        Instantiate(prefab, chosenSpawn.position, Quaternion.LookRotation(chosenSpawn.forward));
     }
 }
