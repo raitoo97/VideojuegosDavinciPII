@@ -5,28 +5,27 @@ using System.Linq;
 using UnityEngine;
 public class WavesManager : MonoBehaviour
 {
+    private int index;
+    private int numberOfWave = 0;
+    private int currentEnemies = 0;
+    private bool _isInitialized = false;
+
     private List<IEnemies> enemies;
     private List<RespawnZombie> _zombieListRespawns;
     private List<RespawnZombie> _tempZombieListRespawns;
     private List<TurretBehaviour> _turrets;
-    public static WavesManager instance;
+
     public Action _currentWave;
     public Action _cleanZombieTempList;
-    private int index;
-    private int currentEnemies = 0;
-    private int numberOfWave = 0;
-    private bool _isInitialized = false;
+    public static WavesManager instance;
     private void Awake()
     {
         if (instance == null) { instance = this; }
         else { Destroy(this.gameObject); }
+
         enemies = new List<IEnemies>();
         _tempZombieListRespawns = new List<RespawnZombie>();
         index = 0;
-    }
-    private void OnEnable()
-    {
-        _cleanZombieTempList = CleanZombieTemp;
     }
     private void Start()
     {
@@ -35,9 +34,16 @@ public class WavesManager : MonoBehaviour
         _zombieListRespawns = _zombieListRespawns.OrderBy(x => UnityEngine.Random.value).ToList();
         _turrets = _turrets.OrderBy(x => UnityEngine.Random.value).ToList();
         _isInitialized = true;
+
         SetWave(index);
         StartCoroutine(GetWaveUIButton());
     }
+
+    private void OnEnable()
+    {
+        _cleanZombieTempList = CleanZombieTemp;
+    }
+
     private void SetWave(int index)
     {
         switch (index)

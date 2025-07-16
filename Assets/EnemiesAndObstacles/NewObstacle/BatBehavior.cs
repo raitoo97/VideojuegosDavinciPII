@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class BatBehavior : MonoBehaviour
 {
-    private float _speed = 4.0f;
+    private float _speed = 10f;
     private float _damage = 30f;
-    private float _existenceTime = 10f;
+    private float _existenceTime = 25f;
 
     void Update()
     {
