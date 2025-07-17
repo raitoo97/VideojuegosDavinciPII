@@ -171,13 +171,11 @@ public class ManagerSkills : MonoBehaviour
         if (!skill.isUnlocked || skill.ultimateUnlocked) return;
         if (!AreAllSkillsMaxed(category))
         {
-            Debug.Log("No se puede desbloquear aún, faltan habilidades al máximo");
             return;
         }
         if (PointManager.instance.SpendPoints(skill.costToUnlockUltimate))
         {
             skill.ultimateUnlocked = true;
-            Debug.Log("se desbloqueo la ultimate de" + category);
             var entry = skillEntries.Find(x => x.category == category);
             if (entry != null) entry.ultimateUnlocked = true;
         }

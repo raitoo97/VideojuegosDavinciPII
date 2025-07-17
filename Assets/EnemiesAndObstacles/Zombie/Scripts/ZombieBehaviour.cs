@@ -168,6 +168,7 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
     {
         ParticlesPool.instance.SpamParticle(ParticleType.DashUlti, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
         enemy.life = 0;
+        Debug.Log("HANDLEDASHULTI!");
     }
     private void OnDisable()
     {

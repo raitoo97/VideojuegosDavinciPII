@@ -18,5 +18,6 @@ public class TrailCollider : MonoBehaviour
         {
             OnTurretDamaged?.Invoke(turret, _dmgPlayer);
         }
+
     }
 }
