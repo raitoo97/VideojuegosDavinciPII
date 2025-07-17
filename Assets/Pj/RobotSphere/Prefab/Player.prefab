@@ -7159,7 +7159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 131840
   nearEnemy: 0
   enemy: {fileID: 0}
   rotVector: {x: 0, y: 0, z: 0}

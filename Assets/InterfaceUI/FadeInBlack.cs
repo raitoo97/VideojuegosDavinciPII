@@ -8,9 +8,9 @@ public class FadeInBlack : MonoBehaviour
     public Image BackGroundImage;
     private void Start()
     {
-        FadeOut();
+        FadeIn();
     }
-    private void FadeOut()
+    public void FadeIn()
     {
         StartCoroutine(FadeCourrtine());
     }

@@ -23,11 +23,11 @@ public class TurretPj : MonoBehaviour
     }
     void Update()
     {
-        RotateTorrete(GetZombie());
+        RotateTorrete(GetEnemy());
         RotateArroundDetail();
     }
     #region
-    private Vector3 GetZombie()
+    private Vector3 GetEnemy()
     {
         float visionRange = ManagerSkills.instance.GetValueSkill(SkillCategory.turretCategory, SkillStatType.turretVisionRange);
         _colliders = Physics.OverlapSphere(this.transform.position, visionRange, mask);
@@ -107,6 +107,30 @@ public class TurretPj : MonoBehaviour
                     }
                 }
                 if (enemy.GetComponent<TurretBehaviour>())
+                {
+                    GameObject bullet = null;
+                    if (!ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
+                        bullet = PoolBullet.instance.bulletConfigs.Find(x => x.type == ShooterType.Player).GetBullet();
+                    else
+                        bullet = PoolBullet.instance.bulletConfigs.Find(x => x.type == ShooterType.SuperPlayer).GetBullet();
+                    if (bullet != null)
+                    {
+                        bullet.transform.position = gunSight.position;
+                        bullet.transform.rotation = gunSight.rotation;
+                        AudioManager.instance.PlaySfxRandomPitch(shotSfx);
+                        if (_recoilCorutine == null)
+                            _recoilCorutine = StartCoroutine(RecoilTorret());
+                        if (!ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
+                        {
+                            CameraShakeManager.instance.ShakeCamera(Shakes.MisilShoot);
+                        }
+                        else
+                        {
+                            CameraShakeManager.instance.ShakeCamera(Shakes.MisilUltimateShot);
+                        }
+                    }
+                }
+                if (enemy.GetComponentInParent<BossBehaviour>())
                 {
                     GameObject bullet = null;
                     if (!ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
