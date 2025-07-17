@@ -53,7 +53,7 @@ public class WavesUI
     private void SetActivateWaveButton()
     {
         int NumberWave = WavesManager.instance.GetNumberWave;
-        int currentEnemies = WavesManager.instance.GetCurrentEnemies;
+        int currentEnemies = WavesManager.instance.GetCurrentEnemies;//CoinguararWave
         if (_isFirstWave)
         {
             _waveButton.gameObject.SetActive(true);
