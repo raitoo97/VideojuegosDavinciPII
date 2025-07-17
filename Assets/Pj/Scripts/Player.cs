@@ -3,6 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]private Transform _groundCheck;
+    [SerializeField] private TurretPj _turretRef;
     [SerializeField]private Movement _movement;
     [SerializeField]private ControlPlayer _controller;
     [SerializeField]private Animator _animator;
@@ -34,6 +35,7 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
+        _turretRef.enabled = true;
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponentInChildren<Animator>();
         _movement = new Movement(_rb, _groundCheck, _initSpeed, groundLayer,this.transform,wallLayer, dashUlti, _bossTransform, _cameraTransform);

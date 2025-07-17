@@ -11,6 +11,7 @@ public class BossEndScene : MonoBehaviour
     public Color init_color;
     public Color final_color;
     public Image BackGroundImage;
+    public TurretPj _turretref;
     private void OnEnable()
     {
         EndSequence += EndEscene;
@@ -22,6 +23,7 @@ public class BossEndScene : MonoBehaviour
     private IEnumerator CorutineFinishLevel()
     {
         yield return null;
+        _turretref.enabled = false;
         var playerref = GameManager.instance.player.GetComponent<Player>();
         if (playerref != null)
         {

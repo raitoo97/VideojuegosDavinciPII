@@ -7131,6 +7131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _groundCheck: {fileID: 2112523642183775562}
+  _turretRef: {fileID: 3522650585358744689}
   _animator: {fileID: 0}
   _initSpeed: 3
   _shield: {fileID: 5702548916812356572}

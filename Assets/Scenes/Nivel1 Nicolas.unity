@@ -3720,6 +3720,7 @@ MonoBehaviour:
   init_color: {r: 0, g: 0, b: 0, a: 0}
   final_color: {r: 0, g: 0, b: 0, a: 1}
   BackGroundImage: {fileID: 117903015}
+  _turretref: {fileID: 4278241031554836945}
 --- !u!114 &1450505445 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4748673702430405198, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
