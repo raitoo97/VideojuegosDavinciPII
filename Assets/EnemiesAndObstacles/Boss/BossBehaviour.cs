@@ -87,7 +87,7 @@ public class BossBehaviour : MonoBehaviour , IEnemies
             ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 1f, 0f), Vector3.zero, Boss.transform,2);
             Boss._currentLife -= damage;
         }
-        if(_currentLife <= 0)
+        if(_currentLife <= 0 && !_isdead)
         {
             _isdead = true;
             OnDeath?.Invoke(this);

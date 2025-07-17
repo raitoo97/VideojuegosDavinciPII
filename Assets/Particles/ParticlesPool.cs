@@ -109,6 +109,7 @@ public class SpecificParticle
         if (particle == null || particle.gameObject == null) yield break;
         particle.Clear();
         particle.Play();
+        if (particle == null || particle.gameObject == null) yield break;
         yield return new WaitWhile(() => particle.IsAlive(true) && particle.particleCount >= 0);
         if (particle != null && particle.gameObject != null)
         {
