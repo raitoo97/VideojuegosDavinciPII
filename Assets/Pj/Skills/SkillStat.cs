@@ -14,6 +14,7 @@ public enum SkillStatType
     lifeSurvivor,
     ratioPickUp,
     healingPickup
+    
 }
 [Serializable]
 public class SkillStat

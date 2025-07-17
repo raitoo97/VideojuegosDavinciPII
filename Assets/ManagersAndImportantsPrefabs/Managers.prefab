@@ -140,6 +140,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   textList:
   - {fileID: 0}
   - {fileID: 0}
@@ -176,7 +177,6 @@ MonoBehaviour:
     EdgeStatus: {fileID: 0}
   _cooldownFeedback: {fileID: 0}
   SkillsPanel: {fileID: 0}
-  unlockSkill: 0
   obstacleWarning: {fileID: 0}
   obstacleWarningArrow: {fileID: 0}
 --- !u!114 &3931444751640104713
