@@ -90,6 +90,7 @@ public class BossIntroController : MonoBehaviour
         }
         _fadeImage.color = _fadeColorfinish;
         _playerTransform.position = _playerNewPosition.position;
+        _playerTransform.rotation = _playerNewPosition.rotation;
         _playerController.gameObject.SetActive(false);
         _fadeImage.gameObject.SetActive(false);
     }
