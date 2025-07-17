@@ -53,4 +53,8 @@ public class BossEndScene : MonoBehaviour
         BackGroundImage.color = final_color;
         SceneManager.LoadScene(0);
     }
+    private void OnDisable()
+    {
+        EndSequence -= EndEscene;
+    }
 }
