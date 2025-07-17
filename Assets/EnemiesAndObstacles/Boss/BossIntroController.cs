@@ -32,12 +32,9 @@ public class BossIntroController : MonoBehaviour
         _cam.Priority = 0;
         StartCoroutine(NormalGame());
     }
-    private void Update()
+    public void PlayCinematic()
     {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            _bossIntroTimeline.Play();
-        }
+        _bossIntroTimeline.Play();
     }
     public void StartIntroCinematic()
     {
