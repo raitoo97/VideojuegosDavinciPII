@@ -383,11 +383,14 @@ public class Punch : IBossSkill
     private NavMeshAgent _agent;
     private Animator _animator;
     private bool _hasTriggeredPunchAnim = false;
+    private Vector3 _lastTargetPosition;
+    private float _repathThreshold = 1f;
     public Punch(NavMeshAgent _agent,Transform _transform,Animator _animator)
     {
         this._agent = _agent;
         this._transform = _transform;
         this._animator = _animator;
+        _lastTargetPosition = Vector3.positiveInfinity;
     }
     public void BossSkill(bool canUse = true)
     {
@@ -399,12 +402,17 @@ public class Punch : IBossSkill
             _hasTriggeredPunchAnim = false;
             return;
         }
-        bool distance = _transform.IsWithinDistanceOf(GameManager.instance.player.transform, _attackRange);
+        Transform player = GameManager.instance.player.transform;
+        bool distance = _transform.IsWithinDistanceOf(player, _attackRange);
         if (!distance)
         {
             _animator.SetBool("Run", true);
             _agent.isStopped = false;
-            _agent.SetDestination(GameManager.instance.player.transform.position);
+            if (!_agent.hasPath || Vector3.Distance(_lastTargetPosition, player.position) > _repathThreshold)
+            {
+                _lastTargetPosition = player.position;
+                _agent.SetDestination(_lastTargetPosition);
+            }
             _hasTriggeredPunchAnim = false;
         }
         else
@@ -429,5 +437,6 @@ public class Punch : IBossSkill
         _animator.SetBool("Run", true);
         _agent.isStopped = false;
         _hasTriggeredPunchAnim = false;
+        _lastTargetPosition = Vector3.positiveInfinity;
     }
 }
