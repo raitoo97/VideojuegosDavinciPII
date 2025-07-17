@@ -5510,6 +5510,13 @@ MonoBehaviour:
   trasformIntoDodgex: {fileID: 8300000, guid: ce89a003c25f79742bffd843ef0c44e2, type: 3}
   deTrasformIntoDodgex: {fileID: 8300000, guid: d0fbb58cbc681184ba2a9fd026aaf4d3, type: 3}
   roll: {fileID: 8300000, guid: 3cbcdd7d34ade7b468acfc9282374dfb, type: 3}
+  walk:
+  - {fileID: 8300000, guid: 658cb7871381c654d89e402c9cf495d4, type: 3}
+  - {fileID: 8300000, guid: 3ff7edecc4842234bb1a063bb2f6be08, type: 3}
+  - {fileID: 8300000, guid: 5a254c44574eb1342b265690dcf2c110, type: 3}
+  - {fileID: 8300000, guid: 6e1827db8c3942c4d99c7ee949dfdf75, type: 3}
+  - {fileID: 8300000, guid: bb72d6559f2af3543b446574d0ae25a6, type: 3}
+  - {fileID: 8300000, guid: 5c94970e99892a543b90a4ae6eafc09d, type: 3}
 --- !u!81 &4278241031554836953
 AudioListener:
   m_ObjectHideFlags: 0

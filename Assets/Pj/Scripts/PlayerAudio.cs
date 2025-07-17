@@ -8,6 +8,7 @@ public class PlayerAudio : MonoBehaviour
     public AudioClip trasformIntoDodgex;
     public AudioClip deTrasformIntoDodgex;
     public AudioClip roll;
+    public List<AudioClip> walk = new List<AudioClip>(); 
 
     public void PlayTransform()
     {
@@ -30,5 +31,11 @@ public class PlayerAudio : MonoBehaviour
     {
         audioSource.Stop();
         audioSource.loop=false;
+    }
+
+    public void PlayWalk()
+    {
+        int randomNumber = Random.Range(0,walk.Count);
+        audioSource.PlayOneShot(walk[randomNumber]);
     }
 }
