@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6106879238265709203}
   - component: {fileID: -264136751992565814}
   - component: {fileID: 3943039822214574263}
+  - component: {fileID: 4254343809149768188}
   m_Layer: 0
   m_Name: ObstacleLaserPadre
   m_TagString: Untagged
@@ -68,6 +69,138 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 18.202055, z: 1}
   m_Center: {x: 0, y: -8.6010275, z: 0}
+--- !u!82 &4254343809149768188
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1462757129046421819}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -1024111228763657964, guid: d85bcb4a32efbb84d9d8975763dc573e, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 7979d08ca310bc946b285590ff581773, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 0
+  DopplerLevel: 1
+  MinDistance: 6.07
+  MaxDistance: 66
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0.57803905
+      outSlope: 0.57803905
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.7331819
+    - serializedVersion: 3
+      time: 0.123992555
+      value: 0.5
+      inSlope: -4.0341067
+      outSlope: -4.0341067
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.24798511
+      value: 0.25
+      inSlope: -1.0085267
+      outSlope: -1.0085267
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.49597022
+      value: 0.125
+      inSlope: -0.25213167
+      outSlope: -0.25213167
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.99194044
+      value: 0.0625
+      inSlope: -0.06303292
+      outSlope: -0.06303292
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 0.061996277
+      inSlope: -0.062021054
+      outSlope: -0.062021054
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.304
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2627645350188319163
 GameObject:
   m_ObjectHideFlags: 0
