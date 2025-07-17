@@ -21,7 +21,10 @@ public class AudioManager : MonoBehaviour
     //UI
     [SerializeField]public AudioClip UpgradeSkill;
     [SerializeField]public AudioClip UnlockSkill;
-    [SerializeField]public AudioClip CantUnlockSkill;
+    [SerializeField] public AudioClip CantUnlockSkill;
+
+    //Beam Obstacle
+    [SerializeField] public AudioClip BeamSfx;
     public AudioClip Level1Music;
     public AudioClip buttonClick;
     [Header("UI")]
@@ -83,6 +86,13 @@ public class AudioManager : MonoBehaviour
         audioSource.clip = clip;
         audioSource.loop = true;
         audioSource.Play();
+    }
+
+    public void Stop()
+    {
+        var audioSource = GetSource();
+        if (audioSource == null) return;
+        audioSource.Stop();
     }
     public void SetMasterVolume(float value)
     {
