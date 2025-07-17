@@ -14,15 +14,16 @@ public class Player : MonoBehaviour
     public LayerMask wallLayer;
     public LayerMask maskObstacles;
     private Rigidbody _rb;
-
     [Header("Life")]
     public float maxLife = 100f;
     [SerializeField]public float _currentLife;
     public static Action OnPlayerDeath;
     public static Player instance;
-
     [Header("Obstacles")]
     private CheckObstacles _checkObstacles;
+    [Header("BossFight")]
+    [SerializeField] private Transform _bossTransform;
+    [SerializeField] private Transform _cameraTransform;
     AudioManager audioManager => AudioManager.instance;//Sound
     private void Awake()
     {
@@ -35,7 +36,7 @@ public class Player : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponentInChildren<Animator>();
-        _movement = new Movement(_rb, _groundCheck, _initSpeed, groundLayer,this.transform,wallLayer, dashUlti);
+        _movement = new Movement(_rb, _groundCheck, _initSpeed, groundLayer,this.transform,wallLayer, dashUlti, _bossTransform, _cameraTransform);
         _playerAnimation = new PlayerAnimation(_animator);
         _controller = new ControlPlayer(_movement, _playerAnimation, _shield);
         _checkObstacles = new CheckObstacles(this.transform, maskObstacles);
