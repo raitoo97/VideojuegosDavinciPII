@@ -9,12 +9,16 @@ public class BatBehavior : MonoBehaviour
     private float _damage = 30f;
     private float _existenceTime = 25f;
     private Coroutine _despawnCoroutine;
+
+    AudioSource _audioSource;
     void FixedUpdate()
     {
         transform.position += transform.forward * _speed * Time.fixedDeltaTime;
     }
     private void OnEnable()
     {
+        _audioSource = GetComponent<AudioSource>();
+        _audioSource.Play();
         if (_despawnCoroutine != null )
         {
             StopCoroutine(_despawnCoroutine);
@@ -23,6 +27,7 @@ public class BatBehavior : MonoBehaviour
     }
     private void OnDisable()
     {
+        _audioSource?.Stop();
         if (_despawnCoroutine != null)
         {
             StopCoroutine(_despawnCoroutine);
