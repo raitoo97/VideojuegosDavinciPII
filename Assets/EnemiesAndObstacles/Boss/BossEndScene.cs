@@ -27,6 +27,7 @@ public class BossEndScene : MonoBehaviour
         var playerref = GameManager.instance.player.GetComponent<Player>();
         if (playerref != null)
         {
+            playerref.GetComponent<TurretPj>().canShoot = false;
             playerref.GetMovement.SetBossFightMode(false);
         }
         ZombieBehaviour[] allZombies = GameObject.FindObjectsByType<ZombieBehaviour>(FindObjectsSortMode.None);
