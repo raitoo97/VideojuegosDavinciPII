@@ -2587,7 +2587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638734769b127fd46ac6a4d85b14e185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 5040233748758907286, guid: d848e8d841e2f7f4ba7660a9db0f03d2, type: 3}
+  _prefab: {fileID: 1462757129046421819, guid: 7391bcbe1e8b7b84490347aca935d6c9, type: 3}
   _spawnPoints: []
   _bats: []
   canSpawnBats: 1
@@ -2600,7 +2600,7 @@ Transform:
   m_GameObject: {fileID: 1010625472}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 72, y: 12.66, z: 133}
+  m_LocalPosition: {x: 72, y: 28.9, z: 133}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3059,7 +3059,7 @@ Transform:
   m_GameObject: {fileID: 1249639776}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -221, y: 12.66, z: 188.1}
+  m_LocalPosition: {x: -221, y: 28.9, z: 188.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3084,7 +3084,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638734769b127fd46ac6a4d85b14e185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 5040233748758907286, guid: d848e8d841e2f7f4ba7660a9db0f03d2, type: 3}
+  _prefab: {fileID: 1462757129046421819, guid: 7391bcbe1e8b7b84490347aca935d6c9, type: 3}
   _spawnPoints: []
   _bats: []
   canSpawnBats: 1
