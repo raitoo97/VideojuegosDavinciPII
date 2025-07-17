@@ -33,6 +33,7 @@ public class Movement
     }
     public void MoveInBossFight(float inputHorizontal, float inputVertical)
     {
+        if (_bossTransform == null || _cameraTransform == null) return;
         Vector3 camForward = _cameraTransform.forward;
         Vector3 camRight = _cameraTransform.right;
         camForward.y = 0;
@@ -60,6 +61,7 @@ public class Movement
     }
     public void RotateOnlyInBossFight(float inputHorizontal, float inputVertical)
     {
+        if (_bossTransform == null || _cameraTransform == null) return;
         Vector3 camForward = _cameraTransform.forward;
         Vector3 camRight = _cameraTransform.right;
         camForward.y = 0;

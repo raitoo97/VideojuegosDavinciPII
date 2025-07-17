@@ -107,6 +107,11 @@ public class BossBehaviour : MonoBehaviour , IEnemies
         _punch.EndSkill();
         _navMeshAgent.isStopped = true;
         _currentSpecialSkill = null;
+        var playerref = GameManager.instance.player.GetComponent<Player>();
+        if (playerref != null)
+        {
+            playerref.GetMovement.SetBossFightMode(false);
+        }
         _animator.SetBool("Dead", true);
     }
     #endregion
