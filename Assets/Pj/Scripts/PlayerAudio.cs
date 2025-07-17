@@ -6,13 +6,17 @@ public class PlayerAudio : MonoBehaviour
 {
     public AudioSource audioSource;
     public AudioClip trasformIntoDodgex;
+    public AudioClip deTrasformIntoDodgex;
     public AudioClip roll;
 
     public void PlayTransform()
     {
         audioSource.PlayOneShot(trasformIntoDodgex);
     }
-
+    public void PlayDetransform()
+    {
+        audioSource.PlayOneShot(deTrasformIntoDodgex);
+    }
     public void RollLoop()
     {
         if (!audioSource.isPlaying)
