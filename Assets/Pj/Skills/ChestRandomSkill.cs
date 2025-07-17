@@ -36,7 +36,6 @@ public class ChestRandomSkill : MonoBehaviour
             SkillCategory random = _availableCategories[randomIndex];
             ManagerSkills.instance.UnlockSkillCategory(random);
             _availableCategories.Remove(random);
-            Debug.Log("Desbloqueaste: " + random);
         }
     }
 }
