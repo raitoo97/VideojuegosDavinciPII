@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -24,6 +25,13 @@ public class BossIntroController : MonoBehaviour
     [SerializeField]private Color _fadeColorinit;
     [SerializeField]private Color _fadeColorfinish;
     private bool _hasPlayed = false;
+    [Header("NEW CAMERA")]
+    [SerializeField]private CinemachineVirtualCamera _cam;
+    private void Start()
+    {
+        _cam.Priority = 0;
+        StartCoroutine(NormalGame());
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.J))
@@ -67,16 +75,21 @@ public class BossIntroController : MonoBehaviour
     }
     public void EndIntroCinematic()
     {
-        _playerController.gameObject.SetActive(true);
+        _cam.Priority = 100;
         _playerController.enabled = true;
+        _playerController.GetMovement.SetBossFightMode(true);
         _turretPlayerController.enabled = true;
-        _playerAnimator.enabled = true;
         _dopplePlayerController.enabled = true;
         _survivorPlayerController.enabled = true;
         _bossBehaviour.enabled = true;
         _bossNavMesh.enabled = true;
         _bossAnimator.applyRootMotion = false;
         _bossAnimator.SetBool("IsCinematic", false);
+    }
+    public void ActivatePlayer()
+    {
+        _playerController.gameObject.SetActive(true);
+        _playerAnimator.enabled = true;
     }
     private IEnumerator FadeOut()
     {
@@ -102,10 +115,15 @@ public class BossIntroController : MonoBehaviour
         {
             _fadeImage.color = Color.Lerp(_fadeColorfinish, _fadeColorinit, time / finishied_time);
             yield return new WaitForSeconds(0.2f);
-            time += 0.2f;
+            time += 0.05f;
         }
         _fadeImage.color = _fadeColorinit;
         _fadeImage.gameObject.SetActive(true);
+    }
+    IEnumerator NormalGame()
+    {
+        yield return null;
+        _playerController.GetMovement.SetBossFightMode(false);
     }
 }
 public static class ChangeWeather

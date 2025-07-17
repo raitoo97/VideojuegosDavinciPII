@@ -226,7 +226,6 @@ public class ControlPlayer
         {
             if (!IsBlocked)
             {
-                Debug.Log("se llama al boss fight");
                 _movement.MoveInBossFight(horizontal, vertical);
             }
             else
