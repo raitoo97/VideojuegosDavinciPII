@@ -13,7 +13,9 @@ public enum Shakes
 public class CameraShakeManager : MonoBehaviour
 {
     public CinemachineVirtualCamera virtualCam;
+    public CinemachineVirtualCamera virtualCamBoss;
     private CinemachineBasicMultiChannelPerlin noise;
+    private CinemachineBasicMultiChannelPerlin noiseBoss;
     public List<ShakesClass> tempList = new List<ShakesClass>();
     private Dictionary<Shakes, ShakesClass> DictionaryShake = new Dictionary<Shakes, ShakesClass>();
     public static CameraShakeManager instance;
@@ -32,6 +34,8 @@ public class CameraShakeManager : MonoBehaviour
     {
         if (virtualCam == null) return;
         noise = virtualCam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        if (virtualCamBoss == null) return;
+        noiseBoss = virtualCamBoss.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
     public void ShakeCamera(Shakes type)
     {
@@ -46,10 +50,17 @@ public class CameraShakeManager : MonoBehaviour
         noise.m_AmplitudeGain = intensity;
         noise.m_FrequencyGain = frequency;
         noise.m_PivotOffset = pivotOffset;
+        noiseBoss.m_NoiseProfile = setting;
+        noiseBoss.m_AmplitudeGain = intensity;
+        noiseBoss.m_FrequencyGain = frequency;
+        noiseBoss.m_PivotOffset = pivotOffset;
         yield return new WaitForSeconds(duration);
         noise.m_AmplitudeGain = 0f;
         noise.m_FrequencyGain = 0f;
         noise.m_PivotOffset = Vector3.zero;
+        noiseBoss.m_AmplitudeGain = 0f;
+        noiseBoss.m_FrequencyGain = 0f;
+        noiseBoss.m_PivotOffset = Vector3.zero;
     }
 }
 [Serializable]
