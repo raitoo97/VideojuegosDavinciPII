@@ -5,28 +5,28 @@ using System.Linq;
 using UnityEngine;
 public class WavesManager : MonoBehaviour
 {
+    private int index;
+    private int numberOfWave = 0;
+    private int currentEnemies = 0;
+    private bool _isInitialized = false;
+
     private List<IEnemies> enemies;
     private List<RespawnZombie> _zombieListRespawns;
     private List<RespawnZombie> _tempZombieListRespawns;
     private List<TurretBehaviour> _turrets;
-    public static WavesManager instance;
+
     public Action _currentWave;
     public Action _cleanZombieTempList;
-    private int index;
-    private int currentEnemies = 0;
-    private int numberOfWave = 0;
-    private bool _isInitialized = false;
+    public static WavesManager instance;
+    public bool waveStarted = false;
     private void Awake()
     {
         if (instance == null) { instance = this; }
         else { Destroy(this.gameObject); }
+
         enemies = new List<IEnemies>();
         _tempZombieListRespawns = new List<RespawnZombie>();
         index = 0;
-    }
-    private void OnEnable()
-    {
-        _cleanZombieTempList = CleanZombieTemp;
     }
     private void Start()
     {
@@ -35,9 +35,16 @@ public class WavesManager : MonoBehaviour
         _zombieListRespawns = _zombieListRespawns.OrderBy(x => UnityEngine.Random.value).ToList();
         _turrets = _turrets.OrderBy(x => UnityEngine.Random.value).ToList();
         _isInitialized = true;
+
         SetWave(index);
         StartCoroutine(GetWaveUIButton());
     }
+
+    private void OnEnable()
+    {
+        _cleanZombieTempList = CleanZombieTemp;
+    }
+
     private void SetWave(int index)
     {
         switch (index)
@@ -112,7 +119,7 @@ public class WavesManager : MonoBehaviour
         int MaxValue = Math.Clamp(maxValue, minValue, list.Count);
         return UnityEngine.Random.Range(minValue, MaxValue + 1);
     }
-    private void ConfigWave(int RangeZombies, int RangeATurret, int RangeBTurret)
+    private void ConfigWave(int RangeZombies, int RangeATurret, int RangeBTurret) //Arranca Wave
     {
         if (_zombieListRespawns != null && _zombieListRespawns.Count > 0)
         {
@@ -124,6 +131,7 @@ public class WavesManager : MonoBehaviour
                     waveZombie.gameObject.SetActive(true);
                     waveZombie.StartWave();
                     currentEnemies += waveZombie.returnNumberOfEnemies();
+                    waveStarted = true;
                 }
             }
         }
@@ -142,7 +150,7 @@ public class WavesManager : MonoBehaviour
             }
         }
     }
-    private void CleanZombieTemp()
+    private void CleanZombieTemp() //Termino Wave
     {
         if (currentEnemies <= 0 && _tempZombieListRespawns.Count > 0)
         {
@@ -155,6 +163,7 @@ public class WavesManager : MonoBehaviour
                 }
             }
             _tempZombieListRespawns.Clear();
+            waveStarted = false;
         }
     }
     private void OnDisable()

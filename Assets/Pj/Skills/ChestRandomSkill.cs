@@ -6,10 +6,10 @@ public class ChestRandomSkill : MonoBehaviour
     private float _valueChest;
     private void Update()
     {
-        if (ManagerUI.instance.unlockSkill)
+        if (PjSkillsUpgradeUI.unlockSkill)
         {
             ChoseRandomCategory();
-            ManagerUI.instance.unlockSkill = false;
+            PjSkillsUpgradeUI.unlockSkill = false;
         }
     }
     private void Awake()

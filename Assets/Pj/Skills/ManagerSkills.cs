@@ -7,7 +7,8 @@ public enum SkillCategory
     dashCategory,
     shieldCategory,
     dopplegangerCategory,
-    survivorCategory,
+    survivorCategory
+    
 }
 public class ManagerSkills : MonoBehaviour
 {

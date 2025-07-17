@@ -45,10 +45,12 @@ public class PjSkillsUpgradeUI
     
     private Text UpgradeDoppleLifeText;
     private Text UpgradeDoppleCooldwnText;
-        
-        
-        
-        
+
+    [Header("UnlockSkillsChest")]
+    private Button _unlockSkillButton;
+    public static bool unlockSkill = false;
+
+
 
     public static bool alreadyClickedUnlock = false;
     public static bool alreadyClickedUpgrade = false;
@@ -88,7 +90,11 @@ public class PjSkillsUpgradeUI
         UpgradeDoppleLifeText,
         UpgradeDoppleCooldwn,
         UpgradeDoppleCooldwnText,
-        UltimateDopple
+        UltimateDopple,
+
+        //UnlockRandomSkill
+        ButtonUnlockRandomSkill
+
     }
 
     
@@ -133,6 +139,8 @@ public class PjSkillsUpgradeUI
         this.UpgradeDoppleCooldwnText = textos.Find(x => x.gameObject.name == UIElementName.UpgradeDoppleCooldwnText.ToString());
 
         this.UltimateDopple = buttons.Find(x=> x.gameObject.name == UIElementName.UltimateDopple.ToString());
+
+        _unlockSkillButton = buttons.Find(x => x.gameObject.name == "ButtonUnlockRandomSkill");
     }
     public void OnStart()
     {
@@ -166,8 +174,8 @@ public class PjSkillsUpgradeUI
     }
     public void OnUpdate()
     {
-        
         pointsText.text = PointManager.instance.CurrentPoints.ToString();
+        
         #region TURRET
         if (ManagerSkills.instance.IsUnlocked(SkillCategory.turretCategory))
         {
@@ -216,7 +224,6 @@ public class PjSkillsUpgradeUI
 
             distanceButton.targetGraphic.color = Color.gray;
             rateFireButton.targetGraphic.color = Color.gray;
-
         }
 
 
@@ -316,26 +323,16 @@ public class PjSkillsUpgradeUI
             }
 
         }
-        else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.shieldCategory) && !ManagerSkills.instance.IsUnlocked(SkillCategory.shieldCategory))
+        else
         {
-            //UnlockShield.interactable = true;
-            //UnlockShield.targetGraphic.color = Color.white;
-            //UnlockShield.onClick.RemoveAllListeners();
-            //UnlockShield.onClick.AddListener(UnlockShieldFunction);
-
-        } else
-        {
-            //UnlockShield.onClick.RemoveAllListeners();
             UpgradeShieldRatioButton.onClick.RemoveAllListeners();
             UpgradeShieldColdownButton.onClick.RemoveAllListeners();
             UpgradeShieldDurationButton.onClick.RemoveAllListeners();
 
-            //UnlockShield.onClick.AddListener(NotEnoughPoints);
             UpgradeShieldRatioButton.onClick.AddListener(CantPurchaseUpgrade);
             UpgradeShieldColdownButton.onClick.AddListener(CantPurchaseUpgrade);
             UpgradeShieldDurationButton.onClick.AddListener(CantPurchaseUpgrade);
 
-            //UnlockShield.targetGraphic.color = Color.gray;
             UpgradeShieldRatioButton.targetGraphic.color = Color.gray;
             UpgradeShieldColdownButton.targetGraphic.color = Color.gray;
             UpgradeShieldDurationButton.targetGraphic.color = Color.gray;
@@ -413,18 +410,8 @@ public class PjSkillsUpgradeUI
                 UpgradeDashSCooldownButton.targetGraphic.color = Color.gray;
             }
         }
-        else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.dashCategory) && !ManagerSkills.instance.IsUnlocked(SkillCategory.dashCategory))
-        {
-            //UnlockDash.targetGraphic.color = Color.white;
-            //UnlockDash.onClick.RemoveAllListeners();
-            //UnlockDash.onClick.AddListener(UnlockDashFunction);
-        }
         else
         {
-            //UnlockDash.onClick.RemoveAllListeners();
-            //UnlockDash.onClick.AddListener(NotEnoughPoints);
-            //UnlockDash.targetGraphic.color = Color.gray;
-
             UpgradeDashSpeedButton.onClick.RemoveAllListeners();
             UpgradeDashSpeedButton.onClick.AddListener(CantPurchaseUpgrade);
             UpgradeDashSpeedButton.targetGraphic.color = Color.gray;
@@ -521,35 +508,26 @@ public class PjSkillsUpgradeUI
                 UpgradePickupHealing.targetGraphic.color = Color.gray;
             }
         }
-        else if (ManagerSkills.instance.CanUnlockSkillCategory(SkillCategory.survivorCategory) && !ManagerSkills.instance.IsUnlocked(SkillCategory.survivorCategory))
-        {
-            //UnlockSurvivor.targetGraphic.color = Color.white;
-            //UnlockSurvivor.onClick.RemoveAllListeners();
-            //UnlockSurvivor.onClick.AddListener(UnlockSurvivorFunc);
-        }
         else
         {
-            //UnlockSurvivor.onClick.RemoveAllListeners();
             UpgradeLife.onClick.RemoveAllListeners();
             UpgradeRadioPickup.onClick.RemoveAllListeners();
             UpgradePickupHealing.onClick.RemoveAllListeners();
 
-            //UnlockSurvivor.onClick.AddListener(NotEnoughPoints);
             UpgradeLife.onClick.AddListener(CantPurchaseUpgrade);
             UpgradeRadioPickup.onClick.AddListener(CantPurchaseUpgrade);
             UpgradePickupHealing.onClick.AddListener(CantPurchaseUpgrade);
 
-            //UnlockSurvivor.targetGraphic.color = Color.gray;
             UpgradeLife.targetGraphic.color = Color.gray;
             UpgradeRadioPickup.targetGraphic.color = Color.gray;
             UpgradePickupHealing.targetGraphic.color = Color.gray;
         }
 
-        if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory))
-        {
-            UpgradeLife.interactable = false;
-            UpgradeLife.targetGraphic.color = Color.gray;
-        }
+        //if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.dashCategory))
+        //{
+        //    UpgradeLife.interactable = false;
+        //    UpgradeLife.targetGraphic.color = Color.gray;
+        //}
         //Ulti
         
         if (ManagerSkills.instance.AreAllSkillsMaxed(SkillCategory.survivorCategory) && ManagerSkills.instance.GetUltimateUnlockCost(SkillCategory.survivorCategory) <= PointManager.instance.CurrentPoints && !ManagerSkills.instance.IsUnlockUltimate(SkillCategory.survivorCategory))
@@ -648,6 +626,19 @@ public class PjSkillsUpgradeUI
 
         UpgradeDoppleLifeText.text = ManagerSkills.instance.GetValueSkill(SkillCategory.dopplegangerCategory, SkillStatType.dopplegangerLife).ToString();
         UpgradeDoppleCooldwnText.text = ManagerSkills.instance.GetValueSkill(SkillCategory.dopplegangerCategory, SkillStatType.coldowndoppleganger).ToString();
+        #endregion
+
+        #region UNLOCK SKILL CHEST
+        if (PointManager.instance.CurrentPoints < 3000f)
+        {
+            _unlockSkillButton.onClick.RemoveAllListeners();
+            _unlockSkillButton.onClick.AddListener(NotEnoughPoints);
+        }
+        else
+        {
+            _unlockSkillButton.onClick.RemoveAllListeners();
+            _unlockSkillButton.onClick.AddListener(UnlockSkillClicked);
+        }
         #endregion
     }
     private void UltimateTurretFunctionUnlock()
@@ -764,6 +755,14 @@ public class PjSkillsUpgradeUI
         {
             alreadyClickedUpgrade = true;
             PointManager.instance.StartCoroutine(PointManager.instance.CantUpgradeRoutine());
+        }
+    }
+
+    private void UnlockSkillClicked()
+    {
+        if (!unlockSkill)
+        {
+            unlockSkill = true;
         }
     }
 }

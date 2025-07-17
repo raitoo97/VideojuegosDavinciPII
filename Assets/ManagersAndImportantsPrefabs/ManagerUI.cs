@@ -26,9 +26,8 @@ public class ManagerUI : MonoBehaviour
     [Header("Skills UI")]
     public GameObject SkillsPanel;
     private bool _isCanvasEnable;
-    private Button _skillsButton;
-    private Button _unlockSkillButton;
-    public bool unlockSkill = false;
+    private Button _skillsCanvasButton;
+    
 
     [Header("Obstacles UI")]
     public GameObject obstacleWarning;
@@ -55,10 +54,11 @@ public class ManagerUI : MonoBehaviour
         
         SkillsPanel.SetActive(false);
         _isCanvasEnable = false;
-        this._skillsButton = buttonList.Find(x => x.gameObject.name == "ButtonSkill");
-        _skillsButton.onClick.AddListener(ButtonSkillClicked);
-        _unlockSkillButton = buttonList.Find(x => x.gameObject.name == "ButtonUnlockRandomSkill");
-        _unlockSkillButton.onClick.AddListener(ButtonUnlockSkillClicked);
+        this._skillsCanvasButton = buttonList.Find(x => x.gameObject.name == "ButtonSkill");
+        _skillsCanvasButton.onClick.AddListener(ButtonSkillClicked);
+
+
+        
 
         //Images of Skills unlock half alpha
         Color c = UnlockedShield.color;
@@ -80,6 +80,7 @@ public class ManagerUI : MonoBehaviour
         g.a = 0.2f;
         UnlockedDoppleganger.color = g;
         DopplegangerText.gameObject.SetActive(false);
+
     }
     private void Update()
     {
@@ -87,6 +88,8 @@ public class ManagerUI : MonoBehaviour
         _pjSkillsUpgradeUI.OnUpdate();
         _wavesUI.OnUpdate();
         _obstaclesDetectedUI.OnUpdate();
+
+        
     }
     public void CanvasState()
     {
@@ -114,26 +117,20 @@ public class ManagerUI : MonoBehaviour
     private void ButtonSkillClicked()
     {
         CanvasState();
-        _skillsButton.onClick.RemoveAllListeners();
-        _skillsButton.onClick.AddListener(ButtonSkillDeclicked);
+        _skillsCanvasButton.onClick.RemoveAllListeners();
+        _skillsCanvasButton.onClick.AddListener(ButtonSkillDeclicked);
     }
 
     private void ButtonSkillDeclicked()
     {
         CanvasState();
-        _skillsButton.onClick.RemoveAllListeners();
-        _skillsButton.onClick.AddListener(ButtonSkillClicked);
+        _skillsCanvasButton.onClick.RemoveAllListeners();
+        _skillsCanvasButton.onClick.AddListener(ButtonSkillClicked);
     }
 
-    private void ButtonUnlockSkillClicked()
-    {
-        if (!unlockSkill)
-        {
-            unlockSkill = true;
-        }
-    }
+    
 
-   
+
     public PjStatesLifeBar getLifeBar { get => PjLifeStates; }
     public WavesUI WaveUI { get => _wavesUI; }
     public ObstaclesDetectedUI ObstaclesDetectedUI { get => _obstaclesDetectedUI;}
