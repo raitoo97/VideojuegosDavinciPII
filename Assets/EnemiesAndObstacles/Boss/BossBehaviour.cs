@@ -140,7 +140,7 @@ public class BossBehaviour : MonoBehaviour , IEnemies
     {
         int choice = UnityEngine.Random.Range(0, 100);
         print(choice);
-        if (choice < 30)
+        if (choice < 10)
         {
             if (_turretBoss.Count > 0)
             {
@@ -154,7 +154,7 @@ public class BossBehaviour : MonoBehaviour , IEnemies
                 EndSpecialSkill();
             }
         }
-        else if (choice < 50)
+        else if (choice < 20)
         {
             _currentSpecialSkill = _InvokeZombie;
             _currentSpecialSkill.BossSkill(true);
