@@ -5387,10 +5387,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1942467402}
     m_Modifications:
-    - target: {fileID: 755662758470768535, guid: 5a8d0869290a5764f9ed3e5c934434bc, type: 3}
-      propertyPath: field of view
-      value: 80
-      objectReference: {fileID: 0}
     - target: {fileID: 3377245242916571322, guid: 5a8d0869290a5764f9ed3e5c934434bc, type: 3}
       propertyPath: m_Name
       value: Main Camera
