@@ -34,6 +34,11 @@ public class itemHealthBehavior : MonoBehaviour
             _renderer.material.color = _originalColor;
             StartCoroutine(Dissapear());
         }
+
+        if (Survivor.instance != null)
+        {
+            healingPoints = Survivor.instance.GetCurrentHealingPickup();
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
