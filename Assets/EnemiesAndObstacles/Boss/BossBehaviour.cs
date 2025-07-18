@@ -318,7 +318,7 @@ public class TurretBoss : IBossSkill
         if (_dirRotVector != Vector3.zero)
         {
             _dirRotQuaternion = Quaternion.LookRotation(_dirRotVector);
-            float tripodSpeed = 5;
+            float tripodSpeed = 10;
             _child.rotation = Quaternion.Slerp(_child.rotation, _dirRotQuaternion, tripodSpeed * Time.deltaTime);
         }
         _rayTurret.OnUpdate();
