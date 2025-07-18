@@ -3571,6 +3571,7 @@ MonoBehaviour:
   _fadeImage: {fileID: 117903015}
   _fadeColorinit: {r: 0, g: 0, b: 0, a: 0}
   _fadeColorfinish: {r: 0, g: 0, b: 0, a: 1}
+  _buttonWaves: {fileID: 1826167124}
   _canvas: {fileID: 1306626308}
   audioSource: {fileID: 1406852127}
   _cam: {fileID: 7031151534923651982}
@@ -4507,6 +4508,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8259254345434229832, guid: 2e0485f4156bbd04ca2162afaf0b9a81, type: 3}
   m_PrefabInstance: {fileID: 1784887392}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1826167124 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3258586275325600802, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+  m_PrefabInstance: {fileID: 6935544059359077375}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1923192143
 PrefabInstance:
@@ -5670,6 +5676,10 @@ PrefabInstance:
     - target: {fileID: 2572514622511211752, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3258586275325600802, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3703843095305111199, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
