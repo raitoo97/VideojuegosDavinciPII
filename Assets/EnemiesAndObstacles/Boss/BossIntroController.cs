@@ -25,6 +25,9 @@ public class BossIntroController : MonoBehaviour
     [SerializeField]private Image _fadeImage;
     [SerializeField]private Color _fadeColorinit;
     [SerializeField]private Color _fadeColorfinish;
+    [SerializeField]private Canvas _canvas;
+    [Header("Audio")]
+    public AudioSource audioSource;
     private bool _hasPlayed = false;
     [Header("NEW CAMERA")]
     [SerializeField]private CinemachineVirtualCamera _cam;
@@ -69,6 +72,22 @@ public class BossIntroController : MonoBehaviour
         _bossNavMesh.enabled = false;
         _bossAnimator.applyRootMotion = true;
         _bossAnimator.SetBool("IsCinematic", true);
+    }
+    public void PauseMusic()
+    {
+        AudioManager.instance.PauseClip(AudioManager.instance.Level1Music);
+    }
+    public void PlayMusic()
+    {
+        audioSource.Play();
+    }
+    public void HiddeUI()
+    {
+        _canvas.gameObject.SetActive(false);
+    }
+    public void ShowUI()
+    {
+        _canvas.gameObject.SetActive(true);
     }
     public void StartScreaming()
     {
