@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -9,6 +10,7 @@ public class BatBehavior : MonoBehaviour
     private float _damage = 30f;
     private float _existenceTime = 25f;
     private Coroutine _despawnCoroutine;
+    public static Action<Player, float> onHitPlayerBeam;
 
     AudioSource _audioSource;
     void FixedUpdate()
@@ -43,7 +45,8 @@ public class BatBehavior : MonoBehaviour
     {
         if (other.TryGetComponent<Player>(out Player player))
         {
-            player.DamagePlayer(_damage);
+            onHitPlayerBeam?.Invoke(player, 30);
+            //player.DamagePlayer(_damage);
         }
     }
 }

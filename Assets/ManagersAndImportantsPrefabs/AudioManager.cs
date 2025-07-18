@@ -25,6 +25,8 @@ public class AudioManager : MonoBehaviour
 
     //Beam Obstacle
     [SerializeField] public AudioClip BeamSfx;
+    [SerializeField] public AudioClip BeamHitSfx;
+    [SerializeField] public AudioClip BeamHitErrorSfx;
     public AudioClip Level1Music;
     public AudioClip buttonClick;
     public AudioClip bossFight;
