@@ -6020,15 +6020,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1477309947633531035, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.2235475
+      value: -51.7
       objectReference: {fileID: 0}
     - target: {fileID: 1477309947633531035, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.449332
+      value: 7.717
       objectReference: {fileID: 0}
     - target: {fileID: 1477309947633531035, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.940718
+      value: 128.89
       objectReference: {fileID: 0}
     - target: {fileID: 1477309947633531035, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
       propertyPath: m_LocalRotation.w
@@ -6058,6 +6058,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2839453531279406761, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2839453531279406761, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
       propertyPath: m_Name
       value: PoolsManagers
