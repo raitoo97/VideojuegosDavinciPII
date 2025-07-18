@@ -139,13 +139,13 @@ public class Movement
     public void UpdateGroundCheck() 
     {
         Vector3 origin = _groundCheck.position;
-        float radius = 0.25f;
+        float radius = 0.50f;
         _isGrounded = Physics.CheckSphere(origin, radius, _groundLayer);
     }
     public void OnDraw()
     {
         Vector3 origin = _groundCheck.position;
-        float radius = 0.25f;
+        float radius = 0.50f;
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(origin, radius);
         Gizmos.color = Color.red;
