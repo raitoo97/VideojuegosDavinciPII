@@ -22,6 +22,7 @@ public class Survivor : MonoBehaviour
     {
         if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.survivorCategory))
         {
+
             if (Player.instance._currentLife < Player.instance.maxLife)
             {
                 Player.instance._currentLife += regenRate * Time.deltaTime;
@@ -35,6 +36,7 @@ public class Survivor : MonoBehaviour
         {
             var result = ManagerSkills.instance.GetValueSkill(SkillCategory.survivorCategory, SkillStatType.lifeSurvivor);
             Player.instance.maxLife = result;
+            Player.instance._currentLife = result;
         }
     }
 
