@@ -20,7 +20,8 @@ public class ZombieAudio : MonoBehaviour
         int randomTiming = Random.Range(1,5);
         yield return new WaitForSeconds(randomTiming);
         int randomNumber = Random.Range(0, talk.Count);
-        AudioClip clip = AudioManager.instance.ReturnSfxRandomPitch(talk[randomNumber]);
+        AudioClip clip = talk[randomNumber];
+        audioSource.pitch = Random.Range(1f, 1.2f);
         audioSource.PlayOneShot(clip);
         yield return null;
     }
