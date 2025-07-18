@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         _dmgPlayer = 50;
-        _ultimtateRadius = 4;
+        _ultimtateRadius = 1;
     }
     private void OnEnable()
     {
