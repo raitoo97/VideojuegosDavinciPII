@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     [Header("BossFight")]
     [SerializeField] private Transform _bossTransform;
     [SerializeField] private Transform _cameraTransform;
+
+    public ControlPlayer controlPlayer { get; private set; }
     AudioManager audioManager => AudioManager.instance;//Sound
     private void Awake()
     {
@@ -42,6 +44,7 @@ public class Player : MonoBehaviour
         _playerAnimation = new PlayerAnimation(_animator);
         _controller = new ControlPlayer(_movement, _playerAnimation, _shield);
         _checkObstacles = new CheckObstacles(this.transform, maskObstacles);
+        controlPlayer = _controller;
         _currentLife = maxLife;
     }
     private void OnEnable()

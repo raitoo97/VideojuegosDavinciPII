@@ -9,13 +9,20 @@ public class itemHealthBehavior : MonoBehaviour
     {
         if (other != null && other.CompareTag("Player"))
         {
-            Player.instance.HealthPlayer(healingPoints);
-            this.gameObject.SetActive(false);
+            Player player = other.GetComponent<Player>();
+            if (player != null && !player.controlPlayer.GetDodgeMode)
+            {
+                Player.instance.HealthPlayer(healingPoints);
+                this.gameObject.SetActive(false);
+            }
         }
     }
     private void Update()
     {
-        _nearFromPlayer?.OnUpdate();
+        if (!Player.instance.controlPlayer.GetDodgeMode)
+        {
+            _nearFromPlayer?.OnUpdate();
+        }
     }
 
     public void InitDistanceBehavior(float newDistance)
