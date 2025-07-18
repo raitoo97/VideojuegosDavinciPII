@@ -53,6 +53,7 @@ public class Shield : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
         foreach (Collider hit in colliders)
         {
+
             Rigidbody rb = hit.GetComponent<Rigidbody>();
             if (rb != null && rb != _rb)
             {
