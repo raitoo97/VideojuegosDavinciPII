@@ -27,6 +27,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AudioClip BeamSfx;
     public AudioClip Level1Music;
     public AudioClip buttonClick;
+    public AudioClip bossFight;
     [Header("UI")]
     [SerializeField]private Slider _masterSlider;
     [SerializeField]private float _initMasterVolumen = 0.5f;
@@ -102,6 +103,12 @@ public class AudioManager : MonoBehaviour
         var audioSource = GetSource();
         if (audioSource == null) return;
         audioSource.Stop();
+    }
+    public void PauseClip(AudioClip clip)
+    {
+        var au = audioSources.Find(x => x.clip == clip);
+        if (au == null) return;
+        au.Stop();
     }
     public void SetMasterVolume(float value)
     {
