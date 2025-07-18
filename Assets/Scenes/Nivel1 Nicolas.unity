@@ -3572,6 +3572,7 @@ MonoBehaviour:
   _fadeColorinit: {r: 0, g: 0, b: 0, a: 0}
   _fadeColorfinish: {r: 0, g: 0, b: 0, a: 1}
   _buttonWaves: {fileID: 1826167124}
+  _buttonStore: {fileID: 1634205574}
   _canvas: {fileID: 1306626308}
   audioSource: {fileID: 1406852127}
   _cam: {fileID: 7031151534923651982}
@@ -4279,6 +4280,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1634205574 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 914074764586305558, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+  m_PrefabInstance: {fileID: 6935544059359077375}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1647054486
 GameObject:
   m_ObjectHideFlags: 3
