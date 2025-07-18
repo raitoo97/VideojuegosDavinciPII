@@ -77,6 +77,8 @@ public class PjStatesLifeBar
     {
         float percent = Player.instance.maxLife / baseMaxLife;
         LifeBarEdge.rectTransform.sizeDelta = new Vector2(baseEdgeWith * percent, LifeBarEdge.rectTransform.sizeDelta.y);
+        LifeBar.rectTransform.sizeDelta = new Vector2(baseEdgeWith * percent, LifeBarEdge.rectTransform.sizeDelta.y);
+        UpdateLifeBar();
     }
     private void UpdateStatusImage(LifeStatus status)
     {
