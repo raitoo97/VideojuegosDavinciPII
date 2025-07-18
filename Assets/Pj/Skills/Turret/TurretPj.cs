@@ -31,6 +31,10 @@ public class TurretPj : MonoBehaviour
         RotateTorrete(GetEnemy());
         RotateArroundDetail();
     }
+    private void OnEnable()
+    {
+        ActivateSelf();
+    }
     #region
     private Vector3 GetEnemy()
     {
@@ -190,7 +194,6 @@ public class TurretPj : MonoBehaviour
     public void ActivateSelf()
     {
         if (turret == null) return;
-        Debug.Log("Turret started shooting");
         if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
         {
             turretV2.gameObject.SetActive(true);
@@ -202,12 +205,11 @@ public class TurretPj : MonoBehaviour
             turretV2.gameObject.SetActive(false);
         }
         turret.gameObject.SetActive(true);
-        if (_shootRoutine != null)
+        if (_shootRoutine == null)
         {
-            StopCoroutine(_shootRoutine);
-            _shootRoutine = null;
+            Debug.Log("Turret started shooting");
+            _shootRoutine = StartCoroutine(Shoot());
         }
-        _shootRoutine = StartCoroutine(Shoot());
     }
     IEnumerator RecoilTorret()
     {
@@ -237,6 +239,14 @@ public class TurretPj : MonoBehaviour
         turretChild.transform.localPosition = _originalPos;
         turretChild.transform.localRotation = _orginialRot;
         _recoilCorutine = null;
+    }
+    private void OnDisable()
+    {
+        if (_shootRoutine != null)
+        {
+            StopCoroutine(_shootRoutine);
+            _shootRoutine = null;
+        }
     }
 }
     
