@@ -3634,6 +3634,7 @@ MonoBehaviour:
   _fadeImage: {fileID: 117903015}
   _fadeColorinit: {r: 0, g: 0, b: 0, a: 0}
   _fadeColorfinish: {r: 0, g: 0, b: 0, a: 1}
+  _buttonWaves: {fileID: 0}
   _canvas: {fileID: 0}
   audioSource: {fileID: 0}
   _cam: {fileID: 7031151534923651982}
@@ -5759,6 +5760,54 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7678585094196695459, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 5a45179db914cdb46a50dec6c1ec97e0, type: 3}
+    - target: {fileID: 7721889023396327503, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3322585
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721889023396327503, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3322585
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721889023396327503, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.3322585
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721889023396327503, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 409.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721889023396327503, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.0306
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151909494418128380, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3322585
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151909494418128380, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3322585
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151909494418128380, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.3322585
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151909494418128380, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 456.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151909494418128380, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 5.0306
+      objectReference: {fileID: 0}
+    - target: {fileID: 9188781620113038562, guid: 5ba956bfa83d29c42b24a180495ec029, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ae64df31adc34584d9f01257ee3eac24, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
