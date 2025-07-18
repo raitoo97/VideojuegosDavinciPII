@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 public class DopplegangerEntity : MonoBehaviour
@@ -27,7 +28,6 @@ public class DopplegangerEntity : MonoBehaviour
         if (_currentLife <= 0f)
         {
             UltimateDoppelganger();
-            Destroy(gameObject);
         }
     }
     private void UltimateDoppelganger()
@@ -41,6 +41,12 @@ public class DopplegangerEntity : MonoBehaviour
                     ultiDopplegangerActivate?.Invoke(zombie);
             }
         }
+        bool initCorutine = false;
+        if (!initCorutine)
+        {
+            initCorutine = true;
+            StartCoroutine(DestroyGameObject());
+        }
     }
     private void OnDisable()
     {
@@ -51,5 +57,13 @@ public class DopplegangerEntity : MonoBehaviour
     {
         _maxLife = maxLife;
         _currentLife = _maxLife;
+    }
+    IEnumerator DestroyGameObject()
+    {
+        ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 2f, 0f), Vector3.zero, transform);
+        yield return new WaitForSeconds(2);
+        this.gameObject.SetActive(false);
+        yield return new WaitForSeconds(10);
+        Destroy(gameObject);
     }
 }
