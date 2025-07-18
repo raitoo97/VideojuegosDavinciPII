@@ -214,8 +214,14 @@ MonoBehaviour:
     pivotOffset: {x: 0, y: 0, z: 0}
   - type: 3
     setting: {fileID: 11400000, guid: 030cb92efd3383c4a9f29d84d818ca5b, type: 2}
-    intensity: 9.08
-    frequency: 5.24
+    intensity: 3.46
+    frequency: 2.88
+    duration: 0.5
+    pivotOffset: {x: 0, y: 0, z: 0}
+  - type: 4
+    setting: {fileID: 11400000, guid: d161881c94f7bae449bcef33738999f6, type: 2}
+    intensity: 7.4
+    frequency: 4.03
     duration: 0.5
     pivotOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &9083364042843550237
@@ -349,12 +355,16 @@ MonoBehaviour:
   UnlockSkill: {fileID: 8300000, guid: 2c76a5add139588428c84bacb35aaa7b, type: 3}
   CantUnlockSkill: {fileID: 8300000, guid: e8a9b32c9d645ba43aa59d9e93cd7c0c, type: 3}
   BeamSfx: {fileID: 8300000, guid: 7979d08ca310bc946b285590ff581773, type: 3}
+  BeamHitSfx: {fileID: 8300000, guid: 1775273135e53b0409e0a917a54c900b, type: 3}
+  BeamHitErrorSfx: {fileID: 8300000, guid: 0319b47db0f5a634e8d2387e7d0926d4, type: 3}
+  PickupXP: {fileID: 8300000, guid: 2d6ce443e3ffeb54584cfe5d0cd71a3f, type: 3}
+  PickupHealt: {fileID: 8300000, guid: cd625b85dfaf1c248992ed4353b7a920, type: 3}
   Level1Music: {fileID: 8300000, guid: e86b7c37ac950ae4fb8bcc2b165d4328, type: 3}
   buttonClick: {fileID: 8300000, guid: c83fd45221bc2ae4b82e8c82451ada38, type: 3}
   bossFight: {fileID: 8300000, guid: f578c4d37e12b2648815109c66558c44, type: 3}
   _masterSlider: {fileID: 0}
-  _initMasterVolumen: 0.5
+  _initMasterVolumen: 0.7
   _musicSlider: {fileID: 0}
-  _initMusicVolumen: 0.5
+  _initMusicVolumen: 0.3
   _sfxSlider: {fileID: 0}
-  _initSfxVolumen: 0.8
+  _initSfxVolumen: 1

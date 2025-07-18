@@ -44,6 +44,7 @@ public class itemXPBehavior : MonoBehaviour
             Player player = other.GetComponent<Player>();
             if (player != null && !player.controlPlayer.GetDodgeMode)
             {
+                AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.PickupXP);
                 PointManager.instance.AddPoints(points);
                 this.gameObject.SetActive(false);
             }

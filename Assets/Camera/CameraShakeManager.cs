@@ -8,7 +8,8 @@ public enum Shakes
     PlayerUnderAtack,
     MisilShoot,
     EnemyMisilShoot,
-    MisilUltimateShot
+    MisilUltimateShot,
+    BeamObstacle
 }
 public class CameraShakeManager : MonoBehaviour
 {

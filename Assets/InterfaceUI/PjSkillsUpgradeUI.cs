@@ -762,6 +762,7 @@ public class PjSkillsUpgradeUI
     {
         if (!unlockSkill)
         {
+            AudioManager.instance.PlaySfxRandomPitch(audioManager.UpgradeSkill);
             unlockSkill = true;
         }
     }

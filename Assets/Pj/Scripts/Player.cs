@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
         ZombieAttack.onHitPlayerZombie += HandleHitPlayerZombie;
         Spikes.OnTriggerSpikes += HandleHitPlayerSpikes;
         BossMeleAtack.onHitPlayerBoss += HandleHitPlayerBoss;
+        BatBehavior.onHitPlayerBeam += HandleHitBeam;
     }
     private void Update()
     {
@@ -88,6 +89,15 @@ public class Player : MonoBehaviour
         ParticlesPool.instance.SpamParticle(ParticleType.Sparks, new Vector3(0f, 2f, 0f), new Vector3(UnityEngine.Random.Range(0f, 180f), 0f, 0f), GameManager.instance.player.transform);
         CameraShakeManager.instance.ShakeCamera(Shakes.EnemyMisilShoot);
         player.GetMovement.ReceiveKnockback(knockbackDir, knockbackForce);
+        DamagePlayer(damage);
+    }
+
+    private void HandleHitBeam(Player player, float damage)
+    {
+        AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.BeamHitSfx);
+        AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.BeamHitErrorSfx);
+        ParticlesPool.instance.SpamParticle(ParticleType.Sparks, new Vector3(0f, 2f, 0f), new Vector3(UnityEngine.Random.Range(0f, 180f), 0f, 0f), GameManager.instance.player.transform);
+        CameraShakeManager.instance.ShakeCamera(Shakes.BeamObstacle);
         DamagePlayer(damage);
     }
     private void HandleHitPlayerSpikes(float damage)

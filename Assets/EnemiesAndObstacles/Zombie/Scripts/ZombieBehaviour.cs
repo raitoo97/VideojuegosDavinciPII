@@ -146,8 +146,12 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
         {
             int randomIndexUltimate = UnityEngine.Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
             AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndexUltimate]); //sound effect
-            ParticlesPool.instance.SpamParticle(ParticleType.TurretUltimate, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
             enemy.life -= 100;
+            int randomParticleUltimate = UnityEngine.Random.Range(0, 100);
+            if (randomParticleUltimate <= 25)
+            {
+                ParticlesPool.instance.SpamParticle(ParticleType.TurretUltimate, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
+            }
         }
         else
         {
