@@ -356,4 +356,4 @@ MonoBehaviour:
   _musicSlider: {fileID: 0}
   _initMusicVolumen: 0.1
   _sfxSlider: {fileID: 0}
-  _initSfxVolumen: 0.5
+  _initSfxVolumen: 0.8
