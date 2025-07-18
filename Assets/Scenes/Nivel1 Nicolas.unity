@@ -497,10 +497,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
-    - target: {fileID: 1450442737868871314, guid: 58975d7c2ef95b043a5255a1dcab7e0b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2616411412868244346, guid: 58975d7c2ef95b043a5255a1dcab7e0b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -57.7
@@ -925,14 +921,6 @@ PrefabInstance:
     - target: {fileID: 279234217825914444, guid: f9d7d0f548a391a4f8cf04fd63b717f6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 483409937386961151, guid: f9d7d0f548a391a4f8cf04fd63b717f6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 72.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4456411032215492958, guid: f9d7d0f548a391a4f8cf04fd63b717f6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 75.1
       objectReference: {fileID: 0}
     - target: {fileID: 4851774645357916643, guid: f9d7d0f548a391a4f8cf04fd63b717f6, type: 3}
       propertyPath: m_Name
@@ -6135,10 +6123,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2839453531279406761, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 2839453531279406761, guid: 1a446e5512f4306478ad665e9e528518, type: 3}
       propertyPath: m_Name
       value: PoolsManagers
