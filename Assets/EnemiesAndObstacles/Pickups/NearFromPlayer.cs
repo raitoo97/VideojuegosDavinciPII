@@ -13,12 +13,13 @@ public class NearFromPlayer
     }
     public void OnUpdate()
     {
-        GoToPlayer();
+            GoToPlayer();
+       
     }
     private void GoToPlayer()
     {
         var DistancePj = _transform.IsWithinDistanceOf(GameManager.instance.player.transform, _distance);
-        if (DistancePj)
+        if (DistancePj )
         {
             _objectMono.StartCoroutine(GoToPj());
         }
