@@ -100,22 +100,12 @@ public class ControlPlayer
         if (isDodgeMode && !_wasHoldingShift)
         {
             _animation.SetTransforming("transforming", true); // Modo Bola
-            var turretPj = GameObject.FindAnyObjectByType<TurretPj>();
-            if (turretPj != null)
-            {
-                turretPj.DesactivateSelf();
-                GameManager.instance.player.GetComponent<Player>().GetMovement.ChangeSpeed(15f);//Acelero la velocidad del player
-            }
+            GameManager.instance.player.GetComponent<Player>().GetMovement.ChangeSpeed(15f);//Acelero la velocidad del player
         }
         if (!isDodgeMode && _wasHoldingShift)
         {
             _animation.SetTransforming("transforming", false); // Volvió al modo trípode
-            var turretPj = GameObject.FindAnyObjectByType<TurretPj>();
-            if (turretPj != null)
-            {
-                turretPj.ActivateSelf();
-                GameManager.instance.player.GetComponent<Player>().GetMovement.ChangeSpeed(GameManager.instance.player.GetComponent<Player>().GetInitSpeed);//Toma la velocidad normal del player
-            }
+            GameManager.instance.player.GetComponent<Player>().GetMovement.ChangeSpeed(GameManager.instance.player.GetComponent<Player>().GetInitSpeed);//Toma la velocidad normal del player
         }
         if (isDodgeMode && isFoward && isGrounded)
         {
@@ -132,7 +122,7 @@ public class ControlPlayer
         {
             _animation.SetDodge("dodging", 0f);
         }
-        if (isGrounded && !isDodgeMode)
+        if (isGrounded)
         {
             var turretPj = GameObject.FindAnyObjectByType<TurretPj>();
             if (turretPj != null)
