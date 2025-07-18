@@ -25,6 +25,7 @@ public class BossIntroController : MonoBehaviour
     [SerializeField]private Color _fadeColorinit;
     [SerializeField]private Color _fadeColorfinish;
     [SerializeField]private GameObject _buttonWaves;
+    [SerializeField] private GameObject _buttonStore;
     [SerializeField]private Canvas _canvas;
     [Header("Audio")]
     public AudioSource audioSource;
@@ -84,6 +85,7 @@ public class BossIntroController : MonoBehaviour
     public void HiddeUI()
     {
         _buttonWaves.gameObject.SetActive(false);
+        _buttonStore.gameObject.SetActive(false);
         _canvas.gameObject.SetActive(false);
     }
     public void ShowUI()

@@ -363,8 +363,8 @@ MonoBehaviour:
   buttonClick: {fileID: 8300000, guid: c83fd45221bc2ae4b82e8c82451ada38, type: 3}
   bossFight: {fileID: 8300000, guid: f578c4d37e12b2648815109c66558c44, type: 3}
   _masterSlider: {fileID: 0}
-  _initMasterVolumen: 0.7
+  _initMasterVolumen: 0.5
   _musicSlider: {fileID: 0}
-  _initMusicVolumen: 0.3
+  _initMusicVolumen: 0.5
   _sfxSlider: {fileID: 0}
-  _initSfxVolumen: 1
+  _initSfxVolumen: 0.5
