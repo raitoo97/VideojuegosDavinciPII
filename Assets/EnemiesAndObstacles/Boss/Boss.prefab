@@ -647,13 +647,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e526aa1d3a534043b60d51170601432, type: 3}
   - {fileID: 8300000, guid: 921602c76faf2e44999a328cca6eec4d, type: 3}
   - {fileID: 8300000, guid: 22899dd3267bfac44bdfd6f794e7c9ea, type: 3}
-  run: {fileID: 0}
-  punch: {fileID: 0}
-  invokeZombies: {fileID: 0}
-  rawr1: {fileID: 0}
-  rawr: {fileID: 0}
-  dead: {fileID: 0}
-  idleTurret: {fileID: 0}
+  attack:
+  - {fileID: 8300000, guid: 8159e68dbcc399c4fbfb48c4adaaaff0, type: 3}
+  - {fileID: 8300000, guid: e4a4d40be2183c64e919bfa780a0b0d3, type: 3}
+  - {fileID: 8300000, guid: 1643274a51f68c04fad28df681f77c9c, type: 3}
+  talk:
+  - {fileID: 8300000, guid: 10aa0dfacd807e34fbc578389088af91, type: 3}
+  - {fileID: 8300000, guid: cecfa3cb5f62c1f468fbd69944f39585, type: 3}
+  - {fileID: 8300000, guid: 1fd9730c6c450b54591cd15761045eed, type: 3}
+  - {fileID: 8300000, guid: cc08ad17e9bcadc42b48e91846722af9, type: 3}
+  - {fileID: 8300000, guid: 9d209b6f01508a9479b9aad5edae2bd9, type: 3}
+  invokeZombies: {fileID: 8300000, guid: ec3585e2a04772b4dabdcbbc24e5756a, type: 3}
+  rawr1: {fileID: 8300000, guid: 9386f182705e25e4bb59c27cf68a8462, type: 3}
+  dead: {fileID: 8300000, guid: 96f3d29d82548b3448096d8f88266ddb, type: 3}
 --- !u!195 &2094302705399732386
 NavMeshAgent:
   m_ObjectHideFlags: 0
