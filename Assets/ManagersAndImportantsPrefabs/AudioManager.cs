@@ -78,6 +78,15 @@ public class AudioManager : MonoBehaviour
         audioSource.pitch = Random.Range(1f, 1.2f);
         audioSource.PlayOneShot(clip);
     }
+
+    public AudioClip ReturnSfxRandomPitch(AudioClip clip)
+    {
+        var audioSource = GetSource();
+        if (audioSource == null || clip == null) return null;
+        audioSource.outputAudioMixerGroup = sfxGroup;
+        audioSource.pitch = Random.Range(1f, 1.2f);
+        return clip;
+    }
     public void PlayMusic(AudioClip clip)
     {
         var audioSource = GetSource();
