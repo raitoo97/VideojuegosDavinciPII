@@ -111,6 +111,7 @@ public class BossIntroController : MonoBehaviour
         _bossBehaviour.enabled = true;
         _bossNavMesh.enabled = true;
         _bossAnimator.applyRootMotion = false;
+        WavesManager.instance.waveStarted = true;
         _bossAnimator.SetBool("IsCinematic", false);
     }
     public void ActivatePlayer()
