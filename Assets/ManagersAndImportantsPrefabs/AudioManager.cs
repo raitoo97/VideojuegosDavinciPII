@@ -97,7 +97,6 @@ public class AudioManager : MonoBehaviour
         audioSource.loop = true;
         audioSource.Play();
     }
-
     public void Stop()
     {
         var audioSource = GetSource();
