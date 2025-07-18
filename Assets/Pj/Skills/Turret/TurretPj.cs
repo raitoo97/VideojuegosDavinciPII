@@ -189,24 +189,25 @@ public class TurretPj : MonoBehaviour
     }
     public void ActivateSelf()
     {
-
         if (turret == null) return;
+        Debug.Log("Turret started shooting");
         if (ManagerSkills.instance.IsUnlockUltimate(SkillCategory.turretCategory))
         {
             turretV2.gameObject.SetActive(true);
             turretV2.transform.position = turretChild.transform.position;
             turret.gameObject.SetActive(true);
-            if (_shootRoutine == null)
-            {
-                _shootRoutine = StartCoroutine(Shoot());
-            }
-        }else
-        turretV2.gameObject.SetActive(false);
-        turret.gameObject.SetActive(true);
-        if (_shootRoutine == null)
-        {
-            _shootRoutine = StartCoroutine(Shoot());
         }
+        else
+        {
+            turretV2.gameObject.SetActive(false);
+        }
+        turret.gameObject.SetActive(true);
+        if (_shootRoutine != null)
+        {
+            StopCoroutine(_shootRoutine);
+            _shootRoutine = null;
+        }
+        _shootRoutine = StartCoroutine(Shoot());
     }
     IEnumerator RecoilTorret()
     {
