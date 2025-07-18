@@ -659,7 +659,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9d209b6f01508a9479b9aad5edae2bd9, type: 3}
   invokeZombies: {fileID: 8300000, guid: ec3585e2a04772b4dabdcbbc24e5756a, type: 3}
   rawr1: {fileID: 8300000, guid: 9386f182705e25e4bb59c27cf68a8462, type: 3}
-  dead: {fileID: 0}
+  dead: {fileID: 8300000, guid: 96f3d29d82548b3448096d8f88266ddb, type: 3}
 --- !u!195 &2094302705399732386
 NavMeshAgent:
   m_ObjectHideFlags: 0
