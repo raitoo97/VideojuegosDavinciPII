@@ -16,6 +16,11 @@ public class Survivor : MonoBehaviour
         {
             instance = this;
         }
+
+        currentHealingPickup = 10f;
+
+
+
     }
 
     private void Update()

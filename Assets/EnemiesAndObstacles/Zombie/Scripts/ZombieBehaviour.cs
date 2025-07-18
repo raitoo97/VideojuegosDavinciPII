@@ -170,7 +170,12 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
     }
     private void HandleDashUlti(ZombieBehaviour enemy)
     {
-        ParticlesPool.instance.SpamParticle(ParticleType.DashUlti, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
+        int randomParticleUltimate = UnityEngine.Random.Range(0, 100);
+        if (randomParticleUltimate <= 25)
+        {
+            ParticlesPool.instance.SpamParticle(ParticleType.DashUlti, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
+
+        }
         enemy.life = 0;
     }
     private void OnDisable()
