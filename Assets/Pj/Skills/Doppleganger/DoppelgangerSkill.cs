@@ -63,7 +63,7 @@ public class DoppelgangerSkill : MonoBehaviour
     }
     private void ActivateSkill()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.LeftControl) && GameManager.instance.player.GetComponent<Player>().GetMovement.IsGrounded)
         {
             if (!ManagerSkills.instance.IsUnlocked(SkillCategory.dopplegangerCategory))
             {
