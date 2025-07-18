@@ -192,6 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCam: {fileID: 0}
+  virtualCamBoss: {fileID: 0}
   tempList:
   - type: 0
     setting: {fileID: 11400000, guid: 1bccf194e9f576c4090189a2e55ab1e9, type: 2}
@@ -246,6 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a76993136da17a0408a6211778cdef88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveStarted: 0
 --- !u!114 &619348640589115601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,11 +348,12 @@ MonoBehaviour:
   UpgradeSkill: {fileID: 8300000, guid: aa86352d63f1e5f498b4d3f5bf3f1eb9, type: 3}
   UnlockSkill: {fileID: 8300000, guid: 2c76a5add139588428c84bacb35aaa7b, type: 3}
   CantUnlockSkill: {fileID: 8300000, guid: e8a9b32c9d645ba43aa59d9e93cd7c0c, type: 3}
+  BeamSfx: {fileID: 0}
   Level1Music: {fileID: 8300000, guid: e86b7c37ac950ae4fb8bcc2b165d4328, type: 3}
   buttonClick: {fileID: 8300000, guid: c83fd45221bc2ae4b82e8c82451ada38, type: 3}
   _masterSlider: {fileID: 0}
   _initMasterVolumen: 0.5
   _musicSlider: {fileID: 0}
-  _initMusicVolumen: 0.5
+  _initMusicVolumen: 0.1
   _sfxSlider: {fileID: 0}
   _initSfxVolumen: 0.5

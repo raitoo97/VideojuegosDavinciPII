@@ -12,10 +12,10 @@ public class Movement
     private Transform _transformPj;
     private LayerMask _layerWall;
     private DashUlti _dashUlti;
-
-
-    //Constructor
-    public Movement(Rigidbody rb, Transform _groundCheck, float speed, LayerMask groundLayer, Transform _transformPj, LayerMask _layerWall, DashUlti dashUlti)
+    public bool _isInBossFight = false;
+    private Transform _bossTransform;
+    private Transform _cameraTransform;
+    public Movement(Rigidbody rb, Transform _groundCheck, float speed, LayerMask groundLayer, Transform _transformPj, LayerMask _layerWall, DashUlti dashUlti,Transform _bossTransform, Transform _cameraTransform)
     {
         _speed = speed;
         _groundLayer = groundLayer;
@@ -24,9 +24,67 @@ public class Movement
         this._layerWall = _layerWall;
         _rb = rb;
         _dashUlti = dashUlti;
+        this._bossTransform = _bossTransform;
+        this._cameraTransform = _cameraTransform;
     }
-
-
+    public void SetBossFightMode(bool isActive)
+    {
+        _isInBossFight = isActive;
+    }
+    public void MoveInBossFight(float inputHorizontal, float inputVertical)
+    {
+        if (_bossTransform == null || _cameraTransform == null) return;
+        Vector3 camForward = _cameraTransform.forward;
+        Vector3 camRight = _cameraTransform.right;
+        camForward.y = 0;
+        camRight.y = 0;
+        camForward.Normalize();
+        camRight.Normalize();
+        Vector3 _dir = (camForward * inputVertical + camRight * inputHorizontal).normalized;
+        if (_dir.sqrMagnitude > 0.001f)
+        {
+            Quaternion rot = Quaternion.LookRotation(_dir);
+            _rb.MoveRotation(Quaternion.Slerp(_rb.rotation, rot, 10 * Time.fixedDeltaTime));
+        }
+        else
+        {
+            Vector3 lookDir = (_bossTransform.position - _rb.position);
+            lookDir.y = 0;
+            if (lookDir.sqrMagnitude > 0.001f)
+            {
+                Quaternion rot = Quaternion.LookRotation(lookDir);
+                _rb.MoveRotation(Quaternion.Slerp(_rb.rotation, rot, 10 * Time.fixedDeltaTime));
+            }
+        }
+        Vector3 newPosition = _rb.position + _dir * _speed * Time.fixedDeltaTime;
+        _rb.MovePosition(newPosition);
+    }
+    public void RotateOnlyInBossFight(float inputHorizontal, float inputVertical)
+    {
+        if (_bossTransform == null || _cameraTransform == null) return;
+        Vector3 camForward = _cameraTransform.forward;
+        Vector3 camRight = _cameraTransform.right;
+        camForward.y = 0;
+        camRight.y = 0;
+        camForward.Normalize();
+        camRight.Normalize();
+        Vector3 _dir = (camForward * inputVertical + camRight * inputHorizontal).normalized;
+        if (_dir.sqrMagnitude > 0.001f)
+        {
+            Quaternion rot = Quaternion.LookRotation(_dir);
+            _rb.MoveRotation(Quaternion.Slerp(_rb.rotation, rot, 10 * Time.fixedDeltaTime));
+        }
+        else
+        {
+            Vector3 lookDir = (_bossTransform.position - _rb.position);
+            lookDir.y = 0;
+            if (lookDir.sqrMagnitude > 0.001f)
+            {
+                Quaternion rot = Quaternion.LookRotation(lookDir);
+                _rb.MoveRotation(Quaternion.Slerp(_rb.rotation, rot, 10 * Time.fixedDeltaTime));
+            }
+        }
+    }
     public void Move(float inputHorizontal, float inputVertical)
     {
         Vector3 _dir = new Vector3(inputHorizontal, 0, inputVertical).normalized;
@@ -58,8 +116,7 @@ public class Movement
     {
         Vector3 startPosition = _rb.position;
         Vector3 dashDirection = LastMoveDirection;
-        if (dashDirection == Vector3.zero )
-
+        if (dashDirection == Vector3.zero)
         dashDirection = _rb.transform.forward; 
         float dashForce = ManagerSkills.instance.GetValueSkill(SkillCategory.dashCategory, SkillStatType.dashSpeed);
         _rb.AddForce(dashDirection.normalized * dashForce, ForceMode.Impulse);
@@ -75,8 +132,6 @@ public class Movement
             _dashUlti.CreateDashTrail(startPosition,endPosition);
         }
     }
-
-    
     public void StopDash()
     {
         _rb.velocity = Vector2.zero;

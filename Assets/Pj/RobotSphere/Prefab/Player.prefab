@@ -7010,7 +7010,6 @@ GameObject:
   - component: {fileID: 3522650585358744689}
   - component: {fileID: 8502253604514901170}
   - component: {fileID: 7952817579950777749}
-  - component: {fileID: 3170387047915831180}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -7038,6 +7037,7 @@ Transform:
   - {fileID: 1511853868611518808}
   - {fileID: 6141831326528847791}
   - {fileID: 2112523642183775562}
+  - {fileID: 6397818268965407578}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1149012388551312030
@@ -7131,6 +7131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _groundCheck: {fileID: 2112523642183775562}
+  _turretRef: {fileID: 3522650585358744689}
   _animator: {fileID: 0}
   _initSpeed: 3
   _shield: {fileID: 5702548916812356572}
@@ -7146,6 +7147,8 @@ MonoBehaviour:
     m_Bits: 32768
   maxLife: 100
   _currentLife: 0
+  _bossTransform: {fileID: 0}
+  _cameraTransform: {fileID: 0}
 --- !u!114 &3522650585358744689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7170,6 +7173,7 @@ MonoBehaviour:
   turretV2: {fileID: 8465308312998442173}
   shotSfx: {fileID: 8300000, guid: 8d872766192051b47a9acd049369b8f7, type: 3}
   recoilPoint: {fileID: 8534146939420824425}
+  canShoot: 0
 --- !u!114 &8502253604514901170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7218,14 +7222,6 @@ MonoBehaviour:
   _misilMaterial: {fileID: 3635696662406691457}
   _orginalMaterialMisil: {fileID: 2100000, guid: 8cabdd6a3da070f478d7cd1eee1bfbb8, type: 2}
   _dopplegangerMaterialMisil: {fileID: 2100000, guid: d9ace35347513b148815ff1af7f2e6dd, type: 2}
---- !u!81 &3170387047915831180
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4469785779143389137}
-  m_Enabled: 1
 --- !u!1 &4469881310358930350
 GameObject:
   m_ObjectHideFlags: 0
@@ -8815,8 +8811,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1511853868611518808}
   - component: {fileID: 36271012253390535}
-  - component: {fileID: 899350591695088332}
-  - component: {fileID: 8285350211435418130}
+  - component: {fileID: 7169902501143194474}
+  - component: {fileID: 6695473438154512321}
   m_Layer: 3
   m_Name: robotSphere
   m_TagString: Untagged
@@ -8861,7 +8857,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &899350591695088332
+--- !u!114 &7169902501143194474
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8873,7 +8869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38305f483f6ed974787ce9fcb65b5559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 8285350211435418130}
+  audioSource: {fileID: 6695473438154512321}
   trasformIntoDodgex: {fileID: 8300000, guid: ce89a003c25f79742bffd843ef0c44e2, type: 3}
   deTrasformIntoDodgex: {fileID: 8300000, guid: d0fbb58cbc681184ba2a9fd026aaf4d3, type: 3}
   roll: {fileID: 8300000, guid: 3cbcdd7d34ade7b468acfc9282374dfb, type: 3}
@@ -8884,7 +8880,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6e1827db8c3942c4d99c7ee949dfdf75, type: 3}
   - {fileID: 8300000, guid: bb72d6559f2af3543b446574d0ae25a6, type: 3}
   - {fileID: 8300000, guid: 5c94970e99892a543b90a4ae6eafc09d, type: 3}
---- !u!82 &8285350211435418130
+--- !u!82 &6695473438154512321
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8893,7 +8889,7 @@ AudioSource:
   m_GameObject: {fileID: 7924960677071886725}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1024111228763657964, guid: d85bcb4a32efbb84d9d8975763dc573e, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -8980,6 +8976,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &7947519276251181239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6397818268965407578}
+  m_Layer: 3
+  m_Name: PjBossCameraFollow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6397818268965407578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7947519276251181239}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.1749326, y: -0, z: -0, w: 0.98458046}
+  m_LocalPosition: {x: 0, y: 2.28, z: -1.97}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8086958706035148933}
+  m_LocalEulerAnglesHint: {x: 20.149, y: 0, z: 0}
 --- !u!1 &8093569314715862731
 GameObject:
   m_ObjectHideFlags: 0

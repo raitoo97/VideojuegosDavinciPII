@@ -222,13 +222,27 @@ public class ControlPlayer
     public void OnfixedUpdate()
     {
         bool IsBlocked = _movement.IsBlocked();
-        if (!IsBlocked)
+        if (_movement._isInBossFight)
         {
-            _movement.Move(horizontal, vertical);
+            if (!IsBlocked)
+            {
+                _movement.MoveInBossFight(horizontal, vertical);
+            }
+            else
+            {
+                _movement.RotateOnlyInBossFight(horizontal, vertical);
+            }
         }
         else
         {
-            _movement.RotateOnly(horizontal, vertical);
+            if (!IsBlocked)
+            {
+                _movement.Move(horizontal, vertical);
+            }
+            else
+            {
+                _movement.RotateOnly(horizontal, vertical);
+            }
         }
     }
     public bool GetDodgeMode { get => isDodgeMode; }

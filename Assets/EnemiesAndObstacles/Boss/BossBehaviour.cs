@@ -87,7 +87,7 @@ public class BossBehaviour : MonoBehaviour , IEnemies
             ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 1f, 0f), Vector3.zero, Boss.transform,2);
             Boss._currentLife -= damage;
         }
-        if(_currentLife <= 0)
+        if(_currentLife <= 0 && !_isdead)
         {
             _isdead = true;
             OnDeath?.Invoke(this);
@@ -107,6 +107,7 @@ public class BossBehaviour : MonoBehaviour , IEnemies
         _punch.EndSkill();
         _navMeshAgent.isStopped = true;
         _currentSpecialSkill = null;
+        BossEndScene.EndSequence.Invoke();
         _animator.SetBool("Dead", true);
     }
     #endregion
@@ -140,7 +141,7 @@ public class BossBehaviour : MonoBehaviour , IEnemies
     {
         int choice = UnityEngine.Random.Range(0, 100);
         print(choice);
-        if (choice < 30)
+        if (choice < 10)
         {
             if (_turretBoss.Count > 0)
             {
@@ -154,7 +155,7 @@ public class BossBehaviour : MonoBehaviour , IEnemies
                 EndSpecialSkill();
             }
         }
-        else if (choice < 50)
+        else if (choice < 20)
         {
             _currentSpecialSkill = _InvokeZombie;
             _currentSpecialSkill.BossSkill(true);
@@ -382,11 +383,14 @@ public class Punch : IBossSkill
     private NavMeshAgent _agent;
     private Animator _animator;
     private bool _hasTriggeredPunchAnim = false;
+    private Vector3 _lastTargetPosition;
+    private float _repathThreshold = 1f;
     public Punch(NavMeshAgent _agent,Transform _transform,Animator _animator)
     {
         this._agent = _agent;
         this._transform = _transform;
         this._animator = _animator;
+        _lastTargetPosition = Vector3.positiveInfinity;
     }
     public void BossSkill(bool canUse = true)
     {
@@ -398,12 +402,17 @@ public class Punch : IBossSkill
             _hasTriggeredPunchAnim = false;
             return;
         }
-        bool distance = _transform.IsWithinDistanceOf(GameManager.instance.player.transform, _attackRange);
+        Transform player = GameManager.instance.player.transform;
+        bool distance = _transform.IsWithinDistanceOf(player, _attackRange);
         if (!distance)
         {
             _animator.SetBool("Run", true);
             _agent.isStopped = false;
-            _agent.SetDestination(GameManager.instance.player.transform.position);
+            if (!_agent.hasPath || Vector3.Distance(_lastTargetPosition, player.position) > _repathThreshold)
+            {
+                _lastTargetPosition = player.position;
+                _agent.SetDestination(_lastTargetPosition);
+            }
             _hasTriggeredPunchAnim = false;
         }
         else
@@ -428,5 +437,6 @@ public class Punch : IBossSkill
         _animator.SetBool("Run", true);
         _agent.isStopped = false;
         _hasTriggeredPunchAnim = false;
+        _lastTargetPosition = Vector3.positiveInfinity;
     }
 }

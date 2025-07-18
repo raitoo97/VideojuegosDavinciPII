@@ -60,14 +60,15 @@ public class Bullet : MonoBehaviour
                 {
                     onHitZombie?.Invoke(zombies);
                 }
-                else if (hit.TryGetComponent<BossBehaviour>(out var _boss))
-                {
-                    OnBossDamaged?.Invoke(_boss, _dmgPlayer);
-                }
             }
             DesactivateBullet();
         }
-        if(shooterType == ShooterType.Player && other.TryGetComponent<BossBehaviour>(out var boss))
+        if (shooterType == ShooterType.SuperPlayer && other.TryGetComponent<BossBehaviour>(out var bossulti))
+        {
+            OnBossDamaged?.Invoke(bossulti, _dmgPlayer);
+            DesactivateBullet();
+        }
+        if (shooterType == ShooterType.Player && other.TryGetComponent<BossBehaviour>(out var boss))
         {
             OnBossDamaged?.Invoke(boss, _dmgPlayer);
             DesactivateBullet();

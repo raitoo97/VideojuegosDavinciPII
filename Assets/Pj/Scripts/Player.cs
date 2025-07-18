@@ -3,6 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]private Transform _groundCheck;
+    [SerializeField] private TurretPj _turretRef;
     [SerializeField]private Movement _movement;
     [SerializeField]private ControlPlayer _controller;
     [SerializeField]private Animator _animator;
@@ -14,15 +15,16 @@ public class Player : MonoBehaviour
     public LayerMask wallLayer;
     public LayerMask maskObstacles;
     private Rigidbody _rb;
-
     [Header("Life")]
     public float maxLife = 100f;
     [SerializeField]public float _currentLife;
     public static Action OnPlayerDeath;
     public static Player instance;
-
     [Header("Obstacles")]
     private CheckObstacles _checkObstacles;
+    [Header("BossFight")]
+    [SerializeField] private Transform _bossTransform;
+    [SerializeField] private Transform _cameraTransform;
     AudioManager audioManager => AudioManager.instance;//Sound
     private void Awake()
     {
@@ -33,9 +35,10 @@ public class Player : MonoBehaviour
     }
     private void Start()
     {
+        _turretRef.enabled = true;
         _rb = GetComponent<Rigidbody>();
         _animator = GetComponentInChildren<Animator>();
-        _movement = new Movement(_rb, _groundCheck, _initSpeed, groundLayer,this.transform,wallLayer, dashUlti);
+        _movement = new Movement(_rb, _groundCheck, _initSpeed, groundLayer,this.transform,wallLayer, dashUlti, _bossTransform, _cameraTransform);
         _playerAnimation = new PlayerAnimation(_animator);
         _controller = new ControlPlayer(_movement, _playerAnimation, _shield);
         _checkObstacles = new CheckObstacles(this.transform, maskObstacles);

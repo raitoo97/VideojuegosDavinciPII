@@ -1,15 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class PlayerAudio : MonoBehaviour
 {
     public AudioSource audioSource;
     public AudioClip trasformIntoDodgex;
     public AudioClip deTrasformIntoDodgex;
     public AudioClip roll;
-    public List<AudioClip> walk = new List<AudioClip>(); 
-
+    public List<AudioClip> walk = new List<AudioClip>();
+    private void OnEnable()
+    {
+        audioSource.Stop();
+    }
     public void PlayTransform()
     {
         audioSource.PlayOneShot(trasformIntoDodgex);
@@ -30,12 +31,11 @@ public class PlayerAudio : MonoBehaviour
     public void StopRoll()
     {
         audioSource.Stop();
-        audioSource.loop=false;
+        audioSource.loop = false;
     }
-
     public void PlayWalk()
     {
-        int randomNumber = Random.Range(0,walk.Count);
+        int randomNumber = Random.Range(0, walk.Count);
         audioSource.PlayOneShot(walk[randomNumber]);
     }
 }

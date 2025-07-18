@@ -17,9 +17,14 @@ public class TurretPj : MonoBehaviour
     [SerializeField] private AudioClip shotSfx;
     private Coroutine _recoilCorutine;
     public Transform recoilPoint;
+    public bool canShoot;
     private void Awake()
     {
         turretChild.localRotation = Quaternion.identity;
+    }
+    private void Start()
+    {
+        canShoot = true;
     }
     void Update()
     {
@@ -74,7 +79,7 @@ public class TurretPj : MonoBehaviour
     #endregion
     IEnumerator Shoot()
     {
-        while (true)
+        while (canShoot)
         {
             if (_detectedTarget && enemy != null)
             {

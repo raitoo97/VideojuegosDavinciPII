@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 public enum EnemyType
 {
     Zombie,
@@ -50,10 +51,18 @@ public class PoolEnemyStruct
     {
         for (int i = 0; i < init; i++)
         {
-            var _cloneEnemy = GameObject.Instantiate(prefab);
+            var _cloneEnemy = GameObject.Instantiate(prefab, parent.position, parent.rotation,parent);
+            if (!_cloneEnemy.TryGetComponent<NavMeshAgent>(out var agentTest))
+            {
+                Debug.LogWarning("El prefab instanciado no tiene NavMeshAgent");
+            }
+            else
+            {
+                Debug.Log("NavMeshAgent instanciado correctamente");
+            }
             _cloneEnemy.SetActive(false);
             _enemyPool.Add(_cloneEnemy);
-            _cloneEnemy.transform.parent = parent;
+
         }
     }
     public GameObject GetEnemy()
