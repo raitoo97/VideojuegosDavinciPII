@@ -38,4 +38,10 @@ public class BossAudio : MonoBehaviour
         int randomNumnber = Random.Range(0,talk.Count);
         audioSource.PlayOneShot(talk[randomNumnber]);
     }
+
+    public void PlayDead()
+    {
+        audioSource.PlayOneShot(dead);
+
+    }
 }
