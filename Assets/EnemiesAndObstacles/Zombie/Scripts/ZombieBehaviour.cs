@@ -16,10 +16,11 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
     public event Action<IEnemies> _substractEnemyFromWave;
     private bool _canEjecuteCorutine;
     private Coroutine _coroutine;
+    public int maxLife = 200;
     private void Awake()
     {
         _enemypoints = 20; //puntos
-        life = 100;
+        life = 200;
         _idleDistance = 1000f;
         _runDistance = 4;
         _atackDistance = 1.5f;
@@ -146,14 +147,14 @@ public class ZombieBehaviour : MonoBehaviour , IEnemies
             int randomIndexUltimate = UnityEngine.Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
             AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndexUltimate]); //sound effect
             ParticlesPool.instance.SpamParticle(ParticleType.TurretUltimate, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
-            enemy.life = 0;
+            enemy.life -= 100;
         }
         else
         {
             int randomIndex = UnityEngine.Random.Range(0, AudioManager.instance.turretPlayerImpactSfx.Length);
             AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.turretPlayerImpactSfx[randomIndex]); //sound effect
             ParticlesPool.instance.SpamParticle(ParticleType.Explosion, new Vector3(0f, 2f, 0f), Vector3.zero, enemy.transform);
-            enemy.life = 0;
+            enemy.life -= 50;
             
         }
     }

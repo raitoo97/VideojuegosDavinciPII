@@ -71,31 +71,31 @@ MonoBehaviour:
     isUnlocked: 1
     costToUnlock: 0
     ultimateUnlocked: 0
-    costToUnlockUltimate: 500
+    costToUnlockUltimate: 3000
   - category: 1
     dataStrcut: {fileID: 11400000, guid: 9274209409056a14da20637bf99c7aa2, type: 2}
     isUnlocked: 0
     costToUnlock: 0
     ultimateUnlocked: 0
-    costToUnlockUltimate: 500
+    costToUnlockUltimate: 3000
   - category: 2
     dataStrcut: {fileID: 11400000, guid: 89d9bd1f9ef1d184bab913c343934b99, type: 2}
     isUnlocked: 0
     costToUnlock: 0
     ultimateUnlocked: 0
-    costToUnlockUltimate: 500
+    costToUnlockUltimate: 3000
   - category: 4
     dataStrcut: {fileID: 11400000, guid: 1f475a3f3215efb4497b3e2fb1956ae7, type: 2}
     isUnlocked: 0
     costToUnlock: 0
     ultimateUnlocked: 0
-    costToUnlockUltimate: 500
+    costToUnlockUltimate: 3000
   - category: 3
     dataStrcut: {fileID: 11400000, guid: 8581eba0a40c62b42843a21f19a0a758, type: 2}
     isUnlocked: 0
     costToUnlock: 0
     ultimateUnlocked: 0
-    costToUnlockUltimate: 1000
+    costToUnlockUltimate: 3000
 --- !u!114 &7709783099561902853
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +351,7 @@ MonoBehaviour:
   BeamSfx: {fileID: 0}
   Level1Music: {fileID: 8300000, guid: e86b7c37ac950ae4fb8bcc2b165d4328, type: 3}
   buttonClick: {fileID: 8300000, guid: c83fd45221bc2ae4b82e8c82451ada38, type: 3}
+  bossFight: {fileID: 0}
   _masterSlider: {fileID: 0}
   _initMasterVolumen: 0.5
   _musicSlider: {fileID: 0}

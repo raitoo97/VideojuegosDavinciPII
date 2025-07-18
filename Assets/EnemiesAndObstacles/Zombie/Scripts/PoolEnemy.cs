@@ -81,7 +81,7 @@ public class PoolEnemyStruct
         {
             if (_auxEnemy.TryGetComponent<ZombieBehaviour>(out var zombieBehaviour))
             {
-                zombieBehaviour.life = 100;
+                zombieBehaviour.life = zombieBehaviour.maxLife; 
             }
         }
         _auxEnemy.SetActive(true);

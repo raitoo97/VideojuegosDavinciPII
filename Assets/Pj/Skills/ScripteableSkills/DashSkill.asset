@@ -20,8 +20,8 @@ MonoBehaviour:
     - 50
     costPerLevel:
     - 0
-    - 200
-    - 400
+    - 1000
+    - 2000
   - skillType: 3
     valuesByLevel:
     - 5
@@ -29,5 +29,5 @@ MonoBehaviour:
     - 0.5
     costPerLevel:
     - 0
-    - 200
-    - 400
+    - 1000
+    - 2000
