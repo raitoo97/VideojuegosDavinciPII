@@ -4884,6 +4884,10 @@ PrefabInstance:
       propertyPath: virtualCamBoss
       value: 
       objectReference: {fileID: 7031151534923651982}
+    - target: {fileID: 3931444751640104713, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: tempList.Array.data[3].intensity
+      value: 5.03
+      objectReference: {fileID: 0}
     - target: {fileID: 4591393437164525177, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.2235475
@@ -5176,26 +5180,6 @@ PrefabInstance:
       propertyPath: _statusPjImageEntries.Array.data[4].statusImage
       value: 
       objectReference: {fileID: 2063888160}
-    - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: skillEntries.Array.data[0].costToUnlockUltimate
-      value: 3000
-      objectReference: {fileID: 0}
-    - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: skillEntries.Array.data[1].costToUnlockUltimate
-      value: 3000
-      objectReference: {fileID: 0}
-    - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: skillEntries.Array.data[2].costToUnlockUltimate
-      value: 3000
-      objectReference: {fileID: 0}
-    - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: skillEntries.Array.data[3].costToUnlockUltimate
-      value: 3000
-      objectReference: {fileID: 0}
-    - target: {fileID: 8304001904796028817, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
-      propertyPath: skillEntries.Array.data[4].costToUnlockUltimate
-      value: 3000
-      objectReference: {fileID: 0}
     - target: {fileID: 9083364042843550237, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: _pointsText
       value: 
