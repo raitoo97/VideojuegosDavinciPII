@@ -1141,9 +1141,9 @@ GameObject:
   - component: {fileID: 5118406689178402147}
   - component: {fileID: 166814595580449703}
   - component: {fileID: 7014130984435819823}
-  - component: {fileID: 3296924095592785208}
   - component: {fileID: 7183100691997931344}
   - component: {fileID: 7027593935970527780}
+  - component: {fileID: 8872537466811949116}
   m_Layer: 6
   m_Name: ZombieMenu
   m_TagString: Untagged
@@ -1212,20 +1212,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3296924095592785208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4433988801804473227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edde96aad304db047a358d518fe15491, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentState: 0
-  _animator: {fileID: 0}
 --- !u!54 &7183100691997931344
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1265,9 +1251,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97db242cc34d51349a1d0a47d1c2359c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _anims: {fileID: 0}
   _agent: {fileID: 0}
   target: []
+--- !u!114 &8872537466811949116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4433988801804473227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d83002e1ca9c1949a9761b7604eac94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4484601013324302978
 GameObject:
   m_ObjectHideFlags: 0
