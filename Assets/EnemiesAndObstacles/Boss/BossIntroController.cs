@@ -31,13 +31,6 @@ public class BossIntroController : MonoBehaviour
     private bool _hasPlayed = false;
     [Header("NEW CAMERA")]
     [SerializeField]private CinemachineVirtualCamera _cam;
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            PlayCinematic();
-        }
-    }
     private void Start()
     {
         _cam.Priority = 0;
