@@ -25,7 +25,7 @@ public class BossBehaviour : MonoBehaviour , IEnemies
     private MultipleTurretSkill _multipleTurretSkill;
     [Header("Life")]
     private float _currentLife = 0;
-    private float _maxLife = 100;
+    private float _maxLife = 5000;
     public event Action<IEnemies> OnDeath;
     private bool _isdead;
     private void Awake()
