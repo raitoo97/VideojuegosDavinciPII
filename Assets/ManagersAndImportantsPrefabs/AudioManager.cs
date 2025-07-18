@@ -27,6 +27,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] public AudioClip BeamSfx;
     [SerializeField] public AudioClip BeamHitSfx;
     [SerializeField] public AudioClip BeamHitErrorSfx;
+
+    //Pickups
+    [SerializeField] public AudioClip PickupXP;
+    [SerializeField] public AudioClip PickupHealt;
     public AudioClip Level1Music;
     public AudioClip buttonClick;
     public AudioClip bossFight;

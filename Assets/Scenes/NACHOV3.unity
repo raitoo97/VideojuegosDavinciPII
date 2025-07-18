@@ -4910,6 +4910,14 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3931444751640104713, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: tempList.Array.data[3].frequency
+      value: 2.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 3931444751640104713, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: tempList.Array.data[3].intensity
+      value: 3.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 3931444751640104713, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: tempList.Array.data[4].frequency
       value: 4.03
       objectReference: {fileID: 0}

@@ -42,6 +42,7 @@ public class itemHealthBehavior : MonoBehaviour
             Player player = other.GetComponent<Player>();
             if (player != null && !player.controlPlayer.GetDodgeMode)
             {
+                AudioManager.instance.PlaySfxRandomPitch(AudioManager.instance.PickupHealt);
                 Player.instance.HealthPlayer(healingPoints);
                 this.gameObject.SetActive(false);
             }
