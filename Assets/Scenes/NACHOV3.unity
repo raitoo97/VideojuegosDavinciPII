@@ -4866,6 +4866,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1363361954}
     - target: {fileID: 2003650405095859555, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: BeamHitSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 1775273135e53b0409e0a917a54c900b, type: 3}
+    - target: {fileID: 2003650405095859555, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: _sfxSlider
       value: 
       objectReference: {fileID: 1323397637}
@@ -4877,6 +4881,10 @@ PrefabInstance:
       propertyPath: _masterSlider
       value: 
       objectReference: {fileID: 658233249}
+    - target: {fileID: 2003650405095859555, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
+      propertyPath: BeamHitErrorSfx
+      value: 
+      objectReference: {fileID: 8300000, guid: 0319b47db0f5a634e8d2387e7d0926d4, type: 3}
     - target: {fileID: 3931444751640104713, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: virtualCam
       value: 
@@ -4903,11 +4911,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3931444751640104713, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: tempList.Array.data[4].frequency
-      value: 8.61
+      value: 4.03
       objectReference: {fileID: 0}
     - target: {fileID: 3931444751640104713, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: tempList.Array.data[4].intensity
-      value: 3.24
+      value: 7.4
       objectReference: {fileID: 0}
     - target: {fileID: 4591393437164525177, guid: 71704a50983f7d14eba72235b25c8fb8, type: 3}
       propertyPath: m_LocalPosition.x
